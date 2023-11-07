@@ -5,22 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
     <link href="./dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header class="px-2 md:px-10 bg-landingBG flex items-center justify-between">
         <div>
             <img src="./images/logo.png" class="md:w-[229px] w-[150px]" alt="">
         </div>
-        <nav class="hidden md:block">
-            <ul class="flex items-center gap-6 font-bold">
-                <li><a href="courses.html">Cources</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+        <nav class="md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center">
+            <ul class="md:flex items-center gap-6 font-bold">
+                <li class="hover:text-PURPLE duration-200"><a href="courses.html">Courses</a></li>
+                <li class="hover:text-PURPLE duration-200"><a href="about.html">About</a></li>
+                <li class="hover:text-PURPLE duration-200"><a href="blog.html">Blog</a></li>
+                <li class="hover:text-PURPLE duration-200"><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <div>
-            <button class="font-bold bg-PURPLE text-white px-3 py-2 md:px-5 md:py-4 rounded-2xl"><a href="">Create Account</a></button>
+        <div class="flex items-center gap-3">
+            <button class="font-bold bg-PURPLE text-white px-3 py-2 md:px-5 md:py-4 rounded-md md:rounded-2xl"><a href="">Create Account</a></button>
+            <div class="flex-1 block md:hidden hamburger">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </div>
         </div>
     </header>
     <section class="px-2 py-10 md:p-10 bg-landingBG">
@@ -73,5 +78,7 @@
         </div>
         <P class="text-center font-medium tracking-wide py-2">&copy; T.O Analytics 2023, All Rights Reserved</P>
     </footer>
+
+    <script src="./js/index.js"></script>
 </body>
 </html>
