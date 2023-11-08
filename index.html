@@ -10,12 +10,14 @@
 </head>
 <body>
     <div class="">
-        <header class="px-2 md:px-10 bg-landingBG flex items-center justify-between">
+        <header class="z-20 fixed w-full left-0 px-2 py-2 md:px-10 bg-landingBG flex items-center justify-between">
             <div>
-                <img src="./images/logo.png" class="md:w-[229px] w-[150px]" alt="">
+                <a href="index.html">
+                    <img src="./images/logo.png" class="md:w-[229px] w-[150px]" alt="">
+                </a>
             </div>
             <nav class="md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center">
-                <ul class="md:flex items-center gap-6 font-bold">
+                <ul class="md:flex items-center gap-6 font-light">
                     <li class="hover:text-PURPLE duration-200"><a href="courses.html">Courses</a></li>
                     <li class="hover:text-PURPLE duration-200"><a href="about.html">About</a></li>
                     <li class="hover:text-PURPLE duration-200"><a href="blog.html">Blog</a></li>
@@ -23,35 +25,146 @@
                 </ul>
             </nav>
             <div class="flex items-center gap-3">
-                <button class="font-bold bg-PURPLE text-white px-3 py-2 md:px-5 md:py-4 rounded-md md:rounded-2xl"><a href="">Create Account</a></button>
+                <a href="createAccount.html">
+                    <button class="hover:outline-PURPLE hover:bg-transparent hover:text-PURPLE hover:outline-2 hover:font-bold duration-300 font-light bg-PURPLE text-white px-2 py-1 md:px-4 md:py-3 rounded-md md:rounded-2xl">
+                        Create Account
+                    </button>
+                </a>
                 <div class="flex-1 block md:hidden hamburger">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </div>
             </div>
         </header>
-        <section class="px-2 md:px-10 bg-landingBG">
-            <div class="grid md:grid-cols-2 items-center gap-10 py-10">
+        <section class="px-2 md:px-10 md:py-32 bg-landingBG">
+            <div class="grid md:grid-cols-2 items-center gap-10">
                 <div>
                     <h1 class="my-4 md:my-8 font-bold text-3xl md:text-5xl">Tech Education for Tomorrow’s Innovators</h1>
-                    <p class="font-bold text-md md:text-xl my-3">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</p>
-                    <div class="flex gap-3">
-                        <button class="text-xl font-semibold border-2 border-PURPLE text-PURPLE px-2 py-1 md:px-4 md:py-3 rounded-lg md:rounded-xl"><a href="">Book Mentorship</a></button>
-                        <button class="text-xl font-semibold bg-PURPLE text-white px-2 py-1 md:px-4 md:py-3 rounded-lg md:rounded-xl"><a href="">Live Courses</a></button>
+                    <p class="font-extralight text-md md:text-xl my-3">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</p>
+                    <div class="flex gap-3 font-normal">
+                        <button class="hover:bg-PURPLE hover:text-white duration-300 text-xl border-2 border-PURPLE text-PURPLE px-2 py-1 md:px-4 md:py-3 rounded-lg md:rounded-xl"><a href="">Book Mentorship</a></button>
+                        <button class="hover:bg-transparent hover:text-PURPLE duration-300 hover:outline-2 outline hover:outline-PURPLE text-xl bg-PURPLE text-white px-2 py-1 md:px-4 md:py-3 rounded-lg md:rounded-xl"><a href="">Live Courses</a></button>
                     </div>
                 </div>
-                <div class="hidden md:block bg-PURPLE w-full h-[500px] md:h-[538px]"></div>
+                <div class="relative hidden md:block">
+                    <div class="bg-PURPLE landingDIV"></div>
+                    <div class="absolute top-0 left-0 right-0">
+                        <img src="./images/landingIMG.png" class="w-full" alt="">
+                    </div>
+                </div>
             </div>
         </section>
-        <section class="bg-[#7a7494]">
+        <section class="bg-landingBG">
+            <h1 class="py-6 text-center font-bold text-2xl md:text-4xl">Why Trust T.O Analytics?</h1>
+            <div class="md:p-10">
+                <div class="pt-10 pb-24 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+                    <div>
+                        <p class="font-semibold text-PURPLE my-2">Learn from industry’s best</p>
+                        <h1 class="font-bold text-2xl my-2">Experienced Instructors</h1>
+                        <p class="font-light">Our instructors are seasoned professionals who have worked in the tech industry for many years. They bring their expertise and real-world knowledge into the classroom to provide practical insights and guidance.</p>
+                    </div>
+                    <div>
+                        <img src="./images/e-instructors.png" alt="">
+                    </div>
+                </div>
+                <div class="py-24 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+                    <div>
+                        <img src="./images/h-learning.png" alt="">
+                    </div>
+                    <div>
+                        <p class="font-semibold text-PURPLE my-2">Fine blend of theory and practice</p>
+                        <h1 class="font-bold text-2xl my-2">Hands-on learning</h1>
+                        <p class="font-light"> At our boot camp, we believe in learning by doing. Our curriculum is designed to be hands-on, with a focus on projects and practical exercises that simulate real-world scenarios. This approach helps students gain valuable experience and build a strong foundation in tech skills.</p>
+                    </div>
+                </div>
+                <div class="py-24 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+                    <div>
+                        <p class="font-semibold text-PURPLE my-2">We put YOU first</p>
+                        <h1 class="font-bold text-2xl my-2">Flexible learning Options</h1>
+                        <p class="font-light">We understand that everyone has different schedules and commitments. That's why we offer flexible learning options, including part-time and full-time programs, as well as online learning options. This allows students to choose a schedule that works best for them while still receiving high-quality education.</p>
+                    </div>
+                    <div>
+                        <img src="./images/flexible learning.png" alt="">
+                    </div>
+                </div>
+                <div class="py-24 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+                    <div>
+                        <img src="./images/guidance.png" alt="">
+                    </div>
+                    <div>
+                        <p class="font-semibold text-PURPLE my-2">From clueless to pro</p>
+                        <h1 class="font-bold text-2xl my-2">Career guidance</h1>
+                        <p class="font-light">We provide comprehensive career guidance and support to help students transition into the tech industry. This includes resume building, interview preparation, job search strategies, and networking opportunities. Our goal is to equip students with the necessary skills and resources to succeed in their tech careers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="courses p-2 md:p-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-2">
+                <div class="rounded-xl">
+                    <div>
+                        <img src="./images/splunk.png" class="rounded-tr-2xl rounded-tl-2xl" alt="">
+                    </div>
+                    <div class="h-[100px] p-3 rounded-bl-2xl rounded-br-2xl bg-[#2d2065]">
+                        <p class="font-medium text-white text-xl">splunk</p>
+                    </div>
+                </div>
+                <div class="">
+                    <div>
+                        <img src="./images/linux.png" alt="">
+                    </div>
+                    <div class="h-[100px] p-3 rounded-bl-2xl rounded-br-2xl bg-[#2d2065]">
+                        <p class="font-medium text-white text-xl">Linux</p>
+                    </div>
+                </div>
+                <div class="">
+                    <div>
+                        <img src="./images/stock.png" alt="">
+                    </div>
+                    <div class="h-[100px] p-3 rounded-bl-2xl rounded-br-2xl bg-[#2d2065]">
+                        <p class="font-medium text-white text-xl">Stock & Options</p>
+                    </div>
+                </div>
+                <div class="">
+                    <div>
+                        <img src="./images/f-literacy.png" alt="">
+                    </div>
+                    <div class="h-[100px] p-3 rounded-bl-2xl rounded-br-2xl bg-[#2d2065]">
+                        <p class="font-medium text-white text-xl">Financial Literacy</p>
+                    </div>
+                </div>
+                <div class="">
+                    <div>
+                        <img src="./images/b-analytics.png" alt="">
+                    </div>
+                    <div class="h-[100px] p-3 rounded-bl-2xl rounded-br-2xl bg-[#2d2065]">
+                        <p class="font-medium text-white text-xl">Business Analytics</p>
+                    </div>
+                </div>
+                <div class="">
+                    <div>
+                        <img src="./images/videography.png" alt="">
+                    </div>
+                    <div class="h-[100px] p-3 rounded-bl-2xl rounded-br-2xl bg-[#2d2065]">
+                        <p class="font-medium text-white text-xl">Videography</p>
+                    </div>
+                </div>
+            </div>
+            <div class="py-10 text-center">
+                <a href="" class="">
+                    <button class="text-xl font-light bg-PURPLE hover:bg-transparent hover:text-PURPLE duration-300 hover:outline-2 outline hover:outline-PURPLE text-white px-3 py-2 rounded-xl">View All Courses</button>
+                </a>
+            </div>
+        </section>
+        <section class="bg-[#2d2065]">
             <div class="rounded-lg grid grid-cols-1 lg:grid-cols-2 p-2 md:p-10">
                 <div class="text-center rounded-tl-2xl rounded-tr-2xl md:rounded-tr-none md:rounded-tl-2xl md:rounded-bl-2xl border-b-0 md:border-b-2 md:border-r-0 border-2 border-PURPLE md:p-20">
                     <img src="./images/client.png" class="md:border-2 border-PURPLE rounded-2xl" alt="">
                     <div class="mt-2 text-white">
-                        <p class="font-bold text-lg ">Tomode Olulana</p>
-                        <p class="text-md">CEO</p>
+                        <p class="font-bold text-2xl">Tomode Olulana</p>
+                        <p class="text-xl">CEO</p>
                     </div>
                 </div>
-                <div class="font-bold border-2 border-PURPLE p-3 md:p-6 md:rounded-tr-2xl md:rounded-br-2xl rounded-br-2xl md:rounded-bl-none rounded-bl-2xl text-white">
+                <div class="font-light border-2 border-PURPLE p-3 md:p-6 md:rounded-tr-2xl md:rounded-br-2xl rounded-br-2xl md:rounded-bl-none rounded-bl-2xl text-white">
                     <p class="my-5">I am a passion driven Nigerian-American business magnate, big data developer, and financial investor based in the United States. I have over 7 years of experience trading and investing in the stock market through stocks and options and has several years training, teaching, and mentoring.
                     <p class="my-5">I received my Master of Science in Applied Economics from the University of Maryland, College Park. Worked as a Financial Analyst and Asset Manager for several years in the transportation industry and now work as a big data developer in the Cybersecurity field.</p>
                     <p class="my-5">I am the founder of ACE Stocks Trading, a stock trading community that teaches and mentors people on how to trade and invest in the stock market, I am also the founder and CEO of TO Productions LLC, a multimedia production company, Co-founder of Dive Data LLC, a company that trains people how to use SPLUNK data monitoring tool from user to an Admin level, LINUX and AWS. </p>
@@ -59,101 +172,38 @@
                 </div>
             </div>
         </section>
-        <section class="bg-landingBG">
-            <h1 class="my-4 text-center font-black text-2xl md:text-4xl">Why Trust T.O Analytics?</h1>
-            <div class="p-2 md:p-10">
-                <div class="py-10 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
-                    <div>
-                        <p class="font-bold text-PURPLE my-2">Learn from industry’s best</p>
-                        <h1 class="font-bold text-xl my-2">Experienced Instructors</h1>
-                        <p>Our instructors are seasoned professionals who have worked in the tech industry for many years. They bring their expertise and real-world knowledge into the classroom to provide practical insights and guidance.</p>
-                    </div>
-                    <div class="bg-PURPLE w-full h-[500px] md:h-[538px] hidden md:block"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-20">
-                    <div class="bg-PURPLE w-full h-[500px] md:h-[538px] hidden md:block"></div>
-                    <div>
-                        <p class="font-bold text-PURPLE my-2">Fine blend of theory and practice</p>
-                        <h1 class="font-bold text-xl my-2">Hands-on learning</h1>
-                        <p> At our boot camp, we believe in learning by doing. Our curriculum is designed to be hands-on, with a focus on projects and practical exercises that simulate real-world scenarios. This approach helps students gain valuable experience and build a strong foundation in tech skills.</p>
-                    </div>
-                </div>
-                <div class="py-10 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
-                    <div>
-                        <p class="font-bold text-PURPLE my-2">We put YOU first</p>
-                        <h1 class="font-bold text-xl my-2">Flexible learning Options</h1>
-                        <p>We understand that everyone has different schedules and commitments. That's why we offer flexible learning options, including part-time and full-time programs, as well as online learning options. This allows students to choose a schedule that works best for them while still receiving high-quality education.</p>
-                    </div>
-                    <div class="bg-PURPLE w-full h-[500px] md:h-[538px] hidden md:block"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-20">
-                    <div class="bg-PURPLE w-full h-[500px] md:h-[538px] hidden md:block"></div>
-                    <div>
-                        <p class="font-bold text-PURPLE my-2">From clueless to pro</p>
-                        <h1 class="font-bold text-xl my-2">Career guidance</h1>
-                        <p>We provide comprehensive career guidance and support to help students transition into the tech industry. This includes resume building, interview preparation, job search strategies, and networking opportunities. Our goal is to equip students with the necessary skills and resources to succeed in their tech careers.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="p-2 md:p-10">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-2">
-                <div class="rounded-xl">
-                    <img src="./images/splurk.png" class="w-full h-[300px] object-cover rounded-tr-2xl rounded-tl-2xl" alt="">
-                    <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                        <p class="font-bold text-white text-xl">splurk</p>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                    <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                        <p class="font-bold text-white text-xl">Linux</p>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                    <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                        <p class="font-bold  text-white text-xl">Stock & Options</p>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                    <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                        <p class="font-bold text-white text-xl">Financial Literacy</p>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                    <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                        <p class="font-bold text-white text-xl">Business Analytics</p>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                    <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                        <p class="font-bold text-white text-xl">Videography</p>
-                    </div>
-                </div>
-            </div>
-            <button class="w-fit mx-auto my-5 text-xl font-semibold bg-PURPLE text-white px-3 py-2 rounded-xl"><a href=""></a>View All Courses</button>
-        </section>
         <section class="bg-landingBG p-10">
-            <h1 class="my-2 text-center font-black text-2xl md:text-4xl">Here’s what our students are saying</h1>
-            <div class="min-h-[400px]">
-
+            <h1 class="md:my-8 text-center font-bold text-2xl md:text-4xl">Here’s what our students are saying</h1>
+            <div class="text-center">
+                <div class="w-1/2 mx-auto">
+                    <p class="font-medium my-4">Choosing this boot camp was a game-changer for me. The specialized cybersecurity curriculum, including in-depth training on Linux, gave me the skills and knowledge to excel in the field. The experienced instructors and practical projects made learning enjoyable</p>
+                    <p class="font-semibold text-2xl">Mayowa Odukoya</p>                    
+                </div>
+                <div>
+                    <span class="controls"></span>
+                </div>
+            </div>
+        </section>
+        <section class="text-center">
+            <h1 class="md:my-8 text-center font-bold text-2xl md:text-4xl">Ready to take your career to new heights?</h1>
+            <p class="font-medium my-4 w-1/2 mx-auto">Connect directly with industry-leading contractors and discover exciting job opportunities tailored to your skills and aspirations. Don’t wait, start building the future you’ve always dreamed of!</p>
+            <div class="py-10 text-center">
+                <a href="" class="">
+                    <button class="hover:bg-transparent hover:text-PURPLE duration-300 hover:outline-2 hover:border-PURPLE w-fit mx-auto text-md font-semibold bg-PURPLE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl">Connect with Contractor</button>
+                </a>
             </div>
         </section>
         <footer class="bg-[#2d2065] text-white">
-            <div class="text-center border-b-[#968fb2] border-b-2 py-20">
-                <p class="md:w-1/2 w-full mx-auto font-bold text-xl md:text-4xl">TEACHING, SUPPORTING & <span class="text-PURPLE">GUIDING</span> you through your tech journey</p>
-                <button class="w-fit mx-auto text-md font-semibold bg-PURPLE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl"><a href=""></a>Create Account</button>
+            <div class="text-center border-b-[#968fb2] border-b-[1px] py-20">
+                <p class="md:w-1/2 w-full mx-auto font-medium text-xl md:text-3xl leading-10">TEACHING, <br> SUPPORTING <br> & <span class="text-PURPLE font-black">GUIDING</span> <br> you through your tech journey</p>
+                <button class="hover:bg-transparent hover:text-PURPLE duration-300 hover:outline-2 hover:border-PURPLE w-fit mx-auto text-md font-semibold bg-PURPLE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl"><a href=""></a>Create Account</button>
             </div>
             <div class="p-2 md:px-10 md:py-5">
                 <h1 class="text-PURPLE font-bold">CALL</h1>
                 <P class="font-black text-xl">443-768-8416</P>
                 <P>Get instant response</P>
             </div>
-            <P class="text-center font-medium tracking-wide py-2">&copy; T.O Analytics 2023, All Rights Reserved</P>
+            <P class="text-center text-md md:text-xl font-medium tracking-wide py-2">&copy; T.O Analytics 2023, All Rights Reserved</P>
         </footer>
     </div>
 

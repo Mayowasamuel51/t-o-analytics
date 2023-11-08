@@ -9,40 +9,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <header class="px-2 md:px-10 bg-landingBG flex items-center justify-between">
+    <header class="z-20 fixed w-full left-0 px-2 py-2 md:px-10 bg-landingBG flex items-center justify-between">
         <div>
-            <img src="./images/logo.png" class="md:w-[229px] w-[150px]" alt="">
+            <a href="index.html">
+                <img src="./images/logo.png" class="md:w-[229px] w-[150px]" alt="">
+            </a>
         </div>
         <nav class="md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center">
-            <ul class="md:flex items-center gap-6 font-bold">
+            <ul class="md:flex items-center gap-6 font-extralight">
                 <li class="hover:text-PURPLE duration-200"><a href="courses.html">Courses</a></li>
                 <li class="hover:text-PURPLE duration-200"><a href="about.html">About</a></li>
-                <li class="hover:text-PURPLE duration-200"><a href="blog.html">Blog</a></li>
+                <li class="hover:text-PURPLE duration-200 active"><a href="blog.html">Blog</a></li>
                 <li class="hover:text-PURPLE duration-200"><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
         <div class="flex items-center gap-3">
-            <button class="font-bold bg-PURPLE text-white px-3 py-2 md:px-5 md:py-4 rounded-md md:rounded-2xl"><a href="">Create Account</a></button>
+            <a href="createAccount.html">
+                <button class="hover:outline-PURPLE hover:bg-transparent hover:text-PURPLE hover:outline-2 hover:font-bold duration-300 font-light bg-PURPLE text-white px-2 py-1 md:px-4 md:py-3 rounded-md md:rounded-2xl">
+                    Create Account
+                </button>
+            </a>
             <div class="flex-1 block md:hidden hamburger">
                 <i class="fa-solid fa-bars text-2xl"></i>
             </div>
         </div>
     </header>
     <section class="text-center px-2 py-10 md:p-10 bg-landingBG">
-        <div class="hidden md:block mx-auto md:w-[200px] aspect-square my-10 bg-PURPLE"></div>
-        <h1 class="w-full md:w-1/2 mx-auto font-medium text-3xl md:text-5xl">Sorry, there are no blogs available right now. Please check back later</h1>
+        <div class="">
+            <img src="./images/noblog.png" class="mx-auto" alt="">
+        </div>
+        <h1 class="w-full md:w-1/2 mx-auto font-medium text-3xl md:text-4xl">Sorry, there are no blogs available right now. Please check back later</h1>
     </section>
     <footer class="bg-[#2d2065] text-white">
-        <div class="text-center border-b-[#968fb2] border-b-2 py-20">
-            <p class="md:w-1/2 w-full mx-auto font-bold text-xl md:text-4xl">TEACHING, SUPPORTING & <span class="text-PURPLE">GUIDING</span> you through your tech journey</p>
-            <button class="w-fit mx-auto text-md font-semibold bg-PURPLE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl"><a href=""></a>Create Account</button>
+        <div class="text-center border-b-[#968fb2] border-b-[1px] py-20">
+            <p class="md:w-1/2 w-full mx-auto font-medium text-xl md:text-3xl leading-10">TEACHING, <br> SUPPORTING <br> & <span class="text-PURPLE font-black">GUIDING</span> <br> you through your tech journey</p>
+            <button class="hover:bg-transparent hover:text-PURPLE duration-300 hover:outline-2 hover:border-PURPLE w-fit mx-auto text-md font-semibold bg-PURPLE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl"><a href=""></a>Create Account</button>
         </div>
         <div class="p-2 md:px-10 md:py-5">
             <h1 class="text-PURPLE font-bold">CALL</h1>
             <P class="font-black text-xl">443-768-8416</P>
             <P>Get instant response</P>
         </div>
-        <P class="text-center font-medium tracking-wide py-2">&copy; T.O Analytics 2023, All Rights Reserved</P>
+        <P class="text-center text-md md:text-xl font-medium tracking-wide py-2">&copy; T.O Analytics 2023, All Rights Reserved</P>
     </footer>
 
     <script src="./js/index.js"></script>

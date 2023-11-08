@@ -9,56 +9,62 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <header class="px-2 md:px-10 bg-landingBG flex items-center justify-between">
+    <header class="z-20 fixed w-full left-0 px-2 py-2 md:px-10 bg-white flex items-center justify-between">
         <div>
-            <img src="./images/logo.png" class="md:w-[229px] w-[150px]" alt="">
+            <a href="index.html">
+                <img src="./images/logo.png" class="md:w-[229px] w-[150px]" alt="">
+            </a>
         </div>
         <nav class="md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center">
-            <ul class="md:flex items-center gap-6 font-bold">
+            <ul class="md:flex items-center gap-6 font-extralight">
                 <li class="hover:text-PURPLE duration-200"><a href="courses.html">Courses</a></li>
-                <li class="hover:text-PURPLE duration-200"><a href="about.html">About</a></li>
+                <li class="hover:text-PURPLE duration-200 active"><a href="about.html">About</a></li>
                 <li class="hover:text-PURPLE duration-200"><a href="blog.html">Blog</a></li>
                 <li class="hover:text-PURPLE duration-200"><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
         <div class="flex items-center gap-3">
-            <button class="font-bold bg-PURPLE text-white px-3 py-2 md:px-5 md:py-4 rounded-md md:rounded-2xl"><a href="">Create Account</a></button>
+            <a href="createAccount.html">
+                <button class="hover:outline-PURPLE hover:bg-transparent hover:text-PURPLE hover:outline-2 hover:font-bold duration-300 font-light bg-PURPLE text-white px-2 py-1 md:px-4 md:py-3 rounded-md md:rounded-2xl">
+                    Create Account
+                </button>
+            </a>
             <div class="flex-1 block md:hidden hamburger">
                 <i class="fa-solid fa-bars text-2xl"></i>
             </div>
         </div>
     </header>
-    <section class="px-2 py-10 md:p-10 bg-landingBG">
+    <section class="px-2 md:p-10 bg-white border-red-500">
         <div>
-            <h1 class="my-4 md:my-8 font-bold text-3xl md:text-5xl">Our Mission</h1>
-            <p class="w-full md:w-1/2 font-bold text-md md:text-xl my-3">At T.O Analytics, our mission is to empower students with the essential tech skills, focusing on the field of Cybersecurity. We understand the importance of cybersecurity in today’s digital world, protecting the individuals and organizations from cyber threats. </p>
+            <h1 class="my-4 md:my-8 font-bold text-3xl md:text-4xl">Our Mission</h1>
+            <p class="w-full md:w-1/2 font-light text-md md:text-xl my-3">At T.O Analytics, our mission is to empower students with the essential tech skills, focusing on the field of Cybersecurity. We understand the importance of cybersecurity in today’s digital world, protecting the individuals and organizations from cyber threats. </p>
         </div>
     </section>
-    <section class="px-2 py-10 md:p-10 bg-landingBG font-bold">
+    <section class="px-2 py-10 md:p-10 bg-white font-bold">
         <div class="grid gap-10 grid-cols-1 md:grid-cols-2 items-center">
-            <div class="grid grid-cols-2 gap-10">
-                <div class="w-full aspect-square bg-PURPLE"></div>
-                <div class="w-full aspect-square bg-PURPLE"></div>
-                <div class="w-full aspect-square bg-PURPLE"></div>
-                <div class="w-full aspect-square bg-PURPLE"></div>
+            <div class="grid grid-cols-2 gap-3">
+                <img src="./images/about1.png" class="rounded-xl" alt="">
+                <img src="./images/about2.jpg" class="rounded-xl" alt="">
+                <img src="./images/about3.png" class="rounded-xl" alt="">
+                <img src="./images/about4.png" class="rounded-xl" alt="">
             </div>
             <div>
-                <h1 class="my-4 md:my-8 font-bold text-3xl md:text-5xl">About Us</h1>
-                <p class="my-5">We are a leading tech institute dedicated to equipping the student with the skills they need to thrive in the ever-evolving world of technology. With a strong focus on cybersecurity, we offer  comprehensive training programs that empower our students to become experts in protecting digital assets.</p>
-                <p class="my-5">We are committed to fostering a supportive and collaborative learning environment. Our instructors are passionate about helping students succeed and providing them with the guidance and they need to reach their full potential. We prioritize individual and organizations and offer personalized attention to ensure that each student’s unique goals are met.</p>
+                <h1 class="my-4 md:my-8 font-bold text-3xl md:text-4xl">About Us</h1>
+                <p class="my-5 font-light">We are a leading tech institute dedicated to equipping the student with the skills they need to thrive in the ever-evolving world of technology. With a strong focus on cybersecurity, we offer  comprehensive training programs that empower our students to become experts in protecting digital assets.</p>
+                <p class="my-5 font-light">We are committed to fostering a supportive and collaborative learning environment. Our instructors are passionate about helping students succeed and providing them with the guidance and they need to reach their full potential. We prioritize individual and organizations and offer personalized attention to ensure that each student’s unique goals are met.</p>
             </div>
         </div>
     </section>
-    <section class="bg-[#7a7494]">
+    <section class="bg-landingBG">
         <div class="rounded-lg grid grid-cols-1 lg:grid-cols-2 p-2 md:p-10">
             <div class="text-center rounded-tl-2xl rounded-tr-2xl md:rounded-tr-none md:rounded-tl-2xl md:rounded-bl-2xl border-b-0 md:border-b-2 md:border-r-0 border-2 border-PURPLE md:p-20">
                 <img src="./images/client.png" class="md:border-2 border-PURPLE rounded-2xl" alt="">
-                <div class="mt-2 text-white">
-                    <p class="font-bold text-lg ">Tomode Olulana</p>
-                    <p class="text-md">CEO</p>
+                <div class="mt-2">
+                    <p class="font-bold text-2xl">Tomode Olulana</p>
+                    <p class="text-xl">CEO</p>
                 </div>
             </div>
-            <div class="font-bold border-2 border-PURPLE p-3 md:p-6 md:rounded-tr-2xl md:rounded-br-2xl rounded-br-2xl md:rounded-bl-none rounded-bl-2xl text-white">
+            <div class="font-light border-2 border-PURPLE p-3 md:p-6 md:rounded-tr-2xl md:rounded-br-2xl rounded-br-2xl md:rounded-bl-none rounded-bl-2xl">
                 <p class="my-5">I am a passion driven Nigerian-American business magnate, big data developer, and financial investor based in the United States. I have over 7 years of experience trading and investing in the stock market through stocks and options and has several years training, teaching, and mentoring.
                 <p class="my-5">I received my Master of Science in Applied Economics from the University of Maryland, College Park. Worked as a Financial Analyst and Asset Manager for several years in the transportation industry and now work as a big data developer in the Cybersecurity field.</p>
                 <p class="my-5">I am the founder of ACE Stocks Trading, a stock trading community that teaches and mentors people on how to trade and invest in the stock market, I am also the founder and CEO of TO Productions LLC, a multimedia production company, Co-founder of Dive Data LLC, a company that trains people how to use SPLUNK data monitoring tool from user to an Admin level, LINUX and AWS. </p>
@@ -67,16 +73,16 @@
         </div>
     </section>
     <footer class="bg-[#2d2065] text-white">
-        <div class="text-center border-b-[#968fb2] border-b-2 py-20">
-            <p class="md:w-1/2 w-full mx-auto font-bold text-xl md:text-4xl">TEACHING, SUPPORTING & <span class="text-PURPLE">GUIDING</span> you through your tech journey</p>
-            <button class="w-fit mx-auto text-md font-semibold bg-PURPLE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl"><a href=""></a>Create Account</button>
+        <div class="text-center border-b-[#968fb2] border-b-[1px] py-20">
+            <p class="md:w-1/2 w-full mx-auto font-medium text-xl md:text-3xl leading-10">TEACHING, <br> SUPPORTING <br> & <span class="text-PURPLE font-black">GUIDING</span> <br> you through your tech journey</p>
+            <button class="hover:bg-transparent hover:text-PURPLE duration-300 hover:outline-2 hover:border-PURPLE w-fit mx-auto text-md font-semibold bg-PURPLE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl"><a href=""></a>Create Account</button>
         </div>
         <div class="p-2 md:px-10 md:py-5">
             <h1 class="text-PURPLE font-bold">CALL</h1>
             <P class="font-black text-xl">443-768-8416</P>
             <P>Get instant response</P>
         </div>
-        <P class="text-center font-medium tracking-wide py-2">&copy; T.O Analytics 2023, All Rights Reserved</P>
+        <P class="text-center text-md md:text-xl font-medium tracking-wide py-2">&copy; T.O Analytics 2023, All Rights Reserved</P>
     </footer>
 
     <script src="./js/index.js"></script>
