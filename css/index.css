@@ -1,4 +1,8 @@
 /* COURSES IMAGES DIMENSION */
+
+body {
+    overflow-x: hidden;
+}
 section.courses img {
     width: 100%;
     height: 200px;
