@@ -22,7 +22,7 @@ div.landingDIV img{
     font-weight: 900;
 }
 
-nav {
+nav.active {
     height: 100vh;
 }
 
