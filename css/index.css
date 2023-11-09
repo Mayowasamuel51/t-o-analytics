@@ -30,9 +30,25 @@ nav.active {
     height: 100vh;
 }
 
+.bounce {
+    animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    
+}
+
+/* HEADER START */
+header {
+    
+}
+
+/* CARDS ANIMATION */
+
+.card-container {
+    display: flex;
+}
+
 @media only screen and (min-width: 758px) {
-
-
     nav.fixed {
         top: 0;
         left: 0;
