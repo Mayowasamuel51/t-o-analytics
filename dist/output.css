@@ -41,10 +41,8 @@ html {
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
-  -moz-tab-size: 4;
   /* 3 */
-  -o-tab-size: 4;
-     tab-size: 4;
+  tab-size: 4;
   /* 3 */
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
@@ -368,7 +366,7 @@ textarea {
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 
-input::-moz-placeholder, textarea::-moz-placeholder {
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   opacity: 1;
   /* 1 */
   color: #9ca3af;
@@ -536,6 +534,48 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.container{
+  width: 100%;
+}
+
+@media (min-width: 640px){
+  .container{
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px){
+  .container{
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px){
+  .container{
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px){
+  .container{
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px){
+  .container{
+    max-width: 1536px;
+  }
+}
+
+.\!visible{
+  visibility: visible !important;
+}
+
+.visible{
+  visibility: visible;
+}
+
 .fixed{
   position: fixed;
 }
@@ -589,6 +629,10 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.mb-5{
+  margin-bottom: 1.25rem;
+}
+
 .mt-2{
   margin-top: 0.5rem;
 }
@@ -597,11 +641,24 @@ video {
   margin-top: 2rem;
 }
 
+.mb-2{
+  margin-bottom: 0.5rem;
+}
+
+.mb-10{
+  margin-bottom: 2.5rem;
+}
+
 .block{
   display: block;
 }
 
+.inline{
+  display: inline;
+}
+
 .flex{
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -609,28 +666,27 @@ video {
   display: grid;
 }
 
+.contents{
+  display: contents;
+}
+
 .hidden{
   display: none;
 }
 
-.h-\[100px\]{
-  height: 100px;
+.h-\[150px\]{
+  height: 150px;
 }
 
-.h-\[300px\]{
-  height: 300px;
+.h-\[200px\]{
+  height: 200px;
 }
 
 .w-\[100px\]{
   width: 100px;
 }
 
-.w-\[150px\]{
-  width: 150px;
-}
-
 .w-fit{
-  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -639,7 +695,16 @@ video {
 }
 
 .flex-1{
-  flex: 1 1 0%;
+  -ms-flex: 1 1 0%;
+      flex: 1 1 0%;
+}
+
+.transform{
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.resize{
+  resize: both;
 }
 
 .grid-cols-1{
@@ -651,11 +716,13 @@ video {
 }
 
 .items-center{
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 
 .justify-between{
-  justify-content: space-between;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
 }
 
 .gap-10{
@@ -675,8 +742,7 @@ video {
 }
 
 .gap-x-2{
-  -moz-column-gap: 0.5rem;
-       column-gap: 0.5rem;
+  column-gap: 0.5rem;
 }
 
 .gap-y-4{
@@ -723,12 +789,21 @@ video {
   border-width: 2px;
 }
 
+.border-\[1px\]{
+  border-width: 1px;
+}
+
 .border-b-0{
   border-bottom-width: 0px;
 }
 
 .border-b-\[1px\]{
   border-bottom-width: 1px;
+}
+
+.border-BLUE{
+  --tw-border-opacity: 1;
+  border-color: rgb(45 32 101 / var(--tw-border-opacity));
 }
 
 .border-PURPLE{
@@ -739,6 +814,11 @@ video {
 .border-red-500{
   --tw-border-opacity: 1;
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
+}
+
+.border-textColor{
+  --tw-border-opacity: 1;
+  border-color: rgb(217 217 217 / var(--tw-border-opacity));
 }
 
 .border-b-\[\#968fb2\]{
@@ -756,6 +836,11 @@ video {
   background-color: rgb(196 24 172 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#25242c\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 36 44 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#2d2065\]{
   --tw-bg-opacity: 1;
   background-color: rgb(45 32 101 / var(--tw-bg-opacity));
@@ -771,14 +856,17 @@ video {
   background-color: rgb(244 222 241 / var(--tw-bg-opacity));
 }
 
+.bg-transparent{
+  background-color: transparent;
+}
+
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .object-cover{
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .p-10{
@@ -791,6 +879,10 @@ video {
 
 .p-3{
   padding: 0.75rem;
+}
+
+.p-4{
+  padding: 1rem;
 }
 
 .px-2{
@@ -846,11 +938,6 @@ video {
 .py-6{
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-}
-
-.py-7{
-  padding-top: 1.75rem;
-  padding-bottom: 1.75rem;
 }
 
 .pb-10{
@@ -927,9 +1014,19 @@ video {
   letter-spacing: 0.025em;
 }
 
+.text-BLUE{
+  --tw-text-opacity: 1;
+  color: rgb(45 32 101 / var(--tw-text-opacity));
+}
+
 .text-PURPLE{
   --tw-text-opacity: 1;
   color: rgb(196 24 172 / var(--tw-text-opacity));
+}
+
+.text-textColor{
+  --tw-text-opacity: 1;
+  color: rgb(217 217 217 / var(--tw-text-opacity));
 }
 
 .text-white{
@@ -937,13 +1034,12 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.text-BLUE{
-  --tw-text-opacity: 1;
-  color: rgb(45 32 101 / var(--tw-text-opacity));
-}
-
 .outline{
   outline-style: solid;
+}
+
+.filter{
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .transition{
@@ -966,14 +1062,19 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
+.hover\:border-BLUE:hover{
+  --tw-border-opacity: 1;
+  border-color: rgb(45 32 101 / var(--tw-border-opacity));
+}
+
 .hover\:border-PURPLE:hover{
   --tw-border-opacity: 1;
   border-color: rgb(196 24 172 / var(--tw-border-opacity));
 }
 
-.hover\:bg-PURPLE:hover{
+.hover\:bg-BLUE:hover{
   --tw-bg-opacity: 1;
-  background-color: rgb(196 24 172 / var(--tw-bg-opacity));
+  background-color: rgb(45 32 101 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-transparent:hover{
@@ -994,21 +1095,12 @@ body {
   color: rgb(196 24 172 / var(--tw-text-opacity));
 }
 
-.hover\:text-white:hover{
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .hover\:outline-2:hover{
   outline-width: 2px;
 }
 
 .hover\:outline-BLUE:hover{
   outline-color: #2d2065;
-}
-
-.hover\:outline-PURPLE:hover{
-  outline-color: #c418ac;
 }
 
 @media (min-width: 768px){
@@ -1024,6 +1116,11 @@ body {
     top: 0px;
   }
 
+  .md\:my-12{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+
   .md\:my-8{
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -1034,6 +1131,7 @@ body {
   }
 
   .md\:flex{
+    display: -ms-flexbox;
     display: flex;
   }
 
@@ -1050,8 +1148,11 @@ body {
   }
 
   .md\:w-fit{
-    width: -moz-fit-content;
     width: fit-content;
+  }
+
+  .md\:max-w-\[70\%\]{
+    max-width: 70%;
   }
 
   .md\:grid-cols-2{

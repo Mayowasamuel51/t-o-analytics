@@ -4,7 +4,6 @@ const navContainer = document.querySelector("nav>ul");
 const Nav = document.querySelector("nav");
 const links = document.querySelectorAll("nav>ul>li>a")
 const Header = document.getElementsByTagName("header");
-
 const currloc = window.location.pathname;
 
 
@@ -27,4 +26,31 @@ window.addEventListener("scroll", ()=> {
     else {
         Nav.classList.remove("fixed")
     }
+})
+
+
+// SLIDE
+document.addEventListener("DOMContentLoaded", ()=> {
+    const splide = new Splide(".splide", {
+        type : 'loop',
+        drag : 'free',
+        perPage: 1,
+        gap: '20px',
+        perMove: 1,
+        focus : 0,
+        autoplay: true,
+        interval: 4000,
+        speed: 2000,
+        arrows: false,
+        classes: {
+            pagination: 'splide__pagination your-class-pagination',
+		    page      : 'splide__pagination__page your-class-page',
+        },
+    })
+    splide.on( 'pagination:mounted', function ( data ) {
+        data.items.forEach( function ( item ) {
+          console.log(item)
+        });
+      } );
+    splide.mount()
 })

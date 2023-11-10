@@ -22,7 +22,7 @@ div.landingDIV img{
 }
 
 .active {
-    color: #c418ac;
+    color: #2d2065;
     font-weight: 900;
 }
 
@@ -37,9 +37,9 @@ nav.active {
     
 }
 
-/* HEADER START */
-header {
-    
+.active-color {
+    /* background-color: #2d2065; */
+    background-color: red;
 }
 
 /* CARDS ANIMATION */

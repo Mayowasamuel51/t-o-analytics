@@ -9,23 +9,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <header class="z-20 fixed w-full left-0 top-0 px-2 py-2 md:px-10 bg-landingBG flex items-center justify-between">
+    <header class="z-20 fixed w-full left-0 top-0 px-2 py-2 md:px-10 bg-white flex items-center justify-between">
         <div>
             <a href="index.html">
-                <img src="./images/logo.png" class="md:w-[229px] w-[150px]" alt="">
+                <img src="./images/logo.png" class="md:w-[229px] w-[100px]" alt="">
             </a>
         </div>
         <nav class="md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center">
             <ul class="md:flex items-center gap-6 font-extralight">
-                <li class="hover:text-PURPLE duration-200 active"><a href="courses.html">Courses</a></li>
-                <li class="hover:text-PURPLE duration-200"><a href="about.html">About</a></li>
-                <li class="hover:text-PURPLE duration-200"><a href="blog.html">Blog</a></li>
-                <li class="hover:text-PURPLE duration-200"><a href="contact.html">Contact</a></li>
+                <li class="hover:text-BLUE duration-200 active"><a href="courses.html">Courses</a></li>
+                <li class="hover:text-BLUE duration-200"><a href="about.html">About</a></li>
+                <li class="hover:text-BLUE duration-200"><a href="blog.html">Blog</a></li>
+                <li class="hover:text-BLUE duration-200"><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
         <div class="flex items-center gap-3">
             <a href="createAccount.html">
-                <button class="hover:outline-PURPLE hover:bg-transparent hover:text-PURPLE hover:outline-2 hover:font-bold duration-300 font-light bg-PURPLE text-white px-2 py-1 md:px-4 md:py-3 rounded-md md:rounded-2xl">
+                <button class="hover:outline-BLUE hover:bg-transparent hover:text-BLUE hover:outline-2 hover:font-bold duration-300 font-light bg-BLUE text-white px-2 py-1 md:px-4 md:py-3 rounded-md md:rounded-2xl">
                     Create Account
                 </button>
             </a>
@@ -34,55 +34,73 @@
             </div>
         </div>
     </header>
-    <section class="bg-landingBG px-2 md:px-10 py-10">
+    <section class="bg-white px-2 md:px-10 py-10">
         <h1 class="text-center font-bold text-4xl py-20">Our Courses</h1>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-2 py-7">
-            <div class="rounded-xl">
-                <img src="./images/splunk.png" class="w-full h-[300px] object-cover rounded-tr-2xl rounded-tl-2xl" alt="">
-                <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                    <p class="font-bold text-white text-xl">splurk</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-2">
+            <div class="rounded-xl" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up">
+                <div class=" rounded-tr-2xl rounded-tl-2xl">
+                    <img src="./images/splunk.png" class="rounded-tr-2xl rounded-tl-2xl w-full h-[200px] object-cover" alt="">
+                </div>
+                <div class="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
+                    <p class="font-black text-white text-md md:text-2xl">splunk</p>
+                    <p class="my-2 font-bold">The Complete Splunk Bootcamp</p>
+                    <p class=" text-textColor md:max-w-[70%]">A comprehensive course on Linux. Learn, analyze and optimize with our splunk course</p>
+                    <p class="font-bold my-5">$100</p>
                 </div>
             </div>
-            <div class="">
-                <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                    <p class="font-bold text-white text-xl">Linux</p>
+            <div class="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up">
+                <div class="">
+                    <img src="./images/linux.png" class="rounded-tr-2xl rounded-tl-2xl w-full h-[200px] object-cover" alt="">
+                </div>
+                <div class="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
+                    <p class="font-black text-white text-md md:text-2xl">Linux</p>
+                    <p class="my-2 font-bold">Complete Linux Mastery</p>
+                    <p class=" text-textColor">Master the command line, harness freedom and embrace open-source awareness with our Linux course</p>
+                    <p class="font-bold my-5">$100</p>
                 </div>
             </div>
-            <div class="">
-                <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                    <p class="font-bold  text-white text-xl">Stock & Options</p>
+            <div class="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up">
+                <div class="">
+                    <img src="./images/stock.png" class="rounded-tr-2xl rounded-tl-2xl w-full h-[200px] object-cover" alt="">
+                </div>
+                <div class="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
+                    <p class="font-black text-white text-md md:text-2xl">Stock & Options</p>
+                    <p class="my-2 font-bold">Ultimate approach to  financial decisions</p>
+                    <p class=" text-textColor md:max-w-[70%]">Everything you need to know to unlock financial freedom and success</p>
+                    <p class="font-bold my-5">$100</p>
                 </div>
             </div>
-            <div class="">
-                <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                    <p class="font-bold text-white text-xl">Financial Literacy</p>
+            <div class="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up">
+                <div class="">
+                    <img src="./images/drone.png" class="rounded-tr-2xl rounded-tl-2xl w-full h-[200px] object-cover" alt="">
+                </div>
+                <div class="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
+                    <p class="font-black text-white text-md md:text-2xl">Drone Tech</p>
+                    <p class="my-2 font-bold">Complete Drone Technology Mastery</p>
+                    <p class=" text-textColor">Learn the advancement and innovations of drone tech with our complete cutting-edge course</p>
+                    <p class="font-bold my-5">$100</p>
                 </div>
             </div>
-            <div class="">
-                <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                    <p class="font-bold text-white text-xl">Business Analytics</p>
+            <div class="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up">
+                <div class="">
+                    <img src="./images/b-analytics.png" class="rounded-tr-2xl rounded-tl-2xl w-full h-[200px] object-cover" alt="">
+                </div>
+                <div class="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
+                    <p class="font-black text-white text-md md:text-2xl">Data</p>
+                    <p class="my-2 font-bold">A Comprehensive Data Analysis Course</p>
+                    <p class=" text-textColor">A step by step guide to inspecting, cleaning, transforming and modeling data</p>
+                    <p class="font-bold my-5">$100</p>
                 </div>
             </div>
-            <div class="">
-                <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                    <p class="font-bold text-white text-xl">Videography</p>
+            <div class="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up">
+                <div class="">
+                    <img src="./images/videography.png" alt="" class="rounded-tr-2xl rounded-tl-2xl w-full h-[200px] object-cover">
                 </div>
-            </div>
-            <div class="">
-                <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                    <p class="font-bold text-white text-xl">Drone Tech</p>
-                </div>
-            </div>
-            <div class="">
-                <div class="bg-black w-full h-[300px] rounded-tr-2xl rounded-tl-2xl"></div>
-                <div class="p-3 rounded-bl-2xl rounded-br-2xl h-[100px] bg-[#2d2065]">
-                    <p class="font-bold text-white text-xl">Photography</p>
+                <div class="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
+                    <p class="font-black text-white text-md md:text-2xl">Videography</p>
+                    <p class="my-2 font-bold">Complete Mastery of Videography</p>
+                    <p class=" text-textColor">Learn the perfect way of planning, capturing and editing  clear and beautiful videos</p>
+                    <p class="font-bold my-5">$100</p>
                 </div>
             </div>
         </div>
