@@ -58,6 +58,22 @@ nav.active {
         border-radius: 35px;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     }
+    /* [data-aos="new-animation"] {
+        opacity: 0;
+        transition-property: transform, opacity;
+      
+        &.aos-animate {
+          opacity: 1;
+        }
+      
+        @media screen and (min-width: 768px) {
+          transform: translateX(100px);
+      
+          &.aos-animate {
+            transform: translateX(0);
+          }
+        }
+    } */
 }
 
 

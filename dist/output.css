@@ -41,8 +41,10 @@ html {
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
+  -moz-tab-size: 4;
   /* 3 */
-  tab-size: 4;
+  -o-tab-size: 4;
+     tab-size: 4;
   /* 3 */
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
@@ -366,7 +368,7 @@ textarea {
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 
-input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+input::-moz-placeholder, textarea::-moz-placeholder {
   opacity: 1;
   /* 1 */
   color: #9ca3af;
@@ -568,10 +570,6 @@ video {
   }
 }
 
-.\!visible{
-  visibility: visible !important;
-}
-
 .visible{
   visibility: visible;
 }
@@ -629,8 +627,12 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.mb-5{
-  margin-bottom: 1.25rem;
+.mb-10{
+  margin-bottom: 2.5rem;
+}
+
+.mb-2{
+  margin-bottom: 0.5rem;
 }
 
 .mt-2{
@@ -641,33 +643,16 @@ video {
   margin-top: 2rem;
 }
 
-.mb-2{
-  margin-bottom: 0.5rem;
-}
-
-.mb-10{
-  margin-bottom: 2.5rem;
-}
-
 .block{
   display: block;
 }
 
-.inline{
-  display: inline;
-}
-
 .flex{
-  display: -ms-flexbox;
   display: flex;
 }
 
 .grid{
   display: grid;
-}
-
-.contents{
-  display: contents;
 }
 
 .hidden{
@@ -687,6 +672,7 @@ video {
 }
 
 .w-fit{
+  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -695,8 +681,7 @@ video {
 }
 
 .flex-1{
-  -ms-flex: 1 1 0%;
-      flex: 1 1 0%;
+  flex: 1 1 0%;
 }
 
 .transform{
@@ -716,13 +701,11 @@ video {
 }
 
 .items-center{
-  -ms-flex-align: center;
-      align-items: center;
+  align-items: center;
 }
 
 .justify-between{
-  -ms-flex-pack: justify;
-      justify-content: space-between;
+  justify-content: space-between;
 }
 
 .gap-10{
@@ -742,7 +725,8 @@ video {
 }
 
 .gap-x-2{
-  column-gap: 0.5rem;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
 }
 
 .gap-y-4{
@@ -836,11 +820,6 @@ video {
   background-color: rgb(196 24 172 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#25242c\]{
-  --tw-bg-opacity: 1;
-  background-color: rgb(37 36 44 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#2d2065\]{
   --tw-bg-opacity: 1;
   background-color: rgb(45 32 101 / var(--tw-bg-opacity));
@@ -866,7 +845,8 @@ video {
 }
 
 .object-cover{
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .p-10{
@@ -1038,6 +1018,10 @@ video {
   outline-style: solid;
 }
 
+.outline-2{
+  outline-width: 2px;
+}
+
 .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -1058,8 +1042,20 @@ video {
   transition-duration: 300ms;
 }
 
+.ease-in-out{
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.placeholder\:font-semibold::-moz-placeholder{
+  font-weight: 600;
+}
+
+.placeholder\:font-semibold::placeholder{
+  font-weight: 600;
 }
 
 .hover\:border-BLUE:hover{
@@ -1099,8 +1095,20 @@ body {
   outline-width: 2px;
 }
 
+.hover\:outline-offset-2:hover{
+  outline-offset: 2px;
+}
+
 .hover\:outline-BLUE:hover{
   outline-color: #2d2065;
+}
+
+.focus\:outline-2:focus{
+  outline-width: 2px;
+}
+
+.focus\:outline-textColor:focus{
+  outline-color: #d9d9d9;
 }
 
 @media (min-width: 768px){
@@ -1131,7 +1139,6 @@ body {
   }
 
   .md\:flex{
-    display: -ms-flexbox;
     display: flex;
   }
 
@@ -1148,6 +1155,7 @@ body {
   }
 
   .md\:w-fit{
+    width: -moz-fit-content;
     width: fit-content;
   }
 
