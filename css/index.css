@@ -9,6 +9,14 @@ section.courses img {
     border-radius: 16px 16px 0 0;
 }
 
+section.courses>div>a, div.courses>a {
+    transition: transform 300ms ease-in-out;
+}
+
+section.courses>div>a:hover, div.courses>a:hover {
+    transform: translateY(-10px);
+}
+
 div.landingDIV {
     width: 100%;
     aspect-ratio: 1/1;
