@@ -10,7 +10,7 @@ const currloc = window.location.pathname;
 // NAVBAR
 menuBar.addEventListener("click", ()=> {
     if (!Nav.classList.contains("show")) {
-        menuBar.innerHTML = `<i class="fa-solid fa-xmark text-2xl"></i>`
+        menuBar.innerHTML = `<i class="fa-solid fa-xmark text-3xl"></i>`
         Nav.classList.add("show")
     }else {
         menuBar.innerHTML = `<i class="fa-solid fa-bars text-2xl"></i>`
