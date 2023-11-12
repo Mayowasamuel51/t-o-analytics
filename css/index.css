@@ -1,5 +1,4 @@
 /* COURSES IMAGES DIMENSION */
-
 body {
     overflow-x: hidden;
 }
@@ -26,6 +25,10 @@ div.landingDIV img{
     font-weight: 900;
 }
 
+nav {
+    background: #fff;
+}
+
 nav.active {
     height: 100vh;
 }
@@ -33,19 +36,34 @@ nav.active {
 .bounce {
     animation: bounce 2s infinite;
 }
-@keyframes bounce {
-    
-}
 
 .active-color {
-    /* background-color: #2d2065; */
     background-color: red;
 }
 
-/* CARDS ANIMATION */
-
 .card-container {
     display: flex;
+}
+
+div.learn ul {
+    line-height: 40px;
+}
+
+div.learn ul li {
+    position: relative;
+    padding-left: 20px;
+}
+
+div.learn ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    aspect-ratio: 1/1;
+    background-color: #c418ac;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
 
 @media only screen and (min-width: 758px) {
@@ -89,15 +107,15 @@ nav.active {
         top: 50px;
         bottom: 0;
         width: 100%;
-        height: 100vw;
+        height: 100vh;
         line-height: 30px;
         left: -100%;
         transition: all 300ms ease-in-out;
-        background: #f4def1;
+        background: #fff;
     }
     nav.show {
         left: 0;
-        background: #f4def1;
+        background: #fff;
     }
 
 }
