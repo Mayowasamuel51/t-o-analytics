@@ -928,6 +928,11 @@ video {
   padding-bottom: 5rem;
 }
 
+.py-24{
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
 .py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -956,11 +961,6 @@ video {
 .py-6{
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-}
-
-.py-24{
-  padding-top: 6rem;
-  padding-bottom: 6rem;
 }
 
 .pb-10{
@@ -1216,6 +1216,10 @@ body {
     width: fit-content;
   }
 
+  .md\:w-1{
+    width: 0.25rem;
+  }
+
   .md\:max-w-\[70\%\]{
     max-width: 70%;
   }
@@ -1303,6 +1307,11 @@ body {
     padding-bottom: 0px;
   }
 
+  .md\:py-20{
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
   .md\:py-24{
     padding-top: 6rem;
     padding-bottom: 6rem;
@@ -1326,11 +1335,6 @@ body {
   .md\:py-8{
     padding-top: 2rem;
     padding-bottom: 2rem;
-  }
-
-  .md\:py-20{
-    padding-top: 5rem;
-    padding-bottom: 5rem;
   }
 
   .md\:pb-24{

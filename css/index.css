@@ -51,7 +51,8 @@ div.learn ul {
 
 div.learn ul li {
     position: relative;
-    padding-left: 20px;
+    padding-left: 25px;
+    font-weight: 600;
 }
 
 div.learn ul li::before {
@@ -60,7 +61,7 @@ div.learn ul li::before {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 15px;
+    width: 20px;
     aspect-ratio: 1/1;
     background-color: #c418ac;
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
