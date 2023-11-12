@@ -45,17 +45,17 @@ nav.active {
     display: flex;
 }
 
-div.learn ul {
+div.learn ul, div.benefit ul {
     line-height: 40px;
 }
 
-div.learn ul li {
+div.learn ul li, div.benefit ul li {
     position: relative;
     padding-left: 25px;
     font-weight: 600;
 }
 
-div.learn ul li::before {
+div.learn ul li::before, div.benefit ul li::before {
     content: "";
     position: absolute;
     left: 0;
@@ -66,6 +66,33 @@ div.learn ul li::before {
     background-color: #c418ac;
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
+
+section.mentorship {
+    position: relative;
+    background-image: url(../images/mentorshipIMG.jpg);
+    background-size: cover;
+    z-index: 2;
+}
+
+section.mentorship::before, section.others::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.445);
+}
+
+section.others {
+    position: relative;
+    background-image: url(../images/mentorshipIMG.jpg);
+    background-size: cover;
+    z-index: 2;
+    background-position: center;
+    color: #fff;
+    background-attachment: fixed;
+}
+
+
 
 @media only screen and (min-width: 758px) {
     nav.fixed {
@@ -93,6 +120,10 @@ div.learn ul li::before {
           }
         }
     } */
+    section.others i {
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
 }
 
 

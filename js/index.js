@@ -37,9 +37,8 @@ document.addEventListener("DOMContentLoaded", ()=> {
         perPage: 1,
         gap: '20px',
         perMove: 1,
-        focus : 0,
         autoplay: true,
-        interval: 4000,
+        interval: 3000,
         speed: 2000,
         arrows: false,
     })
