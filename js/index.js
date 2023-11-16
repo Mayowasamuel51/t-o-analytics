@@ -33,13 +33,13 @@ window.addEventListener("scroll", ()=> {
 document.addEventListener("DOMContentLoaded", ()=> {
     const splide = new Splide(".splide", {
         type : 'loop',
-        drag : 'free',
+        // drag : '',
         perPage: 1,
         gap: '20px',
         perMove: 1,
         autoplay: true,
         interval: 3000,
-        speed: 2000,
+        speed: 3000,
         arrows: false,
     })
     splide.mount()
