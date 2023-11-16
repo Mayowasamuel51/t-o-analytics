@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
         gap: '20px',
         perMove: 1,
         autoplay: true,
-        interval: 3000,
+        interval: 4000,
         speed: 3000,
         arrows: false,
     })
