@@ -702,6 +702,10 @@ video {
   min-height: 100vh;
 }
 
+.min-h-full{
+  min-height: 100%;
+}
+
 .w-1\/2{
   width: 50%;
 }
@@ -1015,6 +1019,11 @@ video {
   padding-bottom: 1.5rem;
 }
 
+.py-12{
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 .pb-10{
   padding-bottom: 2.5rem;
 }
@@ -1171,6 +1180,10 @@ video {
   outline-width: 2px;
 }
 
+.outline-offset-2{
+  outline-offset: 2px;
+}
+
 .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -1254,6 +1267,10 @@ body {
 
 .focus\:outline-2:focus{
   outline-width: 2px;
+}
+
+.focus\:outline-1:focus{
+  outline-width: 1px;
 }
 
 .focus\:outline-textColor:focus{
