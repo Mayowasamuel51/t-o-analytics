@@ -8,7 +8,7 @@ const ContactPage = () => {
                 <p class="md:text-lg">Need any information? Reach us on</p>
                 <p class="text-BLUE font-black my-3">443-768-8416</p>
             </div>
-            <div class="p-4 bg-BLUE rounded-xl">
+            <div class="p-8 bg-BLUE rounded-xl">
                 <h1 class="text-white font-bold text-sm md:text-2xl mb-10 text-center">How may we help you?</h1>
                 <form action="" class="bg-BLUE">
                     <div class="mb-7 block">

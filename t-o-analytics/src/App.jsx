@@ -1,9 +1,14 @@
 import NavBar from "./components/NavBar";
+import errorPage from "./components/errorPage";
 import HomePage from "./pages/HomePage";
 import Courses from "./pages/Courses";
 import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
+import ConnectWithContractor from "./pages/ConnectWithContractor";
+import CreateAccountForm from "./pages/CreateAccountForm";
+import LoginForm from "./pages/LoginForm";
+import { AnimatePresence } from "framer-motion";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -13,6 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <NavBar />,
+    errorElement: <errorPage />,
     children: [
       {
         index: true,
@@ -36,12 +42,26 @@ const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path: "/createAccount",
+    element: <CreateAccountForm />
+  },
+  {
+    path: "/login",
+    element: <LoginForm />
+  },
+  {
+    path: "/contractors",
+    element: <ConnectWithContractor />,
+  },
 ]);
 
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <AnimatePresence>
+      <RouterProvider router={router} />
+    </AnimatePresence>
   );
 }
 

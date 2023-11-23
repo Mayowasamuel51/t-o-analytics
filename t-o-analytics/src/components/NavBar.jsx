@@ -11,12 +11,7 @@ const NavBar = () => {
     useEffect(()=> {
         window.addEventListener('scroll', ()=> {
             const scrolldis = window.scrollY;
-            if (scrolldis > 20) {
-                setFixed("fixed")
-            }
-            else {
-                setFixed("")
-            }
+            scrolldis > 20 ? setFixed("fixed") : setFixed("")
         })
     }, [])
     return (
@@ -36,11 +31,11 @@ const NavBar = () => {
                     </ul>
                 </nav>
                 <div className="flex items-center gap-3">
-                    <a href="createAccount.html">
+                    <Link to="/createAccount">
                         <button className="hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md md:rounded-xl font-semibold">
                             Create Account
                         </button>
-                    </a>
+                    </Link>
                     <div className="flex-1 block md:hidden hamburger">
                         <i className="fa-solid fa-bars text-2xl"></i>
                     </div>
@@ -48,7 +43,7 @@ const NavBar = () => {
             </header>
             <Outlet />
 
-            {location.pathname === "/blog" || location.pathname === "/contact" ? <Footer black="bg-black text-white" /> : <Footer />}
+            {location.pathname === "/blog" || location.pathname === "/contact" || location.pathname === "/courses" ? <Footer black="bg-black text-white" /> : <Footer />}
         </>
     )
 }

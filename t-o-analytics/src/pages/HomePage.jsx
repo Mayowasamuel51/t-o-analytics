@@ -1,5 +1,6 @@
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { Link } from 'react-router-dom';
 import '@splidejs/react-splide/css';
 import LandingIMG from "../assets/images/landingIMG.png"
 import eInstructor from "../assets/images/e-instructor.jpg"
@@ -172,9 +173,9 @@ const HomePage = () => {
                 </a>
             </div>
             <div className="py-10 text-center">
-                <a href="courses.html" className="">
+                <Link to="/courses" className="">
                     <button className="text-md md:text-xl font-normal bg-BLUE hover:bg-transparent hover:text-BLUE duration-300 hover:outline-2 outline hover:outline-BLUE text-white rounded-xl px-3 py-2 md:px-4 md:py-3">View All Courses</button>
-                </a>
+                </Link>
             </div>
         </section>
 
@@ -245,9 +246,9 @@ const HomePage = () => {
             <h1 class="my-4 md:my-12 text-center font-semibold text-lg md:text-4xl">Ready to take your career to new heights?</h1>
             <p class="font-medium my-4 md:w-1/2 mx-auto text-sm md:text-lg">Connect directly with industry-leading contractors and discover exciting job opportunities tailored to your skills and aspirations. Don’t wait, start building the future you’ve always dreamed of!</p>
             <div class="text-center">
-                <a href="contractorpage.html" class="">
+                <Link to="/contractors" class="">
                     <button class="hover:bg-white hover:border-white hover:text-black duration-300 border-BLUE border-2 w-fit mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl">Connect with Contractor</button>
-                </a>
+                </Link>
             </div>
         </section>
 

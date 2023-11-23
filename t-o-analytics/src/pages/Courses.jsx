@@ -6,6 +6,8 @@ import stock from "../assets/images/stock.png";
 import data from "../assets/images/data.jpg";
 import photography from "../assets/images/photography.jpg";
 import videography from "../assets/images/videography.jpg";
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Courses = () => {
   return (
