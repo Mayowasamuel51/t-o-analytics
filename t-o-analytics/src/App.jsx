@@ -1,6 +1,9 @@
 import NavBar from "./components/NavBar";
 import HomePage from "./pages/HomePage";
 import Courses from "./pages/Courses";
+import AboutPage from "./pages/AboutPage";
+import BlogPage from "./pages/BlogPage";
+import ContactPage from "./pages/ContactPage";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,7 +21,19 @@ const router = createBrowserRouter([
       {
         path: "/courses",
         element: <Courses />
-      }
+      },
+      {
+        path: "/about",
+        element: <AboutPage />
+      },
+      {
+        path: "/blog",
+        element: <BlogPage />
+      },
+      {
+        path: "/contact",
+        element: <ContactPage />
+      },
     ]
   },
 ]);

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = ({black}) => {
   return (
-    <footer class="">
+    <footer class={`${black}`}>
         <div class="p-2 md:px-10 md:py-5 flex items-center flex-col gap-10 md:flex-row md:justify-between">
             <div class="text-center md:leading-8 leading-6">
                 <h1 class="md:text-xl text-BLUE font-bold">CALL</h1>
