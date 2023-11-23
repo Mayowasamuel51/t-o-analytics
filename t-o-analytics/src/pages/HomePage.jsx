@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '@splidejs/react-splide/css';
 import LandingIMG from "../assets/images/landingIMG.png"
 import eInstructor from "../assets/images/e-instructor.jpg"
-import hLearning from "../assets/images/h-learning.png"
+import hLearning from "../assets/images/h-learning.jpg"
 import flexibleLearning from "../assets/images/flexible-learning.jpg"
 import guidance from "../assets/images/guidance.jpg";
 import client from "../assets/images/client.png"
@@ -54,12 +54,12 @@ const HomePage = () => {
                         <p className="font-light text-sm md:text-lg">Our instructors are seasoned professionals who have worked in the tech industry for many years. They bring their expertise and real-world knowledge into the classNameroom to provide practical insights and guidance.</p>
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className="bounce md:block hidden">
-                        <img src={eInstructor} alt="" />
+                        <img src={eInstructor} alt="" className='w-full'/>
                     </div>
                 </div>
                 <div className="py-10 md:py-20 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right" className="md:block hidden">
-                        <img src={hLearning} alt="" />
+                        <img src={hLearning} alt="" className='w-full' />
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left">
                         <p className="font-semibold text-BLUE my-2">Fine blend of theory and practice</p>
