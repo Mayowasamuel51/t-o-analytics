@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* COURSES IMAGES DIMENSION */
+body {
+  overflow-x: hidden;
+}
+section.courses img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
+
+section.courses > div > a,
+div.courses > a {
+  transition: transform 300ms ease-in-out;
+}
+
+section.courses > div > a:hover,
+div.courses > a:hover {
+  transform: translateY(-10px);
+}
+
+div.landingDIV {
+  width: 100%;
+  aspect-ratio: 1/1;
+  clip-path: polygon(0 50%, 100% 100%, 100% 0);
+  z-index: 2;
+}
+div.landingDIV img {
+  z-index: 3;
+  width: 100%;
+}
+
+.active {
+  color: #2d2065;
+  font-weight: 900;
+}
+
+nav {
+  background: #fff;
+}
+
+nav.active {
+  height: 100vh;
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
+
+.active-color {
+  background-color: red;
+}
+
+.card-container {
+  display: flex;
+}
+
+div.learn ul,
+div.benefit ul {
+  line-height: 40px;
+}
+
+div.learn ul li,
+div.benefit ul li {
+  position: relative;
+  padding-left: 25px;
+  font-weight: 600;
+}
+
+div.learn ul li::before,
+div.benefit ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  aspect-ratio: 1/1;
+  background-color: #c418ac;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+section.mentorship {
+  position: relative;
+  /* background-image: url(../images/mentorshipIMG.jpg); */
+  background-size: cover;
+  z-index: 2;
+}
+
+section.mentorship::before,
+section.others::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.445);
+}
+
+section.others {
+  position: relative;
+  /* background-image: url(../images/mentorshipIMG.jpg); */
+  background-size: cover;
+  z-index: 2;
+  background-position: center;
+  color: #fff;
+  background-attachment: fixed;
+}
+
+@media only screen and (min-width: 768px) {
+  nav.fixed {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 35px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  }
+  /* [data-aos="new-animation"] {
+      opacity: 0;
+      transition-property: transform, opacity;
+    
+      &.aos-animate {
+        opacity: 1;
+      }
+    
+      @media screen and (min-width: 768px) {
+        transform: translateX(100px);
+    
+        &.aos-animate {
+          transform: translateX(0);
+        }
+      }
+  } */
+  section.others i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (min-width: 995px) {
+  .about-me {
+    border-left: 1px solid #c418ac;
+  }
+}
+
+@media only screen and (max-width: 995px) {
+  .about-me {
+    border-top: 1px solid #c418ac;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  header {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+  nav {
+    position: absolute;
+    top: 66px;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    line-height: 30px;
+    left: -200%;
+    transition: all 300ms ease-in-out;
+    background: #fff;
+  }
+  nav.show {
+    left: 0;
+    background: #fff;
+  }
+}

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./**/*.{html,js}"],
+export default {
+  content: [],
   theme: {
     extend: {
       colors: {
@@ -12,9 +12,6 @@ module.exports = {
         courseText: "#d5d2e0"
       }
     },
-    fontFamily: {
-      myFont: ["Plus Jakarta Sans"]
-    }
   },
   plugins: [],
 }
