@@ -27,7 +27,7 @@ const LoginForm = () => {
         <motion.div variants={formVariant} initial="initial" animate="animate" exit={{ x:-100,}} className="border-2 border-black md:w-[400px] p-5 bg-white rounded-3xl">
             <div className="flex items-center justify-between">
                 <div>
-                    <img src={LOGO} className="w-[150px] pl-0" alt=""/>
+                    <Link to="/"><img src={LOGO} className="w-[150px] pl-0" alt=""/></Link>
                 </div>
                 <a href="index.html">
                     <i className="fa-solid fa-xmark text-2xl"></i>
@@ -50,9 +50,9 @@ const LoginForm = () => {
                 <button type="submit" className="w-full rounded-xl hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300 bg-BLUE py-2 font-semibold text-white text-base md:text-xl">Login</button>
                 <p className='text-center font-extralight py-1'>or</p>
                 <div className='flex flex-col gap-3 font-medium'>
-                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
-                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl  py-2'><img src={FACEBOOK} alt="" className='w-5' />Continue with Facebook</button>
-                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl  py-2'><img src={APPLE} alt="" className='w-5' />Continue with Apple ID</button>
+                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
+                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300'><img src={FACEBOOK} alt="" className='w-5' />Continue with Facebook</button>
+                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300'><img src={APPLE} alt="" className='w-5' />Continue with Apple ID</button>
                 </div>
             </form>
             <p className="text-sm md:text-base mt-4 font-semibold ">Don't have an account? <Link className="underline underline-offset-2 text-BLUE" to="/createAccount">Create Account</Link></p>

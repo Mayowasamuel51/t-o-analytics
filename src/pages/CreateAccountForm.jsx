@@ -27,7 +27,7 @@ const CreateAccountForm = () => {
         <motion.div variants={formVariant} initial="initial" animate="animate" exit={{ x:-100,}} className="border-2 border-black md:w-[400px] p-5 bg-white rounded-3xl">
             <div className="flex items-center justify-between">
                 <div>
-                    <img src={LOGO} className="w-[150px] h-[50px] object-cover" alt=""/>
+                    <Link to="/"><img src={LOGO} className="w-[150px] h-[50px] object-cover" alt=""/></Link>
                 </div>
                 <a href="index.html">
                     <i className="fa-solid fa-xmark text-2xl"></i>
