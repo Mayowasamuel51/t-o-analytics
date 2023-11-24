@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import LOGO from "../assets/images/logo.jpg";
+import GOOGLE from "../assets/images/google.png";
+import FACEBOOK from "../assets/images/facebook.png";
+import APPLE from "../assets/images/apple.png";
 
 const formVariant = {
     initial: {
-        scale: 0,
         opacity: 0
     },
     animate: {
-        scale: 1,
         opacity: 1,
         transition:{
             type: "spring", stiffness: 180, duration: 1000
@@ -50,6 +51,12 @@ const CreateAccountForm = () => {
                     </label>
                 </div>
                 <button type="submit" className="w-full rounded-xl hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300 bg-BLUE py-2 font-semibold text-white text-base md:text-xl">Create Account</button>
+                <p className='text-center font-extralight py-1'>or</p>
+                <div className='flex flex-col gap-3 font-medium'>
+                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
+                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl  py-2'><img src={FACEBOOK} alt="" className='w-5' />Continue with Facebook</button>
+                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl  py-2'><img src={APPLE} alt="" className='w-5' />Continue with Apple ID</button>
+                </div>
             </form>
             <p className="text-sm md:text-base mt-4 font-semibold ">Already have an account? <Link className="underline underline-offset-2 text-BLUE" to="/login">Log In</Link></p>
         </motion.div>
