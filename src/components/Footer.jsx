@@ -1,4 +1,3 @@
-
 const Footer = ({black}) => {
   return (
     <footer className={`${black}`}>
