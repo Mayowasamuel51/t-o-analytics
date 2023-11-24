@@ -1,4 +1,3 @@
-import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { Link } from 'react-router-dom';
 import '@splidejs/react-splide/css';
@@ -71,7 +70,7 @@ const HomePage = () => {
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
                         <p className="font-semibold text-BLUE my-2">We put you first</p>
                         <h1 className="font-bold text-xl md:text-2xl my-2">Flexible learning Options</h1>
-                        <p className="font-light text-sm md:text-lg">We understand that everyone has different schedules and commitments. That's why we offer flexible learning options, including part-time and full-time programs, as well as online learning options. This allows students to choose a schedule that works best for them while still receiving high-quality education.</p>
+                        <p className="font-light text-sm md:text-lg">We understand that everyone has different schedules and commitments. That&apos;s why we offer flexible learning options, including part-time and full-time programs, as well as online learning options. This allows students to choose a schedule that works best for them while still receiving high-quality education.</p>
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className="md:block hidden">
                         <img src={flexibleLearning} alt="" />
@@ -222,7 +221,7 @@ const HomePage = () => {
                 </SplideSlide>
                 <SplideSlide>
                     <div className="md:w-1/2 mx-auto">
-                        <p className="font-normal my-2 text-xs md:text-lg text-center">I can't say enough good things about this boot camp! The cybersecurity track, with a focus on Linux, was exactly what I needed to kickstart my career. The hands-on labs and real-world simulations prepared me for the challenges of the industry</p>
+                        <p className="font-normal my-2 text-xs md:text-lg text-center">I can&apos;t say enough good things about this boot camp! The cybersecurity track, with a focus on Linux, was exactly what I needed to kickstart my career. The hands-on labs and real-world simulations prepared me for the challenges of the industry</p>
                         <div className="flex items-center justify-center gap-1 md:gap-3">
                             <img src={student2} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt=""/>
                             <p className="font-bold text-sm md:text-2xl">Aishat Oyeleke</p>   
@@ -231,7 +230,7 @@ const HomePage = () => {
                 </SplideSlide>
                 <SplideSlide>
                     <div className="md:w-1/2 mx-auto">
-                        <p className="font-normal my-2 text-xs md:text-lg text-center">I'm so grateful for the opportunity to be a part of this boot camp. All thanks to the financial literacy classNamees, I can now make purposeful final decisions and know all the right channels to invest my money and assets.</p>
+                        <p className="font-normal my-2 text-xs md:text-lg text-center">I&apos;m so grateful for the opportunity to be a part of this boot camp. All thanks to the financial literacy classNamees, I can now make purposeful final decisions and know all the right channels to invest my money and assets.</p>
                         <div className="flex items-center justify-center gap-1 md:gap-3">
                             <img src={student3} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt=""/>
                             <p className="font-bold text-sm md:text-2xl">Timilehin Babade</p>   
@@ -242,12 +241,12 @@ const HomePage = () => {
             
         </section>
         
-        <section class="text-center p-10 bg-black text-white">
-            <h1 class="my-4 md:my-12 text-center font-semibold text-lg md:text-4xl">Ready to take your career to new heights?</h1>
-            <p class="font-medium my-4 md:w-1/2 mx-auto text-sm md:text-lg">Connect directly with industry-leading contractors and discover exciting job opportunities tailored to your skills and aspirations. Don’t wait, start building the future you’ve always dreamed of!</p>
-            <div class="text-center">
-                <Link to="/contractors" class="">
-                    <button class="hover:bg-white hover:border-white hover:text-black duration-300 border-BLUE border-2 w-fit mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl">Connect with Contractor</button>
+        <section className="text-center p-10 bg-black text-white">
+            <h1 className="my-4 md:my-12 text-center font-semibold text-lg md:text-4xl">Ready to take your career to new heights?</h1>
+            <p className="font-medium my-4 md:w-1/2 mx-auto text-sm md:text-lg">Connect directly with industry-leading contractors and discover exciting job opportunities tailored to your skills and aspirations. Don’t wait, start building the future you’ve always dreamed of!</p>
+            <div className="text-center">
+                <Link to="/contractors" className="">
+                    <button className="hover:bg-white hover:border-white hover:text-black duration-300 border-BLUE border-2 w-fit mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl">Connect with Contractor</button>
                 </Link>
             </div>
         </section>
