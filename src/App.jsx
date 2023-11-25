@@ -51,10 +51,7 @@ const router = createBrowserRouter([
             path: "/contact",
             element: <ContactPage />
           },
-          {
-            path: "/createAccount",
-            element:<CreateAccountForm/>
-          }
+         
         ]
       },
       {
@@ -78,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginForm />
+      },
+      {
+        path: "/createAccount",
+        element:<CreateAccountForm/>
       },
       {
         path: "/contractors",
