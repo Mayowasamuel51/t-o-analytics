@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import LOGO from "../assets/images/logo.jpg";
 import { motion } from 'framer-motion';
 import { Outlet, Link, NavLink, useLocation } from "react-router-dom";
+import { FaBarsStaggered } from "react-icons/fa6";
 import Footer from './Footer';
 
 const NavBar = () => {
@@ -37,12 +38,16 @@ const NavBar = () => {
                     </Link>
                     <div className="flex-1 block md:hidden hamburger">
                         <i className="fa-solid fa-bars text-2xl"></i>
+                        <FaBarsStaggered />
                     </div>
                 </div>
             </header>
             <Outlet />
 
-            {location.pathname === "/blog" || location.pathname === "/contact" || location.pathname === "/courses" ? <Footer black="bg-black text-white" /> : <Footer />}
+            {location.pathname === "/blog" || 
+            location.pathname === "/contact" || 
+            location.pathname === "/courses" ||
+            location.pathname === "/courses/splunk" ? <Footer black="bg-black text-white" /> : <Footer />}
         </>
     )
 }

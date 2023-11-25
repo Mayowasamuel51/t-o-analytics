@@ -2,6 +2,8 @@ import NavBar from "./components/NavBar";
 import ErrorPage from "./components/errorPage";
 import HomePage from "./pages/HomePage";
 import Courses from "./pages/Courses";
+import AllCourses from "./components/AllCourses";
+import Splunk from "./components/Splunk";
 import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
@@ -26,7 +28,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/courses",
-        element: <Courses />
+        element: <Courses />,
+        children: [
+          {
+            index: true,
+            element: <AllCourses />
+          },
+          {
+            path: "splunk",
+            element: <Splunk />
+          }
+        ]
       },
       {
         path: "/about",

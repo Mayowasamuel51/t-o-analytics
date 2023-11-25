@@ -208,7 +208,7 @@ const HomePage = () => {
                 autoplay: true,
                 interval: 4000,
                 speed: 3000,
-                arrows: false,
+                arrows: false
             }}>
                 <SplideSlide>
                     <div className="md:w-1/2 mx-auto">
