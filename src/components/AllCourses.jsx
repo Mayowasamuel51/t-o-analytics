@@ -42,7 +42,7 @@ const AllCourses = () => {
               </div>
             </div>
           </Link>
-          <a href="linux.html">
+          <Link to="linux">
             <div
               className=""
               data-aos-once="true"
@@ -66,7 +66,7 @@ const AllCourses = () => {
                 <p className="font-bold my-5"> $2000</p>
               </div>
             </div>
-          </a>
+          </Link>
           <a href="stock-options.html">
             <div
               className=""

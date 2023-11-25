@@ -91,7 +91,7 @@ const HomePage = () => {
 
         <section className="courses p-2 md:p-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-2">
-                <a href="splunk.html">
+                <Link to="splunk">
                     <div className="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" data-aos-delay="100" data-aos-easing="ease-in-out">
                         <div>
                             <img src={splunk} className="rounded-tr-2xl rounded-tl-2xl" alt="" />
@@ -103,8 +103,8 @@ const HomePage = () => {
                             <p className="font-bold my-5">$3500</p>
                         </div>
                     </div>
-                </a>
-                <a href="linux.html">
+                </Link>
+                <Link to="linux">
                     <div className="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out">
                         <div>
                             <img src={linux} alt="" />
@@ -116,7 +116,7 @@ const HomePage = () => {
                             <p className="font-bold my-5"> $2000</p>
                         </div>
                     </div>
-                </a>
+                </Link>
                 <a href="stock-options.html">
                     <div className="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" data-aos-delay="300" data-aos-easing="ease-in-out">
                         <div>

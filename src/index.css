@@ -64,6 +64,10 @@ nav.active {
   display: flex;
 }
 
+div.perks>ul {
+  line-height: 40px;
+}
+
 div.learn ul,
 div.benefit ul {
   line-height: 40px;
@@ -73,7 +77,6 @@ div.learn ul li,
 div.benefit ul li {
   position: relative;
   padding-left: 25px;
-  font-weight: 600;
 }
 
 div.learn ul li::before,

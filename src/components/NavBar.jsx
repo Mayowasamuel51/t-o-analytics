@@ -3,6 +3,7 @@ import LOGO from "../assets/images/logo.jpg";
 import { motion } from 'framer-motion';
 import { Outlet, Link, NavLink, useLocation } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
+import { HiMiniXMark } from "react-icons/hi2";
 import Footer from './Footer';
 
 const NavBar = () => {
@@ -14,6 +15,9 @@ const NavBar = () => {
             scrolldis > 20 ? setFixed("fixed") : setFixed("")
         })
     }, [])
+    const navBar = ()=> {
+        setFixed("show")
+    }
     return (
         <>
             <header className={`z-20 fixed w-full left-0 top-0 px-2 py-2 md:px-10 bg-white flex items-center justify-between`}>
@@ -37,8 +41,7 @@ const NavBar = () => {
                         </button>
                     </Link>
                     <div className="flex-1 block md:hidden hamburger">
-                        <i className="fa-solid fa-bars text-2xl"></i>
-                        <FaBarsStaggered />
+                        {fixed === "show" ? <HiMiniXMark size={20} onClick={()=> setFixed("")} /> : <FaBarsStaggered size={20} onClick={navBar} />}
                     </div>
                 </div>
             </header>

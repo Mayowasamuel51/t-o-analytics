@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import Courses from "./pages/Courses";
 import AllCourses from "./components/AllCourses";
 import Splunk from "./components/Splunk";
+import Linux from "./components/Linux";
 import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
           {
             path: "splunk",
             element: <Splunk />
+          }
+          {
+            path: "linux",
+            element: <Linux />
           }
         ]
       },
