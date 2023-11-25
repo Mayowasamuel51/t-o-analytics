@@ -38,7 +38,7 @@ const router = createBrowserRouter([
           {
             path: "splunk",
             element: <Splunk />
-          }
+          },
           {
             path: "linux",
             element: <Linux />
