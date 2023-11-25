@@ -16,16 +16,46 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import HomeLayout from "./layoutAuth/HomeLayout";
+import AuthLayout from "./layoutAuth/AuthLayout";
+import Dashboard from "./dashboard/components/Dashboard";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <NavBar />,
-    errorElement: <ErrorPage />,
+    element: <HomeLayout />,
     children: [
       {
-        index: true,
-        element: <HomePage />
+        path: "/",
+        element: <NavBar />,
+        errorElement: <ErrorPage />,
+
+        children: [
+          {
+            index: true,
+            element: <HomePage />
+          },
+          {
+            path: "/courses",
+            element: <Courses />
+          },
+          {
+            path: "/about",
+            element: <AboutPage />
+          },
+          {
+            path: "/blog",
+            element: <BlogPage />
+          },
+          {
+            path: "/contact",
+            element: <ContactPage />
+          },
+          {
+            path: "/createAccount",
+            element:<CreateAccountForm/>
+          }
+        ]
       },
       {
         path: "/courses",
@@ -46,31 +76,29 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: "/about",
-        element: <AboutPage />
+        path: "/login",
+        element: <LoginForm />
       },
       {
-        path: "/blog",
-        element: <BlogPage />
+        path: "/contractors",
+        element: <ConnectWithContractor />,
       },
-      {
-        path: "/contact",
-        element: <ContactPage />
-      },
+
     ]
   },
+
   {
-    path: "/createAccount",
-    element: <CreateAccountForm />
-  },
-  {
-    path: "/login",
-    element: <LoginForm />
-  },
-  {
-    path: "/contractors",
-    element: <ConnectWithContractor />,
-  },
+    path: "/dashboard",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/dashboard/post",
+        element: <Dashboard />
+      }
+    ]
+  }
+
+
 ]);
 
 

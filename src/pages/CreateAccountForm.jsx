@@ -4,8 +4,12 @@ import LOGO from "../assets/images/logo.jpg";
 import GOOGLE from "../assets/images/google.png";
 import FACEBOOK from "../assets/images/facebook.png";
 import APPLE from "../assets/images/apple.png";
-
-const formVariant = {
+import {app} from "../../firebase.config";
+import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
+import { useStateContext } from '../context/ContextProvider';
+import axiosclinet from "../layoutAuth/axios/axios-clinet"
+import { useEffect } from 'react';
+const formVariant =  {
     initial: {
         opacity: 0
     },
@@ -22,6 +26,33 @@ const formVariant = {
 }
 
 const CreateAccountForm = () => {
+    const { setToken, setUser } = useStateContext();
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+
+
+    const loginwihGoogle = () => {
+        signInWithPopup(auth, googleProvider)
+        .then(result => {
+            const loggedInUser = result.user;
+            console.log(loggedInUser);
+           setToken(loggedInUser)
+        }).catch(error => {
+            console.log('error', error.message);
+        })
+    }
+    useEffect(() => {
+        auth.onAuthStateChanged((loggedInUser) => {
+            if (loggedInUser) { 
+                loggedInUser.getIdToken().then((token) => {
+                    console.log(token)
+                    window.localStorage.setItem("ACCESS_TOKEN",token)
+                    setToken(token)
+                }).catch((err)=>console.log(err.message))
+            }
+        })
+    }, [])
+
   return (
     <section className="min-h-screen flex justify-center items-center bg-black opacity-80">
         <motion.div variants={formVariant} initial="initial" animate="animate" exit={{ x:-100,}} className="border-2 border-black md:w-[400px] p-5 bg-white rounded-3xl">
@@ -52,12 +83,13 @@ const CreateAccountForm = () => {
                 </div>
                 <button type="submit" className="w-full rounded-xl hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300 bg-BLUE py-2 font-semibold text-white text-base md:text-xl">Create Account</button>
                 <p className='text-center font-extralight py-1'>or</p>
-                <div className='flex flex-col gap-3 font-medium'>
-                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
+              
+              </form>
+              <div className='flex flex-col gap-3 font-medium'>
+                    <button onClick={loginwihGoogle} className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
                     <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl  py-2'><img src={FACEBOOK} alt="" className='w-5' />Continue with Facebook</button>
                     <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl  py-2'><img src={APPLE} alt="" className='w-5' />Continue with Apple ID</button>
                 </div>
-            </form>
             <p className="text-sm md:text-base mt-4 font-semibold ">Already have an account? <Link className="underline underline-offset-2 text-BLUE" to="/login">Log In</Link></p>
         </motion.div>
     </section>
