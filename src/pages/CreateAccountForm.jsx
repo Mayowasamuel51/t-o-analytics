@@ -33,10 +33,7 @@ const formVariant = {
 
 const CreateAccountForm = () => {
     const { setToken, setUser } = useStateContext();
-    const nameRef = useRef();
     const [error, setError] = useState(null)
-    const emailRef = useRef();
-    const passwordRef = useRef();
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
     const loginwihGoogle = () => {
@@ -49,8 +46,6 @@ const CreateAccountForm = () => {
                 console.log('error', error.message);
             })
     }
-
-
     const schema = yup.object().shape({
         name: yup.string().required(),
         password: yup.string().required(),
@@ -63,7 +58,6 @@ const CreateAccountForm = () => {
     } = useForm({
         resolver: yupResolver(schema),
     })
-
     const onSubmit = (data) => {
         console.log(data)
         const payload = {
@@ -85,6 +79,7 @@ const CreateAccountForm = () => {
             if (response.status === 422) {
                 console.log(response)
                 console.log(response.data.message)
+                setError(response.data.message)
             }
 
         })
