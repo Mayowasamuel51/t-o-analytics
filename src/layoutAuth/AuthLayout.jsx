@@ -1,7 +1,6 @@
 import { Link, NavLink, Navigate, Outlet } from "react-router-dom"
 import { useStateContext } from "../context/ContextProvider"
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
-
 import { app } from "../../firebase.config";
 
 function AuthLayout() {
