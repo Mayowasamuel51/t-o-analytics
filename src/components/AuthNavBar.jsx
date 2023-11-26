@@ -24,12 +24,16 @@ const AuthNavBar = ({signout}) => {
                     <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[150px]" alt=""/>
                 </Link>
             </div>
+            <div>
+                <input type="text" name="search" id="search" className='border-2 border-black w-full flex-grow-[3]' />
+            </div>
             <nav className={`${fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                 <ul className="md:flex items-center gap-6 font-normal">
-                    <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
-                    <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
-                    <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/blog">Blog</NavLink></motion.li>
-                    <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/contact">Contact</NavLink></motion.li>
+                    <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? " text-black" : "scale-100 hover:text-BLUE"} to="">My Learning</NavLink></motion.li>
+                    <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? " text-black" : "scale-100 hover:text-BLUE"} to="">Rules</NavLink></motion.li>
+                    <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? " text-black" : "scale-100 hover:text-BLUE"} to="">Mentorship</NavLink></motion.li>
+                    <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? " text-black" : "scale-100 hover:text-BLUE"} to="">Link</NavLink></motion.li>
+                    <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? " text-black" : "scale-100 hover:text-BLUE"} to="">Payment History</NavLink></motion.li>
                 </ul>
             </nav>
             <div className="flex items-center gap-3">

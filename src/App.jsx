@@ -17,6 +17,7 @@ import {
 import HomeLayout from "./layoutAuth/HomeLayout";
 import AuthLayout from "./layoutAuth/AuthLayout";
 import Dashboard from "./dashboard/components/Dashboard";
+import DashboardCourses from "./dashboard/components/DashboardCourses";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <AuthLayout />,
     children: [
+      {
+        index: true,
+        element: <DashboardCourses />
+      },
       {
         path: "/dashboard/post",
         element: <Dashboard />

@@ -91,7 +91,7 @@ const COURSE = () => {
                   ))}
                 </ul>
               </div>
-              <button className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 py-2 md:py-3 rounded-3xl hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+              <button className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 py-2 md:py-2 rounded-3xl hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
                 ADD TO CART
               </button>
             </motion.div>
