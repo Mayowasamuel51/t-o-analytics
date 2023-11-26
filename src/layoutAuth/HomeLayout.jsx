@@ -2,6 +2,7 @@ import { Navigate, Outlet, useLocation } from "react-router-dom"
 import { useStateContext } from "../context/ContextProvider"
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import COURSES from "../coursesAPI/api"
 
 
 
@@ -19,7 +20,8 @@ function HomeLayout() {
                 {location.pathname === "/blog" || 
                 location.pathname === "/contact" || 
                 location.pathname === "/courses" ||
-                location.pathname === "/courses/splunk" ? <Footer black="bg-black text-white" /> : <Footer />}
+                COURSES.map((courses)=> location.pathname === `/courses/${courses.courseName.toLowerCase()}`)
+                 ? <Footer black="bg-black text-white" /> : <Footer />}
             </div>
         </>
     )

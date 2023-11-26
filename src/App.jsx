@@ -2,8 +2,7 @@ import ErrorPage from "./components/errorPage";
 import HomePage from "./pages/HomePage";
 import Courses from "./pages/Courses";
 import AllCourses from "./components/AllCourses";
-import Splunk from "./components/Splunk";
-import Linux from "./components/Linux";
+import COURSE from "./pages/COURSE";
 import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
@@ -38,13 +37,9 @@ const router = createBrowserRouter([
             element: <AllCourses />,
           },
           {
-            path: "splunk",
-            element: <Splunk />
+            path: ":course",
+            element: <COURSE />
           },
-          {
-            path: "linux",
-            element: <Linux />
-          }
         ]
       },
       {

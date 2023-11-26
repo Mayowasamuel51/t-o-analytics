@@ -14,7 +14,17 @@ export default [
         intro: "The Complete Splunk Bootcamp",
         description: "A comprehensive course on Linux. Learn, analyze and optimize with our splunk course",
         whatToLearn: [
-
+            "Splunk user to admin level",
+            "Splunk component and splunk data flow",
+            "Splunk installation and configuration",
+            "Data onboarding/Data parsing",
+            "Splunk SPL",
+            "Splunk alerts/ reports/ saved searches",
+            "Splunk Dashboarding",
+            "Data enrichment (Data Model)",
+            "Regular expressions (REGEX)",
+            "Distributed environment configuration (Architect exam prep)",
+            "Splunk clustering",
         ],
         price: 3500,
     },
@@ -25,7 +35,15 @@ export default [
         intro: "Complete  Linux Mastery",
         description: "Master the command line, harness freedom and embrace open-source awareness with our Linux course",
         whatToLearn: [
-            
+            "Introduction to Linux",
+            "File system & directory structure",
+            "User  & group management",
+            "File permissions and security",
+            "Shell scripting",
+            "Networking & network configuration",
+            "Package management & software installation",
+            "System administration tasks",
+            "Linux server management",
         ],
         price: 2000
     },
@@ -36,7 +54,12 @@ export default [
         intro: "Ultimate approach to financial decisions",
         description: "Everything you need to know to unlock financial freedom and success",
         whatToLearn: [
-            
+            "Penny stocks",
+            "Trading 101",
+            "Financial Literacy",
+            "Options trading",
+            "Market psychology",
+            "Reading charts",
         ],
         price: 100
     },
@@ -47,7 +70,12 @@ export default [
         intro: "Complete Drone Technology Mastery",
         description: "Learn drone tech at the forefront with our complete course.",
         whatToLearn: [
-            
+            "Introductions to drones & their components",
+            "Safety & regulations",
+            "Flight principles & maneuvers",
+            "Drone data collection & analysis",
+            "MaIntenance & troubleshooting",
+            "Programming & automation",
         ],
         price: 100
     },
@@ -58,7 +86,10 @@ export default [
         intro: "A Comprehensive Data Analysis Course",
         description: "A step by step guide to inspecting, cleaning, transforming and modeling data",
         whatToLearn: [
-            
+            "Excel  fundamentals",
+            "Power BI",
+            "SQL",
+            "Programming & automation",
         ],
         price: 100
     },
@@ -69,7 +100,14 @@ export default [
         intro: "Complete Mastery of Videography",
         description: "Learn the perfect way of planning, capturing and editing  clear and beautiful videos",
         whatToLearn: [
-            
+            "Camera basics & settings",
+            "Composition & framing techniques",
+            "Lighting techniques for video",
+            "Color grading & correction<",
+            "Cinematic techniques & visual effects",
+            "Storytelling through visuals",
+            "Shot types  & camera movements",
+            "Video editing & post production",
         ],
         price: 100
     },
@@ -80,7 +118,13 @@ export default [
         intro: "The Perfect Approach to  Capturing",
         description: "Everything you need to know on how to capture and create images",
         whatToLearn: [
-            
+            "Camera basics & settings",
+            "Exposure & understanding light",
+            "Composition & framing techniques",
+            "Studio  lighting & portrait setups",
+            "Landscape & nature photography",
+            "Video editing & post production",
+            "Understanding different lenses & their effects",
         ],
         price: 100,
     }
