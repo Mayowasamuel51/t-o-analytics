@@ -7,7 +7,6 @@ import { HiMiniXMark } from "react-icons/hi2";
 // import Footer from './Footer';
 
 const AuthNavBar = ({signout}) => {
-    // const location = useLocation()
     const [fixed, setFixed] = useState("")
     useEffect(()=> {
         window.addEventListener('scroll', ()=> {

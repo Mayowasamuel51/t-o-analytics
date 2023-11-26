@@ -27,8 +27,37 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+<<<<<<< HEAD
         index: true,
         element: <HomePage />
+=======
+        path: "/",
+        element: <NavBar />,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            index: true,
+            element: <HomePage />
+          },
+          {
+            path: "/courses",
+            element: <Courses />
+          },
+          {
+            path: "/about",
+            element: <AboutPage />
+          },
+          {
+            path: "/blog",
+            element: <BlogPage />
+          },
+          {
+            path: "/contact",
+            element: <ContactPage />
+          },
+
+        ]
+>>>>>>> 8b298d95000c2a7abd7819f94f9c4c02ee0f59bc
       },
       {
         path: "/courses",
@@ -57,9 +86,19 @@ const router = createBrowserRouter([
         element: <BlogPage />
       },
       {
+<<<<<<< HEAD
         path: "/contact",
         element: <ContactPage />
       },
+=======
+        path: "/createAccount",
+        element: <CreateAccountForm />
+      },
+      {
+        path: "/contractors",
+        element: <ConnectWithContractor />,
+      },
+>>>>>>> 8b298d95000c2a7abd7819f94f9c4c02ee0f59bc
     ]
   },
   // {
