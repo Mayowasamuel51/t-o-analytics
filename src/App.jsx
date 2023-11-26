@@ -1,4 +1,3 @@
-import NavBar from "./components/NavBar";
 import ErrorPage from "./components/errorPage";
 import HomePage from "./pages/HomePage";
 import Courses from "./pages/Courses";

@@ -23,6 +23,10 @@ div.courses > a {
   transition: transform 300ms ease-in-out;
 }
 
+div.courses > a:last-child {
+  grid-column-start: 2;
+}
+
 section.courses > div > a:hover,
 div.courses > a:hover {
   transform: translateY(-10px);

@@ -10,12 +10,7 @@ import client from "../assets/images/client.png"
 import student1 from "../assets/images/student1.png"
 import student2 from "../assets/images/student2.png"
 import student3 from "../assets/images/student3.jpeg"
-import splunk from "../assets/images/splunk.png"
-import linux from "../assets/images/linux.png"
-import drone from "../assets/images/drone.jpg"
-import stock from "../assets/images/stock.png"
-import data from "../assets/images/data.jpg"
-import videography from "../assets/images/videography.jpg"
+import COURSES from "../coursesAPI/api"
 
 const HomePage = () => {
   return (
@@ -91,85 +86,32 @@ const HomePage = () => {
 
         <section className="courses p-2 md:p-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-2">
-                <Link to="splunk">
-                    <div className="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" data-aos-delay="100" data-aos-easing="ease-in-out">
-                        <div>
-                            <img src={splunk} className="rounded-tr-2xl rounded-tl-2xl" alt="" />
-                        </div>
-                        <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
-                            <p className="font-black text-white text-md md:text-2xl">splunk</p>
-                            <p className="my-2 font-bold">The Complete Splunk Bootcamp</p>
-                            <p className=" text-textColor md:max-w-[70%]">A comprehensive course on Linux. Learn, analyze and optimize with our splunk course</p>
-                            <p className="font-bold my-5">$3500</p>
-                        </div>
-                    </div>
-                </Link>
-                <Link to="linux">
-                    <div className="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out">
-                        <div>
-                            <img src={linux} alt="" />
-                        </div>
-                        <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
-                            <p className="font-black text-white text-md md:text-2xl">Linux</p>
-                            <p className="my-2 font-bold">Complete Linux Mastery</p>
-                            <p className=" text-textColor">Master the command line, harness freedom and embrace open-source awareness with our Linux course</p>
-                            <p className="font-bold my-5"> $2000</p>
-                        </div>
-                    </div>
-                </Link>
-                <a href="stock-options.html">
-                    <div className="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" data-aos-delay="300" data-aos-easing="ease-in-out">
-                        <div>
-                            <img src={stock} alt="" />
-                        </div>
-                        <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
-                            <p className="font-black text-white text-md md:text-2xl">Stock & Options</p>
-                            <p className="my-2 font-bold">Ultimate approach to  financial decisions</p>
-                            <p className=" text-textColor md:max-w-[70%]">Everything you need to know to unlock financial freedom and success</p>
-                            <p className="font-bold my-5">$100</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="dronetech.html">
-                    <div className="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" data-aos-delay="100" data-aos-easing="ease-in-out">
-                        <div>
-                            <img src={drone} alt="" />
-                        </div>
-                        <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
-                            <p className="font-black text-white text-md md:text-2xl">Drone Tech</p>
-                            <p className="my-2 font-bold">Complete Drone Technology Mastery</p>
-                            <p className=" text-textColor">Learn drone tech at the forefront with our complete course.
-                            </p>
-                            <p className="font-bold my-5">$100</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="DATA.html">
-                    <div className="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out">
-                        <div>
-                            <img src={data} alt="" />
-                        </div>
-                        <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
-                            <p className="font-black text-white text-md md:text-2xl">Data</p>
-                            <p className="my-2 font-bold">A Comprehensive Data Analysis Course</p>
-                            <p className=" text-textColor">A step by step guide to inspecting, cleaning, transforming and modeling data</p>
-                            <p className="font-bold my-5">$100</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="videography.html">
-                    <div className="" data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" data-aos-delay="300" data-aos-easing="ease-in-out">
-                        <div>
-                            <img src={videography} alt="" />
-                        </div>
-                        <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
-                            <p className="font-black text-white text-md md:text-2xl">Videography</p>
-                            <p className="my-2 font-bold">Complete Mastery of Videography</p>
-                            <p className=" text-textColor">Learn the perfect way of planning, capturing and editing  clear and beautiful videos</p>
-                            <p className="font-bold my-5">$100</p>
-                        </div>
-                    </div>
-                </a>
+            {COURSES.map((course, index)=> index < 6 && (
+            <Link key={index} to={course.courseName.toLowerCase()} className="">
+            <div
+              className={`rounded-xl`}
+              data-aos-once="true"
+              data-aos-duration="5000"
+              data-aos="fade-up"
+            >
+              <div className=" rounded-tr-2xl rounded-tl-2xl">
+                <img
+                  src={course.image}
+                  className="rounded-tr-2xl rounded-tl-2xl w-full h-[200px] object-cover"
+                  alt=""
+                />
+              </div>
+              <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
+                <p className="font-bold text-white text-md md:my-4 md:text-3xl">{course.courseName}</p>
+                <p className="my-2 font-bold">{course.intro}</p>
+                <p className="line-clamp-2 text-textColor md:max-w-[70%]">
+                  {course.description}
+                </p>
+                <p className="font-bold my-5 md:text-xl">${course.price}</p>
+              </div>
+            </div>
+          </Link>
+          ))}
             </div>
             <div className="py-10 text-center">
                 <Link to="/courses" className="">
