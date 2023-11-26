@@ -61,7 +61,7 @@ const Linux = () => {
         <AnimatePresence>
             <motion.section className="min-h-screen fixed flex justify-center items-center inset-0 bg-black bg-opacity-70 z-50">
                 <motion.div className="z-50 bg-white w-fit p-5 rounded-2xl" >
-                    <h1 className="font-black text-center text-xl md:text-2xl">SPLUNK</h1>
+                    <h1 className="font-black text-center text-xl md:text-2xl">LINUX</h1>
                     <p className="font-bold">The Complete <br /> Splunk Bootcamp</p>
                     <div className="learn">
                         <ul className="md:text-lg text-xs">

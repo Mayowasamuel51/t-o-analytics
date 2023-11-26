@@ -24,35 +24,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        element: <NavBar />,
-        errorElement: <ErrorPage />,
-
-        children: [
-          {
-            index: true,
-            element: <HomePage />
-          },
-          {
-            path: "/courses",
-            element: <Courses />
-          },
-          {
-            path: "/about",
-            element: <AboutPage />
-          },
-          {
-            path: "/blog",
-            element: <BlogPage />
-          },
-          {
-            path: "/contact",
-            element: <ContactPage />
-          },
-         
-        ]
+        index: true,
+        element: <HomePage />
       },
       {
         path: "/courses",
@@ -60,7 +36,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <AllCourses />
+            element: <AllCourses />,
           },
           {
             path: "splunk",
@@ -71,23 +47,41 @@ const router = createBrowserRouter([
             element: <Linux />
           }
         ]
+      },    
+      {
+        path: "/about",
+        element: <AboutPage />
       },
       {
-        path: "/login",
-        element: <LoginForm />
+        path: "/blog",
+        element: <BlogPage />
       },
       {
-        path: "/createAccount",
-        element:<CreateAccountForm/>
+        path: "/contact",
+        element: <ContactPage />
       },
-      {
-        path: "/contractors",
-        element: <ConnectWithContractor />,
-      },
-
     ]
   },
-
+  // {
+  //   path: "splunk",
+  //   element: <Splunk />
+  // },
+  // {
+  //   path: "linux",
+  //   element: <Linux />
+  // },
+  {
+    path: "/contractors",
+    element: <ConnectWithContractor />,
+  },
+  {
+    path: "/login",
+    element: <LoginForm />
+  },
+  {
+    path: "/createAccount",
+    element:<CreateAccountForm/>
+  },
   {
     path: "/dashboard",
     element: <AuthLayout />,

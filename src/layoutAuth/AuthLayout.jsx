@@ -1,11 +1,11 @@
+import AuthNavBar from "../components/AuthNavBar";
 import { Link, NavLink, Navigate, Outlet } from "react-router-dom"
 import { useStateContext } from "../context/ContextProvider"
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
-
 import { app } from "../../firebase.config";
 
 function AuthLayout() {
-    const {  token,setToken } = useStateContext();
+    const {  token ,setToken } = useStateContext();
     if (!token) {
         return <Navigate to="/" />
     }
@@ -18,8 +18,9 @@ function AuthLayout() {
     }
     return (
         <>
-            <div>
-            <nav className="nav">
+            <AuthNavBar signout={signout} />
+            <div className="py-20">
+                <nav className="nav">
                     <Link className="nav-link" to="/dashboard">dashboard</Link>
                     <Link className="nav-link" to="/users">users</Link>
                     <Link className="nav-link" to="/dashboard/post">post</Link>
@@ -27,9 +28,8 @@ function AuthLayout() {
                     <Link className="nav-link" to="/views">views</Link>
                 </nav>
                 <button onClick={signout}>signOut</button>
-                <Outlet />
-
             </div>
+            <Outlet />
         </>
     )
 }

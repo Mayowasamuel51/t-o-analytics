@@ -4,6 +4,7 @@ export default [
         courseName: "splunk",
         intro: "The Complete Splunk Bootcamp",
         description: "A comprehensive course on Linux. Learn, analyze and optimize with our splunk course",
+        whatToLearn: [],
         price: 3500,
     },
     {

@@ -1,6 +1,8 @@
 import { app } from "../../../firebase.config";
 import { useStateContext } from '../../context/ContextProvider';
-import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
+// import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
+
 
 const Dashboard = () => {
     const { setToken } = useStateContext()
