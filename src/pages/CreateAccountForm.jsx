@@ -5,11 +5,16 @@ import GOOGLE from "../assets/images/google.png";
 import FACEBOOK from "../assets/images/facebook.png";
 import APPLE from "../assets/images/apple.png";
 import { app } from "../../firebase.config";
+import { useForm } from "react-hook-form"
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { useStateContext } from '../context/ContextProvider';
 import axiosclinet from "../layoutAuth/axios/axios-clinet"
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+
+
 const formVariant = {
     initial: {
         opacity: 0
@@ -44,14 +49,29 @@ const CreateAccountForm = () => {
                 console.log('error', error.message);
             })
     }
-    const formSubmit = (e) => {
-        e.preventDefault();
+
+
+    const schema = yup.object().shape({
+        name: yup.string().required(),
+        password: yup.string().required(),
+        email: yup.string().required(),
+    });
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm({
+        resolver: yupResolver(schema),
+    })
+
+    const onSubmit = (data) => {
+        console.log(data)
         const payload = {
-            name: nameRef.current.value,
-            password: passwordRef.current.value,
-            email: emailRef.current.value
+            name: data.name,
+            password: data.password,
+            email: data.email
         }
-        axios.post('http://localhost:8000/api/sighup',payload,{
+        axios.post('http://localhost:8000/api/sighup', payload, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"
@@ -61,15 +81,12 @@ const CreateAccountForm = () => {
             console.log(res.data.token)
             setToken(res.data.token)
         }).catch(err => {
-            console.log(payload)
-            console.log(err.message)
-            const response = err.response;
-            console.log(response)
-            if (response && response.status === 422) {
-                // response.data.errors
-                console.log(response.data.errors)
-                setError(response.data.errors)
+            const response = err.response
+            if (response.status === 422) {
+                console.log(response)
+                console.log(response.data.message)
             }
+
         })
 
     }
@@ -97,21 +114,27 @@ const CreateAccountForm = () => {
                     </a>
                 </div>
                 <p className="font-bold">Please fill in your details to get started</p>
-                <form onSubmit={formSubmit}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="my-4">
                         <label className="font-bold" htmlFor="name">Name
-                            <input ref={nameRef} type="text" name="" id="name" className="text-base pl-2 h-10 rounded-xl w-full border-2 border-inputColor bg-inputColor" />
+                            <input name="name"
+                                {...register("name", { required: true })} type="text" id="name" className="text-base pl-2 h-10 rounded-xl w-full border-2 border-inputColor bg-inputColor" />
                         </label>
+                        <p className='text-red-600'>{errors.name?.message}</p>
                     </div>
                     <div className="my-4">
                         <label className="font-bold" htmlFor="email">Email Address
-                            <input ref={emailRef} type="text" name="email" id="" className="text-base pl-2 h-10 rounded-xl w-full border-2 border-inputColor bg-inputColor" />
+                            <input name="email"
+                                {...register("email", { required: true })} type="text" id="" className="text-base pl-2 h-10 rounded-xl w-full border-2 border-inputColor bg-inputColor" />
                         </label>
+                        <p className='text-red-600'>{errors.email?.message}</p>
                     </div>
                     <div className="my-4">
                         <label className="font-bold" htmlFor="password">Password
-                            <input ref={passwordRef} type="password" name="password" id="" className="text-base pl-2 h-10 rounded-xl w-full border-2 border-inputColor bg-inputColor" />
+                            <input name="password"
+                                {...register("password", { required: true })} type="password" id="" className="text-base pl-2 h-10 rounded-xl w-full border-2 border-inputColor bg-inputColor" />
                         </label>
+                        <p className='text-red-600'>{errors.password?.message}</p>
                     </div>
                     <button type="submit" className="w-full rounded-xl hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300 bg-BLUE py-2 font-semibold text-white text-base md:text-xl">Create Account</button>
                     <p className='text-center font-extralight py-1'>or</p>
