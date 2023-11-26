@@ -27,52 +27,27 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        element: <NavBar />,
-        errorElement: <ErrorPage />,
-        children: [
-          {
-            index: true,
-            element: <HomePage />
-          },
-          {
-            path: "/courses",
-            element: <Courses />,
-            children: [
-              {
-                index: true,
-                element: <AllCourses />,
-              },
-              {
-                path: "splunk",
-                element: <Splunk />
-              },
-              {
-                path: "linux",
-                element: <Linux />
-              }
-            ]
-          },
-          {
-            path: "/about",
-            element: <AboutPage />
-          },
-          {
-            path: "/blog",
-            element: <BlogPage />
-          },
-          {
-            path: "/contact",
-            element: <ContactPage />
-          },
-
-        ]
+        index: true,
+        element: <HomePage />
       },
       {
         path: "/courses",
         element: <Courses />,
-        
-      },    
+        children: [
+          {
+            index: true,
+            element: <AllCourses />,
+          },
+          {
+            path: "splunk",
+            element: <Splunk />
+          },
+          {
+            path: "linux",
+            element: <Linux />
+          }
+        ]
+      },
       {
         path: "/about",
         element: <AboutPage />
@@ -85,15 +60,44 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <ContactPage />
       },
-      {
-        path: "/createAccount",
-        element: <CreateAccountForm />
-      },
-      {
-        path: "/contractors",
-        element: <ConnectWithContractor />,
-      },
     ]
+  },
+  {
+    path: "/about",
+    element: <AboutPage />
+  },
+  {
+    path: "/blog",
+    element: <BlogPage />
+  },
+  {
+    path: "/contact",
+    element: <ContactPage />
+  },
+  {
+    path: "/courses",
+    element: <Courses />,
+    
+  },    
+  {
+    path: "/about",
+    element: <AboutPage />
+  },
+  {
+    path: "/blog",
+    element: <BlogPage />
+  },
+  {
+    path: "/contact",
+    element: <ContactPage />
+  },
+  {
+    path: "/createAccount",
+    element: <CreateAccountForm />
+  },
+  {
+    path: "/contractors",
+    element: <ConnectWithContractor />,
   },
   {
     path: "/login",
