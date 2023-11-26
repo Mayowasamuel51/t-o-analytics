@@ -1,13 +1,11 @@
 import axios from "axios";
-
-
 const axiosclinet = axios.create({
     // baseURL:`${ import.meta.env.API_KEY}/api`
     baseURL: "http://localhost:8000/"
     // baseURL:"https://codarnetwork.online/"
 });
-axiosclinet.defaults.headers.post["Content-Type"] = "application/vnd.api+json";
-axiosclinet.defaults.headers.post["Accept"] = "application/vnd.api+json";
+axiosclinet.defaults.headers.post["Content-Type"] = "application/json";
+axiosclinet.defaults.headers.post["Accept"] = "application/json";
 axiosclinet.defaults.withCredentials = true; // generate
 
 axiosclinet.interceptors.request.use((config) => {
