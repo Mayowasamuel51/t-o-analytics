@@ -27,10 +27,6 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-<<<<<<< HEAD
-        index: true,
-        element: <HomePage />
-=======
         path: "/",
         element: <NavBar />,
         errorElement: <ErrorPage />,
@@ -41,7 +37,21 @@ const router = createBrowserRouter([
           },
           {
             path: "/courses",
-            element: <Courses />
+            element: <Courses />,
+            children: [
+              {
+                index: true,
+                element: <AllCourses />,
+              },
+              {
+                path: "splunk",
+                element: <Splunk />
+              },
+              {
+                path: "linux",
+                element: <Linux />
+              }
+            ]
           },
           {
             path: "/about",
@@ -57,25 +67,11 @@ const router = createBrowserRouter([
           },
 
         ]
->>>>>>> 8b298d95000c2a7abd7819f94f9c4c02ee0f59bc
       },
       {
         path: "/courses",
         element: <Courses />,
-        children: [
-          {
-            index: true,
-            element: <AllCourses />,
-          },
-          {
-            path: "splunk",
-            element: <Splunk />
-          },
-          {
-            path: "linux",
-            element: <Linux />
-          }
-        ]
+        
       },    
       {
         path: "/about",
@@ -86,11 +82,10 @@ const router = createBrowserRouter([
         element: <BlogPage />
       },
       {
-<<<<<<< HEAD
         path: "/contact",
         element: <ContactPage />
       },
-=======
+      {
         path: "/createAccount",
         element: <CreateAccountForm />
       },
@@ -98,20 +93,7 @@ const router = createBrowserRouter([
         path: "/contractors",
         element: <ConnectWithContractor />,
       },
->>>>>>> 8b298d95000c2a7abd7819f94f9c4c02ee0f59bc
     ]
-  },
-  // {
-  //   path: "splunk",
-  //   element: <Splunk />
-  // },
-  // {
-  //   path: "linux",
-  //   element: <Linux />
-  // },
-  {
-    path: "/contractors",
-    element: <ConnectWithContractor />,
   },
   {
     path: "/login",
