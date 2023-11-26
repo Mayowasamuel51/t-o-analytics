@@ -15,6 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 
 
+
 const formVariant = {
     initial: {
         opacity: 0
@@ -65,24 +66,47 @@ const CreateAccountForm = () => {
             password: data.password,
             email: data.email
         }
-        axios.post('https://to-backendapi-v1.vercel.app/api/sighup', payload, {
+        fetch('https://to-backendapi-v1.vercel.app/api/sighup', {
+            method: 'POST',
+            body: JSON.stringify(payload),
             headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            }
+                "Accept":"application/json",
+                "Content-Type":"application/json",
+            },
         }).then((res) => {
-            setUser(res.data.data)
-            console.log(res.data.token)
-            setToken(res.data.token)
+            return res.json()
+        }).then((res) => {
+            setUser(res.data)
+            setToken(res.token)
+            console.log(res)
         }).catch(err => {
+            console.log(err)
             const response = err.response
-            if (response.status === 422) {
+            if (response === 422) {
                 console.log(response)
-                console.log(response.data.message)
-                setError(response.data.message)
+                console.log(response.message)
+                setError(response.message)
             }
 
         })
+        // axios.post('https://to-backendapi-v1.vercel.app/api/sighup', payload, {
+        //     headers: {
+        //         "Accept":"application/json",
+        //         "Content-Type":"application/json",
+        //     },
+        // }).then((res) => {
+        //     setUser(res.data.data)
+        //     console.log(res.data.token)
+        //     setToken(res.data.token)
+        // }).catch(err => {
+        //     const response = err.response
+        //     if (response.status === 422) {
+        //         console.log(response)
+        //         console.log(response.data.message)
+        //         setError(response.data.message)
+        //     }
+
+        // })
 
     }
     useEffect(() => {
