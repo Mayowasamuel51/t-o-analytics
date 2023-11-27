@@ -168,7 +168,6 @@ const LoginForm = () => {
                     <p className="text-right my-4 font-bold"><a href="forgotPassword.html" className="text-BLUE">Forgot Password?</a></p>
                     <button type="submit" className="w-full rounded-xl hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300 bg-BLUE py-2 font-semibold text-white text-base md:text-xl">Login</button>
                     <p className='text-center font-extralight py-1'>or</p>
-
                 </form>
                 <div className='login-options flex flex-col gap-3 font-medium'>
                     <button onClick={loginwihGoogle} className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
