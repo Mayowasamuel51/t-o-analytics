@@ -17,9 +17,9 @@ const COURSE = () => {
     <div onClick={removeModal} className="relative">
       <section className="pt-10">
         <h1 className="font-bold text-center text-2xl md:text-4xl py-10 md:py-20">
-          {singleCourse.courseName}
+          {singleCourse.courseName.toUpperCase()}
         </h1>
-        <div className="px-2 md:px-10 md:py-8 grid grid-cols-1 md:grid-cols-2 bg-[#2d2065] text-white">
+        <div className="px-2 md:px-10 py-10 md:py-10 grid grid-cols-1 gap-16 md:gap-0 md:grid-cols-2 bg-[#2d2065] text-white">
           <div className="w-full">
             <h1
               onMouseOver={displayModal}
@@ -32,7 +32,7 @@ const COURSE = () => {
             </p>
             <p className="my-6 font-bold md:text-3xl">${singleCourse.price}</p>
             <a href="">
-              <button className="hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white w-fit mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-xl">
+              <button className="hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white w-fit mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
                 Buy Course
               </button>
             </a>
@@ -48,21 +48,21 @@ const COURSE = () => {
           </div>
         </div>
       </section>
-      <section className="px-2 md:px-10 py-5 md:py-7">
+      <section className="px-2 md:px-10 py-10 md:py-20">
         <h1 className="font-bold text-2xl md:text-4xl">WHAT YOU’LL LEARN</h1>
-        <div className="learn grid  grid-cols-1 md:grid-cols-2 py-10">
-          <ul>
+        <div className="learn grid  grid-cols-1 md:grid-cols-2 py-5">
+          <ul className="md:text-base text-sm">
             {singleCourse.whatToLearn.map((whatToLearn, index)=> index < 6 && (
               <li key={index}>{whatToLearn}</li>
             ))}
           </ul>
-          <ul>
+          <ul className="md:text-base text-sm">
             {singleCourse.whatToLearn.map((whatToLearn, index)=> index > 5 && (
-                <li key={index}>{whatToLearn}</li>
+              <li key={index}>{whatToLearn}</li>
             ))}
           </ul>
         </div>
-        <div className="py-10">
+        <div className="py-5">
           <h1 className="font-bold text-2xl md:text-4xl my-8">
             No prior knowledge needed!
           </h1>
@@ -91,7 +91,7 @@ const COURSE = () => {
                   ))}
                 </ul>
               </div>
-              <button className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 py-2 md:py-2 rounded-3xl hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+              <button  className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 py-2 md:py-2 rounded-md hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
                 ADD TO CART
               </button>
             </motion.div>

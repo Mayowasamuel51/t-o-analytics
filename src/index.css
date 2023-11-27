@@ -23,9 +23,7 @@ div.courses > a {
   transition: transform 300ms ease-in-out;
 }
 
-div.courses > a:last-child {
-  grid-column-start: 2;
-}
+
 
 section.courses > div > a:hover,
 div.courses > a:hover {
@@ -142,6 +140,9 @@ section.others {
     font-size: 3rem;
     margin-bottom: 10px;
   }
+  div.courses > a:last-child {
+    grid-column-start: 2;
+  }
 }
 
 @media only screen and (min-width: 995px) {
@@ -177,5 +178,9 @@ section.others {
   nav.show {
     left: 0;
     background: #fff;
+  }
+  div.learn ul li::before,
+  div.benefit ul li::before {
+    width: 15px;
   }
 }

@@ -3,6 +3,7 @@ import LOGO from "../assets/images/logo.jpg";
 import { motion } from 'framer-motion';
 import { Outlet, Link, NavLink, useLocation } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
+import { MdOutlineAddShoppingCart } from "react-icons/md"
 import { HiMiniXMark } from "react-icons/hi2";
 // import Footer from './Footer';
 
@@ -34,12 +35,13 @@ const AuthNavBar = ({signout}) => {
                     <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? " text-black" : "scale-100 hover:text-BLUE"} to="">Mentorship</NavLink></motion.li>
                     <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? " text-black" : "scale-100 hover:text-BLUE"} to="">Link</NavLink></motion.li>
                     <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? " text-black" : "scale-100 hover:text-BLUE"} to="">Payment History</NavLink></motion.li>
+                    <button onClick={signout} className="my-3 hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-2 py-1 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold">
+                        Sign Out
+                    </button>
                 </ul>
             </nav>
             <div className="flex items-center gap-3">
-                <button onClick={signout} className="hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md md:rounded-xl font-semibold">
-                    Sign Out
-                </button>
+                <MdOutlineAddShoppingCart size={30} />
                 <div className="flex-1 block md:hidden hamburger">
                     {fixed === "show" ? <HiMiniXMark size={20} onClick={()=> setFixed("")} /> : <FaBarsStaggered size={20} onClick={navBar} />}
                 </div>

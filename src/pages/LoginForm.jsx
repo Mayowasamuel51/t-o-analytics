@@ -4,6 +4,7 @@ import LOGO from "../assets/images/logo.jpg";
 import GOOGLE from "../assets/images/google.png";
 import FACEBOOK from "../assets/images/facebook.png";
 import APPLE from "../assets/images/apple.png";
+import { HiMiniXMark } from "react-icons/hi2";
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -140,9 +141,9 @@ const LoginForm = () => {
                     <div>
                         <Link to="/"><img src={LOGO} className="w-[150px] pl-0" alt="" /></Link>
                     </div>
-                    <a href="index.html">
-                        <i className="fa-solid fa-xmark text-2xl"></i>
-                    </a>
+                    <Link to="/">
+                        <HiMiniXMark size={30} />
+                    </Link>
                 </div>
                 <p className="font-bold">Welcome Back!</p>
                 <p className="text-sm md:text-base text-slate-400">Enter Your details to continue</p>

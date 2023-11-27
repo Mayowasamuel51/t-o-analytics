@@ -27,7 +27,7 @@ function AuthLayout() {
                     <Link className="nav-link" to="/videos">videos</Link>
                     <Link className="nav-link" to="/views">views</Link>
                 </nav>
-                <button onClick={signout}>signOut</button>
+                <button className="border-2 border-red-600" onClick={signout}>signOut</button>
             </div>
             <Outlet />
         </>

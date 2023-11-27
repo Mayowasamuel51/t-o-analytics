@@ -35,7 +35,7 @@ const NavBar = () => {
                 </nav>
                 <div className="flex items-center gap-3">
                     <Link to="/createAccount">
-                        <button className="hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md md:rounded-xl font-semibold">
+                        <button className="hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-2 py-1 md:px-4 md:py-3 rounded-md md:rounded-xl font-semibold">
                             Create Account
                         </button>
                     </Link>
