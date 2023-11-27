@@ -3,8 +3,9 @@ import { motion } from 'framer-motion';
 import LOGO from "../assets/images/logo.jpg";
 import GOOGLE from "../assets/images/google.png";
 import FACEBOOK from "../assets/images/facebook.png";
-import APPLE from "../assets/images/apple.png";
+// import APPLE from "../assets/images/apple.png";
 import { HiMiniXMark } from "react-icons/hi2";
+import { FaApple } from "react-icons/fa";
 import { app } from "../../firebase.config";
 import { useForm } from "react-hook-form"
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
@@ -160,10 +161,10 @@ const CreateAccountForm = () => {
                     <p className='text-center font-extralight py-1'>or</p>
 
                 </form>
-                <div className='flex flex-col gap-3 font-medium'>
+                <div className='login-options flex flex-col gap-3 font-medium'>
                     <button onClick={loginwihGoogle} className='flex items-center justify-center gap-2 border-[1px] border-black rounded-2xl py-1'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
                     <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-2xl py-1'><img src={FACEBOOK} alt="" className='w-5' />Continue with Facebook</button>
-                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-2xl py-1'><img src={APPLE} alt="" className='w-5' />Continue with Apple ID</button>
+                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-2xl py-1'><FaApple size={20} /> Continue with Apple ID</button>
                 </div>
                 <p className="text-sm md:text-base mt-4 font-semibold ">Already have an account? <Link className="underline underline-offset-2 text-BLUE" to="/login">Log In</Link></p>
             </motion.div>

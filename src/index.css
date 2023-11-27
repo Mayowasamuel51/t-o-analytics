@@ -120,6 +120,14 @@ section.others {
   background-attachment: fixed;
 }
 
+div.login-options button:hover {
+  background-color: black;
+}
+
+div.login-options button:last-child:hover img {
+  color: red;
+}
+
 /* COURSE HOVER */
 
 /* */
