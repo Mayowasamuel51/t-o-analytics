@@ -8,7 +8,8 @@ import { FaSearch } from "react-icons/fa";
 import { HiMiniXMark } from "react-icons/hi2";
 // import Footer from './Footer';
 
-const AuthNavBar = ({signout}) => {
+const AuthNavBar = ({ signout }) => {
+    
     const [fixed, setFixed] = useState("")
     useEffect(()=> {
         window.addEventListener('scroll', ()=> {

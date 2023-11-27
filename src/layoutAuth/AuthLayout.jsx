@@ -5,7 +5,7 @@ import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWith
 import { app } from "../../firebase.config";
 
 function AuthLayout() {
-    const {  token ,setToken } = useStateContext();
+    const {  token ,  setToken } = useStateContext();
     if (!token) {
         return <Navigate to="/" />
     }

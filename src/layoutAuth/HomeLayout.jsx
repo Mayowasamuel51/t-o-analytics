@@ -7,15 +7,15 @@ import COURSES from "../coursesAPI/api"
 
 
 function HomeLayout() {
-    const {  token } = useStateContext();
+    const { token } = useStateContext();
     const location = useLocation()
     if (token) {
-        return <Navigate to="/dashboard"/>
+        return <Navigate to="/dashboard" />
     }
     return (
         <>
             <div>
-                <NavBar/>
+                <NavBar />
                 <Outlet />
                 {location.pathname === "/blog" || 
                 location.pathname === "/contact" || 
