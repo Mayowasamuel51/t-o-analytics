@@ -172,4 +172,4 @@ const CreateAccountForm = () => {
     )
 }
 
-export default CreateAccountForm
+export default CreateAccountForm;

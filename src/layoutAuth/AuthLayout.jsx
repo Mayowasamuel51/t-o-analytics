@@ -22,16 +22,17 @@ function AuthLayout() {
             <div className="pt-32">
                 <nav className="nav">
                     <ul className="flex items-center gap-5">
-                        <Link className="nav-link" to="/dashboard">dashboard</Link>
-                        <Link className="nav-link" to="/users">users</Link>
-                        <Link className="nav-link" to="/dashboard/post">post</Link>
-                        <Link className="nav-link" to="/videos">videos</Link>
-                        <Link className="nav-link" to="/views">views</Link>
+                        <Link className="hover:text-red-500" to="/dashboard">dashboard</Link>
+                        <Link className="hover:text-red-500" to="/users">users</Link>
+                        <Link className="hover:text-red-500" to="/dashboard/post">post</Link>
+                        <Link className="hover:text-red-500" to="/videos">videos</Link>
+                        <Link className="hover:text-red-500" to="/views">views</Link>
                     </ul>
                 </nav>
                 <button className="border-2 border-red-600" onClick={signout}>signOut</button>
             </div>
             <Outlet />
+            
         </>
     )
 }

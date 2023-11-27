@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import LOGO from "../assets/images/logo.jpg";
 import GOOGLE from "../assets/images/google.png";
@@ -14,6 +14,7 @@ import * as yup from "yup"
 import { app } from "../../firebase.config";
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { useStateContext } from '../context/ContextProvider';
+
 const formVariant = {
     initial: {
         opacity: 0
