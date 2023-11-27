@@ -21,11 +21,13 @@ function AuthLayout() {
             <AuthNavBar signout={signout} />
             <div className="py-32">
                 <nav className="nav">
-                    <Link className="nav-link" to="/dashboard">dashboard</Link>
-                    <Link className="nav-link" to="/users">users</Link>
-                    <Link className="nav-link" to="/dashboard/post">post</Link>
-                    <Link className="nav-link" to="/videos">videos</Link>
-                    <Link className="nav-link" to="/views">views</Link>
+                    <ul>
+                        <Link className="nav-link" to="/dashboard">dashboard</Link>
+                        <Link className="nav-link" to="/users">users</Link>
+                        <Link className="nav-link" to="/dashboard/post">post</Link>
+                        <Link className="nav-link" to="/videos">videos</Link>
+                        <Link className="nav-link" to="/views">views</Link>
+                    </ul>
                 </nav>
                 <button className="border-2 border-red-600" onClick={signout}>signOut</button>
             </div>

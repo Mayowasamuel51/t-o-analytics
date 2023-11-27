@@ -127,9 +127,6 @@ div.login-options button:hover {
   background-color: black;
 }
 
-div.login-options button:last-child:hover img {
-  color: red;
-}
 
 /* AUTH SEARCH BOX */
 div.search-box svg {
