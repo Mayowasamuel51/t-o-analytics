@@ -123,9 +123,27 @@ section.others {
 div.login-options button:hover {
   background-color: black;
 }
+div.login-options button:hover {
+  background-color: black;
+}
 
 div.login-options button:last-child:hover img {
   color: red;
+}
+
+/* AUTH SEARCH BOX */
+div.search-box svg {
+ top: 50%;
+ left: 7px;
+ transform: translateY(-50%);
+}
+
+div.search-box {
+  flex-grow: 3;
+}
+div.search-box input {
+  padding-left: 24px;
+  font-weight: 600;
 }
 
 /* COURSE HOVER */
