@@ -38,7 +38,7 @@ const COURSE = () => {
             </a>
           </div>
           <div className="perks">
-            <ul className="md:text-xl font-medium">
+            <ul className="text-base md:text-xl md:font-medium">
               <li>BEGINNER FRIENDLY</li>
               <li>LIFETIME ACCESS</li>
               <li>EXERCISES</li>
@@ -67,7 +67,7 @@ const COURSE = () => {
             No prior knowledge needed!
           </h1>
           <p>
-            You do not need familiarity with splunk to take this course.
+            You do not need familiarity with {singleCourse.courseName} to take this course.
             Everything you need to know will be thought from scratch and step by
             step too.
           </p>

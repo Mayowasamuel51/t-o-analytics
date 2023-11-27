@@ -19,9 +19,9 @@ function AuthLayout() {
     return (
         <>
             <AuthNavBar signout={signout} />
-            <div className="py-32">
+            <div className="pt-32">
                 <nav className="nav">
-                    <ul>
+                    <ul className="flex items-center gap-5">
                         <Link className="nav-link" to="/dashboard">dashboard</Link>
                         <Link className="nav-link" to="/users">users</Link>
                         <Link className="nav-link" to="/dashboard/post">post</Link>

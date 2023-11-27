@@ -20,8 +20,7 @@ function HomeLayout() {
                 {location.pathname === "/blog" || 
                 location.pathname === "/contact" || 
                 location.pathname === "/courses" ||
-                COURSES.map((courses)=> location.pathname === `/courses/${courses.courseName.toLowerCase()}`)
-                 ? <Footer black="bg-black text-white" /> : <Footer />}
+                COURSES.map((courses)=> location.pathname === `/courses/${courses.courseName.toLowerCase()}`) ? <Footer black="bg-black text-white" /> : <Footer />}
             </div>
         </>
     )
