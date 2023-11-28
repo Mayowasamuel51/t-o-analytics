@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import LOGO from "../assets/images/logo.jpg";
 import GOOGLE from "../assets/images/google.png";
@@ -15,9 +15,6 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-
-
-
 const formVariant = {
     initial: {
         opacity: 0
@@ -33,9 +30,12 @@ const formVariant = {
         opacity: 0,
     }
 }
-
 const CreateAccountForm = () => {
+    const navigate = useNavigate()
     const { setToken, setUser } = useStateContext();
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const nameRef = useRef();
     const [error, setError] = useState(null)
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
@@ -44,6 +44,7 @@ const CreateAccountForm = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
+                console.log(loggedInUser.password)
                 setToken(loggedInUser)
             }).catch(error => {
                 console.log('error', error.message);
@@ -68,55 +69,34 @@ const CreateAccountForm = () => {
             password: data.password,
             email: data.email
         }
-        fetch('https://to-backendapi-v1.vercel.app/api/sighup', {
-            method: 'POST',
-            body: JSON.stringify(payload),
+        axios.post('https://to-backendapi-v1.vercel.app/api/sighup', payload, {
             headers: {
-                "Accept":"application/json",
-                "Content-Type":"application/json",
+                "Accept": "application/json",
+                "Content-Type": "application/json",
             },
         }).then((res) => {
-            return res.json()
-        }).then((res) => {
-            setUser(res.data)
-            setToken(res.token)
-            console.log(res)
-        }).catch(err => {
-            console.log(err)
-            const response = err.response
-            if (response === 422) {
-                console.log(response)
-                console.log(response.message)
-                setError(response.message)
+            if (res.status === 201 || res.status === 200) {
+                setUser(res.data.data)
+                console.log(res.data.token)
+                setToken(res.data.token)
+                navigate('/dashboard')
             }
-
+          
+        }).catch(err => {
+            const response = err.response
+            if (response.status === 422) {
+                console.log(response)
+                console.log(response.data.message)
+                setError(response.data.message)
+            }
         })
-        // axios.post('https://to-backendapi-v1.vercel.app/api/sighup', payload, {
-        //     headers: {
-        //         "Accept":"application/json",
-        //         "Content-Type":"application/json",
-        //     },
-        // }).then((res) => {
-        //     setUser(res.data.data)
-        //     console.log(res.data.token)
-        //     setToken(res.data.token)
-        // }).catch(err => {
-        //     const response = err.response
-        //     if (response.status === 422) {
-        //         console.log(response)
-        //         console.log(response.data.message)
-        //         setError(response.data.message)
-        //     }
-
-        // })
-
     }
     useEffect(() => {
         auth.onAuthStateChanged((loggedInUser) => {
             if (loggedInUser) {
                 loggedInUser.getIdToken().then((token) => {
                     console.log(token)
-                    window.localStorage.setItem("ACCESS_TOKEN", token)
+                    navigate('/dashboard')
                     setToken(token)
                 }).catch((err) => console.log(err.message))
             }
@@ -136,16 +116,19 @@ const CreateAccountForm = () => {
                 </div>
                 <p className="font-bold">Please fill in your details to get started</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className='mt-8 flex flex-col gap-3 font-medium' >
+                        {error ? <h2 className='text-red-600'>{error}</h2> : "    "}
+                    </div>
                     <div className="my-4">
                         <label className="font-bold" htmlFor="name">Name
-                            <input name="name"
+                            <input name="name" ref={nameRef}
                                 {...register("name", { required: true })} type="text" id="name" className="text-base pl-2 h-10 rounded-xl w-full border-2 border-inputColor bg-inputColor" />
                         </label>
                         <p className='text-red-600'>{errors.name?.message}</p>
                     </div>
                     <div className="my-4">
                         <label className="font-bold" htmlFor="email">Email Address
-                            <input name="email"
+                            <input name="email" ref={emailRef}
                                 {...register("email", { required: true })} type="text" id="" className="text-base pl-2 h-10 rounded-xl w-full border-2 border-inputColor bg-inputColor" />
                         </label>
                         <p className='text-red-600'>{errors.email?.message}</p>
@@ -153,6 +136,7 @@ const CreateAccountForm = () => {
                     <div className="my-4">
                         <label className="font-bold" htmlFor="password">Password
                             <input name="password"
+                                ref={passwordRef}
                                 {...register("password", { required: true })} type="password" id="" className="text-base pl-2 h-10 rounded-xl w-full border-2 border-inputColor bg-inputColor" />
                         </label>
                         <p className='text-red-600'>{errors.password?.message}</p>

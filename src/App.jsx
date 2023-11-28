@@ -19,6 +19,7 @@ import HomeLayout from "./layoutAuth/HomeLayout";
 import AuthLayout from "./layoutAuth/AuthLayout";
 import Dashboard from "./dashboard/components/Dashboard";
 import DashboardCourses from "./dashboard/components/DashboardCourses";
+import { ContextProvider } from "./context/ContextProvider";
 
 const router = createBrowserRouter([
   {
@@ -92,7 +93,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/createAccount",
-    element:<CreateAccountForm/>
+    element: <CreateAccountForm />
   },
   {
     path: "/dashboard",
@@ -116,7 +117,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <AnimatePresence>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
     </AnimatePresence>
   );
 }

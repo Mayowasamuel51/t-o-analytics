@@ -63,66 +63,29 @@ const LoginForm = () => {
             password: data.password,
             email: data.email
         }
-        fetch('https://to-backendapi-v1.vercel.app/api/login', {
-            method: 'POST',
-            body: JSON.stringify(payload),
+        axios.post('https://to-backendapi-v1.vercel.app/api/login', payload, {
             headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            },
-        }).then((res) => {
-            // return res.json()
-            if (res.status === 401) {
-                console.log(res)
-                console.log(res.data.message)
-                setError(res.data.message)
-            } else if (res.status === 403) {
-                console.log(res)
-                setCheckPassword(res.message)
-                setError(res.message)
+                Accept: "application/json",
+                "Content-Type": "application/json"
             }
         }).then((res) => {
-            setUser(res.data)
-            setToken(res.token)
-            console.log(res)
+            setUser(res.data.data)
+            console.log(res.data.token)
+            setToken(res.data.token)
         }).catch(err => {
-            console.log(err)
-            const response = err.response;
-            if (response === 401) {
+            const response = err.response
+            console.log(response)
+            if (response.status === 401) {
                 console.log(response)
                 console.log(response.data.message)
                 setError(response.data.message)
-            } else if (response === 403) {
+            } else if (response.status === 403) {
                 console.log(response)
-                setCheckPassword(response.message)
-                setError(response.message)
+                setCheckPassword(response.data.message)
+                setError(response.data.message)
             }
 
-
         })
-        // axios.post('https://to-backendapi-v1.vercel.app/api/login', payload, {
-        //     headers: {
-        //         Accept: "application/json",
-        //         "Content-Type": "application/json"
-        //     }
-        // }).then((res) => {
-        //     setUser(res.data.data)
-        //     console.log(res.data.token)
-        //     setToken(res.data.token)
-        // }).catch(err => {
-        //     const response = err.response
-        //     console.log(response)
-        //     if (response.status === 401) {
-        //         console.log(response)
-        //         console.log(response.data.message)
-        //         setError(response.data.message)
-        //     } else if (response.status === 403) {
-        //         console.log(response)
-        //         setCheckPassword(response.data.message)
-        //         setError(response.data.message)
-        //     }
-
-        // })
 
     }
     useEffect(() => {
