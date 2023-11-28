@@ -29,7 +29,7 @@ const AuthNavBar = ({ signout }) => {
             </div>
             <div className='relative search-box'>
                 <FaSearch className='absolute' />
-                <input type="text" name="search" id="search" className='border-2 border-black w-full h-10 rounded-3xl flex-grow-[3]' />
+                <input type="text" placeholder='Search for anything ' name="search" id="search" className='border-2 border-black w-full h-10 rounded-3xl flex-grow-[3]' />
             </div>
             <nav className={`${fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                 <ul className="md:flex items-center gap-6 font-normal">
