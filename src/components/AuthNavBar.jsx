@@ -33,7 +33,6 @@ const AuthNavBar = ({ signout }) => {
             </div>
             <div className='relative search-box'>
                 <FaSearch className='absolute' />
-<<<<<<< HEAD
                 <input type="text" name="search" id="search" className='border-[1px] md:border-2 border-black w-full h-10 rounded-3xl flex-grow-[3] placeholder:font-semibold' placeholder='Search for anything' />
             </div>
             <nav className={`md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
@@ -44,9 +43,9 @@ const AuthNavBar = ({ signout }) => {
                     <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Mentorship</NavLink></motion.li>
                     {/* <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Link</NavLink></motion.li> */}
                     <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Payment History</NavLink></motion.li>
-=======
+                </ul>
                 <input type="text" placeholder='Search for anything ' name="search" id="search" className='border-2 border-black w-full h-10 rounded-3xl flex-grow-[3]' />
-            </div>
+            </nav>
             <nav className={`${fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                 <ul className="md:flex items-center gap-6 font-normal">
                     <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black" : "scale-100 hover:text-BLUE"} to="">My Learning</NavLink></motion.li>
@@ -54,7 +53,6 @@ const AuthNavBar = ({ signout }) => {
                     <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black" : "scale-100 hover:text-BLUE"} to="">Mentorship</NavLink></motion.li>
                     <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black" : "scale-100 hover:text-BLUE"} to="">Link</NavLink></motion.li>
                     {/* <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black" : "scale-100 hover:text-BLUE"} to="">Payment History</NavLink></motion.li> */}
->>>>>>> b2f2da406a9fa2ca3e1aec8e59108cbe20f78a23
                     <button onClick={signout} className="my-3 hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-2 py-1 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold">
                         Sign Out
                     </button>
