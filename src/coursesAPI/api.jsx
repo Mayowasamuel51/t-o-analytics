@@ -61,7 +61,7 @@ export default [
             "Market psychology",
             "Reading charts",
         ],
-        price: 100
+        price: 1000
     },
     {
         id: 4,

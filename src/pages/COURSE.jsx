@@ -1,32 +1,71 @@
-import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import COURSES from "../coursesAPI/api"
 
 const COURSE = () => {
   const { course } = useParams();
-  const [modal, setModal] = useState(false);
-  const displayModal = () => {
-    setModal(true);
-  };
-  const removeModal = () => {
-    setModal(false);
-  };
+  const [cartItem, setCartItem] = useState(()=> {
+      let data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
+      return data
+    }
+  )
   const singleCourse = COURSES.find((C)=> C.courseName.toLowerCase() === course)
+  const addToCart = (id)=> {
+    if (!cartItem.some((item)=> item.id === id)) {
+      setCartItem(prev => [...prev, singleCourse])
+    }
+  }
+  useEffect(()=> {
+    localStorage.setItem("COURSE-CART", JSON.stringify(cartItem));
+  },[cartItem]);
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("COURSE-CART")) || [];
+    setCartItem(items);
+  }, []);
+
   return (
-    <div onClick={removeModal} className="relative">
+    <div className="">
       <section className="pt-10">
         <h1 className="font-bold text-center text-2xl md:text-4xl py-10 md:py-20">
           {singleCourse.courseName.toUpperCase()}
         </h1>
-        <div className="px-2 md:px-10 py-10 md:py-10 grid grid-cols-1 gap-16 md:gap-0 md:grid-cols-2 bg-[#2d2065] text-white">
+        <div className="px-2 md:px-10 py-10 md:py-16 grid grid-cols-1 gap-16 md:gap-0 md:grid-cols-2 bg-[#2d2065] text-white">
           <div className="w-full">
-            <h1
-              onMouseOver={displayModal}
-              className="font-semibold text-2xl md:text-4xl my-4 md:w-2/3 w-full"
-            >
-              {singleCourse.intro}
-            </h1>
+            <div className={`course-hover cursor-pointer`}>
+              <h1 className={`font-semibold text-2xl md:text-4xl my-4 md:w-2/3`}>
+                {singleCourse.intro}
+              <AnimatePresence>
+                  <motion.div className="absolute text-black md:w-[500px] w-[300px] z-50 bg-white p-4 rounded-xl shadow-3xl ">
+                    <h1 className="font-black text-md md:text-2xl">
+                      {singleCourse.courseName}
+                    </h1>
+                    <p className="font-bold text-sm">
+                      {singleCourse.intro}
+                    </p>
+                    <div className="modal-learn learn">
+                      <ul className="text-sm">
+                        {singleCourse.whatToLearn.map((whatToLearn, index)=> (
+                          <li key={index}>{whatToLearn}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    {cartItem.some((item)=> item.id === singleCourse.id) ? 
+                    <Link to="/createAccount">
+                      <button className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+                        BUY COURSE
+                      </button>
+                    </Link>
+                    :
+                    <button onClick={()=> addToCart(singleCourse.id)} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+                      ADD TO CART
+                    </button>
+                    }  
+                  </motion.div>
+              </AnimatePresence>
+              </h1>
+            </div>
             <p className="md:w-1/2 w-full">
               {singleCourse.description}
             </p>
@@ -74,30 +113,7 @@ const COURSE = () => {
         </div>
       </section>
 
-      {modal && (
-        <AnimatePresence>
-          <motion.section className="min-h-screen fixed flex justify-center items-center inset-0 bg-black bg-opacity-70 z-50">
-            <motion.div className="z-50 bg-white w-fit p-5 rounded-2xl">
-              <h1 className="font-black text-xl md:text-2xl">
-                {singleCourse.courseName}
-              </h1>
-              <p className="font-bold">
-                {singleCourse.intro}
-              </p>
-              <div className="learn">
-                <ul className="md:text-lg text-xs">
-                  {singleCourse.whatToLearn.map((whatToLearn, index)=> (
-                    <li key={index}>{whatToLearn}</li>
-                  ))}
-                </ul>
-              </div>
-              <button  className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 py-2 md:py-2 rounded-md hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
-                ADD TO CART
-              </button>
-            </motion.div>
-          </motion.section>
-        </AnimatePresence>
-      )}
+      
     </div>
   );
 };

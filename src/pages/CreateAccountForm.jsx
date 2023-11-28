@@ -4,7 +4,7 @@ import LOGO from "../assets/images/logo.jpg";
 import GOOGLE from "../assets/images/google.png";
 import FACEBOOK from "../assets/images/facebook.png";
 // import APPLE from "../assets/images/apple.png";
-import { HiMiniXMark } from "react-icons/hi2";
+import { FaXmark } from "react-icons/fa6";
 import { FaApple } from "react-icons/fa";
 import { app } from "../../firebase.config";
 import { useForm } from "react-hook-form"
@@ -131,7 +131,7 @@ const CreateAccountForm = () => {
                         <Link to="/"><img src={LOGO} className="w-[150px] h-[50px] object-cover" alt="" /></Link>
                     </div>
                     <Link to="/">
-                        <HiMiniXMark size={30} />
+                        <FaXmark size={30} />
                     </Link>
                 </div>
                 <p className="font-bold">Please fill in your details to get started</p>
@@ -162,9 +162,9 @@ const CreateAccountForm = () => {
 
                 </form>
                 <div className='login-options flex flex-col gap-3 font-medium'>
-                    <button onClick={loginwihGoogle} className='flex items-center justify-center gap-2 border-[1px] border-black rounded-2xl py-1'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
-                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-2xl py-1'><img src={FACEBOOK} alt="" className='w-5' />Continue with Facebook</button>
-                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-2xl py-1'><FaApple size={20} /> Continue with Apple ID</button>
+                    <button onClick={loginwihGoogle} className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
+                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:text-white duration-300'><img src={FACEBOOK} alt="" className='w-5' />Continue with Facebook</button>
+                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:text-white duration-300'><FaApple size={20} />Continue with Apple ID</button>
                 </div>
                 <p className="text-sm md:text-base mt-4 font-semibold ">Already have an account? <Link className="underline underline-offset-2 text-BLUE" to="/login">Log In</Link></p>
             </motion.div>

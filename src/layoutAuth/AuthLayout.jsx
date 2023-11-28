@@ -21,7 +21,7 @@ function AuthLayout() {
             <AuthNavBar signout={signout} />
             <div className="pt-32">
                 <nav className="nav">
-                    <ul className="flex items-center gap-5">
+                    <ul className="dashboard-links flex items-center gap-5">
                         <Link className="hover:text-red-500" to="/dashboard">dashboard</Link>
                         <Link className="hover:text-red-500" to="/users">users</Link>
                         <Link className="hover:text-red-500" to="/dashboard/post">post</Link>
@@ -32,7 +32,7 @@ function AuthLayout() {
                 <button className="border-2 border-red-600" onClick={signout}>signOut</button>
             </div>
             <Outlet />
-            
+
         </>
     )
 }

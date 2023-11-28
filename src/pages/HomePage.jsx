@@ -15,7 +15,7 @@ import COURSES from "../coursesAPI/api"
 const HomePage = () => {
   return (
     <>
-        <section className="px-2 md:px-10 py-36 md:py-32 bg-white">
+        <section className="px-2 md:px-10 py-60 md:py-32 bg-white min-h-screen">
             <div className="grid md:grid-cols-2 items-center gap-10">
                 <div>
                     <h1 className="my-4 md:my-8 font-bold text-4xl md:text-5xl">Tech Education for Tomorrow’s Innovators</h1>

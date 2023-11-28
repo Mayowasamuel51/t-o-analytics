@@ -9,6 +9,7 @@ import ContactPage from "./pages/ContactPage";
 import ConnectWithContractor from "./pages/ConnectWithContractor";
 import CreateAccountForm from "./pages/CreateAccountForm";
 import LoginForm from "./pages/LoginForm";
+import CheckOut from "./pages/CheckOut";
 import { AnimatePresence } from "framer-motion";
 import {
   createBrowserRouter,
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <ContactPage />
       },
+      {
+        path: "/checkout",
+        element: <CheckOut />
+      }
     ]
   },
   {

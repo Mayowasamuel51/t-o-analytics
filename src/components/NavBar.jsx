@@ -3,16 +3,23 @@ import LOGO from "../assets/images/logo.jpg";
 import { motion } from 'framer-motion';
 import { Link, NavLink } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
-import { HiMiniXMark } from "react-icons/hi2";
+import { FaXmark } from "react-icons/fa6";
+import { MdOutlineAddShoppingCart } from "react-icons/md"
 
 
 const NavBar = () => {
     const [fixed, setFixed] = useState("")
-    useEffect(()=> {
+
+    const [cartItemNo, setCartItemNo] = useState([])
+    useEffect(()=> { 
         window.addEventListener('scroll', ()=> {
             const scrolldis = window.scrollY;
             scrolldis > 20 ? setFixed("fixed") : setFixed("")
         })
+    }, [])
+    useEffect(()=> {
+        const data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
+        setCartItemNo(data)
     }, [])
     const navBar = ()=> {
         setFixed("show")
@@ -39,8 +46,16 @@ const NavBar = () => {
                             Create Account
                         </button>
                     </Link>
-                    <div className="flex-1 block md:hidden hamburger">
-                        {fixed === "show" ? <HiMiniXMark size={20} onClick={()=> setFixed("")} /> : <FaBarsStaggered size={20} onClick={navBar} />}
+                    <div className="flex flex-1 items-center gap-3">
+                        <Link to="/checkout">
+                            <div className='relative cursor-pointer group'>
+                                <MdOutlineAddShoppingCart size={30} />
+                                <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE" >{cartItemNo.length}</p>
+                            </div>
+                        </Link>
+                        <div className="flex-1 block md:hidden hamburger">
+                            {fixed === "show" ? <FaXmark size={20} onClick={()=> setFixed("")} /> : <FaBarsStaggered size={20} onClick={navBar} />}
+                        </div>
                     </div>
                 </div>
             </header>

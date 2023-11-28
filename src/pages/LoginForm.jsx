@@ -4,7 +4,7 @@ import LOGO from "../assets/images/logo.jpg";
 import GOOGLE from "../assets/images/google.png";
 import FACEBOOK from "../assets/images/facebook.png";
 // import APPLE from "../assets/images/apple.png";
-import { HiMiniXMark } from "react-icons/hi2";
+import { FaXmark } from "react-icons/fa6";
 import { FaApple } from "react-icons/fa";
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
@@ -144,7 +144,7 @@ const LoginForm = () => {
                         <Link to="/"><img src={LOGO} className="w-[150px] pl-0" alt="" /></Link>
                     </div>
                     <Link to="/">
-                        <HiMiniXMark size={30} />
+                        <FaXmark size={30} />
                     </Link>
                 </div>
                 <p className="font-bold">Welcome Back!</p>
