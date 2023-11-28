@@ -69,7 +69,7 @@ const CreateAccountForm = () => {
             password: data.password,
             email: data.email
         }
-        axios.post('http://localhost:8000/api/sighup', payload, {
+        axios.post('https://to-backendapi-v1.vercel.app/api/sighup', payload, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
