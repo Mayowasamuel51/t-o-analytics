@@ -16,10 +16,14 @@ const AuthNavBar = ({ signout }) => {
         setCartItemNo(data)
     }, [])
     useEffect(()=> {
-        window.addEventListener('scroll', ()=> {
-            const scrolldis = window.scrollY;
-            scrolldis > 20 ? setFixed("fixed") : setFixed("")
-        })
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            scrollY > 20 ? setFixed("auth-fixed") : setFixed("");
+          };
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, [])
     const navBar = ()=> {
         setFixed("show")
@@ -27,13 +31,13 @@ const AuthNavBar = ({ signout }) => {
     return (
         <header className={`z-20 fixed w-full left-0 top-0 px-2 py-2 md:px-10 bg-white flex items-center gap-10`}>
             <div>
-                <Link to="/dashboard">
+                <Link to="/">
                     <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[150px]" alt=""/>
                 </Link>
             </div>
             <div className='relative search-box'>
                 <FaSearch className='absolute' />
-                <input type="text" name="search" id="search" className='border-[1px] md:border-2 border-black w-full h-10 rounded-3xl placeholder:font-semibold' placeholder='Search for anything' />
+                <input type="text" name="search" id="search" className='border-[1px] md:border-2 border-black w-full h-10 rounded-sm md:rounded-3xl placeholder:font-semibold' placeholder='Search for anything' />
             </div>
             <nav className={`${fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                 <ul className="md:flex items-center gap-6 font-normal text-sm">
@@ -51,12 +55,16 @@ const AuthNavBar = ({ signout }) => {
                 <Link to="checkout">
                     <div className='relative cursor-pointer group'>
                         <MdOutlineAddShoppingCart size={30} />
-                        <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE" >{cartItemNo.length}</p>
+                        <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10" >{cartItemNo.length}</p>
+                        <div className="top-[-7px] group-hover:animate-ping duration-200 ease-in-out right-[-7px] absolute w-5 aspect-square rounded-full bg-BLUE z-[1]" ></div>
+                        {cartItemNo.length > 0 && <div className="top-[-6px] animate-ping duration-200 ease-in-out right-[-5px] absolute w-5 aspect-square rounded-full bg-BLUE z-[1]" ></div>}
                     </div>
                 </Link>
-                
                 <div className="flex-1 block md:hidden hamburger">
                     {fixed === "show" ? <FaXmark size={20} onClick={()=> setFixed("")} /> : <FaBarsStaggered size={20} onClick={navBar} />}
+                </div>
+                <div>
+                    <img src="" className='w-8 aspect-square border-2 border-BLUE rounded-full' alt="profile pic" />
                 </div>
             </div>
         </header>

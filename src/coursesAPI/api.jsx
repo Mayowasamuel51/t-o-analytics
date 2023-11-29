@@ -54,15 +54,139 @@ export default [
         intro: "Ultimate approach to financial decisions",
         description: "Everything you need to know to unlock financial freedom and success",
         whatToLearn: [
-            "Penny stocks",
-            "Trading 101",
+            "Fundamentals of stock trading",
             "Financial Literacy",
-            "Options trading",
-            "Market psychology",
-            "Reading charts",
+            "Stock option trading 101",
+            "Stock option trading 201",
+            "Stock market psychology",
+            "Charts reading 101",
+            "Advanced charts reading 201",
+            "Fundamentals of crypto trading",
+            "Forex trading",
         ],
         otherSubCourses: [
-            // "OKAY"
+            {
+                id: 1,
+                name: "Fundamental of Stock Trading",
+                price: "100",
+                duration: "1 hour",
+                description: "Learn the nitty gritty of  low-priced stocks. Discover how to spot potential winners and navigate the risks.",
+                whatToLearn: [
+                    "Research & Analysis",
+                    "Risk Management",
+                    "Trading stratagies",
+                    "Market psychology",
+                ]
+            },
+            {
+                id: 2,
+                name: "Financial Literacy",
+                price: "100",
+                duration: "1 hour",
+                description: "Gain the knowledge and understanding of financial concepts & skills that are necessary to make informed & effective financial decisions.",
+                whatToLearn: [
+                    "Budgeting",
+                    "Saving & investing",
+                    "Debt management",
+                    "Understanding credit",
+                    "Consumer awareness",
+                    "Retirement planning",
+                ]
+            },
+            {
+                id: 3,
+                name: "Stock Options Trading 101",
+                price: "150",
+                duration: "1 hour",
+                description: "Get introduced into the world of trading. You’ll learn the fundamental concept and principles of trading.",
+                whatToLearn: [
+                    "Basics of financial market",
+                    "Trading terminology",
+                    "Type of orders",
+                    "Trading psychology",
+                    "Technical analysis",
+                ]
+            },
+            {
+                id: 4,
+                name: "Stock Options Trading 201",
+                price: "300",
+                duration: "2 hour",
+                description: "Learn how to speculate on price movements, hedge against potential loss and generate income.",
+                whatToLearn: [
+                    "Basic options",
+                    "Option pricing & valuation",
+                    "Market analysis",
+                    "Options trading platforms",
+                    "Real life example & case studies",
+                ]
+            },
+            
+            {
+                id: 5,
+                name: "Stock Market Psychology",
+                price: "100",
+                duration: "45 minutes",
+                description: "Get insight on emotions, behaviour and mindset of investors and traders in the financial markets.",
+                whatToLearn: [
+                    "Investor behaviour",
+                    "Market cycles",
+                    "Sentiment analysis",
+                    "Crowd psychology",
+                    "Behavioural finance",
+                ]
+            },
+            {
+                id: 6,
+                name: "Charts Reading 101",
+                price: "150",
+                duration: "1 hour",
+                description: "You will be taught the practice of analyzing & interpreting graphical representations of data to gain insight into trends, patterns & relationships.",
+                whatToLearn: [
+                    "Chart types",
+                    "Trend analysis",
+                    "Support & resistance level",
+                    "Chart patterns",
+                ]
+            },
+            {
+                id: 7,
+                name: "Advanced Charts Reading 201",
+                price: "300",
+                duration: "1 hour 30 minutes",
+                description: "You will be taught the advanced practice of analyzing & interpreting graphical representations of data to gain insight into trends, patterns & relationships.",
+                whatToLearn: [
+                    "Volume analysis",
+                    "Indicators & oscillators",
+                    "Timeframes",
+                    "Risk management",
+                ]
+            },
+            {
+                id: 8,
+                name: "Fundamental of Crypto Trading",
+                price: "150",
+                duration: "1 hour 30 minutes",
+                description: "You will be taught the nitty gritty of buying and selling of digital currency.",
+                whatToLearn: [
+                    "Basics of cryptocurrency",
+                    "Technical analysis",
+                    "Trading strategies",
+                ]
+            },
+            {
+                id: 9,
+                name: "Forex Trading",
+                price: "100",
+                duration: "1 hour 30 minutes",
+                description: "Understand the buying and selling of different currencies across countries.",
+                whatToLearn: [
+                    "Fundamentals of forex market",
+                    "Currency pairs",
+                    "Economic indicators",
+                    "Global events",
+                ]
+            },
         ],
         
         price: 1000

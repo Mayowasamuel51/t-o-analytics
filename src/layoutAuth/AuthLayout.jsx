@@ -20,7 +20,7 @@ function AuthLayout() {
         <>
             <AuthNavBar signout={signout} />
             <div className="mt-24">
-                <nav className="nav">
+                {/* <nav className="nav">
                     <ul className="dashboard-links flex items-center gap-5">
                         <Link className="hover:text-red-500" to="/dashboard">dashboard</Link>
                         <Link className="hover:text-red-500" to="/users">users</Link>
@@ -28,7 +28,7 @@ function AuthLayout() {
                         <Link className="hover:text-red-500" to="/videos">videos</Link>
                         <Link className="hover:text-red-500" to="/views">views</Link>
                     </ul>
-                </nav>
+                </nav> */}
             </div>
             <Outlet />
         </>
