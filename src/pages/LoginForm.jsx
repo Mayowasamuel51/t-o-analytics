@@ -113,7 +113,7 @@ const LoginForm = () => {
                 <p className="font-bold">Welcome Back!</p>
                 <p className="text-sm md:text-base text-slate-400">Enter Your details to continue</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className='mt-8 flex flex-col gap-3 font-medium' >
+                    <div className='mt-3 flex flex-col gap-3 font-medium' >
                         {error ? <h2 className='text-red-600'>{error}</h2> : "    "}
                     </div>
                     <div className="my-4">

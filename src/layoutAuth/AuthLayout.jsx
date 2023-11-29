@@ -29,10 +29,8 @@ function AuthLayout() {
                         <Link className="hover:text-red-500" to="/views">views</Link>
                     </ul>
                 </nav>
-                <button className="border-2 border-red-600" onClick={signout}>signOut</button>
             </div>
             <Outlet />
-
         </>
     )
 }

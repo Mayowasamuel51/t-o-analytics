@@ -116,7 +116,7 @@ const CreateAccountForm = () => {
                 </div>
                 <p className="font-bold">Please fill in your details to get started</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className='mt-5 flex flex-col gap-3 font-medium' >
+                    <div className='mt-3 flex flex-col gap-3 font-medium' >
                         {error ? <h2 className='text-red-600'>{error}</h2> : "    "}
                     </div>
                     <div className="my-4">

@@ -64,6 +64,7 @@ export default [
         otherSubCourses: [
             // "OKAY"
         ],
+        
         price: 1000
     },
     {

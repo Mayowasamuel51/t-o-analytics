@@ -19,7 +19,8 @@ import HomeLayout from "./layoutAuth/HomeLayout";
 import AuthLayout from "./layoutAuth/AuthLayout";
 import Dashboard from "./dashboard/components/Dashboard";
 import DashboardCourses from "./dashboard/components/DashboardCourses";
-import { ContextProvider } from "./context/ContextProvider";
+import PaymentPage from "./pages/PaymentPage";
+// import { ContextProvider } from "./context/ContextProvider";
 
 const router = createBrowserRouter([
   {
@@ -104,9 +105,17 @@ const router = createBrowserRouter([
         element: <DashboardCourses />
       },
       {
+        path: "checkout",
+        element: <CheckOut />
+      },
+      {
+        path: "makePayment",
+        element: <PaymentPage />
+      },
+      {
         path: "/dashboard/post",
         element: <Dashboard />
-      }
+      },
     ]
   }
 

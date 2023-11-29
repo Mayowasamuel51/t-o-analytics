@@ -20,7 +20,7 @@ const NavBar = () => {
     useEffect(()=> {
         const data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
         setCartItemNo(data)
-    }, [])
+    }, [cartItemNo])
     const navBar = ()=> {
         setFixed("show")
     }

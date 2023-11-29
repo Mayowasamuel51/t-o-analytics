@@ -27,42 +27,34 @@ const AuthNavBar = ({ signout }) => {
     return (
         <header className={`z-20 fixed w-full left-0 top-0 px-2 py-2 md:px-10 bg-white flex items-center gap-10`}>
             <div>
-                <Link to="/">
+                <Link to="/dashboard">
                     <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[150px]" alt=""/>
                 </Link>
             </div>
             <div className='relative search-box'>
                 <FaSearch className='absolute' />
-                <input type="text" name="search" id="search" className='border-[1px] md:border-2 border-black w-full h-10 rounded-3xl flex-grow-[3] placeholder:font-semibold' placeholder='Search for anything' />
+                <input type="text" name="search" id="search" className='border-[1px] md:border-2 border-black w-full h-10 rounded-3xl placeholder:font-semibold' placeholder='Search for anything' />
             </div>
-            <nav className={`md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
+            <nav className={`${fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                 <ul className="md:flex items-center gap-6 font-normal text-sm">
                     <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">My Courses</NavLink></motion.li>
                     <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">All Courses</NavLink></motion.li>
-                    <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Rules</NavLink></motion.li>
                     <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Mentorship</NavLink></motion.li>
-                    {/* <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Link</NavLink></motion.li> */}
-                    <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Payment History</NavLink></motion.li>
-                </ul>
-                {/* <input type="text" placeholder='Search for anything ' name="search" id="search" className='border-2 border-black w-full h-10 rounded-3xl flex-grow-[3]' /> */}
-            </nav>
-            <nav className={`${fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
-                <ul className="md:flex items-center gap-6 font-normal">
-                    <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black" : "scale-100 hover:text-BLUE"} to="">My Learning</NavLink></motion.li>
-                    {/* <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black" : "scale-100 hover:text-BLUE"} to="">Rules</NavLink></motion.li> */}
-                    <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black" : "scale-100 hover:text-BLUE"} to="">Mentorship</NavLink></motion.li>
-                    <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black" : "scale-100 hover:text-BLUE"} to="">Link</NavLink></motion.li>
-                    {/* <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black" : "scale-100 hover:text-BLUE"} to="">Payment History</NavLink></motion.li> */}
+                    <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Links</NavLink></motion.li>
                     <button onClick={signout} className="my-3 hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-2 py-1 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold">
                         Sign Out
                     </button>
                 </ul>
             </nav>
-            <div className="flex flex-1 items-center gap-3">
-                <div className='relative cursor-pointer group'>
-                    <MdOutlineAddShoppingCart size={30} />
-                    <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE" >{cartItemNo.length}</p>
-                </div>
+            
+            <div className="flex items-center gap-3">
+                <Link to="checkout">
+                    <div className='relative cursor-pointer group'>
+                        <MdOutlineAddShoppingCart size={30} />
+                        <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE" >{cartItemNo.length}</p>
+                    </div>
+                </Link>
+                
                 <div className="flex-1 block md:hidden hamburger">
                     {fixed === "show" ? <FaXmark size={20} onClick={()=> setFixed("")} /> : <FaBarsStaggered size={20} onClick={navBar} />}
                 </div>
