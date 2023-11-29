@@ -27,12 +27,12 @@ const AllCourses = () => {
                 />
               </div>
               <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
-                <p className="font-bold text-white text-md md:my-4 md:text-3xl">{course.courseName}</p>
-                <p className="my-2 font-bold">{course.intro}</p>
-                <p className="line-clamp-2 text-textColor md:max-w-[70%]">
+                <p className="font-bold text-white text-lg md:my-4 md:text-3xl">{course.courseName}</p>
+                <p className="my-2 font-bold text-sm">{course.intro}</p>
+                <p className="line-clamp-2 text-sm md:text-base text-textColor md:max-w-[70%]">
                   {course.description}
                 </p>
-                <p className="font-bold my-5 md:text-xl">${course.price}</p>
+                <p className="font-bold my-5 text-lg md:text-xl">${course.price}</p>
               </div>
             </div>
           </Link>

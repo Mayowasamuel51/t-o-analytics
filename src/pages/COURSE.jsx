@@ -36,45 +36,50 @@ const COURSE = () => {
             <div className={`course-hover cursor-pointer`}>
               <h1 className={`font-semibold text-2xl md:text-4xl my-4 md:w-2/3`}>
                 {singleCourse.intro}
-              <AnimatePresence>
-                  <motion.div className="absolute text-black md:w-[500px] w-[300px] z-50 bg-white p-4 rounded-xl shadow-3xl ">
-                    <h1 className="font-black text-md md:text-2xl">
-                      {singleCourse.courseName}
-                    </h1>
-                    <p className="font-bold text-sm">
-                      {singleCourse.intro}
-                    </p>
-                    <div className="modal-learn learn">
-                      <ul className="text-sm">
-                        {singleCourse.whatToLearn.map((whatToLearn, index)=> (
-                          <li key={index}>{whatToLearn}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    {cartItem.some((item)=> item.id === singleCourse.id) ? 
-                    <Link to="/createAccount">
-                      <button className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
-                        BUY COURSE
+                <AnimatePresence>
+                    <motion.div className="absolute text-black md:w-[500px] w-[300px] z-50 bg-white p-4 rounded-xl shadow-3xl ">
+                      <h1 className="font-black text-md md:text-2xl">
+                        {singleCourse.courseName}
+                      </h1>
+                      <p className="font-bold text-sm">
+                        {singleCourse.intro}
+                      </p>
+                      <div className="modal-learn learn">
+                        <ul className="text-sm">
+                          {singleCourse.whatToLearn.map((whatToLearn, index)=> (
+                            <li key={index}>{whatToLearn}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      {cartItem.some((item)=> item.id === singleCourse.id) ? 
+                      <Link to="/createAccount">
+                        <button className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+                          BUY COURSE
+                        </button>
+                      </Link>
+                      :
+                      <button onClick={()=> addToCart(singleCourse.id)} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+                        ADD TO CART
                       </button>
-                    </Link>
-                    :
-                    <button onClick={()=> addToCart(singleCourse.id)} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
-                      ADD TO CART
-                    </button>
-                    }  
-                  </motion.div>
-              </AnimatePresence>
+                      }  
+                    </motion.div>
+                </AnimatePresence>
               </h1>
             </div>
             <p className="md:w-1/2 w-full">
               {singleCourse.description}
             </p>
             <p className="my-6 font-bold md:text-3xl">${singleCourse.price}</p>
-            <a href="">
-              <button className="hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white w-fit mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
-                Buy Course
+            <div className="flex md:block items-center md:gap-5 gap-2">
+              <button className="md:hidden block hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white w-fit md:mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
+                View More
               </button>
-            </a>
+              <Link className="block" to="/createAccount">
+                <button className="hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white w-fit md:mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
+                  Buy Course
+                </button>
+              </Link>
+            </div>
           </div>
           <div className="perks">
             <ul className="text-base md:text-xl md:font-medium">

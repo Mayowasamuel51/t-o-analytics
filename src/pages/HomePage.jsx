@@ -15,17 +15,17 @@ import COURSES from "../coursesAPI/api"
 const HomePage = () => {
   return (
     <>
-        <section className="px-2 md:px-10 py-60 md:py-32 bg-white min-h-screen">
+        <section className="landing-page px-2 md:px-10 py-60 md:py-32 bg-white min-h-screen">
             <div className="grid md:grid-cols-2 items-center gap-10">
                 <div>
-                    <h1 className="my-4 md:my-8 font-bold text-4xl md:text-5xl">Tech Education for Tomorrow’s Innovators</h1>
-                    <p className="font-bold text-base md:text-xl my-3">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</p>
+                    <h1 className="my-4 md:my-8 font-bold text-3xl md:text-5xl">Tech Education for Tomorrow’s Innovators</h1>
+                    <p className="font-bold text-sm md:text-xl my-4">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</p>
                     <div className="flex gap-2 md:gap-3">
                         <a href="bookmentorship.html">
-                            <button className="text-base md:text-xl font-medium border-2 border-BLUE text-BLUE hover:text-white hover:bg-BLUE px-2 py-3 md:px-4 md:py-3 rounded-lg md:rounded-xl duration-300">Book Mentorship</button>
+                            <button className="text-sm md:text-xl font-medium border-2 border-BLUE text-BLUE hover:text-white hover:bg-BLUE px-2 py-3 md:px-4 md:py-3 rounded-lg md:rounded-xl duration-300">Book Mentorship</button>
                         </a>
                         <a href=" ">
-                            <button className="text-base md:text-xl font-medium border-2 border-BLUE bg-BLUE text-white hover:bg-white hover:text-BLUE px-2 py-3 md:px-4 md:py-3 rounded-lg md:rounded-xl duration-300">Live Courses</button>
+                            <button className="text-sm md:text-xl font-medium border-2 border-BLUE bg-BLUE text-white hover:bg-white hover:text-BLUE px-2 py-3 md:px-4 md:py-3 rounded-lg md:rounded-xl duration-300">Live Courses</button>
                         </a>
                     </div>
                 </div>
@@ -36,6 +36,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+            <div className='mobile-landingDIV md:hidden block absolute top-1/2 left-0 translate-y-[-50%] bg-BLUE landingDIV backdrop-blur-2xl'></div>
         </section>
 
         <section className="bg-white">
@@ -84,7 +85,7 @@ const HomePage = () => {
             </div>
         </section>
 
-        <section className="courses p-2 md:p-10">
+        <section className="relative courses p-2 md:p-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-2">
             {COURSES.map((course, index)=> index < 6 && (
             <Link key={index} to={course.courseName.toLowerCase()} className="">
@@ -102,12 +103,12 @@ const HomePage = () => {
                 />
               </div>
               <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
-                <p className="font-bold text-white text-md md:my-4 md:text-3xl">{course.courseName}</p>
-                <p className="my-2 font-bold">{course.intro}</p>
-                <p className="line-clamp-2 text-textColor md:max-w-[70%]">
+                <p className="font-bold text-white text-lg md:my-4 md:text-3xl">{course.courseName}</p>
+                <p className="my-2 font-bold text-sm">{course.intro}</p>
+                <p className="line-clamp-2 text-sm md:text-base text-textColor md:max-w-[70%]">
                   {course.description}
                 </p>
-                <p className="font-bold my-5 md:text-xl">${course.price}</p>
+                <p className="font-bold my-5 text-lg md:text-xl">${course.price}</p>
               </div>
             </div>
           </Link>
@@ -118,6 +119,7 @@ const HomePage = () => {
                     <button className="text-md md:text-xl font-normal bg-BLUE hover:bg-transparent hover:text-BLUE duration-300 hover:outline-2 outline hover:outline-BLUE text-white rounded-xl px-3 py-2 md:px-4 md:py-3">View All Courses</button>
                 </Link>
             </div>
+            <div className='mobile-landingDIV md:hidden block absolute bottom-0 left-0 bg-BLUE landingDIV'></div>
         </section>
 
         <section className="">
@@ -185,7 +187,7 @@ const HomePage = () => {
         
         <section className="text-center p-10 bg-black text-white">
             <h1 className="my-4 md:my-12 text-center font-semibold text-lg md:text-4xl">Ready to take your career to new heights?</h1>
-            <p className="font-medium my-4 md:w-1/2 mx-auto text-sm md:text-lg">Connect directly with industry-leading contractors and discover exciting job opportunities tailored to your skills and aspirations. Don’t wait, start building the future you’ve always dreamed of!</p>
+            <p className="font-base md:font-medium my-4 md:w-1/2 mx-auto text-sm md:text-lg">Connect directly with industry-leading contractors and discover exciting job opportunities tailored to your skills and aspirations. Don’t wait, start building the future you’ve always dreamed of!</p>
             <div className="text-center">
                 <Link to="/contractors" className="">
                     <button className="hover:bg-white hover:border-white hover:text-black duration-300 border-BLUE border-2 w-fit mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl">Connect with Contractor</button>
