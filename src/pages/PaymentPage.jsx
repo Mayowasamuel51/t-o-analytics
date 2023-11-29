@@ -38,7 +38,7 @@ const PaymentPage = () => {
           ))}
         </div>
         </div>
-        <div className="p-10">
+        <div className="md:p-10">
             <h1 className="font-bold md:text-lg">Summary</h1>
             <div className="flex items-center justify-between my-5">
                 <p className="font-bold md:text-md">Original Price</p>
