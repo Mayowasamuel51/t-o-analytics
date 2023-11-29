@@ -26,7 +26,7 @@ const NavBar = () => {
     }
     return (
         <>
-            <header className={`z-20 fixed w-full left-0 top-0 px-2 py-2 md:px-10 flex items-center justify-between`}>
+            <header className={`z-20 fixed w-full left-0 top-0 bg-white px-2 py-2 md:px-10 flex items-center justify-between`}>
                 <div>
                     <Link to="/">
                         <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[130px]" alt=""/>
