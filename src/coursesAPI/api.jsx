@@ -61,6 +61,9 @@ export default [
             "Market psychology",
             "Reading charts",
         ],
+        otherSubCourses: [
+            // "OKAY"
+        ],
         price: 1000
     },
     {
