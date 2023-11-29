@@ -27,6 +27,7 @@ export default [
             "Splunk clustering",
         ],
         price: 3500,
+        
     },
     {
         id: 2,
