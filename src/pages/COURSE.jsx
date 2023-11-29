@@ -45,6 +45,7 @@ const COURSE = () => {
   const stockAndOptionsFn = (index)=> {
     setStockOptionIndex(index)
   }
+  
   return (
     <div className="">
       <section className="pt-10">
@@ -120,7 +121,7 @@ const COURSE = () => {
               <li onMouseEnter={()=> stockAndOptionsFn(index)} className="relative w-fit flex" key={index}>{whatToLearn}
                 <div>
                   {location.pathname === "/courses/stock%20&%20options" && (
-                    <p>{stockAndOptionsData.price}</p>
+                    <p className={`hidden`}>{stockAndOptionsData.price[1]}</p>
                   )}
                 </div>
               </li>
