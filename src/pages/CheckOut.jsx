@@ -23,10 +23,6 @@ const CheckOut = () => {
       setCartItem(updatedCart);
       localStorage.setItem("COURSE-CART", JSON.stringify(updatedCart));
     };
-    useEffect(() => {
-      const data = JSON.parse(localStorage.getItem("COURSE-CART")) || [];
-      setCartItem(data);
-    }, []);
     
     
   return (
