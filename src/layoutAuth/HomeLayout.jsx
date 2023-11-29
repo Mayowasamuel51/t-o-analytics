@@ -20,7 +20,8 @@ function HomeLayout() {
                 {location.pathname === "/blog" || 
                 location.pathname === "/contact" || 
                 location.pathname === "/courses" ||
-                location.pathname === "/courses/"
+                location.pathname === "/courses/" ||
+                location.pathname === "/checkout"
   
                 ? <Footer black="bg-black text-white" /> : <Footer />}
             </div>
