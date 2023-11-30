@@ -1,4 +1,4 @@
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import LOGO from "../assets/images/logo.jpg";
 import GOOGLE from "../assets/images/google.png";
@@ -31,6 +31,7 @@ const formVariant = {
     }
 }
 const LoginForm = () => {
+    const navigate = useNavigate()
     const { setToken, setUser } = useStateContext();
     const [error, setError] = useState(null)
     const [checkpassword, setCheckPassword] = useState(null)
@@ -69,9 +70,12 @@ const LoginForm = () => {
                 "Content-Type": "application/json"
             }
         }).then((res) => {
-            setUser(res.data.data)
-            console.log(res.data.token)
-            setToken(res.data.token)
+            if (res.status === 201 || res.status === 200) {
+                setUser(res.data.data)
+                console.log(res.data.token)
+                navigate('/dashboard')
+                setToken(res.data.token)
+            }
         }).catch(err => {
             const response = err.response
             console.log(response)
