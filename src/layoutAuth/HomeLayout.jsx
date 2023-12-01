@@ -10,7 +10,7 @@ function HomeLayout() {
     const { token } = useStateContext();
     const location = useLocation()
     // if (token) {
-    //     // return <Navigate to="/dashboard" />
+    //     return <Navigate to="/dashboard" />
     // }
     return (
         <>

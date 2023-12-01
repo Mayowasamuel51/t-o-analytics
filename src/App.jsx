@@ -7,6 +7,7 @@ import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
 import ConnectWithContractor from "./pages/ConnectWithContractor";
+import Mentorship from "./pages/Mentorship";
 import CreateAccountForm from "./pages/CreateAccountForm";
 import LoginForm from "./pages/LoginForm";
 import CheckOut from "./pages/CheckOut";
@@ -20,6 +21,7 @@ import AuthLayout from "./layoutAuth/AuthLayout";
 import Dashboard from "./dashboard/components/Dashboard";
 import DashboardCourses from "./dashboard/components/DashboardCourses";
 import PaymentPage from "./pages/PaymentPage";
+import { element } from "prop-types";
 // import { ContextProvider } from "./context/ContextProvider";
 
 const router = createBrowserRouter([
@@ -61,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <CheckOut />
+      },
+      {
+        path: "/mentorship",
+        element: <Mentorship />
       }
     ]
   },

@@ -21,9 +21,9 @@ const HomePage = () => {
                     <h1 className="my-4 md:my-8 font-bold text-3xl md:text-5xl">Tech Education for Tomorrow’s Innovators</h1>
                     <p className="font-bold text-sm md:text-xl my-4">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</p>
                     <div className="flex gap-2 md:gap-3">
-                        <a href="bookmentorship.html">
+                        <Link to="/mentorship">
                             <button className="text-sm md:text-xl font-medium border-2 border-BLUE text-BLUE hover:text-white hover:bg-BLUE px-2 py-3 md:px-4 md:py-3 rounded-lg md:rounded-xl duration-300">Book Mentorship</button>
-                        </a>
+                        </Link>
                         <a href=" ">
                             <button className="text-sm md:text-xl font-medium border-2 border-BLUE bg-BLUE text-white hover:bg-white hover:text-BLUE px-2 py-3 md:px-4 md:py-3 rounded-lg md:rounded-xl duration-300">Live Courses</button>
                         </a>
