@@ -149,7 +149,7 @@ const COURSE = () => {
       </section>
       <section className="px-2 md:px-10 py-10 md:py-20">
         <h1 className="font-bold text-2xl md:text-4xl">WHAT YOU’LL LEARN</h1>
-        <div className="">
+        <div className="learn">
           {location.pathname === "/courses/stock%20&%20options" ?
           <>
               {singleCourse.whatToLearn.map((whatToLearn, index)=> (
