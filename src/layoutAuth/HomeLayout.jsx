@@ -2,8 +2,6 @@ import { Navigate, Outlet, useLocation } from "react-router-dom"
 import { useStateContext } from "../context/ContextProvider"
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import COURSES from "../coursesAPI/api"
-
 
 
 function HomeLayout() {

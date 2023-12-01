@@ -175,7 +175,7 @@ div.course-hover {
   width: fit-content;
 }
 
-div.course-hover>h1>div {
+div.course-hover>h1>div:first-child {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -184,11 +184,17 @@ div.course-hover>h1>div {
   opacity: 0;
 }
 
-div.stock-and-options {
-  position: absolute;
-  top: 0;
+div.course-hover>h1>div:last-child {
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+  transition: all 300ms ease-in-out;
+}
+
+div.stock-and-options {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 div.cart-items>div {

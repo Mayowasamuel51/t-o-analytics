@@ -68,7 +68,7 @@ const PaymentPage = () => {
           </p>
         </div>
         <div>
-            <button className="duration-300 bg-BLUE hover:bg-white border-2 border-BLUE hover:text-BLUE w-full text-white font-bold py-3">COMPLETE CHECKOUT</button>
+          <button className="duration-300 bg-BLUE hover:bg-white border-2 border-BLUE hover:text-BLUE w-full text-white font-bold py-3 rounded-xl">COMPLETE CHECKOUT</button>
         </div>
       </div>
     </section>

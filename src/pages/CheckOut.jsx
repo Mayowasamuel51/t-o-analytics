@@ -71,7 +71,7 @@ const CheckOut = () => {
             <h1 className="text-slate-600 text-sm font-bold">TOTAL:</h1>
             <p className="font-black text-2xl">${cartItem.map((price)=> price.price).reduce((acc, cur)=> acc + cur , 0)}</p>
           </div>
-          <button onClick={checkOut} className="duration-300 bg-BLUE hover:bg-white border-2 border-BLUE hover:text-BLUE w-full text-white font-bold py-3">CHECKOUT</button>
+          <button onClick={checkOut} className="duration-300 bg-BLUE hover:bg-white border-2 border-BLUE hover:text-BLUE w-full text-white font-bold py-3 rounded-xl">CHECKOUT</button>
         </div>
       </section>
       <Toaster position="top-center" />

@@ -1,7 +1,8 @@
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Toaster, toast } from 'sonner';
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { FaXmark } from "react-icons/fa6";
 import COURSES from "../coursesAPI/api"
 import { useStateContext } from "../context/ContextProvider"
 
@@ -9,7 +10,8 @@ const COURSE = () => {
   const { token } = useStateContext();
   const location = useLocation()
   const navigate = useNavigate()
-  const [showModal, setShowModal] = useState("")
+  const [showModal, setShowModal] = useState(false)
+  const [showStock, setShowStock] = useState(false)
   const [stockOptionIndex, setStockOptionIndex] = useState(()=> {
     if (location.pathname === "/courses/stock%20&%20options") return 0
     else return;
@@ -38,13 +40,17 @@ const COURSE = () => {
     setCartItem(items);
   }, []);
   const showModalAction = ()=> {
-    setShowModal("show")
+    setShowModal(prev=> !prev)
   }
   const removeModalAction = ()=> {
-    setShowModal("")
+    setShowModal(false)
   }
   const stockAndOptionsFn = (index)=> {
     setStockOptionIndex(index)
+    setShowStock(true)
+  }
+  const removeStockAndOptionFn = ()=> {
+    setShowStock(false)
   }
   const buyCourse = ()=> {
     if (token) {
@@ -65,12 +71,11 @@ const COURSE = () => {
             <div className={`course-hover cursor-pointer`}>
               <h1 className={`font-semibold text-2xl md:text-4xl my-4 md:w-2/3`}>
                 {singleCourse.intro}
-                <AnimatePresence>
-                    <motion.div className={`${showModal} absolute text-black md:w-[600px] w-[350px] z-[10] bg-white p-4 rounded-xl shadow-3xl`}>
-                      <h1 className="text-center font-black text-md md:text-2xl">
+                    <motion.div className={`fixed text-black md:w-[600px] w-[350px] z-[10] bg-white p-4 rounded-xl shadow-3xl`}>
+                      <h1 className="text-center font-black text-md md:text-3xl">
                         {singleCourse.courseName}
                       </h1>
-                      <p className="font-semibold text-sm md:text-md my-2">
+                      <p className="font-semibold text-sm md:text-lg my-2">
                         {singleCourse.intro}
                       </p>
                       <div className="modal-learn learn">
@@ -90,7 +95,35 @@ const COURSE = () => {
                       </button>
                       }  
                     </motion.div>
-                </AnimatePresence>
+                    {showModal && (
+                      <motion.div className={`fixed text-black md:w-[600px] w-[350px] z-[10] bg-white p-4 rounded-xl shadow-3xl`}>
+                      <h1 className="text-center font-black text-md md:text-3xl">
+                        {singleCourse.courseName}
+                      </h1>
+                      <div className="absolute right-4 top-4 md:hidden block">
+                        <FaXmark className="" onClick={()=> removeModalAction()} />
+                      </div>
+                      <p className="font-semibold text-sm md:text-lg my-2">
+                        {singleCourse.intro}
+                      </p>
+                      <div className="modal-learn learn">
+                        <ul className="text-sm">
+                          {singleCourse.whatToLearn.map((whatToLearn, index)=> (
+                            <li className="text-md md:text-base" key={index}>{whatToLearn}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      {cartItem.some((item)=> item.id === singleCourse.id) ? 
+                      <button onClick={()=>buyCourse()} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+                        BUY COURSE
+                      </button>
+                      :
+                      <button onClick={()=> addToCart(singleCourse.id)} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+                        ADD TO CART
+                      </button>
+                      }  
+                    </motion.div>
+                    )}
               </h1>
             </div>
             <p className="md:w-1/2 w-full">
@@ -98,8 +131,8 @@ const COURSE = () => {
             </p>
             <p className="my-6 font-bold md:text-3xl">${singleCourse.price}</p>
             <div className="">
-              <button onClick={()=>showModalAction()} className="hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white w-fit md:mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
-                View More
+              <button onClick={()=>showModalAction()} className="w-[120px] md:w-[150px] hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white md:mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
+                {showModal? "View Less" : "View More"}
               </button>
             </div>
           </div>
@@ -116,25 +149,16 @@ const COURSE = () => {
       </section>
       <section className="px-2 md:px-10 py-10 md:py-20">
         <h1 className="font-bold text-2xl md:text-4xl">WHAT YOU’LL LEARN</h1>
-        <div className="relative learn grid grid-cols-1 md:grid-cols-2 py-5">
-          <ul className="md:text-base text-sm">
-            {singleCourse.whatToLearn.map((whatToLearn, index)=> index < 6 && (
-              <li onMouseEnter={()=> stockAndOptionsFn(index)} className="relative w-fit flex" key={index}>{whatToLearn}
-                <div>
-                  {location.pathname === "/courses/stock%20&%20options" && (
-                    <p className={`hidden`}>{stockAndOptionsData.price[1]}</p>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
-          <ul className="md:text-base text-sm">
-            {singleCourse.whatToLearn.map((whatToLearn, index)=> index > 5 && (
-              <li onMouseEnter={()=> stockAndOptionsFn(index)} className="w-fit" key={index}>{whatToLearn}</li>
-            ))}
-          </ul>
-          {location.pathname === "/courses/stock%20&%20options" && (
-            <div className="stock-and-options absolute w-[300px] md:w-[500px] bg-white shadow-lg rounded-lg p-3">
+        <div className="">
+          {location.pathname === "/courses/stock%20&%20options" ?
+          <>
+              {singleCourse.whatToLearn.map((whatToLearn, index)=> (
+              <ul key={index} onMouseEnter={()=> stockAndOptionsFn(index)} onMouseLeave={()=>removeStockAndOptionFn()} className="md:w-[400px] border-2 border-green-500 md:text-base text-sm group">
+                <li  className="relative flex gap-20 cursor-pointer w-fit">{whatToLearn}
+                </li>
+              </ul>
+              ))}
+            <div onMouseEnter={()=> setShowStock(true)} className={`${showStock ? "md:block" : "hidden"} stock-and-options group-hover:block fixed w-[300px] md:w-[500px] bg-white shadow-lg rounded-lg p-3`}>
               <h2 className="font-black text-base">{stockAndOptionsData.name}</h2>
               <div>
                 <p className="font-bold">${stockAndOptionsData.price}</p>
@@ -157,7 +181,27 @@ const COURSE = () => {
                 <button className="w-full border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-2 md:py-2 rounded-md md:rounded-xl font-semibold">ADD TO CART</button>
               </div>
             </div>
-          )}
+          </>
+          :
+          <div className="relative learn grid grid-cols-1 md:grid-cols-2 py-5">
+            <ul className="md:text-base text-sm">
+              {singleCourse.whatToLearn.map((whatToLearn, index)=> index < 6 && (
+                <li onMouseEnter={()=> stockAndOptionsFn(index)} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
+                </li>
+              ))}
+              {/* {location.pathname === "/courses/stock%20&%20options" && (
+            
+          )} */}
+            </ul>
+            <ul>
+            {singleCourse.whatToLearn.map((whatToLearn, index)=> index > 5 && (
+              <li onMouseEnter={()=> stockAndOptionsFn(index)} onMouseLeave={()=>setShowStock(false)} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
+              </li>
+            ))}
+            </ul>
+          </div>
+          }
+          
         </div>
         <div className="py-5">
           <h1 className="font-bold text-2xl md:text-4xl my-8">

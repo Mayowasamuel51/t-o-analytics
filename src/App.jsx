@@ -75,23 +75,7 @@ const router = createBrowserRouter([
         element: <LiveCourses />
       },
     ]
-  },
-  {
-    path: "/about",
-    element: <AboutPage />
-  },
-  {
-    path: "/blog",
-    element: <BlogPage />
-  },
-  {
-    path: "/contact",
-    element: <ContactPage />
-  },
-  {
-    path: "/courses",
-    element: <Courses />,
-  },    
+  },  
   {
     path: "/createAccount",
     element: <CreateAccountForm />
