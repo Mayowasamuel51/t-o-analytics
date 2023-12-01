@@ -24,9 +24,9 @@ const HomePage = () => {
                         <Link to="/mentorship">
                             <button className="text-sm md:text-xl font-medium border-2 border-BLUE text-BLUE hover:text-white hover:bg-BLUE px-2 py-3 md:px-4 md:py-3 rounded-lg md:rounded-xl duration-300">Book Mentorship</button>
                         </Link>
-                        <a href=" ">
+                        <Link to="/liveCourses">
                             <button className="text-sm md:text-xl font-medium border-2 border-BLUE bg-BLUE text-white hover:bg-white hover:text-BLUE px-2 py-3 md:px-4 md:py-3 rounded-lg md:rounded-xl duration-300">Live Courses</button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className="relative hidden md:block">

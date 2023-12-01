@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
-import { useStateContext } from "../context/ContextProvider"
+import { useStateContext } from "../context/ContextProvider";
+import { Toaster, toast } from 'sonner';
+import { FaExclamation } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 
 const CheckOut = () => {
   const [cartItem, setCartItem] = useState([])
@@ -9,6 +12,15 @@ const CheckOut = () => {
   const checkOut = ()=> {
     if (!token) {
       navigate("/createAccount")
+    }
+    else if (cartItem.length === 0) {
+      toast.error("Oops, Your cart is empty", {
+        cancel: {
+          label: <FaXmark />,
+        },
+        duration: 4000,
+        icon: <FaExclamation color="red" />,
+      })
     }
     else {
       navigate("/dashboard/makePayment")
@@ -26,14 +38,14 @@ const CheckOut = () => {
     
     
   return (
-    <div className="md:px-10 px-2 pt-32 pb-20">
+    <div className="min-h-screen md:px-10 px-2 pt-32 pb-20">
       <h1 className="text-xl md:text-4xl font-black my-4">SHOPPING CART</h1>
       <div>
         <p className="font-semibold text-md">{cartItem.length} {cartItem.length > 1 ? "COURSES" : "COURSE"} in cart </p>
       </div>
       <section className="grid md:grid-cols-3 grid-cols-1 gap-10">
         <div className="cart-items md:col-span-2">
-          {cartItem.map((item)=> (
+          {cartItem.length > 0 ? cartItem.map((item)=> (
             <div key={item.id} className="py-4 px-2">
               <div className="flex items-start gap-2 md:gap-10">
                 <div>
@@ -52,7 +64,7 @@ const CheckOut = () => {
                 </div>
               </div>
             </div>
-          ))}
+          )) : <h1 className="col-span-3 flex justify-center items-center font-bold text-xl">NO ITEM IN YOUR CART</h1>}
         </div>
         <div className="px-2 mb-3">
           <div className="my-8">
@@ -62,6 +74,7 @@ const CheckOut = () => {
           <button onClick={checkOut} className="duration-300 bg-BLUE hover:bg-white border-2 border-BLUE hover:text-BLUE w-full text-white font-bold py-3">CHECKOUT</button>
         </div>
       </section>
+      <Toaster position="top-center" />
     </div>
   )
 }

@@ -255,5 +255,20 @@ export default [
             "Understanding different lenses & their effects",
         ],
         price: 100,
-    }
+    },
+    {
+        id: 8,
+        image: photography,
+        courseName: "Educational Consulting",
+        intro: "Step by step guide to scholarships & more",
+        description: "Everything you need to know on how to secure scholarships & get into masters & Phd programs ",
+        whatToLearn: [
+            "Effective study techniques",
+            "Time management",
+            "Goal setting",
+            "Career exploration",
+            "College admissions & lots more",
+        ],
+        price: 1000,
+    },
 ]
