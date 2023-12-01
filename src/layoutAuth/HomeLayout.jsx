@@ -9,9 +9,9 @@ import COURSES from "../coursesAPI/api"
 function HomeLayout() {
     const { token } = useStateContext();
     const location = useLocation()
-    if (token) {
-        return <Navigate to="/dashboard" />
-    }
+    // if (token) {
+    //     // return <Navigate to="/dashboard" />
+    // }
     return (
         <>
             <div>

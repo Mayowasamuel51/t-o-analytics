@@ -20,7 +20,7 @@ const ContactPage = () => {
                         <input className="text-white placeholder:font-semibold font-medium px-2 py-3 rounded-md w-full bg-transparent border-[1px] text-sm md:text-lg border-textColor my-2 focus:outline-1 outline-offset-2 focus:outline-textColor" type="text" name="" id="" placeholder="Phone Number"/>
                     </div>
                     <div className="mb-2 block">
-                        <textarea className="text-white placeholder:font-semibold font-medium px-2 py-3 rounded-md w-full bg-transparent border-[1px] text-sm md:text-lg border-textColor my-2 focus:outline-1 outline-offset-2 focus:outline-textColor h-[150px]" name="" id="" cols="30" rows="10" placeholder="What would you Link to Tell us..."></textarea>
+                        <textarea className="text-white placeholder:font-semibold font-medium px-2 py-3 rounded-md w-full bg-transparent border-[1px] text-sm md:text-lg border-textColor my-2 focus:outline-1 outline-offset-2 focus:outline-textColor h-[150px]" name="" id="" cols="30" rows="10" placeholder="What would you Like to Tell us..."></textarea>
                     </div>
                     <button className="text-xl font-semibold bg- text-white px-2 py-1 md:px-4 md:py-3 rounded-lg md:rounded-xl border-textColor border-[1px]">Submit</button>
                 </form>

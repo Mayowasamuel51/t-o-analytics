@@ -1,11 +1,14 @@
-import { useParams, Link, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Toaster, toast } from 'sonner';
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import COURSES from "../coursesAPI/api"
+import { useStateContext } from "../context/ContextProvider"
 
 const COURSE = () => {
+  const { token } = useStateContext();
   const location = useLocation()
+  const navigate = useNavigate()
   const [showModal, setShowModal] = useState("")
   const [stockOptionIndex, setStockOptionIndex] = useState(()=> {
     if (location.pathname === "/courses/stock%20&%20options") return 0
@@ -21,13 +24,11 @@ const COURSE = () => {
   const stockAndOptions = COURSES?.find((course)=> course.courseName === singleCourse.courseName && location.pathname === "/courses/stock%20&%20options")
   const stockAndOptionsData = stockAndOptions?.otherSubCourses[stockOptionIndex]
   const addToCart = (id)=> {
-    const item = cartItem.find((item)=> item.id === id)
-    toast(`${item.courseName} successfully added to cart`)
+    toast.success(`successfully added to cart`)
     if (!cartItem.some((item)=> item.id === id)) {
       setCartItem(prev => [...prev, singleCourse])
     }
   }
-
   useEffect(()=> {
     localStorage.setItem("COURSE-CART", JSON.stringify(cartItem));
   },[cartItem]);
@@ -45,7 +46,14 @@ const COURSE = () => {
   const stockAndOptionsFn = (index)=> {
     setStockOptionIndex(index)
   }
-  
+  const buyCourse = ()=> {
+    if (token) {
+      navigate("/checkout")
+    }
+    else {
+      navigate("/createAccount")
+    }
+  }
   return (
     <div className="">
       <section className="pt-10">
@@ -58,7 +66,7 @@ const COURSE = () => {
               <h1 className={`font-semibold text-2xl md:text-4xl my-4 md:w-2/3`}>
                 {singleCourse.intro}
                 <AnimatePresence>
-                    <motion.div onClick={()=> removeModalAction()} className={`${showModal} border-2 border-BLUE absolute text-black md:w-[500px] w-[350px] z-50 bg-white p-4 rounded-xl shadow-3xl`}>
+                    <motion.div className={`${showModal} absolute text-black md:w-[600px] w-[350px] z-[10] bg-white p-4 rounded-xl shadow-3xl`}>
                       <h1 className="text-center font-black text-md md:text-2xl">
                         {singleCourse.courseName}
                       </h1>
@@ -73,11 +81,9 @@ const COURSE = () => {
                         </ul>
                       </div>
                       {cartItem.some((item)=> item.id === singleCourse.id) ? 
-                      <Link to="/createAccount">
-                        <button className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
-                          BUY COURSE
-                        </button>
-                      </Link>
+                      <button onClick={()=>buyCourse()} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+                        BUY COURSE
+                      </button>
                       :
                       <button onClick={()=> addToCart(singleCourse.id)} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
                         ADD TO CART
@@ -91,15 +97,10 @@ const COURSE = () => {
               {singleCourse.description}
             </p>
             <p className="my-6 font-bold md:text-3xl">${singleCourse.price}</p>
-            <div className="flex md:block items-center md:gap-5 gap-2">
-              <button onClick={()=>showModalAction()} className="md:hidden block hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white w-fit md:mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
+            <div className="">
+              <button onClick={()=>showModalAction()} className="hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white w-fit md:mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
                 View More
               </button>
-              <Link className="block" to="/createAccount">
-                <button className="hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white w-fit md:mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
-                  Buy Course
-                </button>
-              </Link>
             </div>
           </div>
           <div className="perks">

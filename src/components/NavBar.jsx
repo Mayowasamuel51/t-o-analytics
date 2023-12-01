@@ -1,16 +1,27 @@
 import { useState, useEffect } from 'react';
 import LOGO from "../assets/images/logo.jpg";
+import { FaSearch } from "react-icons/fa";
 import { motion } from 'framer-motion';
+import { useStateContext } from "../context/ContextProvider"
 import { Link, NavLink } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { FaXmark } from "react-icons/fa6";
 import { MdOutlineAddShoppingCart } from "react-icons/md"
+import { getAuth, signOut } from "firebase/auth";
+import { app } from "../../firebase.config";
 
 
 const NavBar = () => {
     const [fixed, setFixed] = useState("")
     const [cartItemNo, setCartItemNo] = useState([])
-    
+    const { token, setToken } = useStateContext();
+    const auth = getAuth(app);
+    const signout = () => {
+        signOut(auth).then((user) => {
+            // window.localStorage.removeItem("ACCESS_TOKEN");
+            setToken(null)
+        }).catch((err) => console.log(err.message))
+    }
     useEffect(()=> {
         const handleScroll = () => {
             const scrollY = window.scrollY;
@@ -30,31 +41,47 @@ const NavBar = () => {
     }
     return (
         <>
-            <header className={`z-20 fixed w-screen right-0 left-0 top-0 bg-white px-2 py-2 md:px-10 flex items-center justify-between`}>
+            <header className={`z-20 fixed w-[100%] right-0 left-0 top-0 bg-white px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
                 <div>
                     <Link to="/">
                         <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[130px]" alt=""/>
                     </Link>
                 </div>
-                <nav className={`navlinks ${fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
+                {token && <div className='relative search-box'>
+                    <FaSearch className='absolute' />
+                    <input type="text" name="search" id="search" className='border-[1px] md:border-2 border-black w-full h-10 rounded-sm md:rounded-3xl placeholder:font-semibold' placeholder='Search for anything' />
+                </div>}
+                <nav className={`navlinks ${!token && fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
+                    { token ? 
+                   <ul className="md:flex items-center gap-6 font-normal text-sm">
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/myCourses">My Courses</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/mentorship">Mentorship</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/links">Links</NavLink></motion.li>
+                        <button onClick={signout} className="md:hidden block my-3 hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-2 py-1 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold">
+                            Sign Out
+                        </button>
+                    </ul>
+                    :
                     <ul className="md:flex items-center gap-6 font-normal">
                         <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/blog">Blog</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/contact">Contact</NavLink></motion.li>
                         <Link to="/createAccount" className='md:hidden block'>
-                            <button className="hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-4 md:py-3 rounded-md md:rounded-xl font-semibold">
+                            <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-4 md:py-3 rounded-md md:rounded-xl font-semibold">
                                 Create Account
                             </button>
                         </Link>
-                    </ul>
+                    </ul>}
                 </nav>
                 <div className="flex items-center gap-3">
+                    {!token &&
                     <Link to="/createAccount" className='md:block hidden'>
                         <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-4 md:py-3 rounded-md md:rounded-xl font-semibold">
                             Create Account
                         </button>
-                    </Link>
+                    </Link>}
                     <div className="flex items-center gap-3">
                         <Link to="/checkout">
                             <div className='relative cursor-pointer group'>
@@ -67,6 +94,28 @@ const NavBar = () => {
                         <div className="flex-1 block md:hidden hamburger">
                             {fixed === "show" ? <FaXmark size={20} onClick={()=> setFixed("")} /> : <FaBarsStaggered size={20} onClick={navBar} />}
                         </div>
+                        {token && 
+                        <div className='relative md:block hidden group'>
+                            <img src="" className='w-8 aspect-square border-2 border-BLUE rounded-full' alt="profile pic" />
+                            <div className='hidden group-hover:block absolute rounded-lg w-[250px] right-[-30px] top-8 bg-white shadow-lg'>
+                                <div className='p-2 flex items-center gap-3 border-b-2 border-textColor'>
+                                    <img src="" className='w-8 aspect-square border-2 border-BLUE rounded-full' alt="profile pic" />
+                                    <div>
+                                        <p className='font-bold text-lg'>TIMI</p>
+                                        <p className='font-semibold text-xs'>timi@gmail.com</p>
+                                    </div>
+                                </div>
+                                <ul className='p-2 leading-[30px]'>
+                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard">My Courses</NavLink></motion.li>
+                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">All Courses</NavLink></motion.li>
+                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Mentorship</NavLink></motion.li>
+                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Links</NavLink></motion.li>
+                                    <li onClick={signout} className="my-3 hover:bg-transparent hover:text-BLUE duration-300 text-red-500 rounded-md md:rounded-xl font-semibold cursor-pointer">
+                                        Sign Out
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>}
                     </div>
                 </div>
             </header>
