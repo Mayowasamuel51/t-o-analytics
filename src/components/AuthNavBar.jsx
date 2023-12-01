@@ -38,9 +38,9 @@ const AuthNavBar = ({ signout }) => {
                 <FaSearch className='absolute' />
                 <input type="text" name="search" id="search" className='border-[1px] md:border-2 border-black w-full h-10 rounded-sm md:rounded-3xl placeholder:font-semibold' placeholder='Search for anything' />
             </div>
-            <nav className={`border-2 border-red-500 ${fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
+            <nav className={`${fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                 <ul className="md:flex items-center gap-6 font-normal text-sm">
-                    <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/myCourses">My Courses</NavLink></motion.li>
+                    <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/myCourses">My Courses</NavLink></motion.li>
                     <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
                     <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/mentorship">Mentorship</NavLink></motion.li>
                     <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/links">Links</NavLink></motion.li>
@@ -49,7 +49,6 @@ const AuthNavBar = ({ signout }) => {
                     </button>
                 </ul>
             </nav>
-            
             <div className="flex items-center gap-3">
                 <Link to="checkout">
                     <div className='relative cursor-pointer group'>

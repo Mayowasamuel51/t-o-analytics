@@ -1,3 +1,6 @@
+import { FaClock, FaCreditCard, FaLaptop  } from "react-icons/fa";
+import { FaCalendarDays } from "react-icons/fa6";
+
 
 const Mentorship = () => {
   return (
@@ -28,20 +31,20 @@ const Mentorship = () => {
     </section>
     <section className="others">
         <div className="md:px-10 py-16 md:py-20 px-2 flex justify-between items-center text-center font-bold">
-            <div>
-                <i className="fa-solid fa-calendar-days"></i>
+            <div className="flex flex-col items-center gap-2">
+                <FaCalendarDays size={30} />
                 <p>5 Weeks</p>
             </div>
-            <div>
-                <i className="fa-solid fa-clock"></i>
+            <div className="flex flex-col items-center gap-2">
+                <FaClock size={30} />
                 <p>222</p>
             </div>
-            <div>
-                <i className="fa-solid fa-laptop"></i>
+            <div className="flex flex-col items-center gap-2">
+                <FaLaptop size={30} />
                 <p>Virtual</p>
             </div>
-            <div>
-                <i className="fa-regular fa-credit-card"></i>
+            <div className="flex flex-col items-center gap-2">
+                <FaCreditCard size={30} />
                 <p>$100</p>
             </div>
         </div>

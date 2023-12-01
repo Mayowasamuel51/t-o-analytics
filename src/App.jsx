@@ -7,6 +7,7 @@ import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
 import ConnectWithContractor from "./pages/ConnectWithContractor";
+import MyCourses from "./pages/MyCourses";
 import Mentorship from "./pages/Mentorship";
 import CreateAccountForm from "./pages/CreateAccountForm";
 import LoginForm from "./pages/LoginForm";
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
         element: <CheckOut />
       },
       {
+        path: "myCourses",
+        element: <MyCourses />
+      },
+      {
         path: "makePayment",
         element: <PaymentPage />
       },
@@ -122,6 +127,7 @@ const router = createBrowserRouter([
         path: "/dashboard/post",
         element: <Dashboard />
       },
+
     ]
   }
 

@@ -123,7 +123,7 @@ div.modal-learn ul li::before  {
 
 section.mentorship {
   position: relative;
-  /* background-image: url(../images/mentorshipIMG.jpg); */
+  background-image: url(../src/assets/images/mentorshipIMG.jpg);
   background-size: cover;
   z-index: 2;
 }
@@ -139,7 +139,7 @@ section.others::before {
 
 section.others {
   position: relative;
-  /* background-image: url(../images/mentorshipIMG.jpg); */
+  background-image: url(../src/assets/images/mentorshipIMG.jpg);
   background-size: cover;
   z-index: 2;
   background-position: center;
@@ -271,7 +271,6 @@ section.payment-page {
     left: 0;
     background: #fff;
   }
-  
   div.learn ul li::before,
   div.benefit ul li::before {
     width: 15px;

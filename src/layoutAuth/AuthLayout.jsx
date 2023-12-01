@@ -1,4 +1,4 @@
-import AuthNavBar from "../components/AuthNavBar";
+import NavBar from "../components/NavBar";
 import { Link, NavLink, Navigate, Outlet } from "react-router-dom"
 import { useStateContext } from "../context/ContextProvider"
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
@@ -18,7 +18,7 @@ function AuthLayout() {
     }
     return (
         <>
-            <AuthNavBar signout={signout} />
+            <NavBar />
             <div className="mt-28">
                 {/* <nav className="nav">
                     <ul className="dashboard-links flex items-center gap-5">

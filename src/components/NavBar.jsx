@@ -18,7 +18,7 @@ const NavBar = () => {
     const auth = getAuth(app);
     const signout = () => {
         signOut(auth).then((user) => {
-            // window.localStorage.removeItem("ACCESS_TOKEN");
+            // window.localStorage.removeItem("ACCESS_TOKEN")
             setToken(null)
         }).catch((err) => console.log(err.message))
     }
@@ -51,18 +51,20 @@ const NavBar = () => {
                     <FaSearch className='absolute' />
                     <input type="text" name="search" id="search" className='border-[1px] md:border-2 border-black w-full h-10 rounded-sm md:rounded-3xl placeholder:font-semibold' placeholder='Search for anything' />
                 </div>}
-                <nav className={`navlinks ${!token && fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
-                    { token ? 
-                   <ul className="md:flex items-center gap-6 font-normal text-sm">
-                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/myCourses">My Courses</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/mentorship">Mentorship</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/links">Links</NavLink></motion.li>
+                {token ? 
+                <nav className={`navlinks md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
+                    <ul className="md:flex items-center gap-6 font-normal text-sm">
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/myCourses">My Courses</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/mentorship">Mentorship</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/links">Links</NavLink></motion.li>
                         <button onClick={signout} className="md:hidden block my-3 hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-2 py-1 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold">
                             Sign Out
                         </button>
                     </ul>
-                    :
+                </nav>
+                :
+                <nav className={`navlinks ${fixed} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                     <ul className="md:flex items-center gap-6 font-normal">
                         <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
@@ -73,8 +75,8 @@ const NavBar = () => {
                                 Create Account
                             </button>
                         </Link>
-                    </ul>}
-                </nav>
+                    </ul>
+                </nav>}
                 <div className="flex items-center gap-3">
                     {!token &&
                     <Link to="/createAccount" className='md:block hidden'>
@@ -98,19 +100,19 @@ const NavBar = () => {
                         <div className='relative md:block hidden group'>
                             <img src="" className='w-8 aspect-square border-2 border-BLUE rounded-full' alt="profile pic" />
                             <div className='hidden group-hover:block absolute rounded-lg w-[250px] right-[-30px] top-8 bg-white shadow-lg'>
-                                <div className='p-2 flex items-center gap-3 border-b-2 border-textColor'>
+                                <div className='p-3 flex items-center gap-3 border-b-2 border-textColor'>
                                     <img src="" className='w-8 aspect-square border-2 border-BLUE rounded-full' alt="profile pic" />
                                     <div>
                                         <p className='font-bold text-lg'>TIMI</p>
                                         <p className='font-semibold text-xs'>timi@gmail.com</p>
                                     </div>
                                 </div>
-                                <ul className='p-2 leading-[30px]'>
+                                <ul className='p-3 leading-[30px]'>
                                     <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard">My Courses</NavLink></motion.li>
                                     <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">All Courses</NavLink></motion.li>
                                     <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Mentorship</NavLink></motion.li>
                                     <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="">Links</NavLink></motion.li>
-                                    <li onClick={signout} className="my-3 hover:bg-transparent hover:text-BLUE duration-300 text-red-500 rounded-md md:rounded-xl font-semibold cursor-pointer">
+                                    <li onClick={signout} className="hover:bg-transparent hover:text-BLUE duration-300 text-red-500 rounded-md md:rounded-xl font-semibold cursor-pointer">
                                         Sign Out
                                     </li>
                                 </ul>
