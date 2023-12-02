@@ -66,9 +66,9 @@ export default [
         ],
         otherSubCourses: [
             {
-                id: 1,
+                id: 31,
                 name: "Fundamental of Stock Trading",
-                price: "100",
+                price: 100,
                 duration: "1 hour",
                 description: "Learn the nitty gritty of  low-priced stocks. Discover how to spot potential winners and navigate the risks.",
                 whatToLearn: [
@@ -79,9 +79,9 @@ export default [
                 ]
             },
             {
-                id: 2,
+                id: 32,
                 name: "Financial Literacy",
-                price: "100",
+                price: 100,
                 duration: "1 hour",
                 description: "Gain the knowledge and understanding of financial concepts & skills that are necessary to make informed & effective financial decisions.",
                 whatToLearn: [
@@ -94,9 +94,9 @@ export default [
                 ]
             },
             {
-                id: 3,
+                id: 333,
                 name: "Stock Options Trading 101",
-                price: "150",
+                price: 150,
                 duration: "1 hour",
                 description: "Get introduced into the world of trading. You’ll learn the fundamental concept and principles of trading.",
                 whatToLearn: [
@@ -108,9 +108,9 @@ export default [
                 ]
             },
             {
-                id: 4,
+                id: 34,
                 name: "Stock Options Trading 201",
-                price: "300",
+                price: 300,
                 duration: "2 hour",
                 description: "Learn how to speculate on price movements, hedge against potential loss and generate income.",
                 whatToLearn: [
@@ -123,9 +123,9 @@ export default [
             },
             
             {
-                id: 5,
+                id: 35,
                 name: "Stock Market Psychology",
-                price: "100",
+                price: 100,
                 duration: "45 minutes",
                 description: "Get insight on emotions, behaviour and mindset of investors and traders in the financial markets.",
                 whatToLearn: [
@@ -137,9 +137,9 @@ export default [
                 ]
             },
             {
-                id: 6,
+                id: 36,
                 name: "Charts Reading 101",
-                price: "150",
+                price: 150,
                 duration: "1 hour",
                 description: "You will be taught the practice of analyzing & interpreting graphical representations of data to gain insight into trends, patterns & relationships.",
                 whatToLearn: [
@@ -150,9 +150,9 @@ export default [
                 ]
             },
             {
-                id: 7,
+                id: 37,
                 name: "Advanced Charts Reading 201",
-                price: "300",
+                price: 300,
                 duration: "1 hour 30 minutes",
                 description: "You will be taught the advanced practice of analyzing & interpreting graphical representations of data to gain insight into trends, patterns & relationships.",
                 whatToLearn: [
@@ -163,9 +163,9 @@ export default [
                 ]
             },
             {
-                id: 8,
+                id: 38,
                 name: "Fundamental of Crypto Trading",
-                price: "150",
+                price: 150,
                 duration: "1 hour 30 minutes",
                 description: "You will be taught the nitty gritty of buying and selling of digital currency.",
                 whatToLearn: [
@@ -175,9 +175,9 @@ export default [
                 ]
             },
             {
-                id: 9,
+                id: 39,
                 name: "Forex Trading",
-                price: "100",
+                price: 100,
                 duration: "1 hour 30 minutes",
                 description: "Understand the buying and selling of different currencies across countries.",
                 whatToLearn: [

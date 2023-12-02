@@ -26,14 +26,14 @@ const PaymentPage = () => {
                 <div key={item.id} className="py-4 px-2">
                     <div className="flex items-start gap-2 md:gap-10">
                         <div>
-                            <img
+                            {item.image ? <img
                                 src={item.image}
                                 className="w-14 aspect-square object-cover"
                                 alt=""
-                            />
+                            /> : (<div className="w-14 aspect-square bg-BLUE"></div>)}
                         </div>
                         <div className="grow-[3]">
-                            <p className="font-black">{item.courseName}</p>
+                            <p className="font-black">{item.courseName || item.name}</p>
                             <p className="text-xs">{item.intro}</p>
                             <p className="text-sm font-medium line-clamp-1">
                                 {item.description}
