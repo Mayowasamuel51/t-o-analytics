@@ -65,7 +65,7 @@ const COURSE = () => {
   return (
     <div className="">
       <section className="pt-10">
-        <h1 className="font-bold text-center text-2xl md:text-4xl py-10 md:py-20">
+        <h1 className="font-bold text-center text-2xl md:text-3xl lg:text-4xl py-10 md:py-20">
           {singleCourse.courseName.toUpperCase()}
         </h1>
         <div className="px-2 md:px-10 py-10 md:py-16 grid grid-cols-1 gap-16 md:gap-0 md:grid-cols-2 bg-[#2d2065] text-white">
@@ -74,10 +74,10 @@ const COURSE = () => {
               <h1 className={`font-semibold text-2xl md:text-4xl my-4 md:w-2/3`}>
                 {singleCourse.intro}
                     <motion.div className={`fixed text-black md:w-[600px] w-[350px] z-[10] bg-white p-4 rounded-xl shadow-3xl`}>
-                      <h1 className="text-center font-black text-md md:text-3xl">
+                      <h1 className="text-center font-black text-md md:text-2xl lg:text-3xl">
                         {singleCourse.courseName}
                       </h1>
-                      <p className="font-semibold text-sm md:text-lg my-2">
+                      <p className="font-semibold text-sm lg:text-lg my-2">
                         {singleCourse.intro}
                       </p>
                       <div className="modal-learn learn">
@@ -157,8 +157,11 @@ const COURSE = () => {
               <ul className="md:w-[400px] md:text-base text-sm group">
               {singleCourse.whatToLearn.map((whatToLearn, index)=> (
                 <li key={index} onMouseEnter={()=> stockAndOptionsFn(index)} onMouseLeave={()=>removeStockAndOptionFn()} className="relative flex gap-20 cursor-pointer">{whatToLearn}
-                  {stockOptionIndex === index &&(<div className="stock-and-options z-10 absolute top-0 left-[300px] right-[-300px] bg-white shadow-xl rounded-lg p-3">
+                  {stockOptionIndex === index &&(<div className="stock-and-options z-10 absolute top-0 left-0 md:left-[300px] md:right-[-300px] bg-white shadow-xl rounded-lg p-3">
                     <h2 className="font-black text-base">{stockAndOptionsData?.name}</h2>
+                    <div className="absolute right-4 top-4 md:hidden block">
+                      <FaXmark className="" onClick={()=> setStockOptionIndex(null)} />
+                    </div>
                     <div>
                       <p className="font-bold">${stockAndOptionsData?.price}</p>
                     </div>

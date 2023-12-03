@@ -53,8 +53,8 @@ const NavBar = () => {
                     <input type="text" name="search" id="search" className='border-[1px] md:border-2 border-black w-full h-10 rounded-sm md:rounded-3xl placeholder:font-semibold' placeholder='Search for anything' />
                 </div>}
                 {token ? 
-                <nav className={`navlinks ${show} auth-nav md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
-                    <ul className="md:flex items-center gap-6 font-normal text-sm">
+                <nav className={`navlinks ${show} border-2 border-red-400 auth-nav md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
+                    <ul className="md:flex items-center gap-3 md:gap-6 font-normal text-sm">
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/myCourses">My Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/mentorship">Mentorship</NavLink></motion.li>
