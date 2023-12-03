@@ -283,28 +283,24 @@ section.payment-page {
   nav {
     position: absolute;
     top: 66px;
-    top: 0;
-    left: -100%;
-    width: 200px;
-    height: 100vh;
+    visibility: hidden;
+    opacity: 0;
     line-height: 30px;
     transition: all 300ms ease-in-out;
   }
 
   nav.navlinks {
     width: 100%;
-    background: red;
   }
-  nav.navlinks>ul {
-  }
-
   nav.show {
-    left: 0;
+    visibility: visible;
+    opacity: 1;
     /* background: #fff; */
   }
 
   nav.auth-nav.show {
     left: 0;
+    height: fit-content;
     /* background: #fff; */
   }
 

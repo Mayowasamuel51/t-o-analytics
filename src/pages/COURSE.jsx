@@ -28,14 +28,20 @@ const COURSE = () => {
     if (!cartItem.some((item)=> item.id === id) && singleCourse.id === id) {
       toast.success(`successfully added to cart`)
       setCartItem(prev => [...prev, singleCourse])
+      setTimeout(() => {
+        window.location.reload()
+      }, 3000);
     }
     if (singleCourse?.otherSubCourses.some((item)=> item.id === id) && !cartItem.some((item)=> item.id === id)) {
       toast.success(`successfully added to cart`)
       setCartItem(prev => [...prev, stockAndOptionsData])
+      setTimeout(() => {
+        window.location.reload()
+      }, 3000);
     }
   }
   useEffect(()=> {
-    localStorage.setItem("COURSE-CART", JSON.stringify(cartItem));
+    localStorage.setItem("COURSE-CART", JSON.stringify(cartItem))
   },[cartItem]);
 
   useEffect(() => {
