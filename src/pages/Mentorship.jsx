@@ -1,8 +1,25 @@
 import { FaClock, FaCreditCard, FaLaptop  } from "react-icons/fa";
 import { FaCalendarDays } from "react-icons/fa6";
-
+import { useState, useEffect } from "react";
+import { Toaster, toast } from 'sonner';
 
 const Mentorship = () => {
+    const [cartItem, setCartItem] = useState(()=> {
+        let data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
+        return data
+      }
+    )
+    const [mentorship, setMentorship] = useState(false)
+    const addToCart = (id)=> {
+        if (!cartItem.some((item)=> item.id === id)) {
+            toast.success(`successfully added to cart`)
+            setCartItem(prev => [...prev, {id: 111, name: "Mentorship", price: 3000}])
+        }
+    }
+    useEffect(()=> {
+        localStorage.setItem("COURSE-CART", JSON.stringify(cartItem))
+      },[cartItem]);
+
   return (
     <>
         <section className="mentorship">
@@ -29,8 +46,8 @@ const Mentorship = () => {
             </div>
         </div>
     </section>
-    <section className="others">
-        <div className="md:px-10 py-16 md:py-20 px-2 flex justify-between items-center text-center font-bold">
+    <section className="others py-16 md:py-20">
+        <div className="md:px-10 py-10 px-2 flex justify-between items-center text-center font-bold">
             <div className="flex flex-col items-center gap-2">
                 <FaCalendarDays size={30} />
                 <p>5 Weeks</p>
@@ -47,8 +64,17 @@ const Mentorship = () => {
                 <FaCreditCard size={30} />
                 <p>$100</p>
             </div>
+           
+        </div>
+        <div className="text-center">
+            {mentorship ? 
+            <button onMouseLeave={()=>setMentorship(false)} onClick={()=> addToCart(111)} className="w-32 font-bold md:px-3 md:py-2 px-2 py-2 hover:text-BLUE hover:bg-white rounded-md border-[1px] text-white">Add To Cart</button>
+            : 
+            <button onMouseEnter={()=>setMentorship(true)}  className="w-32 font-bold md:px-3 md:py-2 px-2 py-2 hover:text-BLUE hover:bg-white rounded-md border-[1px] text-white">Register</button>}
         </div>
     </section>
+
+    <Toaster position="top-center" />
     </>
   )
 }

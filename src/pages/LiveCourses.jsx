@@ -5,7 +5,7 @@ import EducationalConsulting from "../assets/images/videography.jpg";
 const LiveCourses = () => {
   return (
     <div className="flex sm:flex-row flex-col pt-28 pb-10 justify-center gap-6 lg:px-52 p-2">
-        <Link to={``} className="">
+        <Link to={`/courses/splunk`} className="">
             <div
               className={`rounded-xl`}
               data-aos-once="true"
@@ -29,7 +29,7 @@ const LiveCourses = () => {
               </div>
             </div>
         </Link>
-        <Link to={``} className="">
+        <Link to={`/courses/educational consulting`} className="">
             <div
               className={`rounded-xl`}
               data-aos-once="true"
