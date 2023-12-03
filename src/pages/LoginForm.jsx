@@ -2,10 +2,10 @@ import { Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import LOGO from "../assets/images/logo.jpg";
 import GOOGLE from "../assets/images/google.png";
-import FACEBOOK from "../assets/images/facebook.png";
+// import FACEBOOK from "../assets/images/facebook.png";
 // import APPLE from "../assets/images/apple.png";
 import { FaXmark } from "react-icons/fa6";
-import { FaApple } from "react-icons/fa";
+// import { FaApple } from "react-icons/fa";
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -135,8 +135,8 @@ const LoginForm = () => {
                 </form>
                 <div className='login-options flex flex-col gap-3 font-medium'>
                     <button onClick={loginwihGoogle} className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
-                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:text-white duration-300'><img src={FACEBOOK} alt="" className='w-5' />Continue with Facebook</button>
-                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:text-white duration-300'><FaApple size={20} />Continue with Apple ID</button>
+                    {/* <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:text-white duration-300'><img src={FACEBOOK} alt="" className='w-5' />Continue with Facebook</button>
+                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:text-white duration-300'><FaApple size={20} />Continue with Apple ID</button> */}
                 </div>
                 <p className="text-sm md:text-base mt-4 font-semibold ">Don't have an account? <Link className="underline underline-offset-2 text-BLUE" to="/createAccount">Create Account</Link></p>
             </motion.div>
