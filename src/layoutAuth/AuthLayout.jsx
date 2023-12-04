@@ -3,7 +3,8 @@ import { Link, NavLink, Navigate, Outlet } from "react-router-dom"
 import { useStateContext } from "../context/ContextProvider"
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
-
+import { useEffect } from "react";
+const api = 'http://localhost:8000/api/'
 function AuthLayout() {
     const {  token ,  setToken , user, setUser } = useStateContext();
     if (!token) {
@@ -16,6 +17,20 @@ function AuthLayout() {
             setToken(null)
         }).catch((err) => console.log(err.message))
     }
+    // useEffect(() => {
+    //     const maintoken = window.localStorage.getItem("ACCESS_TOKEN")
+    //     fetch(`${api}users`, {
+    //         method: "GET",
+    //         headers: {
+    //             "Authorization":`Bearer ${maintoken}`,
+    //             "Content-Type": "application/json"
+    //         }
+    //     }).then((res) => {
+    //         return res.json()
+    //     }).catch((data) => {
+    //         console.log(data)
+    //     }).catch((err)=>console.log(err.message))
+    // })
     return (
         <>
             <NavBar />

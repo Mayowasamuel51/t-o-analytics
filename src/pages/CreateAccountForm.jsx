@@ -44,6 +44,7 @@ const CreateAccountForm = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
+                window.localStorage.setItem("user", loggedInUser.email)
                 console.log(loggedInUser.password)
                 setToken(loggedInUser)
             }).catch(error => {
@@ -69,7 +70,7 @@ const CreateAccountForm = () => {
             password: data.password,
             email: data.email
         }
-        axios.post('https://to-backendapi-v1.vercel.app/api/sighup', payload, {
+        axios.post('http://localhost:8000/api/sighup', payload, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -77,6 +78,7 @@ const CreateAccountForm = () => {
         }).then((res) => {
             if (res.status === 201 || res.status === 200) {
                 setUser(res.data.data)
+                window.localStorage.setItem("user", res.data.data.email)
                 console.log(res.data.token)
                 setToken(res.data.token)
                 navigate('/dashboard')
@@ -85,6 +87,14 @@ const CreateAccountForm = () => {
         }).catch(err => {
             const response = err.response
             if (response.status === 422) {
+                console.log(response)
+                console.log(response.data.message)
+                setError(response.data.message)
+            } else if (response.status === 401) {
+                console.log(response)
+                console.log(response.data.message)
+                setError(response.data.message)
+            } else if (response.status === 403) {
                 console.log(response)
                 console.log(response.data.message)
                 setError(response.data.message)

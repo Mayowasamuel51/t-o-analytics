@@ -16,10 +16,12 @@ const NavBar = () => {
     const [show, setShow] = useState("")
     const [cartItemNo, setCartItemNo] = useState([])
     const { token, setToken } = useStateContext();
+    const [useremail, setUserEmail] = useState("")
     const auth = getAuth(app);
     const signout = () => {
         signOut(auth).then((user) => {
             window.localStorage.removeItem("ACCESS_TOKEN")
+            window.localStorage.removeItem("user")
             setToken(null)
         }).catch((err) => console.log(err.message))
     }
@@ -37,6 +39,11 @@ const NavBar = () => {
         const data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
         setCartItemNo(data)
     }, [])
+
+    useEffect(() => {
+        const localuser = window.localStorage.getItem("user")
+       setUserEmail(localuser) 
+    },[])
     const navBar = ()=> {
         setShow("show")
     }
@@ -104,8 +111,8 @@ const NavBar = () => {
                                 <div className='p-3 flex items-center gap-3 border-b-2 border-textColor'>
                                     <img src="" className='w-8 aspect-square border-2 border-BLUE rounded-full' alt="profile pic" />
                                     <div>
-                                        <p className='font-bold text-lg'>TIMI</p>
-                                        <p className='font-semibold text-xs'>timi@gmail.com</p>
+                                        
+                                            <p className='font-semibold text-xs'>{useremail }</p>
                                     </div>
                                 </div>
                                 <ul className='p-3 leading-[30px]'>

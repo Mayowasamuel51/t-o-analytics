@@ -43,6 +43,7 @@ const LoginForm = () => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
                 setToken(loggedInUser)
+                window.localStorage.setItem("user",loggedInUser.email)
             }).catch(error => {
                 console.log('error', error.message);
             })
@@ -64,7 +65,7 @@ const LoginForm = () => {
             password: data.password,
             email: data.email
         }
-        axios.post('https://to-backendapi-v1.vercel.app/api/login', payload, {
+        axios.post('/api/login', payload, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"
@@ -73,6 +74,7 @@ const LoginForm = () => {
             if (res.status === 201 || res.status === 200) {
                 setUser(res.data.data)
                 console.log(res.data.token)
+                window.localStorage.setItem("user", res.data.data.email)
                 navigate('/dashboard')
                 setToken(res.data.token)
             }
