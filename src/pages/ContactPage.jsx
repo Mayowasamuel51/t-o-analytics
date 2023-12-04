@@ -67,20 +67,20 @@ const ContactPage = () => {
 
                     <div className="mb-7 block">
                           <input     {...register("name", { required: true })} className="text-white placeholder:font-semibold font-medium px-2 py-3 rounded-md w-full bg-transparent border-[1px] text-sm md:text-lg border-textColor my-2 focus:outline-1 outline-offset-2 focus:outline-textColor" type="text" name="name" id="" placeholder="Name" />
-                          <p className='text-red-600'>{errors.name?.message}</p>
+                          <p className='text-red-600   text-sm'>{errors.name?.message}</p>
                     </div>
                     <div className="mb-7 block">
                           <input     {...register("email", { required: true })} className="text-white placeholder:font-semibold font-medium px-2 py-3 rounded-md w-full bg-transparent border-[1px] text-sm md:text-lg border-textColor my-2 focus:outline-1 outline-offset-2 focus:outline-textColor" type="text"
                               name="email" id="" placeholder="Email" />
-                          <p className='text-red-600'>{errors.email?.message}</p>
+                          <p className='text-red-600  text-sm'>{errors.email?.message}</p>
                     </div>
                     <div className="mb-7 block">
                           <input     {...register("phone_number", { required: true })} className="text-white placeholder:font-semibold font-medium px-2 py-3 rounded-md w-full bg-transparent border-[1px] text-sm md:text-lg border-textColor my-2 focus:outline-1 outline-offset-2 focus:outline-textColor" type="text" name="phone_number" id="" placeholder="Phone Number" />
-                          <p className='text-red-600'>{errors.phone_number?.message}</p>
+                          <p className='text-red-600  text-sm'>{errors.phone_number?.message}</p>
                     </div>
                     <div className="mb-2 block">
                           <textarea  {...register("message", { required: true })} className="text-white placeholder:font-semibold font-medium px-2 py-3 rounded-md w-full bg-transparent border-[1px] text-sm md:text-lg border-textColor my-2 focus:outline-1 outline-offset-2 focus:outline-textColor h-[150px]" name="message" id="" cols="30" rows="10" placeholder="What would you Link to Tell us..."></textarea>
-                          <p className='text-red-600'>{errors.message?.message}</p>
+                          <p className='text-red-600 text-sm'>{errors.message?.message}</p>
                     </div>
                     <button className="text-xl font-semibold bg- text-white px-2 py-1 md:px-4 md:py-3 rounded-lg md:rounded-xl border-textColor border-[1px]">Submit</button>
                 </form>
