@@ -71,7 +71,7 @@ const CreateAccountForm = () => {
             password: data.password,
             email: data.email
         }
-        axios.post('http://localhost:8000/api/signup', payload, {
+        axios.post('http://localhost:8000/api/sighup', payload, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
