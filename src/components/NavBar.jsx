@@ -106,13 +106,12 @@ const NavBar = () => {
                         </div>
                         {token && 
                         <div className='relative md:block hidden group'>
-                            <img src="" className='w-8 aspect-square border-2 border-BLUE rounded-full' alt="profile pic" />
+                            <div src="" className='w-8 aspect-square text-white flex justify-center items-center font-black  border-2 bg-BLUE rounded-full'>{useremail[0].toUpperCase()}</div>
                             <div className='hidden group-hover:block absolute rounded-lg w-[250px] right-[-30px] top-8 bg-white shadow-lg'>
                                 <div className='p-3 flex items-center gap-3 border-b-2 border-textColor'>
                                     <img src="" className='w-8 aspect-square border-2 border-BLUE rounded-full' alt="profile pic" />
                                     <div>
-                                        
-                                            <p className='font-semibold text-xs'>{useremail }</p>
+                                        <p className='font-semibold text-xs'>{useremail }</p>
                                     </div>
                                 </div>
                                 <ul className='p-3 leading-[30px]'>

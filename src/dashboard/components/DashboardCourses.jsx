@@ -3,7 +3,7 @@ import COURSES from "../../coursesAPI/api";
 
 const DashboardCourses = () => {
   return (
-    <section className="px-2 md:px-10">
+    <section className="px-2 md:px-10 py-5">
         <div className="courses grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center gap-y-4 gap-x-2">
             {COURSES.map((course, index)=> (
             <a key={index} to={course.courseName.toLowerCase()} className="">

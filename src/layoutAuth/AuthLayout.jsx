@@ -4,6 +4,7 @@ import { useStateContext } from "../context/ContextProvider"
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
 import { useEffect } from "react";
+import Footer from "../components/Footer";
 const api = 'http://localhost:8000/api/'
 function AuthLayout() {
     const {  token ,  setToken , user, setUser } = useStateContext();
@@ -47,6 +48,7 @@ function AuthLayout() {
                 </nav> */}
             </div>
             <Outlet />
+            <Footer black="bg-black text-white" />
         </>
     )
 }
