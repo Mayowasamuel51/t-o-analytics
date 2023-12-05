@@ -141,7 +141,6 @@ const HomePage = () => {
                 </div>
             </div>
         </section>
-
         <section className="bg-white p-2 py-20 md:py-12">
             <h1 className="my-2 md:my-8 text-center font-semibold text-lg md:text-4xl">Here’s what our students are saying</h1>
             <Splide className='splide pb-10' aria-label="Testimonials" options={{
@@ -174,17 +173,15 @@ const HomePage = () => {
                 </SplideSlide>
                 <SplideSlide>
                     <div className="md:w-1/2 mx-auto">
-                        <p className="font-normal my-2 text-xs md:text-lg text-center">I&apos;m so grateful for the opportunity to be a part of this boot camp. All thanks to the financial literacy classNamees, I can now make purposeful final decisions and know all the right channels to invest my money and assets.</p>
+                        <p className="font-normal my-2 text-xs md:text-lg text-center">I&apos;m so grateful for the opportunity to be a part of this boot camp. All thanks to the financial literacy classes, I can now make purposeful final decisions and know all the right channels to invest my money and assets.</p>
                         <div className="flex items-center justify-center gap-1 md:gap-3">
                             <img src={student3} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt=""/>
                             <p className="font-bold text-sm md:text-2xl">Timilehin Babade</p>   
                         </div>                
                     </div>
                 </SplideSlide>
-            </Splide>
-            
+            </Splide>      
         </section>
-        
         <section className="text-center p-10 bg-black text-white">
             <h1 className="my-4 md:my-12 text-center font-semibold text-lg md:text-4xl">Ready to take your career to new heights?</h1>
             <p className="font-base md:font-medium my-4 md:w-1/2 mx-auto text-sm md:text-lg">Connect directly with industry-leading contractors and discover exciting job opportunities tailored to your skills and aspirations. Don’t wait, start building the future you’ve always dreamed of!</p>

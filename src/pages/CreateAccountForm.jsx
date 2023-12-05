@@ -15,6 +15,7 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { Toaster, toast } from 'sonner';
 const formVariant = {
     initial: {
         opacity: 0
@@ -44,9 +45,9 @@ const CreateAccountForm = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
+                setToken(loggedInUser)
                 window.localStorage.setItem("user", loggedInUser.email)
                 console.log(loggedInUser.password)
-                setToken(loggedInUser)
             }).catch(error => {
                 console.log('error', error.message);
             })
@@ -70,7 +71,7 @@ const CreateAccountForm = () => {
             password: data.password,
             email: data.email
         }
-        axios.post('http://localhost:8000/api/sighup', payload, {
+        axios.post('http://localhost:8000/api/signup', payload, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -108,6 +109,7 @@ const CreateAccountForm = () => {
                     console.log(token)
                     navigate('/dashboard')
                     setToken(token)
+                    window.localStorage.setItem("user", loggedInUser.email)
                 }).catch((err) => console.log(err.message))
             }
         })

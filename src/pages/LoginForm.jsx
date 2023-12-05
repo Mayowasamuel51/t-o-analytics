@@ -42,8 +42,8 @@ const LoginForm = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
+                window.localStorage.setItem("user", loggedInUser.email)
                 setToken(loggedInUser)
-                window.localStorage.setItem("user",loggedInUser.email)
             }).catch(error => {
                 console.log('error', error.message);
             })

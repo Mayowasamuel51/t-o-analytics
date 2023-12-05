@@ -106,7 +106,7 @@ const NavBar = () => {
                         </div>
                         {token && 
                         <div className='relative md:block hidden group'>
-                            <div className='w-8 aspect-square text-white flex justify-center items-center font-black  border-2 bg-BLUE rounded-full'>{useremail[0]}</div>
+                            <div className='w-7 aspect-square text-white flex justify-center items-center font-black bg-BLUE rounded-full'>{useremail[0].toUpperCase()}</div>
                             <div className='hidden group-hover:block absolute rounded-lg w-[250px] right-[-30px] top-8 bg-white shadow-lg'>
                                 <div className='p-3 flex items-center gap-3 border-b-2 border-textColor'>
                                 <div className='w-8 aspect-square text-white flex justify-center items-center font-black  border-2 bg-BLUE rounded-full'>{useremail[0]}</div>

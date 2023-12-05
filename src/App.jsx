@@ -124,7 +124,6 @@ const router = createBrowserRouter([
         path: "/dashboard/post",
         element: <Dashboard />
       },
-
     ]
   }
 ]);
@@ -133,7 +132,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <AnimatePresence>
-        <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </AnimatePresence>
   );
 }
