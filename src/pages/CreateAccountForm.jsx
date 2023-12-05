@@ -107,9 +107,9 @@ const CreateAccountForm = () => {
             if (loggedInUser) {
                 loggedInUser.getIdToken().then((token) => {
                     console.log(token)
-                    navigate('/dashboard')
-                    setToken(token)
                     window.localStorage.setItem("user", loggedInUser.email)
+                    setToken(token)
+                    navigate('/dashboard')
                 }).catch((err) => console.log(err.message))
             }
         })

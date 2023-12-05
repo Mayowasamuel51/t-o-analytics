@@ -67,7 +67,7 @@ const Mentorship = () => {
            
         </div>
         <div className="text-center">
-            {mentorship ? 
+            {mentorship ?
             <button onMouseLeave={()=>setMentorship(false)} onClick={()=> addToCart(111)} className="w-32 font-bold md:px-3 md:py-2 px-2 py-2 hover:text-BLUE hover:bg-white rounded-md border-[1px] text-white">Add To Cart</button>
             : 
             <button onMouseEnter={()=>setMentorship(true)}  className="w-32 font-bold md:px-3 md:py-2 px-2 py-2 hover:text-BLUE hover:bg-white rounded-md border-[1px] text-white">Register</button>}
