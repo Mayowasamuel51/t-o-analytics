@@ -190,7 +190,7 @@ export default [
             },
         ],
         
-        price: 1000
+        price: 500
     },
     {
         id: 4,
@@ -262,14 +262,15 @@ export default [
         image: photography,
         courseName: "Educational Consulting",
         intro: "Step by step guide to scholarships & more",
-        description: "Everything you need to know on how to secure scholarships & get into masters & Phd programs ",
+        description: "Everything you need to know on how to secure scholarships & get into masters & Phd programs   ",
         whatToLearn: [
             "Effective study techniques",
             "Time management",
             "Goal setting",
             "Career exploration",
             "College admissions & lots more",
+            "1 hour 30 minutes consultation"
         ],
-        price: 1000,
+        price: 250,
     },
 ]

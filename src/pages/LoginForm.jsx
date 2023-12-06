@@ -14,7 +14,7 @@ import * as yup from "yup"
 import { app } from "../../firebase.config";
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { useStateContext } from '../context/ContextProvider';
-
+const api = "https://to-backendapi-v1.vercel.app/"
 const formVariant = {
     initial: {
         opacity: 0
@@ -65,7 +65,7 @@ const LoginForm = () => {
             password: data.password,
             email: data.email
         }
-        axios.post('/api/login', payload, {
+        axios.post(`${api}api/login`, payload, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"

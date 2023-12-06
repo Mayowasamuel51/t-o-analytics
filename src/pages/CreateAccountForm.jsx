@@ -16,6 +16,7 @@ import axios from 'axios';
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { Toaster, toast } from 'sonner';
+const api = "https://to-backendapi-v1.vercel.app/"
 const formVariant = {
     initial: {
         opacity: 0
@@ -31,6 +32,7 @@ const formVariant = {
         opacity: 0,
     }
 }
+
 const CreateAccountForm = () => {
     const navigate = useNavigate()
     const { setToken, setUser } = useStateContext();
@@ -71,7 +73,7 @@ const CreateAccountForm = () => {
             password: data.password,
             email: data.email
         }
-        axios.post('http://localhost:8000/api/sighup', payload, {
+        axios.post(`${api}api/sighup`, payload, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",

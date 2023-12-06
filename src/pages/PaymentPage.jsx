@@ -1,111 +1,164 @@
 import { useState, useEffect } from "react";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-const api = 'http://localhost:8000'
+import React from "react";
+import { ReactDOM } from "react";
+import { PayPalScriptProvider, PayPalButtons,  } from "@paypal/react-paypal-js";
+import axios from "axios";
+const api = 'https://to-backendapi-v1.vercel.app/'  
 const PaymentPage = () => {
+  const studentName = window.localStorage.getItem('user')
   const [message, setMessage] = useState("");
+  const [totalcart, setTotalCart] = useState([])
   const [cartItem, setCartItem] = useState([]);
+  var totalcartitem = 110;
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("COURSE-CART")) || [];
     setCartItem(data);
     console.log(data)
   }, []);
+  useEffect(() => {
+  
+}, [])
+  const createOrder = (data, actions) => {
+    const totalPrice = cartItem.reduce((acc, item) => {
+      return acc + item.price;
+    }, 0);
+
+
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            // value:totalPrice
+            value:"0.1"
+          }
+        }
+      ]
+    
+    })
+  }
+  const orderdata = {
+    courseName: '',
+    studentName:studentName,
+    payment_mode: 'Paypal',
+    payment_id:'',
+  }
+  const onApprove = () => {
+    return actions.order.capture().then((details) => {
+      console.log(details)
+      orderdata.payment_id = details.id
+      axios.post(`${api}api/order`, orderdata).then((res) => {
+        if (res.status === 201) {
+          alert("payment is done")
+        }
+      }).catch((err)=>alert(err.message))
+    })
+  }
+
   const initialOptions = {
-    "client-id": "AXTaMJvDyHKb0JdWMYxjQRWK_-hQB6bjF7oM_r2TSACTTUPK9eRDrRiIb701IbMs_Sp4HERH1hQAXXT_",
+    "client-id":import.meta.env.VITE_clientId,
+      // "AXTaMJvDyHKb0JdWMYxjQRWK_-hQB6bjF7oM_r2TSACTTUPK9eRDrRiIb701IbMs_Sp4HERH1hQAXXT_",
     "enable-funding": "paylater,venmo,card",
     "disable-funding": "",
     "data-sdk-integration-source": "integrationbuilder_sc",
   };
-  const createOrder = async () => {
-    const pickItem = cartItem
-    try {
-      const response = await fetch(`${api}/api/orders`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        // use the "body" param to optionally pass additional order information
-        // like product ids and quantities
-        
-        // grab the courseName , have a 
-        body: JSON.stringify({
-          cart: [
-            {
-              id:cartItem[0].id,
-              quantity:1,
-            },
-          ],
-        }),
-      });
+  // const createOrder = async () => {
+  //   const pickItem = cartItem
+  //   try {
+  //     const response = await fetch(`${api}/api/create-order`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       // use the "body" param to optionally pass additional order information
+  //       // like product ids and quantities
 
-      const orderData = await response.json();
+  //       // grab the courseName , have a 
+  //       body: JSON.stringify({
+  //         cart: [
+  //           {
+  //             id:1,
+  //             quantity:1,
+  //           },
+  //           {
+  //             id: 2,
+  //             quantity:2
+  //           }
+  //         ],
+  //       }),
+  //     });
 
-      if (orderData.id) {
-        return orderData.id;
-      } else {
-        const errorDetail = orderData?.details?.[0];
-        const errorMessage = errorDetail
-          ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
-          : JSON.stringify(orderData);
+  //     const orderData = await response.json();
 
-        throw new Error(errorMessage);
-      }
-    } catch (error) {
-      console.error(error.message);
-      setMessage(`Could not initiate PayPal Checkout...${error}`);
-    }
-  }
+  //     if (orderData.id) {
+  //       return orderData.id;
+  //     } else {
+  //       const errorDetail = orderData?.details?.[0];
+  //       const errorMessage = errorDetail
+  //         ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
+  //         : JSON.stringify(orderData);
+
+  //       throw new Error(errorMessage);
+  //     }
+  //   } catch (error) {
+  //     console.error(error.message);
+  //     setMessage(`Could not initiate PayPal Checkout...${error}`);
+  //   }
+  // }
 
 
-  const onApprove = async (data, actions) => {
-    try {
-      const response = await fetch(
-        `${api}/api/orders/${data.orderID}/capture`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      );
+  // const onApprove = async (data, actions) => {
 
-      const orderData = await response.json();
-      // Three cases to handle:
-      //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-      //   (2) Other non-recoverable errors -> Show a failure message
-      //   (3) Successful transaction -> Show confirmation or thank you message
+  //   // try {
+  //   //   const response = await fetch(
+  //   //     `${api}/api/orders/${data.orderID}/capture`,
+  //   //     {
+  //   //       method: "POST",
+  //   //       headers: {
+  //   //         "Content-Type": "application/json",
+  //   //       },
+  //   //     },
+  //   //   );
 
-      const errorDetail = orderData?.details?.[0];
+  //   //   const orderData = await response.json();
+  //   //   // Three cases to handle:
+  //   //   //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+  //   //   //   (2) Other non-recoverable errors -> Show a failure message
+  //   //   //   (3) Successful transaction -> Show confirmation or thank you message
 
-      if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
-        // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-        // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
-        return actions.restart();
-      } else if (errorDetail) {
-        // (2) Other non-recoverable errors -> Show a failure message
-        throw new Error(
-          `${errorDetail.description} (${orderData.debug_id})`,
-        );
-      } else {
-        // (3) Successful transaction -> Show confirmation or thank you message
-        // Or go to another URL:  actions.redirect('thank_you.html');
-        const transaction =
-          orderData.purchase_units[0].payments.captures[0];
-        setMessage(
-          `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`,
-        );
-        console.log(
-          "Capture result",
-          orderData,
-          JSON.stringify(orderData, null, 2),
-        );
-      }
-    } catch (error) {
-      console.error(error);
-      setMessage(
-        `Sorry, your transaction could not be processed...${error}`,
-      );
-    }
-  }
+  //   //   const errorDetail = orderData?.details?.[0];
+
+  //   //   if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
+  //   //     // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+  //   //     // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
+  //   //     return actions.restart();
+  //   //   } else if (errorDetail) {
+  //   //     // (2) Other non-recoverable errors -> Show a failure message
+  //   //     throw new Error(
+  //   //       `${errorDetail.description} (${orderData.debug_id})`,
+  //   //     );
+  //   //   } else {
+  //   //     // (3) Successful transaction -> Show confirmation or thank you message
+  //   //     // Or go to another URL:  actions.redirect('thank_you.html');
+  //   //     const transaction =
+  //   //       orderData.purchase_units[0].payments.captures[0];
+  //   //     setMessage(
+  //   //       `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`,
+  //   //     );
+  //   //     console.log(
+  //   //       "Capture result",
+  //   //       orderData,
+  //   //       JSON.stringify(orderData, null, 2),
+  //   //     );
+  //   //   }
+  //   // } catch (error) {
+  //   //   console.error(error);
+  //   //   setMessage(
+  //   //     `Sorry, your transaction could not be processed...${error}`,
+  //   //   );
+  //   // }
+  // }
+
+  
 
 
   return (
@@ -123,7 +176,7 @@ const PaymentPage = () => {
               shape: "rect",
               layout: "vertical",
             }}
-            createOrder={(data) => createOrder()}
+            createOrder={(data,actions) => createOrder(data,actions)}
             onApprove={(data) => onApprove(data, actions)}
 
           />
