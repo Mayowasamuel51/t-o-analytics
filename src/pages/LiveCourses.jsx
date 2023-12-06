@@ -49,7 +49,7 @@ const LiveCourses = () => {
                 <p className="line-clamp-2 text-sm md:text-base text-textColor md:max-w-[70%]">
                 Everything you need to know on how to secure scholarships & get into masters & Phd programs 
                 </p>
-                <p className="font-bold my-5 text-lg md:text-xl">$1000</p>
+                <p className="font-bold my-5 text-lg md:text-xl">$250</p>
               </div>
             </div>
         </Link>
