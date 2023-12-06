@@ -3,7 +3,7 @@ import React from "react";
 import { ReactDOM } from "react";
 import { PayPalScriptProvider, PayPalButtons,  } from "@paypal/react-paypal-js";
 import axios from "axios";
-const api = 'http://localhost:8000'  
+const api = 'https://to-backendapi-v1.vercel.app/'  
 const PaymentPage = () => {
   const studentName = window.localStorage.getItem('user')
   const [message, setMessage] = useState("");
@@ -45,7 +45,7 @@ const PaymentPage = () => {
     return actions.order.capture().then((details) => {
       console.log(details)
       orderdata.payment_id = details.id
-      axios.post(`${api}/api/order`, orderdata).then((res) => {
+      axios.post(`${api}api/order`, orderdata).then((res) => {
         if (res.status === 201) {
           alert("payment is done")
         }
