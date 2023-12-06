@@ -190,7 +190,7 @@ export default [
             },
         ],
         
-        price: 1000
+        price: 500
     },
     {
         id: 4,
