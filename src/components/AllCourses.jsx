@@ -9,10 +9,10 @@ const AllCourses = () => {
   return (
     <div>
       <section className="bg-white px-2 md:px-10 py-10">
-        <h1 className="text-center font-bold text-2xl md:text-4xl py-20">
-          {!token && "Our Courses"}
-        </h1>
-        <div className="courses grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 justify-center gap-y-4 gap-x-2">
+       {!token && <h1 className="text-center font-bold text-2xl md:text-4xl py-20">
+          Our Courses
+        </h1>}
+        <div className={`courses grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 justify-center gap-y-4 gap-x-2 ${token && "pt-20"}`}>
           {COURSES.map((course, index)=> (
             <Link key={index} to={course.courseName.toLowerCase()} className="">
             <div

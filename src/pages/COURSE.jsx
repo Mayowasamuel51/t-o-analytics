@@ -3,8 +3,8 @@ import { Toaster, toast } from 'sonner';
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaXmark } from "react-icons/fa6";
-import COURSES from "../coursesAPI/api"
-import { useStateContext } from "../context/ContextProvider"
+import COURSES from "../coursesAPI/api";
+import { useStateContext } from "../context/ContextProvider";
 
 const COURSE = () => {
   const { token } = useStateContext();
@@ -71,7 +71,7 @@ const COURSE = () => {
   return (
     <div className="">
       <section className="pt-10">
-        <h1 className="font-bold text-center text-2xl md:text-3xl lg:text-4xl py-10 md:py-20">
+        <h1 className="font-black text-center text-2xl md:text-3xl lg:text-4xl py-10 md:py-20">
           {singleCourse.courseName.toUpperCase()}
         </h1>
         <div className="px-2 md:px-10 py-10 md:py-16 grid grid-cols-1 gap-16 md:gap-0 md:grid-cols-2 bg-[#2d2065] text-white">
@@ -83,7 +83,7 @@ const COURSE = () => {
                       <h1 className="text-center font-black text-md md:text-2xl lg:text-3xl">
                         {singleCourse.courseName}
                       </h1>
-                      <p className="font-semibold text-sm lg:text-lg my-2">
+                      <p className="font-semibold text-sm lg:text-lg my-2 md:my-4">
                         {singleCourse.intro}
                       </p>
                       <div className="modal-learn learn">

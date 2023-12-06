@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 
 const Footer = ({black}) => {
   return (
@@ -25,5 +25,9 @@ const Footer = ({black}) => {
     </footer>
   )
 }
+
+Footer.propTypes = {
+    black: PropTypes.string,
+};
 
 export default Footer;

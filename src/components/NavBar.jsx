@@ -14,7 +14,7 @@ import { app } from "../../firebase.config";
 const NavBar = () => {
     const [fixed, setFixed] = useState("")
     const [show, setShow] = useState("")
-    const [cartItemNo, setCartItemNo] = useState([])
+    const [cartItem] = useState([])
     const { token, setToken } = useStateContext();
     const [useremail, setUserEmail] = useState("")
     const auth = getAuth(app);
@@ -26,6 +26,9 @@ const NavBar = () => {
         }).catch((err) => console.log(err.message))
     }
     useEffect(()=> {
+        
+    }, [])
+    useEffect(()=> {
         const handleScroll = () => {
             const scrollY = window.scrollY;
             scrollY > 20 ? setFixed("fixed") : setFixed("");
@@ -35,11 +38,6 @@ const NavBar = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, [])
-    useEffect(()=> {
-        const data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
-        setCartItemNo(data)
-    }, [])
-
     useEffect(() => {
         const localuser = window.localStorage.getItem("user")
        setUserEmail(localuser) 
@@ -62,7 +60,7 @@ const NavBar = () => {
                 {token ? 
                 <nav className={`navlinks ${show} auth-nav md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                     <ul className="md:flex items-center gap-3 md:gap-6 font-normal text-sm">
-                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/myCourses">My Courses</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard">My Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/mentorship">Mentorship</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/links">Links</NavLink></motion.li>
@@ -73,13 +71,13 @@ const NavBar = () => {
                 </nav>
                 :
                 <nav className={`navlinks ${fixed} ${show} md:relative md:left-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
-                    <ul className="md:flex items-center gap-6 font-normal">
+                    <ul className="md:flex items-center gap-6 font-semibold">
                         <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/blog">Blog</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/contact">Contact</NavLink></motion.li>
                         <Link to="/createAccount" className='md:hidden block'>
-                            <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-4 md:py-3 rounded-md md:rounded-xl font-semibold">
+                            <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-4 md:py-3 rounded-md md:rounded-3xl font-semibold">
                                 Create Account
                             </button>
                         </Link>
@@ -88,7 +86,7 @@ const NavBar = () => {
                 <div className="flex items-center gap-3">
                     {!token &&
                     <Link to="/createAccount" className='md:block hidden'>
-                        <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-4 md:py-3 rounded-md md:rounded-xl font-semibold">
+                        <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-4 md:py-3 rounded-md md:rounded-3xl font-semibold">
                             Create Account
                         </button>
                     </Link>}
@@ -96,9 +94,9 @@ const NavBar = () => {
                         <Link to="/checkout">
                             <div className='relative cursor-pointer group'>
                                 <MdOutlineAddShoppingCart size={30} />
-                                <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10" >{cartItemNo.length}</p>
+                                <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10" >{cartItem.length}</p>
                                 <div className="top-[-6px] group-hover:animate-ping duration-200 ease-in-out right-[-6px] absolute w-5 aspect-square rounded-full bg-BLUE z-[1]" ></div>
-                                {cartItemNo.length > 0 && <div className="top-[-6px] right-[-6px] animate-ping duration-200 ease-in-out absolute w-5 aspect-square rounded-full bg-BLUE z-[1]" ></div>}
+                                {cartItem.length > 0 && <div className="top-[-6px] right-[-6px] animate-ping duration-200 ease-in-out absolute w-5 aspect-square rounded-full bg-BLUE z-[1]" ></div>}
                             </div>
                         </Link>
                         <div className="flex-1 block md:hidden hamburger">
@@ -107,15 +105,15 @@ const NavBar = () => {
                         {token && 
                         <div className='relative md:block hidden group'>
                             <div className='w-7 aspect-square text-white flex justify-center items-center font-black bg-BLUE rounded-full'>{useremail[0]}</div>
-                            <div className='hidden group-hover:block absolute rounded-lg w-[250px] right-[-30px] top-8 bg-white shadow-lg'>
+                            <div className='invisible opacity-0 group-hover:visible group-hover:opacity-100 duration-300 absolute rounded-lg w-[250px] right-[-30px] top-8 bg-white shadow-lg'>
                                 <div className='p-3 flex items-center gap-3 border-b-2 border-textColor'>
-                                <div className='w-8 aspect-square text-white flex justify-center items-center font-black  border-2 bg-BLUE rounded-full'>{useremail[0]}</div>
+                                    <div className='group-hover:animate-bounce w-8 aspect-square text-white flex justify-center items-center font-black  border-2 bg-BLUE rounded-full'>{useremail[0]}</div>
                                     <div>
                                         <p className='font-semibold text-xs'>{useremail}</p>
                                     </div>
                                 </div>
-                                <ul className='p-3 leading-[30px]'>
-                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/myCourses">My Courses</NavLink></motion.li>
+                                <ul className='font-semibold p-3 leading-[30px]'>
+                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard">My Courses</NavLink></motion.li>
                                     <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
                                     <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/mentorship">Mentorship</NavLink></motion.li>
                                     <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/links">Links</NavLink></motion.li>

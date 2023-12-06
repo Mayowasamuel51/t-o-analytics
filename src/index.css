@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -81,31 +80,25 @@ nav.active {
 }
 
 div.perks>ul {
-  line-height: 40px;
-}
-
-div.perks>ul li {
-  font-family: 'Poppins', sans-serif;
+  line-height: 50px;
 }
 
 div.learn ul,
-div.benefit ul {
-  line-height: 40px;
-}
-
+div.benefit ul,
 div.modal-learn ul {
   line-height: 40px;
-  padding-block: 10px;
 }
 
 div.learn ul li,
-div.benefit ul li {
+div.benefit ul li,
+div.modal-learn ul li  {
   position: relative;
-  padding-left: 25px;
+  padding-left: 26px;
 }
 
 div.learn ul li::before,
-div.benefit ul li::before {
+div.benefit ul li::before,
+div.modal-learn ul li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -118,7 +111,11 @@ div.benefit ul li::before {
 }
 
 div.modal-learn ul li::before  {
-  width: 10px;
+  width: 12px;
+}
+
+div.modal-learn ul li {
+  padding-left: 16px;
 }
 
 section.mentorship {
@@ -248,7 +245,6 @@ section.payment-page {
   }
   div.courses > a:nth-last-child(2),
   div.courses > a:last-child {
-    /* border: 2px solid red; */
     column-span: 2;
   }
   div.course-hover:hover>h1>div,

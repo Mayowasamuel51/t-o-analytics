@@ -98,7 +98,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardCourses />
+        element: <MyCourses />
       },
       {
         path: "checkout",

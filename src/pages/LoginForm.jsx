@@ -141,8 +141,6 @@ const LoginForm = () => {
                 </form>
                 <div className='login-options flex flex-col gap-3 font-medium'>
                     <button onClick={loginwihGoogle} className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
-                    {/* <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:text-white duration-300'><img src={FACEBOOK} alt="" className='w-5' />Continue with Facebook</button>
-                    <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:text-white duration-300'><FaApple size={20} />Continue with Apple ID</button> */}
                 </div>
                 <p className="text-sm md:text-base mt-4 font-semibold ">Don't have an account? <Link className="underline underline-offset-2 text-BLUE" to="/createAccount">Create Account</Link></p>
             </motion.div>

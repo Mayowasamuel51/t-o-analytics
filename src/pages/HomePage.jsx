@@ -18,14 +18,14 @@ const HomePage = () => {
         <section className="landing-page px-2 md:px-10 py-60 md:py-32 bg-white min-h-screen">
             <div className="grid md:grid-cols-2 items-center gap-10">
                 <div>
-                    <h1 className="my-4 md:my-8 font-bold text-3xl md:text-5xl">Tech Education for Tomorrow’s Innovators</h1>
+                    <h1 className="my-4 md:my-9 font-bold text-3xl md:text-5xl">Tech Education for Tomorrow’s Innovators</h1>
                     <p className="font-bold text-sm md:text-xl my-4">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</p>
                     <div className="flex gap-2 md:gap-3">
                         <Link to="/mentorship">
-                            <button className="text-sm md:text-xl font-medium border-2 border-BLUE text-BLUE hover:text-white hover:bg-BLUE px-2 py-3 md:px-4 md:py-3 rounded-lg md:rounded-xl duration-300">Book Mentorship</button>
+                            <button className="text-sm md:text-xl font-medium border-2 border-BLUE text-BLUE hover:text-white hover:bg-BLUE px-2 py-3 md:px-4 md:py-3 rounded-xl md:rounded-3xl duration-300">Book Mentorship</button>
                         </Link>
                         <Link to="/liveCourses">
-                            <button className="text-sm md:text-xl font-medium border-2 border-BLUE bg-BLUE text-white hover:bg-white hover:text-BLUE px-2 py-3 md:px-4 md:py-3 rounded-lg md:rounded-xl duration-300">Live Courses</button>
+                            <button className="text-sm md:text-xl font-medium border-2 border-BLUE bg-BLUE text-white hover:bg-white hover:text-BLUE px-2 py-3 md:px-4 md:py-3 rounded-xl md:rounded-3xl duration-300">Live Courses</button>
                         </Link>
                     </div>
                 </div>
@@ -40,13 +40,13 @@ const HomePage = () => {
         </section>
 
         <section className="bg-white">
-            <h1 className="text-center font-bold text-2xl md:text-4xl">Why Trust T.O Analytics?</h1>
+            <h1 className="text-center font-black text-2xl md:text-4xl">Why Trust T.O Analytics?</h1>
             <div className="md:p-10 p-2 overflow-x-hidden">
                 <div className="md:pb-20 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
-                        <p className="font-semibold text-BLUE my-2">Learn from industry’s best</p>
+                        <p className="font-bold text-BLUE my-2">Learn from industry’s best</p>
                         <h1 className="font-bold text-xl md:text-2xl my-2">Experienced Instructors</h1>
-                        <p className="font-light text-sm md:text-lg">Our instructors are seasoned professionals who have worked in the tech industry for many years. They bring their expertise and real-world knowledge into the classNameroom to provide practical insights and guidance.</p>
+                        <p className="font-medium text-sm md:text-base">Our instructors are seasoned professionals who have worked in the tech industry for many years. They bring their expertise and real-world knowledge into the classNameroom to provide practical insights and guidance.</p>
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className="bounce md:block hidden">
                         <img src={eInstructor} alt="" className='w-full'/>
@@ -57,16 +57,16 @@ const HomePage = () => {
                         <img src={hLearning} alt="" className='w-full' />
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left">
-                        <p className="font-semibold text-BLUE my-2">Fine blend of theory and practice</p>
+                        <p className="font-bold text-BLUE my-2">Fine blend of theory and practice</p>
                         <h1 className="font-bold text-xl md:text-2xl my-2">Hands-on learning</h1>
-                        <p className="font-light text-sm md:text-lg"> At our boot camp, we believe in learning by doing. Our curriculum is designed to be hands-on, with a focus on projects and practical exercises that simulate real-world scenarios. This approach helps students gain valuable experience and build a strong foundation in tech skills.</p>
+                        <p className="font-medium text-sm md:text-base"> At our boot camp, we believe in learning by doing. Our curriculum is designed to be hands-on, with a focus on projects and practical exercises that simulate real-world scenarios. This approach helps students gain valuable experience and build a strong foundation in tech skills.</p>
                     </div>
                 </div>
                 <div className="py-10 md:py-20 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
-                        <p className="font-semibold text-BLUE my-2">We put you first</p>
+                        <p className="font-bold text-BLUE my-2">We put you first</p>
                         <h1 className="font-bold text-xl md:text-2xl my-2">Flexible learning Options</h1>
-                        <p className="font-light text-sm md:text-lg">We understand that everyone has different schedules and commitments. That&apos;s why we offer flexible learning options, including part-time and full-time programs, as well as online learning options. This allows students to choose a schedule that works best for them while still receiving high-quality education.</p>
+                        <p className="font-medium text-sm md:text-base">We understand that everyone has different schedules and commitments. That&apos;s why we offer flexible learning options, including part-time and full-time programs, as well as online learning options. This allows students to choose a schedule that works best for them while still receiving high-quality education.</p>
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className="md:block hidden">
                         <img src={flexibleLearning} alt="" />
@@ -77,9 +77,9 @@ const HomePage = () => {
                         <img src={guidance} alt="" />
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left">
-                        <p className="font-semibold text-BLUE my-2">From clueless to pro</p>
+                        <p className="font-bold text-BLUE my-2">From clueless to pro</p>
                         <h1 className="font-bold text-xl md:text-2xl my-2">Career guidance</h1>
-                        <p className="font-light text-sm md:text-lg">We provide comprehensive career guidance and support to help students transition into the tech industry. This includes resume building, interview preparation, job search strategies, and networking opportunities. Our goal is to equip students with the necessary skills and resources to succeed in their tech careers.</p>
+                        <p className="font-medium text-sm md:text-base">We provide comprehensive career guidance and support to help students transition into the tech industry. This includes resume building, interview preparation, job search strategies, and networking opportunities. Our goal is to equip students with the necessary skills and resources to succeed in their tech careers.</p>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@ const HomePage = () => {
             </div>
             <div className="py-10 text-center">
                 <Link to="/courses" className="">
-                    <button className="text-md md:text-xl font-normal bg-BLUE hover:bg-transparent hover:text-BLUE duration-300 hover:outline-2 outline hover:outline-BLUE text-white rounded-xl px-3 py-2 md:px-4 md:py-3">View All Courses</button>
+                    <button className="text-md md:text-lg font-normal bg-BLUE hover:bg-transparent hover:text-BLUE duration-300 hover:outline-2 outline hover:outline-BLUE text-white rounded-2xl px-3 py-2 md:px-7 md:py-3">View All Courses</button>
                 </Link>
             </div>
             <div className='mobile-landingDIV md:hidden block absolute bottom-0 left-0 bg-BLUE landingDIV'></div>
@@ -133,16 +133,16 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="about-me border-PURPLE text-sm md:text-base font-extralight md:font-normal px-4 md:px-6 py-4 md:py-8">
-                    <p className="my-2 md:my-4">I am a passion driven Nigerian-American business magnate, big data developer, and financial investor based in the United States. I have over 7 years of experience trading and investing in the stock market through stocks and options and has several years training, teaching, and mentoring.</p>
-                    <p className="my-2 md:my-4">I received my Master of Science in Applied Economics from the University of Maryland, College Park. Worked as a Financial Analyst and Asset Manager for several years in the transportation industry and now work as a big data developer in the Cybersecurity field.</p>
-                    <p className="my-2 md:my-4">I am the founder of ACE Stocks Trading, a stock trading community that teaches and mentors people on how to trade and invest in the stock market, I am also the founder and CEO of TO Productions LLC, a multimedia production company, Co-founder of Dive Data LLC, a company that trains people how to use SPLUNK data monitoring tool from user to an Admin level, LINUX and AWS. </p>
-                    <p className="my-2 md:my-4">My stock trading community has made millions in the stock market using my simple strategy and I strongly believes that with the help of God, any dream can come alive if you are willing to put in the work.</p>
+                <div className="about-me border-PURPLE text-sm md:text-sm font-extralight md:font-normal px-4 md:px-6 py-4 md:py-8">
+                    <p className="my-2 md:my-6">I am a passion driven Nigerian-American business magnate, big data developer, and financial investor based in the United States. I have over 7 years of experience trading and investing in the stock market through stocks and options and has several years training, teaching, and mentoring.</p>
+                    <p className="my-2 md:my-6">I received my Master of Science in Applied Economics from the University of Maryland, College Park. Worked as a Financial Analyst and Asset Manager for several years in the transportation industry and now work as a big data developer in the Cybersecurity field.</p>
+                    <p className="my-2 md:my-6">I am the founder of ACE Stocks Trading, a stock trading community that teaches and mentors people on how to trade and invest in the stock market, I am also the founder and CEO of TO Productions LLC, a multimedia production company, Co-founder of Dive Data LLC, a company that trains people how to use SPLUNK data monitoring tool from user to an Admin level, LINUX and AWS. </p>
+                    <p className="my-2 md:my-6">My stock trading community has made millions in the stock market using my simple strategy and I strongly believes that with the help of God, any dream can come alive if you are willing to put in the work.</p>
                 </div>
             </div>
         </section>
         <section className="bg-white p-2 py-20 md:py-12">
-            <h1 className="my-2 md:my-8 text-center font-semibold text-lg md:text-4xl">Here’s what our students are saying</h1>
+            <h1 className="my-2 md:my-8 text-center font-black text-lg md:text-4xl">Here’s what our students are saying</h1>
             <Splide className='splide pb-10' aria-label="Testimonials" options={{
                 type : 'loop',
                 perPage: 1,
@@ -155,7 +155,7 @@ const HomePage = () => {
             }}>
                 <SplideSlide>
                     <div className="md:w-1/2 mx-auto">
-                        <p className="font-normal my-2 text-xs md:text-lg text-center">Choosing this boot camp was a game-changer for me. The specialized cybersecurity curriculum, including in-depth training on Linux, gave me the skills and knowledge to excel in the field. The experienced instructors and practical projects made learning enjoyable</p>
+                        <p className="font-semibold my-2 text-xs md:text-base text-center">Choosing this boot camp was a game-changer for me. The specialized cybersecurity curriculum, including in-depth training on Linux, gave me the skills and knowledge to excel in the field. The experienced instructors and practical projects made learning enjoyable</p>
                         <div className="flex items-center justify-center gap-1 md:gap-3">
                             <img src={student1} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt=""/>
                             <p className="font-bold text-sm md:text-2xl">Mayowa Odukoya</p>   
@@ -164,7 +164,7 @@ const HomePage = () => {
                 </SplideSlide>
                 <SplideSlide>
                     <div className="md:w-1/2 mx-auto">
-                        <p className="font-normal my-2 text-xs md:text-lg text-center">I can&apos;t say enough good things about this boot camp! The cybersecurity track, with a focus on Linux, was exactly what I needed to kickstart my career. The hands-on labs and real-world simulations prepared me for the challenges of the industry</p>
+                        <p className="font-semibold my-2 text-xs md:text-base text-center">I can&apos;t say enough good things about this boot camp! The cybersecurity track, with a focus on Linux, was exactly what I needed to kickstart my career. The hands-on labs and real-world simulations prepared me for the challenges of the industry</p>
                         <div className="flex items-center justify-center gap-1 md:gap-3">
                             <img src={student2} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt=""/>
                             <p className="font-bold text-sm md:text-2xl">Aishat Oyeleke</p>   
@@ -173,7 +173,7 @@ const HomePage = () => {
                 </SplideSlide>
                 <SplideSlide>
                     <div className="md:w-1/2 mx-auto">
-                        <p className="font-normal my-2 text-xs md:text-lg text-center">I&apos;m so grateful for the opportunity to be a part of this boot camp. All thanks to the financial literacy classes, I can now make purposeful final decisions and know all the right channels to invest my money and assets.</p>
+                        <p className="font-semibold my-2 text-xs md:text-base text-center">I&apos;m so grateful for the opportunity to be a part of this boot camp. All thanks to the financial literacy classes, I can now make purposeful final decisions and know all the right channels to invest my money and assets.</p>
                         <div className="flex items-center justify-center gap-1 md:gap-3">
                             <img src={student3} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt=""/>
                             <p className="font-bold text-sm md:text-2xl">Timilehin Babade</p>   
@@ -183,11 +183,11 @@ const HomePage = () => {
             </Splide>      
         </section>
         <section className="text-center p-10 bg-black text-white">
-            <h1 className="my-4 md:my-12 text-center font-semibold text-lg md:text-4xl">Ready to take your career to new heights?</h1>
+            <h1 className="my-4 md:my-12 text-center font-black text-lg md:text-4xl">Ready to take your career to new heights?</h1>
             <p className="font-base md:font-medium my-4 md:w-1/2 mx-auto text-sm md:text-lg">Connect directly with industry-leading contractors and discover exciting job opportunities tailored to your skills and aspirations. Don’t wait, start building the future you’ve always dreamed of!</p>
             <div className="text-center">
                 <Link to="/contractors" className="">
-                    <button className="hover:bg-white hover:border-white hover:text-black duration-300 border-BLUE border-2 w-fit mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 mt-8 rounded-xl">Connect with Contractor</button>
+                    <button className="hover:bg-white hover:border-white hover:text-black duration-300 border-BLUE border-2 w-fit mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-6 md:py-3 mt-8 rounded-2xl">Connect with Contractor</button>
                 </Link>
             </div>
         </section>
