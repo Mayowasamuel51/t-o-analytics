@@ -34,6 +34,7 @@ const CheckOut = () => {
       const updatedCart = cartItem.filter((item) => item.id !== id);
       setCartItem(updatedCart);
       localStorage.setItem("COURSE-CART", JSON.stringify(updatedCart));
+      window.location.reload()
     };
     
     
