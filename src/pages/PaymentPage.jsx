@@ -28,7 +28,8 @@ const PaymentPage = () => {
       purchase_units: [
         {
           amount: {
-            value:totalPrice
+            // value:totalPrice
+            value:"0.1"
           }
         }
       ]
