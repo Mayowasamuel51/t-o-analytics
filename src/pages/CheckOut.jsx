@@ -26,16 +26,18 @@ const CheckOut = () => {
       navigate("/dashboard/makePayment")
     }
   }
-  useEffect(()=> {
-    const data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
-    setCartItem(data)
-  }, [])
-  const removeCourse = (id) => {
-    const updatedCart = cartItem.filter((item) => item.id !== id);
-    setCartItem(updatedCart);
-    localStorage.setItem("COURSE-CART", JSON.stringify(updatedCart));
-  };
-  
+    useEffect(()=> {
+      const data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
+      setCartItem(data)
+    }, [])
+    const removeCourse = (id) => {
+      const updatedCart = cartItem.filter((item) => item.id !== id);
+      setCartItem(updatedCart);
+      localStorage.setItem("COURSE-CART", JSON.stringify(updatedCart));
+      window.location.reload()
+    };
+    
+    
   return (
     <div className="min-h-screen md:px-10 px-2 pt-32 pb-20">
       <h1 className="text-xl md:text-4xl font-black my-4">SHOPPING CART</h1>
