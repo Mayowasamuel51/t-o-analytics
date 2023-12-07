@@ -46,11 +46,7 @@ const HomePage = () => {
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
                         <p className="font-bold text-BLUE my-2">Learn from industry’s best</p>
                         <h1 className="font-bold text-xl md:text-2xl my-2">Experienced Instructors</h1>
-<<<<<<< HEAD
-                        <p className="font-medium text-sm md:text-base">Our instructors are seasoned professionals who have worked in the tech industry for many years. They bring their expertise and real-world knowledge into the classNameroom to provide practical insights and guidance.</p>
-=======
                         <p className="font-light text-sm md:text-lg">Our instructors are seasoned professionals with extensive experience in diverse areas of the tech industry. They leverage their deep expertise and real-world project insights to deliver practical, actionable guidance in the classroom.</p>
->>>>>>> e698f7a260e274fd613238e9f7c844fc88b87706
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className="bounce md:block hidden">
                         <img src={eInstructor} alt="" className='w-full'/>
@@ -63,11 +59,8 @@ const HomePage = () => {
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left">
                         <p className="font-bold text-BLUE my-2">Fine blend of theory and practice</p>
                         <h1 className="font-bold text-xl md:text-2xl my-2">Hands-on learning</h1>
-<<<<<<< HEAD
-                        <p className="font-medium text-sm md:text-base"> At our boot camp, we believe in learning by doing. Our curriculum is designed to be hands-on, with a focus on projects and practical exercises that simulate real-world scenarios. This approach helps students gain valuable experience and build a strong foundation in tech skills.</p>
-=======
+
                         <p className="font-light text-sm md:text-lg"> Our bootcamp, built around hands-on learning, immerses students in real-world scenarios through projects and practical exercises. This approach helps them gain invaluable experience, develop essential tech skills like problem-solving, collaboration, and critical thinking, and master coding languages like Python by building real-world web applications. Join our bootcamp today and start your journey towards a rewarding tech career.</p>
->>>>>>> e698f7a260e274fd613238e9f7c844fc88b87706
                     </div>
                 </div>
                 <div className="py-10 md:py-20 grid grid-cols-1 md:grid-cols-2 items-center gap-20">

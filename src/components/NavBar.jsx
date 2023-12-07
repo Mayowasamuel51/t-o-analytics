@@ -14,7 +14,7 @@ import { app } from "../../firebase.config";
 const NavBar = () => {
     const [fixed, setFixed] = useState("")
     const [show, setShow] = useState("")
-    const [cartItem] = useState([])
+    const [cartItem, setCartItem] = useState([])
     const { token, setToken } = useStateContext();
     const [useremail, setUserEmail] = useState("")
     const auth = getAuth(app);
@@ -26,7 +26,8 @@ const NavBar = () => {
         }).catch((err) => console.log(err.message))
     }
     useEffect(()=> {
-        
+        const data = JSON.parse(localStorage.getItem("COURSE-CART"))
+        setCartItem(data)
     }, [])
     useEffect(()=> {
         const handleScroll = () => {
