@@ -104,9 +104,9 @@ const NavBar = () => {
                             {show === "show" ? <FaXmark size={20} onClick={()=> setShow("")} /> : <FaBarsStaggered size={20} onClick={navBar} />}
                         </div>
                         {token && 
-                        <div className='relative md:block hidden group'>
-                            <div className='w-7 aspect-square text-white flex justify-center items-center font-black bg-BLUE rounded-full'>{useremail[0]}</div>
-                            <div className='invisible opacity-0 group-hover:visible group-hover:opacity-100 duration-300 absolute rounded-lg w-[250px] right-[-30px] top-8 bg-white shadow-lg'>
+                        <div className=' flex-1 md:block hidden group'>
+                            <div className='w-8 md:text-2xl aspect-square text-white flex justify-center items-center font-black bg-BLUE rounded-full'>{useremail[0]}</div>
+                            <div className='invisible opacity-0 group-hover:visible group-hover:opacity-100 duration-300 absolute rounded-lg w-[250px] right-[20px] top-16 bg-white shadow-lg'>
                                 <div className='p-3 flex items-center gap-3 border-b-2 border-textColor'>
                                     <div className='group-hover:animate-bounce w-8 aspect-square text-white flex justify-center items-center font-black  border-2 bg-BLUE rounded-full'>{useremail[0]}</div>
                                     <div>

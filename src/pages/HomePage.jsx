@@ -42,40 +42,39 @@ const HomePage = () => {
         <section className="bg-white">
             <h1 className="text-center font-black text-2xl md:text-4xl">Why Trust T.O Analytics?</h1>
             <div className="md:p-10 p-2 overflow-x-hidden">
-                <div className="md:pb-20 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+                <div className="md:pb-2 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
                         <p className="font-bold text-BLUE my-2">Learn from industry’s best</p>
                         <h1 className="font-bold text-xl md:text-2xl my-2">Experienced Instructors</h1>
-                        <p className="font-light text-sm md:text-lg">Our instructors are seasoned professionals with extensive experience in diverse areas of the tech industry. They leverage their deep expertise and real-world project insights to deliver practical, actionable guidance in the classroom.</p>
+                        <p className="font-medium text-sm md:text-base">Our instructors are seasoned professionals with extensive experience in diverse areas of the tech industry. They leverage their deep expertise and real-world project insights to deliver practical, actionable guidance in the classroom.</p>
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className="bounce md:block hidden">
-                        <img src={eInstructor} alt="" className='w-full'/>
+                        <img src={eInstructor} alt="" className='w-fit'/>
                     </div>
                 </div>
-                <div className="py-10 md:py-20 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+                <div className="py-10 md:py-2 grid grid-cols-1 md:grid-cols-2 items-center justify-between gap-20">
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right" className="md:block hidden">
-                        <img src={hLearning} alt="" className='w-full' />
+                        <img src={hLearning} alt="" className='w-fit' />
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left">
                         <p className="font-bold text-BLUE my-2">Fine blend of theory and practice</p>
                         <h1 className="font-bold text-xl md:text-2xl my-2">Hands-on learning</h1>
-
-                        <p className="font-light text-sm md:text-lg"> Our bootcamp, built around hands-on learning, immerses students in real-world scenarios through projects and practical exercises. This approach helps them gain invaluable experience, develop essential tech skills like problem-solving, collaboration, and critical thinking, and master coding languages like Python by building real-world web applications. Join our bootcamp today and start your journey towards a rewarding tech career.</p>
+                        <p className="font-medium text-sm md:text-base"> Our bootcamp, built around hands-on learning, immerses students in real-world scenarios through projects and practical exercises. This approach helps them gain invaluable experience, develop essential tech skills like problem-solving, collaboration, and critical thinking, and master coding languages like Python by building real-world web applications. Join our bootcamp today and start your journey towards a rewarding tech career.</p>
                     </div>
                 </div>
-                <div className="py-10 md:py-20 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+                <div className="py-10 md:py-2 grid grid-cols-1 md:grid-cols-2 items-center justify-between gap-20">
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
                         <p className="font-bold text-BLUE my-2">We put you first</p>
                         <h1 className="font-bold text-xl md:text-2xl my-2">Flexible learning Options</h1>
                         <p className="font-medium text-sm md:text-base">We understand that everyone has different schedules and commitments. That&apos;s why we offer flexible learning options, including part-time and full-time programs, as well as online learning options. This allows students to choose a schedule that works best for them while still receiving high-quality education.</p>
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className="md:block hidden">
-                        <img src={flexibleLearning} alt="" />
+                        <img src={flexibleLearning} alt="" className='w-fit' />
                     </div>
                 </div>
-                <div className="py-10 md:py-20 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+                <div className="py-10 md:py-2 grid grid-cols-1 md:grid-cols-2 items-center justify-between gap-20">
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right" className="md:block hidden">
-                        <img src={guidance} alt="" />
+                        <img src={guidance} alt="" className='w-fit' />
                     </div>
                     <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left">
                         <p className="font-bold text-BLUE my-2">From clueless to pro</p>

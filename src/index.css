@@ -80,12 +80,11 @@ nav.active {
 }
 
 div.perks>ul {
-  line-height: 50px;
+  line-height: 45px;
 }
 
 div.learn ul,
-div.benefit ul,
-div.modal-learn ul {
+div.benefit ul {
   line-height: 40px;
 }
 
@@ -116,6 +115,14 @@ div.modal-learn ul li::before  {
 
 div.modal-learn ul li {
   padding-left: 16px;
+}
+
+div.modal-shadow {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+div.modal-shadow div ul li {
+  line-height: 2;
 }
 
 section.mentorship {

@@ -76,10 +76,10 @@ const COURSE = () => {
         </h1>
         <div className="px-2 md:px-10 py-10 md:py-16 grid grid-cols-1 gap-16 md:gap-0 md:grid-cols-2 bg-[#2d2065] text-white">
           <div className="w-full">
-            <div className={`course-hover cursor-pointer`}>
+            <div className={`course-hover cursor-pointer w-fit`}>
               <h1 className={`font-semibold text-2xl md:text-4xl my-4 md:w-2/3`}>
                 {singleCourse.intro}
-                    <motion.div className={`fixed text-black md:w-[600px] w-[350px] z-[10] bg-white p-4 rounded-xl shadow-3xl`}>
+                    <motion.div className={`fixed text-black md:w-[600px] w-[350px] z-[10] bg-white p-4 rounded-xl modal-shadow`}>
                       <h1 className="text-center font-black text-md md:text-2xl lg:text-3xl">
                         {singleCourse.courseName}
                       </h1>
@@ -104,18 +104,18 @@ const COURSE = () => {
                       }  
                     </motion.div>
                     {showModal && (
-                      <motion.div className={`fixed text-black md:w-[600px] w-[350px] z-[10] bg-white p-4 rounded-xl shadow-3xl`}>
-                      <h1 className="text-center font-black text-md md:text-3xl">
-                        {singleCourse.courseName}
-                      </h1>
+                      <motion.div className={`fixed text-black md:w-[600px] w-[350px] h-auto z-[10] bg-white p-4 rounded-xl modal-shadow`}>
                       <div className="absolute right-4 top-4 md:hidden block">
                         <FaXmark className="" onClick={()=> removeModalAction()} />
                       </div>
-                      <p className="font-semibold text-sm md:text-lg my-2">
+                      <h1 className="text-center font-black text-md md:text-2xl lg:text-3xl">
+                        {singleCourse.courseName}
+                      </h1>
+                      <p className="font-semibold text-sm lg:text-lg my-2 md:my-4">
                         {singleCourse.intro}
                       </p>
-                      <div className="modal-learn learn">
-                        <ul className="text-sm">
+                      <div className="modal-learn">
+                        <ul className="text-sm leading-[60px]">
                           {singleCourse.whatToLearn.map((whatToLearn, index)=> (
                             <li className="text-md md:text-base" key={index}>{whatToLearn}</li>
                           ))}
@@ -145,7 +145,7 @@ const COURSE = () => {
             </div>
           </div>
           <div className="perks">
-            <ul className="text-base md:text-xl md:font-medium">
+            <ul className="text-sm md:text-lg md:font-medium">
               <li>BEGINNER FRIENDLY</li>
               <li>LIFETIME ACCESS</li>
               <li>EXERCISES</li>
@@ -156,7 +156,7 @@ const COURSE = () => {
         </div>
       </section>
       <section className="px-2 md:px-10 py-10 md:py-20">
-        <h1 className="font-bold text-2xl md:text-4xl">WHAT YOU’LL LEARN</h1>
+        <h1 className="font-bold text-2xl md:text-4xl md:my-10 my-5">WHAT YOU’LL LEARN</h1>
         <div className="learn">
           {location.pathname === "/courses/stock%20&%20options" ?
           <>
@@ -212,10 +212,10 @@ const COURSE = () => {
           
         </div>
         <div className="py-5">
-          <h1 className="font-bold text-2xl md:text-4xl my-8">
+          <h1 className="font-bold text-2xl md:text-4xl md:my-8 my-4">
             No prior knowledge needed!
           </h1>
-          <p>
+          <p className="md:text-base text-xs">
             You do not need familiarity with {singleCourse.courseName} to take this course.
             Everything you need to know will be thought from scratch and step by
             step too.
