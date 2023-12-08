@@ -83,7 +83,7 @@ const COURSE = () => {
                       <h1 className="text-center font-black text-md md:text-2xl lg:text-3xl">
                         {singleCourse.courseName}
                       </h1>
-                      <p className="font-semibold text-sm lg:text-lg md:my-2">
+                      <p className="font-semibold text-sm lg:text-lg my-2 md:my-4">
                         {singleCourse.intro}
                       </p>
                       <div className="modal-learn learn">
