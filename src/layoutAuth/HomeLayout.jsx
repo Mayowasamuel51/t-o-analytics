@@ -1,13 +1,13 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom"
-import { useStateContext } from "../context/ContextProvider"
+import { Outlet, useLocation } from "react-router-dom"
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import COURSES from "../coursesAPI/api"
+import COURSES from "../coursesAPI/api";
+import { useParams } from "react-router-dom";
 
 
 function HomeLayout() {
-    const { token } = useStateContext();
     const location = useLocation()
+    const { course } = useParams();
     return (
         <>
             <div>
@@ -16,9 +16,8 @@ function HomeLayout() {
                 {location.pathname === "/blog" || 
                 location.pathname === "/contact" || 
                 location.pathname === "/courses" ||
-                location.pathname === "/courses/" ||
-                location.pathname === "/checkout"
-                // COURSES.map((course) => location.pathname === `/co` course.courseName) 
+                location.pathname === "/checkout" ||
+                COURSES.map((course) => location.pathname === `/courses/${course.courseName}`) 
   
                 ? <Footer black="bg-black text-white" /> : <Footer />}
             </div>

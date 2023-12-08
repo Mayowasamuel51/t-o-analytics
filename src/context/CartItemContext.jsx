@@ -1,10 +1,10 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useEffect } from "react";
 import COURSES from "../coursesAPI/api";
 import { useParams, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { useStateContext } from "./ContextProvider";
 
-const CartItemContext = createContext();
+const CartItemContext = createContext({});
 
 export const CartItemProvider = ({ children }) => {
     const { token } = useStateContext();
@@ -41,16 +41,25 @@ export const CartItemProvider = ({ children }) => {
             setCartItem((prev) => [...prev, stockAndOptionsData]);
         }
     };
-    console.log(course)
+    useEffect(()=> {
+        localStorage.setItem("COURSE-CART", JSON.stringify(cartItem))
+      },[cartItem]);
+    
+      useEffect(() => {
+        const items = JSON.parse(localStorage.getItem("COURSE-CART")) || [];
+        setCartItem(items);
+      }, []);
     return (
         <CartItemContext.Provider
             value={{
-                singleCourse,
-                stockAndOptionsData,
                 token,
-                cartItem,
-                addToCartItem,
                 location,
+                cartItem,
+                singleCourse,
+                stockAndOptions,
+                stockAndOptionsData,
+                setCartItem,
+                addToCartItem,
                 stockOptionIndex,
                 setStockOptionIndex,
             }}
@@ -60,4 +69,5 @@ export const CartItemProvider = ({ children }) => {
     );
 };
 
-export const CARTCONTEXT = () => useContext(CartItemContext);
+
+export default CartItemContext;

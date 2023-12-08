@@ -1,14 +1,20 @@
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Toaster, toast } from 'sonner';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { motion } from "framer-motion";
 import { FaXmark } from "react-icons/fa6";
 import COURSES from "../coursesAPI/api";
 import { useStateContext } from "../context/ContextProvider";
+import CartItemContext from "../context/CartItemContext";
 
 const COURSE = () => {
+  // const {token: t, location: l, cartItem: c} = useContext(CartItemContext);
+  // console.log(t)
+  // console.log(l)
+  // console.log(c)
   const { token } = useStateContext();
   const location = useLocation()
+  // console.log(location)
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
   const [stockOptionIndex, setStockOptionIndex] = useState(()=> {
@@ -77,7 +83,7 @@ const COURSE = () => {
         <div className="px-2 md:px-10 py-10 md:py-16 grid grid-cols-1 gap-16 md:gap-0 md:grid-cols-2 bg-[#2d2065] text-white">
           <div className="w-full">
             <div className={`course-hover cursor-pointer w-fit`}>
-              <h1 className={`font-semibold text-2xl md:text-4xl my-4 md:w-2/3`}>
+              <h1 className={`font-semibold text-xl md:text-4xl my-4 md:w-2/3`}>
                 {singleCourse.intro}
                     <motion.div className={`fixed text-black md:w-[600px] w-[350px] z-[10] bg-white p-4 rounded-xl modal-shadow`}>
                       <h1 className="text-center font-black text-md md:text-2xl lg:text-3xl">
@@ -93,7 +99,7 @@ const COURSE = () => {
                           ))}
                         </ul>
                       </div>
-                      {cartItem.some((item)=> item.id === singleCourse.id) ? 
+                      {cartItem?.some((item)=> item.id === singleCourse.id) ? 
                       <button onClick={()=>buyCourse()} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
                         BUY COURSE
                       </button>
@@ -122,11 +128,11 @@ const COURSE = () => {
                         </ul>
                       </div>
                       {cartItem.some((item)=> item.id === singleCourse.id) ? 
-                      <button onClick={()=>buyCourse()} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+                      <button onClick={()=>buyCourse()} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-2 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
                         BUY COURSE
                       </button>
                       :
-                      <button onClick={()=> addToCart(singleCourse.id)} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+                      <button onClick={()=> addToCart(singleCourse.id)} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-2 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
                         ADD TO CART
                       </button>
                       }  
@@ -134,10 +140,10 @@ const COURSE = () => {
                     )}
               </h1>
             </div>
-            <p className="md:w-1/2 w-full">
+            <p className="md:w-1/2 w-full md:text-base text-xs">
               {singleCourse.description}
             </p>
-            <p className="my-6 font-bold md:text-3xl">${singleCourse.price}</p>
+            <p className="md:my-6 my-4 font-bold md:text-3xl">${singleCourse.price}</p>
             <div className="">
               <button onClick={()=>showModalAction()} className="w-[120px] md:w-[150px] hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white md:mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
                 {showModal? "View Less" : "View More"}
@@ -186,7 +192,7 @@ const COURSE = () => {
                       </ul>
                     </div>
                     <div>
-                      {cartItem.some((item)=> item.id === stockAndOptionsData?.id) ? <button onClick={()=>buyCourse()} className="w-full border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-2 md:py-2 rounded-md md:rounded-xl font-semibold">BUY COURSE</button> :<button onClick={()=> addToCart(stockAndOptionsData?.id)} className="w-full border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-2 md:py-2 rounded-md md:rounded-xl font-semibold">ADD TO CART</button>}
+                      {cartItem?.some((item)=> item.id === stockAndOptionsData?.id) ? <button onClick={()=>buyCourse()} className="w-full border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-2 md:py-2 rounded-md md:rounded-xl font-semibold">BUY COURSE</button> :<button onClick={()=> addToCart(stockAndOptionsData?.id)} className="w-full border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-2 md:py-2 rounded-md md:rounded-xl font-semibold">ADD TO CART</button>}
                     </div>
                   </div>)}
                 </li>

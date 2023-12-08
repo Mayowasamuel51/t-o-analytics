@@ -285,7 +285,7 @@ section.payment-page {
   }
   nav {
     position: absolute;
-    top: 66px;
+    top: 68px;
     visibility: hidden;
     opacity: 0;
     line-height: 30px;
@@ -295,6 +295,10 @@ section.payment-page {
   nav.navlinks {
     width: 100%;
   }
+  nav.navlinks ul li {
+    line-height: 2;
+  }
+
   nav.show {
     visibility: visible;
     opacity: 1;
@@ -314,5 +318,8 @@ section.payment-page {
   div.course-hover h1 div.show {
     visibility: visible;
     opacity: 1;
+  }
+  div.perks>ul {
+    line-height: 25px;
   }
 }
