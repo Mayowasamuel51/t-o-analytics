@@ -14,6 +14,7 @@ import COURSES from "../coursesAPI/api"
 import { Helmet } from 'react-helmet';
 
 const HomePage = () => {
+    
     <Helmet>
         <meta charSet="utf-8" />
         <title>To-analytics</title>
