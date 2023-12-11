@@ -16,7 +16,7 @@ import axios from 'axios';
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { Toaster, toast } from 'sonner';
-const api = "https://to-backendapi-v1.vercel.app/"
+const api = import.meta.env.VITE_BACKEND_API;
 const formVariant = {
     initial: {
         opacity: 0
@@ -73,7 +73,7 @@ const CreateAccountForm = () => {
             password: data.password,
             email: data.email
         }
-        axios.post(`${api}api/sighup`, payload, {
+        axios.post(`${api}sighup`, payload, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -156,11 +156,11 @@ const CreateAccountForm = () => {
                         <p className='text-red-600'>{errors.password?.message}</p>
                     </div>
                     <button type="submit" className="w-full rounded-xl hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300 bg-BLUE py-2 font-semibold text-white text-base md:text-xl">Create Account</button>
-                    <p className='text-center font-extralight py-1'>or</p>
+                    {/* <p className='text-center font-extralight py-1'>or</p> */}
 
                 </form>
                 <div className='login-options flex flex-col gap-3 font-medium'>
-                    <button onClick={loginwihGoogle} className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
+                    {/* <button onClick={loginwihGoogle} className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button> */}
                     {/* <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:text-white duration-300'><img src={FACEBOOK} alt="" className='w-5' />Continue with Facebook</button>
                     <button className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:text-white duration-300'><FaApple size={20} />Continue with Apple ID</button> */}
                 </div>

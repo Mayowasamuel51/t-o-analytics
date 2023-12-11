@@ -10,11 +10,12 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
+import { ToastContainer, toast } from 'react-toastify';
 import * as yup from "yup"
 import { app } from "../../firebase.config";
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { useStateContext } from '../context/ContextProvider';
-const api = "https://to-backendapi-v1.vercel.app/"
+const api =  import.meta.env.VITE_BACKEND_API
 const formVariant = {
     initial: {
         opacity: 0
@@ -31,6 +32,7 @@ const formVariant = {
     }
 }
 const LoginForm = () => {
+    const notifyfail = () => toast("Kindly refresh your browser ");
     const navigate = useNavigate()
     const { setToken, setUser } = useStateContext();
     const [error, setError] = useState(null)
@@ -43,6 +45,20 @@ const LoginForm = () => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
                 window.localStorage.setItem("user", loggedInUser.email)
+                const payload = {
+                    name:loggedInUser.displayName,
+                    email:loggedInUser.email
+                }
+                axios.post(`${api}google`, payload, {
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type":"application/json"
+                    }
+                }).then((res) => {
+                    if (res.status === 201) {
+                        
+                    }
+                }).catch((err)=>notifyfail())
                 setToken(loggedInUser)
             }).catch(error => {
                 console.log('error', error.message);
@@ -65,7 +81,7 @@ const LoginForm = () => {
             password: data.password,
             email: data.email
         }
-        axios.post(`${api}api/login`, payload, {
+        axios.post(`${api}login`, payload, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"
