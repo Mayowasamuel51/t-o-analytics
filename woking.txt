@@ -287,3 +287,56 @@ const CheckOut = () => {
 }
 
 export default CheckOut
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // const imageRef = ref(storage, `${file.name}  owner is` + data.email);
+                // uploadBytes(imageRef, file).then((snapshot) => {
+                //     getDownloadURL(snapshot.ref).then((url) => {
+                //         console.log(url)
+                //         const payload = {
+                //             email: data.email,
+                //             link_portfolio: data.linkportfolio,
+                //             role_postion: data.role_postion,
+                //             name: data.name,
+                //             pdfurl: url
+                //         }
+                //         axios.post(`${api}contractors`, payload, {
+                //             headers: {
+                //                 Accept: "application/json",
+                //                 "Content-Type": "application/json"
+                //             }
+                //         }).then((res) => {
+                //             if (res.status === 201) {
+                //                 console.log('stored info')
+                //             }
+                //         })
+                //     }).catch((err) => console.log(err.message))
+                // }).then((res) => {
+                //     if (res.status === 201) {
+                //         alert('upload successfull')
+                //     }
+                // }).catch((err)=>console.error(err))

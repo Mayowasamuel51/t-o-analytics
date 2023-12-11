@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useForm } from "react-hook-form"
 
 import { useNavigate } from 'react-router-dom';
-const api = 'http://localhost:8000/api/'
+const api = import.meta.env.VITE_BACKEND_API
 const ContactPage = () => {
     const notify = () => toast("Thanks for reaching out!");
 
