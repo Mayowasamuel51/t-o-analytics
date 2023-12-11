@@ -76,7 +76,7 @@ const ContactPage = () => {
                     </div>
                     <div className="mb-7 block">
                           <input     {...register("phone_number", { required: true })} className="text-white placeholder:font-semibold font-medium px-2 py-3 rounded-md w-full bg-transparent border-[1px] text-sm md:text-lg border-textColor my-2 focus:outline-1 outline-offset-2 focus:outline-textColor" type="text" name="phone_number" id="" placeholder="Phone Number" />
-                          <p className='text-red-600  text-sm'>{errors.phone_number?.message}</p>
+                          {errors.phone_number?.message  ? <p className='text-red-600  text-sm'>phone number is required</p> : ""}
                     </div>
                     <div className="mb-2 block">
                           <textarea  {...register("message", { required: true })} className="text-white placeholder:font-semibold font-medium px-2 py-3 rounded-md w-full bg-transparent border-[1px] text-sm md:text-lg border-textColor my-2 focus:outline-1 outline-offset-2 focus:outline-textColor h-[150px]" name="message" id="" cols="30" rows="10" placeholder="What would you Link to Tell us..."></textarea>
