@@ -140,7 +140,7 @@ const ConnectWithContractor = () => {
     }
     return (
         <div>
-            {/* <section>
+            <section>
             <div className="px-2 text-center md:px-10">
                 <p className="font-bold md:p-10 p-2 text-3xl">Our Partners</p>
                 <div className="flex flex-wrap flex-col md:flex-row items-center justify-center gap-2 my-5">
@@ -164,7 +164,7 @@ const ConnectWithContractor = () => {
                     </div>
                 </div>
             </div>
-        </section> */}
+        </section>
             <section className="px-14">
                 <div className="md:pt-10 md:w-[600px] mx-auto p-6 bg-BLUE rounded-xl">
                     <form onSubmit={handleSubmit(onSubmit)} className="bg-BLUE">
