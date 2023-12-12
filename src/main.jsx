@@ -4,19 +4,25 @@ import App from './App.jsx'
 import './index.css'
 import ErrorBoundary from './ErrorBoundary';
 import Error from './error';
-import { ContextProvider } from './context/ContextProvider.jsx'
+import { ContextProvider } from './context/ContextProvider.jsx';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
+  <React.StrictMode>
     
     <ErrorBoundary fallback={<Error />}>
       <ContextProvider>
-
-        <App />
-
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </ContextProvider>
     </ErrorBoundary>
-  // </React.StrictMode>,
+  </React.StrictMode>,
 )
 
 // https://analytics.google.com/analytics/web/#/p416965870/reports/intelligenthome?params=_u..nav%3Dmaui

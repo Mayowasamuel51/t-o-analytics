@@ -12,7 +12,8 @@ import Mentorship from "./pages/Mentorship";
 import LiveCourses from "./pages/LiveCourses";
 import CreateAccountForm from "./pages/CreateAccountForm";
 import LoginForm from "./pages/LoginForm";
-import AdminLoginForm from "./pages/AdminLoginForm"
+import AdminLoginForm from "./pages/AdminLoginForm";
+import StudentTable from "./components/StudentTable";
 import CheckOut from "./pages/CheckOut";
 import { AnimatePresence } from "framer-motion";
 import {
@@ -151,7 +152,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <h1 className="text-center font-bold md:text-4xl">A TABLE OF ALL STUDENTS</h1>
+            element: <StudentTable />
           },
           {
             path: "published",

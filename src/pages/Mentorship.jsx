@@ -13,7 +13,10 @@ const Mentorship = () => {
     const addToCart = (id)=> {
         if (!cartItem.some((item)=> item.id === id)) {
             toast.success(`successfully added to cart`)
-            setCartItem(prev => [...prev, {id: 111, name: "Mentorship", price: 3000}])
+            setCartItem(prev => [...prev, {id: 111, name: "Mentorship", price: 500}])
+            setTimeout(() => {
+                window.location.reload()
+            }, 3000);
         }
     }
     useEffect(()=> {
