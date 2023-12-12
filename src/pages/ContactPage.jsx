@@ -4,6 +4,7 @@ import * as yup from "yup"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useForm } from "react-hook-form"
+import { Helmet } from 'react-helmet';
 
 import { useNavigate } from 'react-router-dom';
 const api = import.meta.env.VITE_BACKEND_API
@@ -54,7 +55,18 @@ const ContactPage = () => {
     }
 
   return (
-    <section className="bg-white py-32 md:px-10 px-2 text-2xl md:text-4xl">
+      <section className="bg-white py-32 md:px-10 px-2 text-2xl md:text-4xl">
+           <Helmet>
+                <meta charSet="utf-8" />
+                <title>Contact</title>
+                <link rel="canonical" href="https://www.to-analytics.com" />
+                <meta name="description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
+
+                <meta property="og:description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
+
+            
+
+            </Helmet>
         <div className="grid md:grid-cols-2 grid-col-1">
             <div className="text-center">
                 <p className="md:text-lg">Need any information? Reach us on</p>

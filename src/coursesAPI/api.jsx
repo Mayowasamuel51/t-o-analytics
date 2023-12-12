@@ -262,7 +262,7 @@ export default [
         image: photography,
         courseName: "Educational Consulting",
         intro: "Step by step guide to scholarships & more",
-        description: "Everything you need to know on how to secure scholarships & get into masters & Phd programs   ",
+        description: "Everything you need to know on how to strategically apply for scholarships & getting into advance education like a masters or a phd program.",
         whatToLearn: [
             "Effective study techniques",
             "Time management",

@@ -62,7 +62,7 @@ const Mentorship = () => {
             </div>
             <div className="flex flex-col items-center gap-2">
                 <FaCreditCard size={30} />
-                <p>$100</p>
+                <p>$500</p>
             </div>
            
         </div>

@@ -14,20 +14,20 @@ import COURSES from "../coursesAPI/api"
 import { Helmet } from 'react-helmet';
 
 const HomePage = () => {
-    <Helmet>
-        <meta charSet="utf-8" />
-        <title>To-analytics</title>
-        <link rel="canonical" href="https://www.to-analytics.com" />
-        <meta name="description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
-        <meta property="og:title" content={"Home page"} />
-        <meta property="og:description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
-        <meta property="og:image" content={"ttps://www.to-analytics.com"} />
-        <meta property="og:url" content={"ttps://www.to-analytics.com"} />
-        <meta property="og:type" content="website" />
 
-    </Helmet>
     return (
         <>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>To-analytics</title>
+                <link rel="canonical" href="https://www.to-analytics.com" />
+                <meta name="description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
+
+                <meta property="og:description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
+
+            
+
+            </Helmet>
             <section className="landing-page px-2 md:px-10 py-60 md:py-32 bg-white min-h-screen">
                 <div className="grid md:grid-cols-2 items-center gap-10">
 
