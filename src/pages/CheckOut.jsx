@@ -33,6 +33,9 @@ const CheckOut = () => {
   const removeCourse = (id) => {
     const updatedCart = cartItem.filter((item) => item.id !== id);
     setCartItem(updatedCart);
+    setTimeout(() => {
+      window.location.reload()
+    }, 3000);
     localStorage.setItem("COURSE-CART", JSON.stringify(updatedCart));
   };
   

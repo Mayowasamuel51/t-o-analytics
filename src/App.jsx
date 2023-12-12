@@ -27,8 +27,8 @@ import Dashboard from "./dashboard/components/Dashboard";
 import AdminDashboard from "./components/AdminDashboard";
 import AdminViewCourses from "./components/AdminViewCourses";
 import AllStudents from "./components/AllStudents";
-import Vendors from "./components/Vendors";
-import Analytics from "./components/Analytics";
+import Contacts from "./components/Contacts";
+import Contractors from "./components/Contractors";
 // import DashboardCourses from "./dashboard/components/DashboardCourses";
 import PaymentPage from "./pages/PaymentPage";
 import { element } from "prop-types";
@@ -170,11 +170,11 @@ const router = createBrowserRouter([
       },
       {
         path: "vendors",
-        element: <Vendors />
+        element: <Contacts />
       },
       {
         path: "analytics",
-        element: <Analytics />
+        element: <Contractors />
       }
     ]
   }
