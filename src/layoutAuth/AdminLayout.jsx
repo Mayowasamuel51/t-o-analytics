@@ -7,7 +7,7 @@ import { useState } from "react";
 
 
 const AdminLayout = () => {
-    const [nav, showNav] = useState(false);
+    // const [nav, showNav] = useState(false);
 
     return (
         <>
