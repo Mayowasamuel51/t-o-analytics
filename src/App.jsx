@@ -12,6 +12,7 @@ import Mentorship from "./pages/Mentorship";
 import LiveCourses from "./pages/LiveCourses";
 import CreateAccountForm from "./pages/CreateAccountForm";
 import LoginForm from "./pages/LoginForm";
+import AdminLoginForm from "./pages/AdminLoginForm"
 import CheckOut from "./pages/CheckOut";
 import { AnimatePresence } from "framer-motion";
 import {
@@ -20,8 +21,14 @@ import {
 } from "react-router-dom";
 import HomeLayout from "./layoutAuth/HomeLayout";
 import AuthLayout from "./layoutAuth/AuthLayout";
+import AdminLayout from "./layoutAuth/AdminLayout";
 import Dashboard from "./dashboard/components/Dashboard";
-import DashboardCourses from "./dashboard/components/DashboardCourses";
+import AdminDashboard from "./components/AdminDashboard";
+import AdminViewCourses from "./components/AdminViewCourses";
+import AllStudents from "./components/AllStudents";
+import Vendors from "./components/Vendors";
+import Analytics from "./components/Analytics";
+// import DashboardCourses from "./dashboard/components/DashboardCourses";
 import PaymentPage from "./pages/PaymentPage";
 import { element } from "prop-types";
 // import { ContextProvider } from "./context/ContextProvider";
@@ -36,7 +43,7 @@ const router = createBrowserRouter([
         index: true,
         element: <HomePage />
       },
-  {
+      {
         path: "/courses",
         element: <Courses />,
         children: [
@@ -75,7 +82,11 @@ const router = createBrowserRouter([
         element: <LiveCourses />
       },
     ]
-  },  
+  },
+  {
+    path: "/admin_LOGIN",
+    element: <AdminLoginForm />
+  },
   {
     path: "/createAccount",
     element: <CreateAccountForm />
@@ -124,6 +135,46 @@ const router = createBrowserRouter([
         path: "/dashboard/post",
         element: <Dashboard />
       },
+    ]
+  },
+  {
+    path: "/ADMIN-DASHBOARD",
+    element: <AdminLayout />,
+    children: [
+      {
+        index: true,
+        element: <AdminDashboard />
+      },
+      {
+        path: "viewcourses",
+        element: <AdminViewCourses />,
+        children: [
+          {
+            index: true,
+            element: <h1 className="text-center font-bold text-4xl">A TABLE OF ALL STUDENTS</h1>
+          },
+          {
+            path: "published",
+            element: <h1 className="text-center font-bold text-4xl">PUBLISHED</h1>
+          },
+          {
+            path: "draft",
+            element: <h1 className="text-center font-bold text-4xl">DRAFT</h1>
+          },
+        ]
+      },
+      {
+        path: "allStudents",
+        element: <AllStudents />
+      },
+      {
+        path: "vendors",
+        element: <Vendors />
+      },
+      {
+        path: "analytics",
+        element: <Analytics />
+      }
     ]
   }
 ]);
