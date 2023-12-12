@@ -183,7 +183,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <AnimatePresence>
+
       <RouterProvider router={router} />
+      
     </AnimatePresence>
   );
 }

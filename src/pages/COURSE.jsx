@@ -6,6 +6,7 @@ import { FaXmark } from "react-icons/fa6";
 import COURSES from "../coursesAPI/api";
 import { useStateContext } from "../context/ContextProvider";
 import CartItemContext from "../context/CartItemContext";
+import { Helmet } from 'react-helmet';
 
 const COURSE = () => {
   // const {token: t, location: l, cartItem: c} = useContext(CartItemContext);
@@ -78,6 +79,17 @@ const COURSE = () => {
     <div className="">
       <section className="pt-10">
         <h1 className="font-black text-center text-2xl md:text-3xl lg:text-4xl py-10 md:py-20">
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title>Courses</title>
+                <link rel="canonical" href="https://www.to-analytics.com" />
+                <meta name="description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
+
+                <meta property="og:description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
+
+            
+
+            </Helmet>
           {singleCourse.courseName.toUpperCase()}
         </h1>
         <div className="px-2 md:px-10 py-10 md:py-16 grid grid-cols-1 gap-16 md:gap-0 md:grid-cols-2 bg-[#2d2065] text-white">
