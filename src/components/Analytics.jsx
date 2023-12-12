@@ -1,7 +1,7 @@
 
 const Analytics = () => {
   return (
-    <div className="text-center font-bold text-4xl">Analytics</div>
+    <div className="text-center font-bold md:text-4xl">Analytics</div>
   )
 }
 

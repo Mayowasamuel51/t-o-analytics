@@ -151,15 +151,15 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <h1 className="text-center font-bold text-4xl">A TABLE OF ALL STUDENTS</h1>
+            element: <h1 className="text-center font-bold md:text-4xl">A TABLE OF ALL STUDENTS</h1>
           },
           {
             path: "published",
-            element: <h1 className="text-center font-bold text-4xl">PUBLISHED</h1>
+            element: <h1 className="text-center font-bold md:text-4xl">PUBLISHED</h1>
           },
           {
             path: "draft",
-            element: <h1 className="text-center font-bold text-4xl">DRAFT</h1>
+            element: <h1 className="text-center font-bold md:text-4xl">DRAFT</h1>
           },
         ]
       },
