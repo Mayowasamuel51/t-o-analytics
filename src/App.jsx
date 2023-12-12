@@ -29,6 +29,7 @@ import AdminViewCourses from "./components/AdminViewCourses";
 import AllStudents from "./components/AllStudents";
 import Contacts from "./components/Contacts";
 import Contractors from "./components/Contractors";
+import MyProfile from "./pages/MyProfile";
 // import DashboardCourses from "./dashboard/components/DashboardCourses";
 import PaymentPage from "./pages/PaymentPage";
 import { element } from "prop-types";
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
         path: "/liveCourses",
         element: <LiveCourses />
       },
+      {
+        path: "/myProfile",
+        element: <MyProfile />
+      },
     ]
   },
   {
@@ -124,6 +129,7 @@ const router = createBrowserRouter([
         path: "mentorship",
         element: <Mentorship />
       },
+      
       {
         path: "links",
         element: <h1 className="min-h-screen flex justify-center items-center font-bold text-3xl">LINKS PAGE</h1>
