@@ -158,7 +158,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <StudentTable />
+            element: <h1 className="text-center font-bold md:text-4xl">ALL COURSES</h1>
           },
           {
             path: "published",

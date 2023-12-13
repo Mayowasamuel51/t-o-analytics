@@ -1,13 +1,16 @@
 import { FaUser } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa6";
 import { BsTruck } from "react-icons/bs";
+import StudentTable from "./StudentTable";
+import FetchAllStudents from "../hook/FetchAllStudents";
 
 const AdminDashboard = () => {
+    const {data} = FetchAllStudents()
   return (
     <>
         <div className="">
             <div className="md:p-5 p-2">
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap justify-evenly md:justify-start items-center gap-2">
                     <div className="flex items-center gap-2 md:gap-5 md:p-3 p-1 bg-inputColor rounded-md">
                         <div className="">
                             <FaUser size={30} />
@@ -23,7 +26,7 @@ const AdminDashboard = () => {
                         </div>
                         <div className="text-center">
                             <p className="text-xs md:text-base">Total User</p>
-                            <p className="font-bold">937</p>
+                            <p className="font-bold">{data?.data?.response.length}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-2 md:gap-5 md:p-3 p-1 bg-inputColor rounded-md">
@@ -38,9 +41,10 @@ const AdminDashboard = () => {
                 </div>
             </div>
         </div>
-        <div className="my-5 md:my-0 md:p-5 md:flex items-start md:gap-3">
-            <div className="md:flex-[2] flex-1 md:p-2 min-h-[300px] bg-textColor rounded-md mb-5 md:mb-0">
-                <h1 className="font-semibold text-base md:text-xl">Registered Students</h1>
+        <div className="my-5 md:my-0 px-2 md:px-5 md:flex items-start md:gap-3">
+            <div className="md:flex-[3] flex-1 md:p-2 min-h-[300px] bg-textColor rounded-md mb-5 md:mb-0 p-2">
+                <h1 className="font-bold text-base md:text-xl md:mb-5">Registered Students</h1>
+                <StudentTable />
             </div>
             <div className="md:flex-1 flex-1 flex justify-center items-center md:p-2 min-h-[300px] bg-textColor rounded-md">
                 <div className="w-44 aspect-square bg-BLUE rounded-full"></div>

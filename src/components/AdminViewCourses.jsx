@@ -5,15 +5,15 @@ const AdminViewCourses = () => {
   return (
     <div>
         <div className="md:p-5 border-2">
-            <div className="flex justify-between items-center my-2">
-                <h1 className="text-2xl font-bold">Courses</h1>
-                <NavLink to="/gg" className="md:text-xl text-xs bg-BLUE text-white px-2 py-2 md:px-5 md:py-2 rounded-md md:rounded-2xl font-semibold">UPLOAD VIDEO</NavLink>
+            <div className="flex justify-between items-center my-2 md:my-6">
+                <h1 className="text-xs md:text-2xl font-bold">Courses</h1>
+                <NavLink to="/gg" className="md:text-base text-xs bg-BLUE text-white px-2 py-2 md:px-5 md:py-2 rounded-md md:rounded-xl font-semibold">UPLOAD VIDEO</NavLink>
             </div>
             <div className="bg-textColor p-2 md:p-5 rounded-md">
                 <ul className="text-xs md:text-base w-fit bg-white px-5 py-3 rounded-md md:rounded-2xl mx-auto flex justify-center gap-3 md:gap-10">
-                    <li><NavLink className={({isActive})=> isActive ? "bg-BLUE text-white px-2 py-2 md:px-3 md:py-2 rounded-md md:rounded-2xl font-semibold" : "text-black px-2 py-2 md:px-3 md:py-2 font-semibold"} to="/ADMIN-DASHBOARD/viewcourses">All Courses</NavLink></li>
-                    <li><NavLink className={({isActive})=> isActive ? "bg-BLUE text-white px-2 py-2 md:px-3 md:py-2 rounded-md md:rounded-2xl font-semibold" : "text-black px-2 py-2 md:px-3 md:py-2 font-semibold"} to="/ADMIN-DASHBOARD/viewcourses/published">Published</NavLink></li>
-                    <li><NavLink className={({isActive})=> isActive ? "bg-BLUE text-white px-2 py-2 md:px-3 md:py-2 rounded-md md:rounded-2xl font-semibold" : "text-black px-2 py-2 md:px-3 md:py-2 font-semibold"} to="/ADMIN-DASHBOARD/viewcourses/draft">Draft</NavLink></li>
+                    <li><NavLink className={({isActive})=> isActive ? "bg-BLUE text-white px-2 py-2 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold" : "text-black px-2 py-2 md:px-3 md:py-2 font-semibold"} to="/ADMIN-DASHBOARD/viewcourses">All Courses</NavLink></li>
+                    <li><NavLink className={({isActive})=> isActive ? "bg-BLUE text-white px-2 py-2 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold" : "text-black px-2 py-2 md:px-3 md:py-2 font-semibold"} to="/ADMIN-DASHBOARD/viewcourses/published">Published</NavLink></li>
+                    <li><NavLink className={({isActive})=> isActive ? "bg-BLUE text-white px-2 py-2 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold" : "text-black px-2 py-2 md:px-3 md:py-2 font-semibold"} to="/ADMIN-DASHBOARD/viewcourses/draft">Draft</NavLink></li>
                 </ul>
                 <div className="relative search-box my-4">
                     <input type="text" className="w-full md:w-1/2 h-8 md:h-10 rounded-lg md:rounded-2xl" placeholder="Search names Here" />

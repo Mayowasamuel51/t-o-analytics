@@ -160,9 +160,14 @@ div.login-options button:hover {
 
 
 /* AUTH SEARCH BOX */
-div.search-box svg {
+div.search-box svg:last-child {
  top: 50%;
  left: 7px;
+ transform: translateY(-50%);
+}
+div.search-box svg:nth-child(2) {
+ top: 50%;
+ right: 7px;
  transform: translateY(-50%);
 }
 
@@ -225,15 +230,11 @@ section.payment-page {
 }
 
 /* CUSTOM FILE INPUT */
-.customFileInput::-webkit-file-upload-button {
-  /* visibility: hidden; */
-}
 
 .customFileInput::before {
   content: 'CV/Resume';
   color: #D9D9D9;
 }
-
 
 @media only screen and (min-width: 768px) {
   nav.fixed {
