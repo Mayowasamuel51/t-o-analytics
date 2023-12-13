@@ -11,6 +11,7 @@ const StudentTable = () => {
     
     if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
     if (isLoading) return <Loader />
+
     
     const lastPostIndex = currentPage * postsPerPage
     const firstPostIndex = lastPostIndex - postsPerPage
@@ -25,22 +26,22 @@ const StudentTable = () => {
         <div>
             <table className='table-fixed w-full text-center rounded-2xl'>
                 <thead className='bg-white'>
-                    <tr className='font-black text-sm md:text-lg'>
+                    <tr className='font-black text-xs md:text-lg'>
                         <th className='md:p-1 md:py-2'>S/N</th>
-                        <th className='md:p-1 md:py-2'>Registration Date</th>
+                        <th className='md:p-1 md:py-2 hidden md:block'>Registration Date</th>
                         <th className='md:p-1 md:py-2'>Student Name</th>
-                        <th className='md:p-1 md:py-2'>Email Address</th>
+                        <th className='md:p-1 md:py-2 hidden md:block'>Email Address</th>
                         <th className='md:p-1 md:py-2'>Course</th>
                         <th className='md:p-1 md:py-2'>Amount</th>
                     </tr>
                 </thead>
                 <tbody className='text-center tbody'>
                     {paginatedData?.map((email, index)=> (
-                        <tr key={index} className='text-sm md:text-base border-b-2 font-medium'>
+                        <tr key={index} className='text-xs md:text-base font-medium'>
                             <td className=''></td>
+                            <td className='hidden md:block'></td>
                             <td className=''></td>
-                            <td className=''></td>
-                            <td className=''>{email}</td>
+                            <td className='hidden md:block'>{email}</td>
                             <td className=''></td>
                             <td className=''></td>
                         </tr>

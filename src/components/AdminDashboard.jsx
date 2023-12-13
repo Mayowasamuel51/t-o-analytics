@@ -32,7 +32,7 @@ const AdminDashboard = () => {
             </div>
         </div>
         <div className="my-5 md:my-0 px-2 md:px-5 md:flex items-start md:gap-6">
-            <div className=" flex-1 md:p-2 min-h-[300px] bg-textColor rounded-md mb-5 md:mb-0 p-2">
+            <div className=" flex-1 md:p-2 md:min-h-[275px] bg-textColor rounded-md mb-5 md:mb-0 p-2">
                 <h1 className="font-bold text-base md:text-xl md:mb-5">Registered Students</h1>
                 <StudentTable />
             </div>
