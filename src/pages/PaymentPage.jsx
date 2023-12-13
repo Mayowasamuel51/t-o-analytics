@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { ReactDOM } from "react";
-import { PayPalScriptProvider, PayPalButtons,  } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons, } from "@paypal/react-paypal-js";
 import axios from "axios";
-const api = 'https://to-backendapi-v1.vercel.app/'  
+const api = import.meta.env.VITE_BACKEND_PAY
 const PaymentPage = () => {
   const studentName = window.localStorage.getItem('user')
   const [message, setMessage] = useState("");
@@ -15,151 +15,186 @@ const PaymentPage = () => {
     setCartItem(data);
     console.log(data)
   }, []);
-  useEffect(() => {
-  
-}, [])
-  const createOrder = (data, actions) => {
-    const totalPrice = cartItem.reduce((acc, item) => {
-      return acc + item.price;
-    }, 0);
+  let totalfinalpayment = 0;
+  let courseName;
+  const checkoutfunction = () => {
+    // when users trys to pay only one course it works
+    if (cartItem.length > 1) {
+      cartItem.forEach((item) => {
+        totalfinalpayment += item.price
+        courseName = item.courseName
+        console.log(courseName, totalfinalpayment)
+      })
+      //   .reduce((acc, value) => {
+      //   return totalfinalpayment += acc + value.price
+      // }, 0)
+      // // cartItem.reduce((acc, value) => {
+      //   return totalfinalpayment += acc + value.price
+      // }, 0)
+      console.log('only one course ' + totalfinalpayment)
 
+    } else if (cartItem.length > 1) {
+      console.log('more than one course' + cartItem)
+    }
+    // when users trys to pay many course at once it still works 
 
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            // value:totalPrice
-            value:"0.1"
-          }
-        }
-      ]
-    
-    })
+    // const totalcart = cartItem.reduce((acc, value) => {
+    //   return acc + value.price
+    // }, 0)
+
+    // console.log(totalcart)
   }
+  // const createOrder = (data, actions) => {
+  //   const totalPrice = cartItem.reduce((acc, item) => {
+  //     return acc + item.price;
+  //   }, 0);
+
+
+  //   return actions.order.create({
+  //     purchase_units: [
+  //       {
+  //         amount: {
+  //           value:totalPrice
+  //           // value: "0.1"
+  //         }
+  //       }
+  //     ]
+
+  //   })
+  // }
   const orderdata = {
     courseName: '',
-    studentName:studentName,
+    studentName: studentName,
     payment_mode: 'Paypal',
-    payment_id:'',
+    payment_id: '',
   }
-  const onApprove = () => {
-    return actions.order.capture().then((details) => {
-      console.log(details)
-      orderdata.payment_id = details.id
-      axios.post(`${api}api/order`, orderdata).then((res) => {
-        if (res.status === 201) {
-          alert("payment is done")
-        }
-      }).catch((err)=>alert(err.message))
-    })
-  }
+  // const onApprove = () => {
+  //   return actions.order.capture().then((details) => {
+  //     console.log(details)
+  //     orderdata.payment_id = details.id
+  //     axios.post(`${api}api/order`, orderdata).then((res) => {
+  //       if (res.status === 201) {
+  //         alert("payment is done")
+  //       }
+  //     }).catch((err) => alert(err.message))
+  //   })
+  // }
 
   const initialOptions = {
-    "client-id":import.meta.env.VITE_clientId,
-      // "AXTaMJvDyHKb0JdWMYxjQRWK_-hQB6bjF7oM_r2TSACTTUPK9eRDrRiIb701IbMs_Sp4HERH1hQAXXT_",
+    "client-id": import.meta.env.VITE_clientId,
     "enable-funding": "paylater,venmo,card",
     "disable-funding": "",
     "data-sdk-integration-source": "integrationbuilder_sc",
   };
-  // const createOrder = async () => {
-  //   const pickItem = cartItem
-  //   try {
-  //     const response = await fetch(`${api}/api/create-order`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       // use the "body" param to optionally pass additional order information
-  //       // like product ids and quantities
+  const createOrder = async () => {
+    if (cartItem.length ===  1) {
+      cartItem.forEach((item) => {
+        totalfinalpayment += item.price
+        courseName = item.courseName
+        console.log(courseName, totalfinalpayment)
+      })
+      //   .map((itemcoursename) => {
+      //   console.log(itemcoursename)
+      //   return courseName = itemcoursename.courseName
+      // })
+      // .reduce((acc, value) => {
+      //   return totalfinalpayment += acc + value.price
+      // }, 0)
+      console.log('only one course ' + totalfinalpayment)
+    } else if (cartItem.length > 1) {
+     
+      console.log('more than one course   ' + cartItem)
+    }
+    try {
+      const response = await fetch(`${api}/api/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // use the "body" param to optionally pass additional order information
+        // like product ids and quantities
 
-  //       // grab the courseName , have a 
-  //       body: JSON.stringify({
-  //         cart: [
-  //           {
-  //             id:1,
-  //             quantity:1,
-  //           },
-  //           {
-  //             id: 2,
-  //             quantity:2
-  //           }
-  //         ],
-  //       }),
-  //     });
+        // grab the courseName , coursePrice , studentgmail, 
+        body: JSON.stringify({
+          cart: [
+            {
+              courseName: courseName,
+              price: totalfinalpayment
+            },
+          ],
+        }),
+      });
 
-  //     const orderData = await response.json();
+      const orderData = await response.json();
 
-  //     if (orderData.id) {
-  //       return orderData.id;
-  //     } else {
-  //       const errorDetail = orderData?.details?.[0];
-  //       const errorMessage = errorDetail
-  //         ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
-  //         : JSON.stringify(orderData);
+      if (orderData.id) {
+        return orderData.id;
+      } else {
+        const errorDetail = orderData?.details?.[0];
+        const errorMessage = errorDetail
+          ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
+          : JSON.stringify(orderData);
 
-  //       throw new Error(errorMessage);
-  //     }
-  //   } catch (error) {
-  //     console.error(error.message);
-  //     setMessage(`Could not initiate PayPal Checkout...${error}`);
-  //   }
-  // }
+        throw new Error(errorMessage);
+      }
+    } catch (error) {
+      console.error(error.message);
+      setMessage(`Could not initiate PayPal Checkout...${error}`);
+    }
+  }
 
 
-  // const onApprove = async (data, actions) => {
+  const onApprove = async (data, actions) => {
 
-  //   // try {
-  //   //   const response = await fetch(
-  //   //     `${api}/api/orders/${data.orderID}/capture`,
-  //   //     {
-  //   //       method: "POST",
-  //   //       headers: {
-  //   //         "Content-Type": "application/json",
-  //   //       },
-  //   //     },
-  //   //   );
+    try {
+      const response = await fetch(
+        `${api}api/orders/${data.orderID}/capture`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
 
-  //   //   const orderData = await response.json();
-  //   //   // Three cases to handle:
-  //   //   //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-  //   //   //   (2) Other non-recoverable errors -> Show a failure message
-  //   //   //   (3) Successful transaction -> Show confirmation or thank you message
+      const orderData = await response.json();
+      // Three cases to handle:
+      //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+      //   (2) Other non-recoverable errors -> Show a failure message
+      //   (3) Successful transaction -> Show confirmation or thank you message
 
-  //   //   const errorDetail = orderData?.details?.[0];
+      const errorDetail = orderData?.details?.[0];
 
-  //   //   if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
-  //   //     // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-  //   //     // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
-  //   //     return actions.restart();
-  //   //   } else if (errorDetail) {
-  //   //     // (2) Other non-recoverable errors -> Show a failure message
-  //   //     throw new Error(
-  //   //       `${errorDetail.description} (${orderData.debug_id})`,
-  //   //     );
-  //   //   } else {
-  //   //     // (3) Successful transaction -> Show confirmation or thank you message
-  //   //     // Or go to another URL:  actions.redirect('thank_you.html');
-  //   //     const transaction =
-  //   //       orderData.purchase_units[0].payments.captures[0];
-  //   //     setMessage(
-  //   //       `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`,
-  //   //     );
-  //   //     console.log(
-  //   //       "Capture result",
-  //   //       orderData,
-  //   //       JSON.stringify(orderData, null, 2),
-  //   //     );
-  //   //   }
-  //   // } catch (error) {
-  //   //   console.error(error);
-  //   //   setMessage(
-  //   //     `Sorry, your transaction could not be processed...${error}`,
-  //   //   );
-  //   // }
-  // }
-
-  
-
+      if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
+        // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+        // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
+        return actions.restart();
+      } else if (errorDetail) {
+        // (2) Other non-recoverable errors -> Show a failure message
+        throw new Error(
+          `${errorDetail.description} (${orderData.debug_id})`,
+        );
+      } else {
+        // (3) Successful transaction -> Show confirmation or thank you message
+        // Or go to another URL:  actions.redirect('thank_you.html');
+        const transaction =
+          orderData.purchase_units[0].payments.captures[0];
+        setMessage(
+          `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`,
+        );
+        console.log(
+          "Capture result",
+          orderData,
+          JSON.stringify(orderData, null, 2),
+        );
+      }
+    } catch (error) {
+      console.error(error);
+      setMessage(
+        `Sorry, your transaction could not be processed...${error}`,
+      );
+    }
+  }
 
   return (
     <section className="min-h-screen payment-page">
@@ -176,7 +211,7 @@ const PaymentPage = () => {
               shape: "rect",
               layout: "vertical",
             }}
-            createOrder={(data,actions) => createOrder(data,actions)}
+            createOrder={(data, actions) => createOrder(data, actions)}
             onApprove={(data) => onApprove(data, actions)}
 
           />
@@ -234,7 +269,7 @@ const PaymentPage = () => {
           </p>
         </div>
         <div>
-          <button className="duration-300 bg-BLUE hover:bg-white border-2 border-BLUE hover:text-BLUE w-full text-white font-bold py-3 rounded-xl">COMPLETE CHECKOUT</button>
+          <button onClick={checkoutfunction} className="duration-300 bg-BLUE hover:bg-white border-2 border-BLUE hover:text-BLUE w-full text-white font-bold py-3 rounded-xl">COMPLETE CHECKOUT</button>
         </div>
       </div>
     </section>
