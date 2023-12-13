@@ -4,7 +4,9 @@ import { ReactDOM } from "react";
 import { PayPalScriptProvider, PayPalButtons, } from "@paypal/react-paypal-js";
 import axios from "axios";
 const api = import.meta.env.VITE_BACKEND_PAY
+import CartItemContext  from "../context/CartItemContext";
 const PaymentPage = () => {
+  // const {singleCourse}  = CartItemContext()
   const studentName = window.localStorage.getItem('user')
   const [message, setMessage] = useState("");
   const [totalcart, setTotalCart] = useState([])
@@ -13,10 +15,10 @@ const PaymentPage = () => {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("COURSE-CART")) || [];
     setCartItem(data);
-    console.log(data)
+    // console.log(singleCourse)
   }, []);
   let totalfinalpayment = 0;
-  let courseName;
+  let courseName = ''
   const checkoutfunction = () => {
     // when users trys to pay only one course it works
     if (cartItem.length > 1) {
@@ -87,6 +89,7 @@ const PaymentPage = () => {
     "data-sdk-integration-source": "integrationbuilder_sc",
   };
   const createOrder = async () => {
+    // always remove the the cart infomation after sending to the backend for payment 
     if (cartItem.length ===  1) {
       cartItem.forEach((item) => {
         totalfinalpayment += item.price
@@ -102,7 +105,11 @@ const PaymentPage = () => {
       // }, 0)
       console.log('only one course ' + totalfinalpayment)
     } else if (cartItem.length > 1) {
-     
+      cartItem.forEach((item) => {
+        totalfinalpayment += item.price
+        courseName += item.courseName
+        console.log(courseName, totalfinalpayment)
+     })
       console.log('more than one course   ' + cartItem)
     }
     try {
