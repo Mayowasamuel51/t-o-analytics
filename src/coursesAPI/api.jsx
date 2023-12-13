@@ -5,6 +5,7 @@ import stock from "../assets/images/stock.png";
 import data from "../assets/images/data.jpg";
 import photography from "../assets/images/photography.jpg";
 import videography from "../assets/images/videography.jpg";
+import mentorship from "../assets/images/mentorshipIMG.jpg"
 
 export default [
     {
@@ -259,7 +260,7 @@ export default [
     },
     {
         id: 8,
-        image: photography,
+        image: mentorship,
         courseName: "Educational Consulting",
         intro: "Step by step guide to scholarships & more",
         description: "Everything you need to know on how to strategically apply for scholarships & getting into advance education like a masters or a phd program.",
