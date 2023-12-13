@@ -4,9 +4,10 @@ import { ReactDOM } from "react";
 import { PayPalScriptProvider, PayPalButtons, } from "@paypal/react-paypal-js";
 import axios from "axios";
 const api = import.meta.env.VITE_BACKEND_PAY
-import CartItemContext  from "../context/CartItemContext";
+import CartItemContext from "../context/CartItemContext";
+
 const PaymentPage = () => {
-  // const {singleCourse}  = CartItemContext()
+
   const studentName = window.localStorage.getItem('user')
   const [message, setMessage] = useState("");
   const [totalcart, setTotalCart] = useState([])

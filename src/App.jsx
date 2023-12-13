@@ -45,6 +45,7 @@ const router = createBrowserRouter([
         index: true,
         element: <React.Suspense fallback={<Loader />}><LazyHomePage /></React.Suspense>,
       },
+    
       {
         path: "/courses",
         element: <React.Suspense fallback={<Loader />}><LazyCourses /></React.Suspense>,
@@ -184,6 +185,7 @@ const router = createBrowserRouter([
       }
     ]
   }
+    
 ]);
 
 
