@@ -75,16 +75,16 @@ const AdminLayout = () => {
                 </motion.div>
                 <div className="col-span-1 md:col-span-4 md:p-0 p-2">
                     <div className="md:p-5 p-2 flex items-center gap-5 md:gap-32">
-                        <h1 className="font-black text-base md:text-3xl">Dashboard</h1>
+                        <h1 className="font-black text-sm md:text-3xl">Dashboard</h1>
                         <div className="relative search-box flex-1">
-                            <input type="text" className="pl-10 bg-textColor w-full h-10 rounded-2xl" placeholder="Search here" />
+                            <input type="text" className="pl-10 bg-textColor w-full h-10 rounded-md md:rounded-2xl" placeholder="Search here" />
                             <FaMicrophone size={20} className="absolute" />
                             <FaSearch size={20} className="absolute" />
                         </div>
                         <div className="flex items-center gap-2 md:gap-3">
-                            <div>
+                            <div className="hidden md:bolck">
                                 <p className="text-xs md:text-base">Vera Bassey</p>
-                                <p className="text-md font-semibold">Admin</p>
+                                <p className="text-xs font-semibold">Admin</p>
                             </div>
                             <div className=" animate-bounce cursor-pointer bg-BLUE w-8 md:w-12 aspect-square rounded-full"></div>
                         </div>
