@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import splunk from "../assets/images/splunk.png";
-import EducationalConsulting from "../assets/images/videography.jpg";
+import EducationalConsulting from "../assets/images/mentorshipIMG.jpg";
 
 const LiveCourses = () => {
   return (

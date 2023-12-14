@@ -17,10 +17,12 @@ import LoginForm from "./pages/LoginForm";
 import AdminLoginForm from "./pages/AdminLoginForm";
 import CheckOut from "./pages/CheckOut";
 import { AnimatePresence } from "framer-motion";
+// import { Route, Switch, useLocation } from "react-router-dom";
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
 import HomeLayout from "./layoutAuth/HomeLayout";
 import AdminLayout from "./layoutAuth/AdminLayout";
 const LazyAuthLayout = React.lazy(()=> import("./layoutAuth/AuthLayout"))
