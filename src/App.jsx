@@ -1,6 +1,6 @@
 import React from "react";
 
-import ErrorPage from "./components/ErrorPage";
+import ErrorPage from "./components/errorPage";
 import AllCourses from "./components/AllCourses";
 const LazyHomePage = React.lazy(()=> import("./pages/HomePage"))
 const LazyCourses = React.lazy(()=> import("./pages/Courses"))
