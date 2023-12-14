@@ -5,8 +5,7 @@ import "../assets/js/index";
 const Courses = () => {
   return (
     <>
-   
-            <Outlet />
+      <Outlet />
     </>
     
   );

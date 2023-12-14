@@ -24,20 +24,20 @@ const StudentTable = () => {
 
     return (
         <div>
-            <table className='table-fixed w-full text-center rounded-2xl'>
+            <table className='table-fixed w-full rounded-2xl'>
                 <thead className='bg-white'>
                     <tr className='font-black text-xs md:text-lg'>
-                        <th className='md:p-1 md:py-2'>S/N</th>
-                        <th className='md:p-1 md:py-2 hidden md:block'>Registration Date</th>
-                        <th className='md:p-1 md:py-2'>Student Name</th>
-                        <th className='md:p-1 md:py-2 hidden md:block'>Email Address</th>
-                        <th className='md:p-1 md:py-2'>Course</th>
-                        <th className='md:p-1 md:py-2'>Amount</th>
+                        <th className='py-1 md:py-2'>S/N</th>
+                        <th className='py-1 md:py-2 hidden md:block'>Registration Date</th>
+                        <th className='py-1 md:py-2'>Student Name</th>
+                        <th className='py-1 md:py-2 hidden md:block'>Email Address</th>
+                        <th className='py-1 md:py-2'>Course</th>
+                        <th className='py-1 md:py-2'>Amount</th>
                     </tr>
                 </thead>
-                <tbody className='text-center tbody'>
+                <tbody className='tbody'>
                     {paginatedData?.map((email, index)=> (
-                        <tr key={index} className='text-xs md:text-base font-medium'>
+                        <tr key={index} className='text-xs md:text-[14px] leading-7 font-medium'>
                             <td className=''></td>
                             <td className='hidden md:block'></td>
                             <td className=''></td>

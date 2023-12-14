@@ -1,9 +1,10 @@
-import ErrorPage from "./components/errorPage";
-import HomePage from "./pages/HomePage";
-import Courses from "./pages/Courses";
+import React from "react";
+import ErrorPage from "./components/ErrorPage";
 import AllCourses from "./components/AllCourses";
-import COURSE from "./pages/COURSE";
-import AboutPage from "./pages/AboutPage";
+const LazyHomePage = React.lazy(()=> import("./pages/HomePage"))
+const LazyCourses = React.lazy(()=> import("./pages/Courses"))
+const LazyAbout = React.lazy(()=> import("./pages/AboutPage"))
+const LazyCOURSE = React.lazy(()=> import("./pages/COURSE"))
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
 import ConnectWithContractor from "./pages/ConnectWithContractor";
@@ -13,7 +14,6 @@ import LiveCourses from "./pages/LiveCourses";
 import CreateAccountForm from "./pages/CreateAccountForm";
 import LoginForm from "./pages/LoginForm";
 import AdminLoginForm from "./pages/AdminLoginForm";
-import StudentTable from "./components/StudentTable";
 import CheckOut from "./pages/CheckOut";
 import { AnimatePresence } from "framer-motion";
 import {
@@ -32,8 +32,7 @@ import Contractors from "./components/Contractors";
 import MyProfile from "./pages/MyProfile";
 // import DashboardCourses from "./dashboard/components/DashboardCourses";
 import PaymentPage from "./pages/PaymentPage";
-import { element } from "prop-types";
-// import { ContextProvider } from "./context/ContextProvider";
+import Loader from "./components/Loader";
 
 const router = createBrowserRouter([
   {
@@ -43,11 +42,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />
+        element: <React.Suspense fallback={<Loader />}><LazyHomePage /></React.Suspense>,
       },
       {
         path: "/courses",
-        element: <Courses />,
+        element: <React.Suspense fallback={<Loader />}><LazyCourses /></React.Suspense>,
         children: [
           {
             index: true,
@@ -55,13 +54,13 @@ const router = createBrowserRouter([
           },
           {
             path: ":course",
-            element: <COURSE />
+            element:  <React.Suspense fallback={<Loader />}><LazyCOURSE /></React.Suspense>,
           },
         ]
       },
       {
         path: "/about",
-        element: <AboutPage />
+        element: <React.Suspense fallback={<Loader />}><LazyAbout /></React.Suspense>,
       },
       {
         path: "/blog",
@@ -145,7 +144,7 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "/ADMIN-DASHBOARD",
+    path: "ADMIN-DASHBOARD",
     element: <AdminLayout />,
     children: [
       {
@@ -190,9 +189,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <AnimatePresence>
-
       <RouterProvider router={router} />
-      
     </AnimatePresence>
   );
 }

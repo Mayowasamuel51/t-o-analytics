@@ -12,11 +12,11 @@ const AdminViewCourses = () => {
             <div className="bg-textColor p-2 md:p-5 rounded-md">
                 <ul className="text-xs md:text-base w-fit bg-white px-5 py-3 rounded-md md:rounded-2xl mx-auto flex justify-center gap-3 md:gap-10">
                     <li><NavLink className={({isActive})=> isActive ? "bg-BLUE text-white px-2 py-2 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold" : "text-black px-2 py-2 md:px-3 md:py-2 font-semibold"} to="/ADMIN-DASHBOARD/viewcourses">All Courses</NavLink></li>
-                    <li><NavLink className={({isActive})=> isActive ? "bg-BLUE text-white px-2 py-2 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold" : "text-black px-2 py-2 md:px-3 md:py-2 font-semibold"} to="/ADMIN-DASHBOARD/viewcourses/published">Published</NavLink></li>
-                    <li><NavLink className={({isActive})=> isActive ? "bg-BLUE text-white px-2 py-2 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold" : "text-black px-2 py-2 md:px-3 md:py-2 font-semibold"} to="/ADMIN-DASHBOARD/viewcourses/draft">Draft</NavLink></li>
+                    <li><NavLink className={({isActive})=> isActive ? "bg-BLUE text-white px-2 py-2 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold" : "text-black px-2 py-2 md:px-3 md:py-2 font-semibold"} to="/ADMIN-DASHBOARD/published">Published</NavLink></li>
+                    <li><NavLink className={({isActive})=> isActive ? "bg-BLUE text-white px-2 py-2 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold" : "text-black px-2 py-2 md:px-3 md:py-2 font-semibold"} to="/ADMIN-DASHBOARD/draft">Draft</NavLink></li>
                 </ul>
                 <div className="relative search-box my-4">
-                    <input type="text" className="w-full md:w-1/2 h-8 md:h-10 rounded-lg md:rounded-2xl" placeholder="Search names Here" />
+                    <input type="text" className="w-full md:w-1/2 h-8 md:h-10 rounded-lg md:rounded-xl" placeholder="Search names Here" />
                     <FaSearch size={15} className="absolute" />
                 </div>
                 <div>
