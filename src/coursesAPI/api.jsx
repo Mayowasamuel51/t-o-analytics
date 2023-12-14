@@ -13,7 +13,7 @@ export default [
         image: splunk,
         courseName: "splunk",
         intro: "The Complete Splunk Bootcamp",
-        description: "A comprehensive course on Linux. Learn, analyze and optimize with our splunk course",
+        description: "A comprehensive course on Splunk. Learn, analyze and optimize with our splunk course",
         whatToLearn: [
             "Splunk user to admin level",
             "Splunk component and splunk data flow",

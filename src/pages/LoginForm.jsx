@@ -15,7 +15,7 @@ import * as yup from "yup"
 import { app } from "../../firebase.config";
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { useStateContext } from '../context/ContextProvider';
-const api =  import.meta.env.VITE_BACKEND_API
+const api = import.meta.env.VITE_BACKEND_API
 const formVariant = {
     initial: {
         opacity: 0
@@ -35,6 +35,8 @@ const LoginForm = () => {
     const notifyfail = () => toast("Kindly refresh your browser ");
     const navigate = useNavigate()
     const { setToken, setUser } = useStateContext();
+    const [tempToken, settempToken] = useState("");
+    const [tempName, settempName] = useState("")
     const [error, setError] = useState(null)
     const [checkpassword, setCheckPassword] = useState(null)
     const auth = getAuth(app);
@@ -43,23 +45,30 @@ const LoginForm = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 const loggedInUser = result.user;
-                console.log(loggedInUser);
-                window.localStorage.setItem("user", loggedInUser.email)
+                // window.localStorage.setItem("user", loggedInUser.email)
                 const payload = {
-                    name:loggedInUser.displayName,
-                    email:loggedInUser.email
+                    name: loggedInUser.displayName,
+                    email: loggedInUser.email
                 }
                 axios.post(`${api}google`, payload, {
                     headers: {
                         "Accept": "application/json",
-                        "Content-Type":"application/json"
+                        "Content-Type": "application/json"
                     }
                 }).then((res) => {
-                    if (res.status === 201) {
-                        
+                    if (res.status === 201 || res.status === 200) {
+                        console.log(res.data.token)
+                        console.log(res.data.email)
+                        settempToken(res.data.token)
+                        settempName(res.data.email)
+                        // window.localStorage.setItem("user", res.data.data.email)
+                        window.localStorage.setItem("ACCESS_TOKEN", res.data.token)
+                         window.localStorage.setItem("user", res.data.email)
+                        navigate('/dashboard')
+                        setToken(res.data.token)
                     }
-                }).catch((err)=>notifyfail())
-                setToken(loggedInUser)
+                }).catch((err) => notifyfail())
+
             }).catch(error => {
                 console.log('error', error.message);
             })
@@ -110,17 +119,22 @@ const LoginForm = () => {
         })
 
     }
-    useEffect(() => {
-        auth.onAuthStateChanged((loggedInUser) => {
-            if (loggedInUser) {
-                loggedInUser.getIdToken().then((token) => {
-                    console.log(token)
-                    window.localStorage.setItem("ACCESS_TOKEN", token)
-                    setToken(token)
-                }).catch((err) => console.log(err.message))
-            }
-        })
-    }, [])
+    // useEffect(() => {
+    //     auth.onAuthStateChanged((loggedInUser) => {
+    //         if (loggedInUser) {
+    //             loggedInUser.getIdToken().then((token) => {
+    //                 // alert(tempToken)
+    //                 // console.log(token)
+    //                 window.localStorage.setItem("ACCESS_TOKEN", tempToken)
+    //                 window.localStorage.setItem("user", tempName)
+    //                 // navigate('/dashboard')
+    //                 // setToken(tempToken)
+    //                 console.log(tempName,tempToken)
+    //                 // 
+    //             }).catch((err) => console.log(err.message))
+    //         }
+    //     })
+    // }, [])
     return (
         <section className="min-h-screen flex justify-center items-center bg-black opacity-80">
             <motion.div variants={formVariant} initial="initial" animate="animate" exit={{ x: -100, }} className="border-2 border-black md:w-[400px] p-5 bg-white rounded-3xl">

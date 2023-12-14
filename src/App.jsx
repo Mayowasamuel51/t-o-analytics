@@ -1,5 +1,6 @@
 import React from "react";
-import ErrorPage from "./components/ErrorPage";
+
+import ErrorPage from "./components/errorPage";
 import AllCourses from "./components/AllCourses";
 const LazyHomePage = React.lazy(()=> import("./pages/HomePage"))
 const LazyCourses = React.lazy(()=> import("./pages/Courses"))
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
         index: true,
         element: <React.Suspense fallback={<Loader />}><LazyHomePage /></React.Suspense>,
       },
+    
       {
         path: "/courses",
         element: <React.Suspense fallback={<Loader />}><LazyCourses /></React.Suspense>,
@@ -186,6 +188,7 @@ const router = createBrowserRouter([
       }
     ]
   }
+    
 ]);
 
 

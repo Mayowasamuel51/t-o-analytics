@@ -104,18 +104,18 @@ const CreateAccountForm = () => {
             }
         })
     }
-    useEffect(() => {
-        auth.onAuthStateChanged((loggedInUser) => {
-            if (loggedInUser) {
-                loggedInUser.getIdToken().then((token) => {
-                    console.log(token)
-                    window.localStorage.setItem("user", loggedInUser.email)
-                    setToken(token)
-                    navigate('/dashboard')
-                }).catch((err) => console.log(err.message))
-            }
-        })
-    }, [])
+    // useEffect(() => {
+    //     auth.onAuthStateChanged((loggedInUser) => {
+    //         if (loggedInUser) {
+    //             loggedInUser.getIdToken().then((token) => {
+    //                 console.log(token)
+    //                 window.localStorage.setItem("user", loggedInUser.email)
+    //                 setToken(token)
+    //                 navigate('/dashboard')
+    //             }).catch((err) => console.log(err.message))
+    //         }
+    //     })
+    // }, [])
 
     return (
         <section className="min-h-screen flex justify-center items-center bg-black opacity-80">

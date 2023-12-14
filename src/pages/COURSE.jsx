@@ -233,10 +233,9 @@ const COURSE = () => {
           <h1 className="font-bold text-2xl md:text-4xl md:my-8 my-4">
             No prior knowledge needed!
           </h1>
-          <p className="md:text-base text-xs">
-            You do not need familiarity with {singleCourse.courseName} to take this course.
-            Everything you need to know will be thought from scratch and step by
-            step too.
+          <p className="md:text-base text-xs font-medium ">
+            
+            You don't require prior knowledge of  {singleCourse.courseName}  to enroll in this course. We'll cover everything you need to know right from the basics, guiding you step by step.
           </p>
         </div>
       </section>
