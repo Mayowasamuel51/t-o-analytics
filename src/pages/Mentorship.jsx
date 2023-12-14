@@ -43,7 +43,7 @@ const Mentorship = () => {
                     <li>Exclusive access to knowledge and experience</li>
                     <li>Career growth oppurtunities</li>
                     <li>Lifelong connections</li>
-                    <li>Personalized guidance and emotional support</li>
+            
                     <li>Accelerated learning and networking oppurtunities</li>
                 </ul>
             </div>

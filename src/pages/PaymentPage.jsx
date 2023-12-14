@@ -16,10 +16,10 @@ const PaymentPage = () => {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("COURSE-CART")) || [];
     setCartItem(data);
-    // console.log(singleCourse)
+    console.log(data)
   }, []);
   let totalfinalpayment = 0;
-  let courseName = ''
+  let courseName;
   const checkoutfunction = () => {
     // when users trys to pay only one course it works
     if (cartItem.length > 1) {
@@ -71,6 +71,7 @@ const PaymentPage = () => {
     payment_mode: 'Paypal',
     payment_id: '',
   }
+
   // const onApprove = () => {
   //   return actions.order.capture().then((details) => {
   //     console.log(details)
@@ -91,26 +92,26 @@ const PaymentPage = () => {
   };
   const createOrder = async () => {
     // always remove the the cart infomation after sending to the backend for payment 
-    if (cartItem.length ===  1) {
-      cartItem.forEach((item) => {
-        totalfinalpayment += item.price
-        courseName = item.courseName
-        console.log(courseName, totalfinalpayment)
-      })
-      //   .map((itemcoursename) => {
-      //   console.log(itemcoursename)
-      //   return courseName = itemcoursename.courseName
-      // })
-      // .reduce((acc, value) => {
-      //   return totalfinalpayment += acc + value.price
-      // }, 0)
-      console.log('only one course ' + totalfinalpayment)
-    } else if (cartItem.length > 1) {
+    if (cartItem.length === 1) {
       cartItem.forEach((item) => {
         totalfinalpayment += item.price
         courseName += item.courseName
         console.log(courseName, totalfinalpayment)
-     })
+      })
+
+    } else if (cartItem.length > 1) {
+      // we use a map 
+      const test = cartItem.map((items) => {
+        totalfinalpayment += items.price;
+        courseName = items.courseName
+        return courseName 
+      })
+      console.log(test)
+      //   cartItem.forEach((item) => {
+      //     totalfinalpayment += item.price
+      //     courseName = item.courseName
+      //     console.log(courseName, totalfinalpayment)
+      //  })
       console.log('more than one course   ' + cartItem)
     }
     try {

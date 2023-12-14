@@ -35,6 +35,7 @@ const LoginForm = () => {
     const notifyfail = () => toast("Kindly refresh your browser ");
     const navigate = useNavigate()
     const { setToken, setUser } = useStateContext();
+    const [tempToken, settempToken] = useState("");
     const [error, setError] = useState(null)
     const [checkpassword, setCheckPassword] = useState(null)
     const auth = getAuth(app);
@@ -43,8 +44,7 @@ const LoginForm = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 const loggedInUser = result.user;
-                console.log(loggedInUser);
-                window.localStorage.setItem("user", loggedInUser.email)
+                // window.localStorage.setItem("user", loggedInUser.email)
                 const payload = {
                     name:loggedInUser.displayName,
                     email:loggedInUser.email
@@ -55,11 +55,15 @@ const LoginForm = () => {
                         "Content-Type":"application/json"
                     }
                 }).then((res) => {
-                    if (res.status === 201) {
-                        
+                    if (res.status === 201 || res.status === 200) {
+                        console.log(res.data.token)
+                        settempToken(res.data.token)
+                        window.localStorage.setItem("user", res.data.data.email)
+                        // navigate('/dashboard')
+                        // setToken(res.data.token)
                     }
                 }).catch((err)=>notifyfail())
-                setToken(loggedInUser)
+                
             }).catch(error => {
                 console.log('error', error.message);
             })
@@ -91,7 +95,7 @@ const LoginForm = () => {
                 setUser(res.data.data)
                 console.log(res.data.token)
                 window.localStorage.setItem("user", res.data.data.email)
-                navigate('/dashboard')
+                // navigate('/dashboard')
                 setToken(res.data.token)
             }
         }).catch(err => {
@@ -114,9 +118,11 @@ const LoginForm = () => {
         auth.onAuthStateChanged((loggedInUser) => {
             if (loggedInUser) {
                 loggedInUser.getIdToken().then((token) => {
-                    console.log(token)
-                    window.localStorage.setItem("ACCESS_TOKEN", token)
-                    setToken(token)
+                    // console.log(token)
+                    // window.localStorage.setItem("ACCESS_TOKEN", tempToken)
+                    // navigate('/dashboard')
+                    // setToken(tempToken)
+// 
                 }).catch((err) => console.log(err.message))
             }
         })
