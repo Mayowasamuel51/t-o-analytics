@@ -5,11 +5,12 @@ const LazyHomePage = React.lazy(()=> import("./pages/HomePage"))
 const LazyCourses = React.lazy(()=> import("./pages/Courses"))
 const LazyAbout = React.lazy(()=> import("./pages/AboutPage"))
 const LazyCOURSE = React.lazy(()=> import("./pages/COURSE"))
-import BlogPage from "./pages/BlogPage";
+const LazyBlogPage = React.lazy(()=> import("./pages/BlogPage"))
 import ContactPage from "./pages/ContactPage";
 import ConnectWithContractor from "./pages/ConnectWithContractor";
 import MyCourses from "./pages/MyCourses";
 import Mentorship from "./pages/Mentorship";
+const LazyMentorship = React.lazy(()=> import("./pages/Mentorship"))
 import LiveCourses from "./pages/LiveCourses";
 import CreateAccountForm from "./pages/CreateAccountForm";
 import LoginForm from "./pages/LoginForm";
@@ -21,8 +22,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import HomeLayout from "./layoutAuth/HomeLayout";
-import AuthLayout from "./layoutAuth/AuthLayout";
 import AdminLayout from "./layoutAuth/AdminLayout";
+const LazyAuthLayout = React.lazy(()=> import("./layoutAuth/AuthLayout"))
 import Dashboard from "./dashboard/components/Dashboard";
 import AdminDashboard from "./components/AdminDashboard";
 import AdminViewCourses from "./components/AdminViewCourses";
@@ -64,7 +65,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: <BlogPage />
+        element: <React.Suspense fallback={<Loader />}><LazyBlogPage /></React.Suspense>,
       },
       {
         path: "/contact",
@@ -76,7 +77,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/mentorship",
-        element: <Mentorship />
+        element: <React.Suspense fallback={<Loader />}><LazyMentorship /></React.Suspense>,
       },
       {
         path: "/liveCourses",
@@ -110,7 +111,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <AuthLayout />,
+    element: <React.Suspense fallback={<Loader />}><LazyAuthLayout /></React.Suspense>,
     children: [
       {
         index: true,

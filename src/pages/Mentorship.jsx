@@ -16,7 +16,7 @@ const Mentorship = () => {
             setCartItem(prev => [...prev, {id: 111, name: "Mentorship", price: 500}])
             setTimeout(() => {
                 window.location.reload()
-            }, 3000);
+            }, 2000);
         }
     }
     useEffect(()=> {
@@ -33,10 +33,10 @@ const Mentorship = () => {
     </section>
     <section className="p-2 py-10 md:p-10">
         <h1 className="text-2xl md:text-4xl text-center font-bold">Program Details</h1>
-        <p className="text-sm md:text-lg my-10     font-medium  ">This is a 5 week mentorship program in career development. You will gain exclusive access to industry events, workshops, and resources that will enhance your professional development. This includes webinars, training materials, and networking events tailored specifically for our mentees. Your mentor can become a trusted advisor and a valuable professional contact even after the mentorship program</p>
+        <p className="text-sm md:text-lg my-10 font-medium text-center">This is a 5 week mentorship program in career development. You will gain exclusive access to industry events, workshops, and resources that will enhance your professional development. This includes webinars, training materials, and networking events tailored specifically for our mentees. Your mentor can become a trusted advisor and a valuable professional contact even after the mentorship program</p>
     </section>
     <section className="p-2 md:p-10">
-        <div className="p-6 rounded-xl bg-BLUE text-white">
+        <div className="p-2 md:p-6 rounded-xl bg-BLUE text-white">
             <h1 className="text-2xl md:text-4xl font-bold mb-10">What you stand to benefit</h1>
             <div className="benefit">
                 <ul>

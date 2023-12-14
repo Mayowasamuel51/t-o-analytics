@@ -13,8 +13,7 @@ import {
 const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    
+  // <React.StrictMode>
     <ErrorBoundary fallback={<Error />}>
       <ContextProvider>
         <QueryClientProvider client={queryClient}>
@@ -22,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </QueryClientProvider>
       </ContextProvider>
     </ErrorBoundary>
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )
 
 // https://analytics.google.com/analytics/web/#/p416965870/reports/intelligenthome?params=_u..nav%3Dmaui
