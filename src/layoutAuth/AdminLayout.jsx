@@ -47,7 +47,6 @@ const AdminLayout = () => {
         window.addEventListener("resize", handleResize)
 
         return ()=> window.removeEventListener("resize", handleResize)
-
     }, [FullScreen])
 
     return (

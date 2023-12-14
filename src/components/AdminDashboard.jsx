@@ -16,7 +16,7 @@ const AdminDashboard = () => {
                         </div>
                         <div className="text-center">
                             <p className="text-xs md:text-base">Total User</p>
-                            <p className="font-bold">{data?.data?.response.length}</p>
+                            <p className="font-bold">{data?.data?.response.length || "00"}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-2 md:gap-5 md:p-3 p-1 bg-inputColor rounded-md">
