@@ -95,7 +95,7 @@ const LoginForm = () => {
                 setUser(res.data.data)
                 console.log(res.data.token)
                 window.localStorage.setItem("user", res.data.data.email)
-                // navigate('/dashboard')
+                navigate('/dashboard')
                 setToken(res.data.token)
             }
         }).catch(err => {
