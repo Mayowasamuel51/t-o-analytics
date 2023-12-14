@@ -245,6 +245,17 @@ section.payment-page {
   line-height: 30px;
 }
 
+table.dashboard tr:nth-child(even),
+table.dashboard thead tr {
+  background-color: #fff;
+  border-radius: 15px;
+}
+table.contact-table tr:nth-child(even),
+table.contact-table thead tr {
+  background-color: #d9d9d9;
+  border-radius: 15px;
+}
+
 @media only screen and (min-width: 768px) {
   nav.fixed {
     top: 0;

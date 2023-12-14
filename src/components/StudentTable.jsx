@@ -2,8 +2,11 @@ import Loader from "./Loader"
 import { useState } from 'react';
 import FetchAllStudents from '../hook/FetchAllStudents';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { IoEyeSharp } from "react-icons/io5";
+import { FaTrash } from "react-icons/fa"
 import '@splidejs/react-splide/css';
 import moment from "moment";
+
 const StudentTable = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [postsPerPage] = useState(10)
@@ -24,28 +27,28 @@ const StudentTable = () => {
 
     return (
         <div>
-            <table className='table-fixed w-full rounded-2xl'>
-                <thead className='bg-white'>
-                    <tr className='font-black text-xs md:text-lg'>
+            <table className='dashboard table-auto w-full rounded-2xl min-h-[314px]'>
+                <thead className=''>
+                    <tr className='font-black text-xs md:text-lg text-left'>
                         {/* <th className='py-1 md:py-2'>S/N</th> */}
                         <th className='py-1 md:py-2 hidden md:block'>Registration Date</th>
                         <th className='py-1 md:py-2'>Student Name</th>
                         <th className='py-1 md:py-2 hidden md:block'>Email Address</th>
-                        {/* <th className='py-1 md:py-2'>Course</th> */}
-                        {/* <th className='py-1 md:py-2'>Amount</th> */}
+                        <th className='py-1 md:py-2'></th> 
+                        <th className='py-1 md:py-2'></th>
                     </tr>
                 </thead>
                 <tbody className='tbody'>
                     {paginatedData?.map((info, index) => (
                         <tr key={index} className='text-xs md:text-[14px] leading-7 font-medium'>
                             {/* <td className=''></td> */}
-                            <td className=''>   {moment(info.date)
+                            <td className='"md:p-2'>   {moment(info.date)
                                 .utc()
                                 .format("YYYY-MM-DD")}</td>
-                            <td className=''>{info.name}</td>
-                            <td className='hidden md:block'>{info.email}</td>
-                            {/* <td className=''></td> */}
-                            {/* <td className=''></td> */}
+                            <td className='"md:p-2'>{info.name}</td>
+                            <td className='hidden md:block "md:p-2'>{info.email}</td>
+                            <td className=''><IoEyeSharp /></td>
+                            <td className=''><FaTrash /></td>
                         </tr>
                     ))}
                 </tbody>
@@ -62,7 +65,9 @@ const StudentTable = () => {
                         pagination: false,
                         perPage: 5,
                         perMove: 3,
-                        gap: "20px"
+                        gap: "20px",
+                        focus : 'center',
+                        trimSpace: false,
                     }} className="">
                         {pageNumber.map((num) => (
                             <SplideSlide key={num}><button onClick={() => setCurrentPage(num)} key={num} className={`${currentPage === num && "bg-BLUE text-white px-3 py-2 rounded-md"} px-3 py-2 text-sm md:text-base font-bold`}>{num}</button></SplideSlide>
