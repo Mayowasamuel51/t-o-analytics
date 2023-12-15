@@ -42,18 +42,7 @@ const CreateAccountForm = () => {
     const [error, setError] = useState(null)
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
-    const loginwihGoogle = () => {
-        signInWithPopup(auth, googleProvider)
-            .then(result => {
-                const loggedInUser = result.user;
-                console.log(loggedInUser);
-                setToken(loggedInUser)
-                window.localStorage.setItem("user", loggedInUser.email)
-                console.log(loggedInUser.password)
-            }).catch(error => {
-                console.log('error', error.message);
-            })
-    }
+  
     const schema = yup.object().shape({
         name: yup.string().required(),
         password: yup.string().required(),
@@ -67,7 +56,7 @@ const CreateAccountForm = () => {
         resolver: yupResolver(schema),
     })
     const onSubmit = (data) => {
-        console.log(data)
+      
         const payload = {
             name: data.name,
             password: data.password,
@@ -82,7 +71,7 @@ const CreateAccountForm = () => {
             if (res.status === 201 || res.status === 200) {
                 setUser(res.data.data)
                 window.localStorage.setItem("user", res.data.data.email)
-                console.log(res.data.token)
+               
                 setToken(res.data.token)
                 navigate('/dashboard')
             }
@@ -90,32 +79,18 @@ const CreateAccountForm = () => {
         }).catch(err => {
             const response = err.response
             if (response.status === 422) {
-                console.log(response)
-                console.log(response.data.message)
+              
                 setError(response.data.message)
             } else if (response.status === 401) {
-                console.log(response)
-                console.log(response.data.message)
+              
                 setError(response.data.message)
             } else if (response.status === 403) {
-                console.log(response)
-                console.log(response.data.message)
+              
                 setError(response.data.message)
             }
         })
     }
-    // useEffect(() => {
-    //     auth.onAuthStateChanged((loggedInUser) => {
-    //         if (loggedInUser) {
-    //             loggedInUser.getIdToken().then((token) => {
-    //                 console.log(token)
-    //                 window.localStorage.setItem("user", loggedInUser.email)
-    //                 setToken(token)
-    //                 navigate('/dashboard')
-    //             }).catch((err) => console.log(err.message))
-    //         }
-    //     })
-    // }, [])
+    
 
     return (
         <section className="min-h-screen flex justify-center items-center bg-black opacity-80">
