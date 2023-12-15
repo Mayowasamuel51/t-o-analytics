@@ -15,7 +15,6 @@ const COURSE = () => {
   // console.log(c)
   const { token } = useStateContext();
   const location = useLocation()
-  // console.log(location)
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
   const [stockOptionIndex, setStockOptionIndex] = useState(()=> {

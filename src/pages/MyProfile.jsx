@@ -24,11 +24,10 @@ const MyProfile = () => {
   const firstName = fullname?.split(" ")[0]
   const lastName = fullname?.split(" ")[1]
   return (
-    <div className="p-2 md:p-0 flex flex-wrap justify-center items-start mt-32 mb-10 min-h-[70vh]">
-      <div className="border-2 md:w-[300px] text-center">
-        <div className="mx-auto w-24 md:w-36 aspect-square bg-BLUE rounded-full flex justify-center items-center text-3xl md:text-6xl font-black text-white">{initial}</div>
+    <div className="p-2 md:p-0 flex flex-wrap justify-center items-start mt-16 md:mt-32 mb-10 min-h-[74vh]">
+      <div className="border-2 w-full md:w-[300px] text-center">
+        <div className="my-3 md:my-5 mx-auto w-24 md:w-36 aspect-square bg-BLUE rounded-full flex justify-center items-center text-3xl md:text-6xl font-black text-white">{initial}</div>
         <div className="font-bold">{firstName} {lastName}</div>
-
       </div>
       <div className="border-2 w-full md:w-[600px] p-3 md:p-10">
         <h1 className="text-center md:my-4 text-sm md:text-2xl font-semibold">Public Profile</h1>

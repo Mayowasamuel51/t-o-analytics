@@ -4,7 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { useStateContext } from "./ContextProvider";
 
-const CartItemContext = createContext({});
+const CartItemContext = createContext();
 
 export const CartItemProvider = ({ children }) => {
     const { token } = useStateContext();
@@ -26,8 +26,7 @@ export const CartItemProvider = ({ children }) => {
             C.courseName === singleCourse.courseName &&
             location.pathname === "/courses/stock%20&%20options"
     );
-    const stockAndOptionsData =
-        stockAndOptions?.otherSubCourses[stockOptionIndex];
+    const stockAndOptionsData = stockAndOptions?.otherSubCourses[stockOptionIndex];
     const addToCartItem = (id) => {
         if (!cartItem.some((item) => item.id === id) && singleCourse.id === id) {
             toast.success(`successfully added to cartItem`);

@@ -47,7 +47,8 @@ const NavBar = () => {
         if (loggedinUuser) {
           setUser(loggedinUuser);
         }
-    }, [navigate])
+        else return
+    }, [])
 
     const currentlyLoggedInUSer = data?.data?.response.find((user)=> user.email === localuser)
     const fullname = currentlyLoggedInUSer?.name
@@ -108,7 +109,7 @@ const NavBar = () => {
                             <div className='relative cursor-pointer group'>
                                 <MdOutlineAddShoppingCart size={30} />
                                 <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10" >
-                                    {cartItem.length}</p>
+                                    {cartItem.length || 0}</p>
                                 <div className="top-[-6px] group-hover:animate-ping duration-200 ease-in-out right-[-6px] absolute w-5 aspect-square rounded-full bg-BLUE z-[1]" ></div>
                                 {cartItem.length > 0 && <div className="top-[-6px] right-[-6px] animate-ping duration-200 ease-in-out absolute w-5 aspect-square rounded-full bg-BLUE z-[1]" ></div>}
                             </div>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import { useStateContext } from "../context/ContextProvider";
 import { Toaster, toast } from 'sonner';
-import { FaExclamation } from "react-icons/fa";
+import { FaCheck, FaExclamation } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 
 const CheckOut = () => {
@@ -20,9 +20,9 @@ const CheckOut = () => {
       })
       setTimeout(() => {
         navigate("/login")
-      }, 2000);
+      }, 4000);
     }
-    else if (cartItem.length === 0) {
+    if (cartItem.length === 0) {
       toast.error("Oops, Your cart is empty", {
         cancel: {
           label: <FaXmark />,
@@ -30,6 +30,18 @@ const CheckOut = () => {
         duration: 4000,
         icon: <FaExclamation color="red" />,
       })
+      toast('Would you like to buy a course', {
+        action: {
+          label: <FaCheck color="green" />,
+          onClick: ()=> navigate("/courses")
+        },
+        cancel: {
+          label: <FaXmark color="red" />,
+        },
+        classNames: {
+          actionButton: 'bg-slate-300',
+        },
+      });
     }
     else {
       navigate("/dashboard/makePayment")
