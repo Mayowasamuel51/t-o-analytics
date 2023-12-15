@@ -14,10 +14,13 @@ import FetchAllStudents from '../hook/FetchAllStudents';
 
 const NavBar = () => {
     const { data } = FetchAllStudents()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const [fixed, setFixed] = useState("")
     const [show, setShow] = useState("")
-    const [cartItem, setCartItem] = useState([])
+    const [cartItem, setCartItem] = useState(()=> {
+        let data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
+        return data
+    })
     const { token, setToken } = useStateContext();
     const [localuser, setUser] = useState("")
     const auth = getAuth(app);
@@ -29,7 +32,7 @@ const NavBar = () => {
         }).catch((err) => console.log(err.message))
     }
     useEffect(()=> {
-        const data = JSON.parse(localStorage.getItem("COURSE-CART"))
+        const data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
         setCartItem(data)
     }, [])
     useEffect(()=> {
@@ -109,7 +112,7 @@ const NavBar = () => {
                             <div className='relative cursor-pointer group'>
                                 <MdOutlineAddShoppingCart size={30} />
                                 <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10" >
-                                    {cartItem.length || 0}</p>
+                                    {cartItem?.length ? cartItem?.length : "0" }</p>
                                 <div className="top-[-6px] group-hover:animate-ping duration-200 ease-in-out right-[-6px] absolute w-5 aspect-square rounded-full bg-BLUE z-[1]" ></div>
                                 {cartItem.length > 0 && <div className="top-[-6px] right-[-6px] animate-ping duration-200 ease-in-out absolute w-5 aspect-square rounded-full bg-BLUE z-[1]" ></div>}
                             </div>
