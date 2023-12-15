@@ -1,19 +1,20 @@
 import FetchAllStudents from "../hook/FetchAllStudents";
 import { useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
+import { useStateContext } from "../context/ContextProvider";
 const MyProfile = () => {
   const navigate = useNavigate()
   const [localuser, setUser] = useState("")
   const { data } = FetchAllStudents()
-
+  const { token } = useStateContext();
   useEffect(()=> {
     const loggedinUuser = (localStorage.getItem("user"))
     if (loggedinUuser) {
       setUser(loggedinUuser);
-    } else {
-      navigate("/")
     }
   }, [navigate])
+  
+  if (!token) return <Navigate to="/" />
 
   const currentlyLoggedInUSer = data?.data?.response.find((user)=> user.email === localuser)
   const fullname = currentlyLoggedInUSer?.name

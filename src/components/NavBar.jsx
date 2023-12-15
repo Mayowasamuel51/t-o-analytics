@@ -46,8 +46,6 @@ const NavBar = () => {
         const loggedinUuser = (localStorage.getItem("user"))
         if (loggedinUuser) {
           setUser(loggedinUuser);
-        } else {
-          navigate("/")
         }
     }, [navigate])
 

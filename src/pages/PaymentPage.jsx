@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import React from "react";
+import { Navigate } from "react-router-dom"
 import { ReactDOM } from "react";
 import { PayPalScriptProvider, PayPalButtons, } from "@paypal/react-paypal-js";
 import axios from "axios";
 const api = import.meta.env.VITE_BACKEND_PAY
 import CartItemContext from "../context/CartItemContext";
+import { useStateContext } from "../context/ContextProvider";
 
 const PaymentPage = () => {
-
+  const { token } = useStateContext();
+  if (!token) return <Navigate to="/" />
   const studentName = window.localStorage.getItem('user')
   const [message, setMessage] = useState("");
   const [totalcart, setTotalCart] = useState([])

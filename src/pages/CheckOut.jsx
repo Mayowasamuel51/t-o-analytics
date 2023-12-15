@@ -11,7 +11,16 @@ const CheckOut = () => {
   const navigate = useNavigate();
   const checkOut = ()=> {
     if (!token) {
-      navigate("/createAccount")
+      toast.error("You have to Login First", {
+        cancel: {
+          label: <FaXmark />,
+        },
+        duration: 4000,
+        icon: <FaExclamation color="red" />,
+      })
+      setTimeout(() => {
+        navigate("/login")
+      }, 2000);
     }
     else if (cartItem.length === 0) {
       toast.error("Oops, Your cart is empty", {

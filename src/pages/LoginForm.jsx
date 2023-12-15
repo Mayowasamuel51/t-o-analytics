@@ -142,7 +142,7 @@ const LoginForm = () => {
                     <div>
                         <Link to="/"><img src={LOGO} className="w-[150px] pl-0" alt="" /></Link>
                     </div>
-                    <p onClick={()=> navigate(-1)}>
+                    <p onClick={()=> navigate(-1)} className='cursor-pointer'>
                         <FaXmark size={30} />
                     </p>
                 </div>
