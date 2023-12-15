@@ -149,7 +149,7 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "ADMIN-DASHBOARD",
+    path: "/ADMIN-DASHBOARD",
     element: <AdminLayout />,
     children: [
       {
@@ -179,11 +179,11 @@ const router = createBrowserRouter([
         element: <AllStudents />
       },
       {
-        path: "vendors",
+        path: "contacts",
         element: <Contacts />
       },
       {
-        path: "analytics",
+        path: "contractors",
         element: <Contractors />
       }
     ]

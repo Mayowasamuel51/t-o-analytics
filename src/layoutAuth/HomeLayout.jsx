@@ -2,12 +2,10 @@ import { Outlet, useLocation } from "react-router-dom"
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import COURSES from "../coursesAPI/api";
-import { useParams } from "react-router-dom";
 
 
 function HomeLayout() {
     const location = useLocation()
-    const { course } = useParams();
     return (
         <>
             <div>

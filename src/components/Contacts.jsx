@@ -24,24 +24,24 @@ const Contacts = () => {
 
   return (
     <div className="p-2 md:p-5">
-      <table className="md:p-3 contact-table rounded-md  table-auto border-collapse border-textColor w-full min-h-[314px]">
-        <thead className="text-left md:font-black text-xs md:text-xl">
+      <table className="md:p-3 contact-table table-auto border-collapse w-full">
+        <thead className="text-left md:font-black">
           <tr className="">
-            <th className="">Date</th>
-            <th className="">Name</th>
-            <th className="">Email</th>
-            <th className="">Message</th>
-            <th className="">Phone Number</th>
+            <th className="text-sm md:text-base tracking-wide p-1 md:p-2">Date</th>
+            <th className="text-sm md:text-base tracking-wide p-1 md:p-2">Name</th>
+            <th className="text-sm md:text-base tracking-wide p-1 md:p-2">Email</th>
+            <th className="text-sm md:text-base tracking-wide p-1 md:p-2">Message</th>
+            <th className="text-sm md:text-base tracking-wide p-1 md:p-2">Phone Number</th>
           </tr>
         </thead>
         <tbody>
           {paginatedData.map((contact, index)=> (
-            <tr className="contact text-xs md:text-[14px] leading-7" key={index}>
-              <td className="md:p-2">{(new Date(contact.date)).toLocaleDateString()}</td>
-              <td className="md:p-2">{contact.name}</td>
-              <td className="md:p-2">{contact.email}</td>
-              <td className="md:p-2">{contact.message}</td>
-              <td className="md:p-2">{contact.number}</td>
+            <tr className="" key={index}>
+              <td data-cell="Date" className="text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2">{(new Date(contact.date)).toLocaleDateString()}</td>
+              <td data-cell="Name" className="text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2">{contact.name}</td>
+              <td data-cell="Email" className="text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2">{contact.email}</td>
+              <td data-cell="Message" className="text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2">{contact.message}</td>
+              <td data-cell="Phone Number" className="text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2">{contact.number}</td>
             </tr>
           ))}
         </tbody>
@@ -61,6 +61,15 @@ const Contacts = () => {
                   gap: "20px",
                   focus    : 'center',
                   trimSpace: false,
+                  breakpoints: {
+                    768: {
+                      perPage: 4,
+                      perMove: 2,
+                      gap: "10px",
+                      focus: "none",
+                      trimSpace: true,
+                    },
+                  }
               }} className="">
                   {pageNumber.map((num) => (
                       <SplideSlide key={num}><button onClick={() => setCurrentPage(num)} key={num} className={`${currentPage === num && "bg-BLUE text-white px-3 py-2 rounded-md"} px-3 py-2 text-sm md:text-base font-bold`}>{num}</button></SplideSlide>
