@@ -1,3 +1,5 @@
+
+
 import Loader from "./Loader"
 import { useState } from 'react';
 import FetchAllStudents from '../hook/FetchAllStudents';
@@ -29,13 +31,10 @@ const StudentTable = () => {
         <div className="">
             <table className='dashboard table-auto w-full'>
                 <thead className=''>
-                    <tr className='font-black text-xs md:text-lg text-left'>
-                        {/* <th className='py-1 md:py-2'>S/N</th> */}
-                        <th className='py-1 md:py-2 hidden md:block'>Registration Date</th>
-                        <th className='py-1 md:py-2'>Student Name</th>
-                        <th className='py-1 md:py-2 hidden md:block'>Email Address</th>
-                        <th className='py-1 md:py-2'>Provider </th> 
-                        <th className='py-1 md:py-2'></th>
+                    <tr className='font-black text-left'>
+                        <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Registration Date</th>
+                        <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Student Name</th>
+                        <th className='text-sm md:text-base tracking-wide p-1 md:p-2 hidden md:block'>Email Address</th>
                     </tr>
                 </thead>
                 <tbody className='tbody'>
@@ -44,11 +43,10 @@ const StudentTable = () => {
                             <td data-cell="Registration Date" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>   {moment(info.date)
                                 .utc()
                                 .format("YYYY-MM-DD")}</td>
-                            <td className='"md:p-2'>{info.name}</td>
-                            <td className='hidden md:block "md:p-2'>{info.email}</td>
-                            <td className='"md:p-2'>{info.provider}</td>
-                            {/* <td className=''><IoEyeSharp /></td> */}
-                            {/* <td className=''><FaTrash /></td> */}
+                            <td data-cell="Student Name" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>{info.name}</td>
+                            <td data-cell="Email Address" className='text-[13px] leading-7 md:text-sm font-medium  p-1 hidden md:block md:p-2'>{info.email}</td>
+                            {/* <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><IoEyeSharp size={20} /></td>
+                            <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><FaTrash size={20} /></td> */}
                         </tr>
                     ))}
                 </tbody>
@@ -89,3 +87,4 @@ const StudentTable = () => {
 }
 
 export default StudentTable
+
