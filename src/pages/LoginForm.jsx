@@ -57,11 +57,10 @@ const LoginForm = () => {
                     }
                 }).then((res) => {
                     if (res.status === 201 || res.status === 200) {
-                        console.log(res.data.token)
-                        console.log(res.data.email)
+                      
                         settempToken(res.data.token)
                         settempName(res.data.email)
-                        // window.localStorage.setItem("user", res.data.data.email)
+                    
                         window.localStorage.setItem("ACCESS_TOKEN", res.data.token)
                          window.localStorage.setItem("user", res.data.email)
                         navigate('/dashboard')
@@ -98,20 +97,15 @@ const LoginForm = () => {
         }).then((res) => {
             if (res.status === 201 || res.status === 200) {
                 setUser(res.data.data)
-                console.log(res.data.token)
                 window.localStorage.setItem("user", res.data.data.email)
                 navigate('/dashboard')
                 setToken(res.data.token)
             }
         }).catch(err => {
             const response = err.response
-            console.log(response)
             if (response.status === 401) {
-                console.log(response)
-                console.log(response.data.message)
                 setError(response.data.message)
             } else if (response.status === 403) {
-                console.log(response)
                 setCheckPassword(response.data.message)
                 setError(response.data.message)
             }
@@ -119,22 +113,7 @@ const LoginForm = () => {
         })
 
     }
-    // useEffect(() => {
-    //     auth.onAuthStateChanged((loggedInUser) => {
-    //         if (loggedInUser) {
-    //             loggedInUser.getIdToken().then((token) => {
-    //                 // alert(tempToken)
-    //                 // console.log(token)
-    //                 window.localStorage.setItem("ACCESS_TOKEN", tempToken)
-    //                 window.localStorage.setItem("user", tempName)
-    //                 // navigate('/dashboard')
-    //                 // setToken(tempToken)
-    //                 console.log(tempName,tempToken)
-    //                 // 
-    //             }).catch((err) => console.log(err.message))
-    //         }
-    //     })
-    // }, [])
+    
     return (
         <section className="min-h-screen flex justify-center items-center bg-black opacity-80">
             <motion.div variants={formVariant} initial="initial" animate="animate" exit={{ x: -100, }} className="border-2 border-black md:w-[400px] p-5 bg-white rounded-3xl">

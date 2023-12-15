@@ -104,18 +104,19 @@ const PaymentPage = () => {
 
     } else if (cartItem.length > 1) {
       // we use a map 
-      const test = cartItem.map((items) => {
-        totalfinalpayment += items.price;
-        courseName = items.courseName
-        return courseName 
+      // const test = cartItem.map((items) => {
+      //   totalfinalpayment += items.price;
+      //   courseName = items.courseName
+      //   return courseName 
+      // })
+      // console.log(test)
+      const test =  cartItem.forEach((item) => {
+          totalfinalpayment = item.price
+          courseName = item.courseName
+          console.log(courseName, totalfinalpayment)
       })
       console.log(test)
-      //   cartItem.forEach((item) => {
-      //     totalfinalpayment += item.price
-      //     courseName = item.courseName
-      //     console.log(courseName, totalfinalpayment)
-      //  })
-      console.log('more than one course   ' + cartItem)
+      // console.log('more than one course   ' + cartItem)
     }
     try {
       const response = await fetch(`${api}/api/orders`, {
