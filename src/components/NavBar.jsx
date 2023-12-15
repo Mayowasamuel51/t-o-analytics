@@ -3,20 +3,23 @@ import LOGO from "../assets/images/logo.jpg";
 import { FaSearch } from "react-icons/fa";
 import { motion } from 'framer-motion';
 import { useStateContext } from "../context/ContextProvider"
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { FaXmark } from "react-icons/fa6";
 import { MdOutlineAddShoppingCart } from "react-icons/md"
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
+import FetchAllStudents from '../hook/FetchAllStudents';
 
 
 const NavBar = () => {
+    const { data } = FetchAllStudents()
+    const navigate = useNavigate()
     const [fixed, setFixed] = useState("")
     const [show, setShow] = useState("")
     const [cartItem, setCartItem] = useState([])
     const { token, setToken } = useStateContext();
-    const [useremail, setUserEmail] = useState("")
+    const [localuser, setUser] = useState("")
     const auth = getAuth(app);
     const signout = () => {
         signOut(auth).then((user) => {
@@ -39,10 +42,21 @@ const NavBar = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, [])
-    useEffect(() => {
-        const localuser = window.localStorage.getItem("user")
-       setUserEmail(localuser) 
-    },[])
+    useEffect(()=> {
+        const loggedinUuser = (localStorage.getItem("user"))
+        if (loggedinUuser) {
+          setUser(loggedinUuser);
+        } else {
+          navigate("/")
+        }
+    }, [navigate])
+
+    const currentlyLoggedInUSer = data?.data?.response.find((user)=> user.email === localuser)
+    const fullname = currentlyLoggedInUSer?.name
+    const email = currentlyLoggedInUSer?.email
+
+    const initial = currentlyLoggedInUSer?.name.split(" ").map((word)=> word.charAt(0).toUpperCase()).join("")
+    
     const navBar = ()=> {
         setShow("show")
     }
@@ -106,12 +120,13 @@ const NavBar = () => {
                         </div>
                         {token && 
                         <div className=' flex-1 md:block hidden group'>
-                            <div className='w-8 md:text-2xl aspect-square text-white flex justify-center items-center font-black bg-BLUE rounded-full'>{useremail[0]}</div>
+                            <div className='w-8 md:text-lg aspect-square text-white flex justify-center items-center font-black bg-BLUE rounded-full'>{initial}</div>
                             <div className='invisible opacity-0 group-hover:visible group-hover:opacity-100 duration-300 absolute rounded-lg w-[250px] right-[20px] top-16 bg-white shadow-lg'>
                                 <div className='p-3 flex items-center gap-3 border-b-2 border-textColor'>
-                                    <div className='group-hover:animate-bounce w-8 aspect-square text-white flex justify-center items-center font-black  border-2 bg-BLUE rounded-full'>{useremail[0]}</div>
+                                    <div className='group-hover:animate-bounce w-8 aspect-square text-white flex justify-center items-center font-black  border-2 bg-BLUE rounded-full'>{initial}</div>
                                     <div>
-                                        <p className='font-semibold text-xs'>{useremail}</p>
+                                        <p className='font-semibold text-md'>{fullname}</p>
+                                        <p className='font-semibold text-xs text-slate-400'>{email}</p>
                                     </div>
                                 </div>
                                 <ul className='font-semibold p-3 leading-[30px]'>

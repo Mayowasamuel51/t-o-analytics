@@ -266,8 +266,8 @@ section.payment-page {
     visibility: visible;
     opacity: 1;
   }
-  table.dashboard tr:nth-child(even),
-  table.dashboard thead tr {
+  table.dashboard tr:nth-child(even) td,
+  table.dashboard thead tr th {
     background-color: #fff;
   }
   table.contact-table tr:nth-child(even),

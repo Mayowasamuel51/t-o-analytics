@@ -142,9 +142,9 @@ const LoginForm = () => {
                     <div>
                         <Link to="/"><img src={LOGO} className="w-[150px] pl-0" alt="" /></Link>
                     </div>
-                    <Link to="/">
+                    <p onClick={()=> navigate(-1)}>
                         <FaXmark size={30} />
-                    </Link>
+                    </p>
                 </div>
                 <p className="font-bold">Welcome Back!</p>
                 <p className="text-sm md:text-base text-slate-400">Enter Your details to continue</p>

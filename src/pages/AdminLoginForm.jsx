@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 const AdminLoginForm = () => {
   return (
     <section className="min-h-screen flex justify-center items-center bg-black opacity-80">
-            <motion.div variants={formVariant} initial="initial" animate="animate" exit={{ x: -100, }} className="border-2 border-black md:w-[400px] p-5 bg-white rounded-3xl">
+            <motion.div initial="initial" animate="animate" exit={{ x: -100, }} className="border-2 border-black md:w-[400px] p-5 bg-white rounded-3xl">
                 <div className="flex items-center justify-between">
                     <div>
                         <Link to="/"><img src={LOGO} className="w-[150px] pl-0" alt="" /></Link>
@@ -17,7 +17,7 @@ const AdminLoginForm = () => {
                         <FaXmark size={30} />
                     </Link>
                 </div>
-                <p className="font-bold">Welcome Back!</p>
+                <p className="font-bold">Welcome Admin!</p>
                 <p className="text-sm md:text-base text-slate-400">Enter Your details to continue</p>
                 <form>
                     <div className="my-4">

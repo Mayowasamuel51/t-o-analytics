@@ -124,9 +124,9 @@ const CreateAccountForm = () => {
                     <div>
                         <Link to="/"><img src={LOGO} className="w-[150px] h-[50px] object-cover" alt="" /></Link>
                     </div>
-                    <Link to="/">
+                    <p onClick={()=> navigate(-1)}>
                         <FaXmark size={30} />
-                    </Link>
+                    </p>
                 </div>
                 <p className="font-bold">Please fill in your details to get started</p>
                 <form onSubmit={handleSubmit(onSubmit)}>

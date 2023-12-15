@@ -3,7 +3,7 @@ import Loader from "./Loader";
 import { useState } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import moment from "moment";
+
 
 const Contacts = () => {
   const [currentPage, setCurrentPage] = useState(1)
