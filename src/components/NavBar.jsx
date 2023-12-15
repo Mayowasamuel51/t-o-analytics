@@ -18,7 +18,7 @@ const NavBar = () => {
     const [fixed, setFixed] = useState("")
     const [show, setShow] = useState("")
     const [cartItem, setCartItem] = useState(()=> {
-        let data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
+        let data = JSON.parse(localStorage.getItem("COURSE-CART")) ?? []
         return data
     })
     const { token, setToken } = useStateContext();
