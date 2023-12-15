@@ -31,8 +31,9 @@ const Contractors= () => {
                 <th className='text-sm md:text-base tracking-wide p-1 md:p-2 hidden lg:block'>Registration Date</th>
                 <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Contractor Names</th>
                 <th className='text-sm md:text-base tracking-wide p-1 md:p-2 hidden md:block'>Email Address</th>
-                <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Link_portfolio</th> 
-                <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>pdfurl</th>
+               
+            <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>pdfurl</th>
+            <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Link_portfolio</th> 
             </tr>
         </thead>
         <tbody className='tbody'>
@@ -43,7 +44,7 @@ const Contractors= () => {
                       .format("YYYY-MM-DD")}</td>
                     <td data-cell="Contractor Names" className='text-[13px] leading-7 md:text-sm font-medium  md:p-2'>{contractor.name}</td>
                     <td data-cell="Email Address" className='text-[13px] leading-7 md:text-sm font-medium md:p-2 hidden  md:block'>{contractor.email}</td>
-                    <td></td>
+                <td className='text-[13px] leading-7 md:text-sm font-medium  md:p-2'>{contractor.pdfurl }</td>
                     <td></td>
                 </tr>
             ))}
