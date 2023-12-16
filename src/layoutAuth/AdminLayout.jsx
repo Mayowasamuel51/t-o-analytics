@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const navVariant = {
     initial: {
-        y: "-100%"
+        y: "-100%",
     },
     final: {
         y: "40px",
@@ -53,8 +53,8 @@ const AdminLayout = () => {
     return (
         <>
             <div className="grid grid-cols-1 lg:grid-cols-5 lg:min-h-screen">
-                <div className="w-full flex justify-end lg:hidden py-2 bg-white z-50 pr-3">{nav ? <FaXmark onClick={displayNav} size={30} /> : <FaBarsStaggered onClick={displayNav} size={30}/>}</div>
-                <motion.div className="z-10 absolute w-full lg:relative lg:col-span-1 lg:bg-BLUE lg:flex justify-center lg:pt-20 leading-[50px]">
+                <div className="cursor-pointer w-full bg-white ml-auto flex justify-end items-end lg:hidden py-2 z-50 pr-3">{nav ? <FaXmark onClick={displayNav} size={30} /> : <FaBarsStaggered onClick={displayNav} size={30}/>}</div>
+                <motion.div className={`${!nav && "top-[-100%] lg:top-0"} z-10 absolute w-full lg:relative lg:col-span-1 lg:bg-BLUE lg:flex justify-center lg:pt-20 leading-[50px]`}>
                     <motion.ul variants={navVariant} animate={(nav && !FullScreen)? "final" : !FullScreen ? "initial" : "" } className="bg-BLUE font-semibold flex flex-col gap-1 md:gap-2 md:p-0 p-3">
                         <motion.li variants={liVariant} className="">
                             <NavLink className={({isActive})=> isActive && location.pathname === "/ADMIN-DASHBOARD" ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="/ADMIN-DASHBOARD">< MdDashboard size={20} />Dashboard</NavLink>
@@ -89,7 +89,7 @@ const AdminLayout = () => {
                             <div className=" animate-bounce cursor-pointer bg-BLUE w-8 md:w-12 aspect-square rounded-full"></div>
                         </div>
                     </div>
-                    <div className="">
+                    <div className={``}>
                         <Outlet />
                     </div>
                 </div>
