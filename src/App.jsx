@@ -17,6 +17,8 @@ import CreateAccountForm from "./pages/CreateAccountForm";
 import LoginForm from "./pages/LoginForm";
 import AdminLoginForm from "./pages/AdminLoginForm";
 import CheckOut from "./pages/CheckOut";
+import SendLinks from "./components/SendLinks"
+import SendMessages from "./components/SendMessages"
 import { AnimatePresence } from "framer-motion";
 // import { Route, Switch, useLocation } from "react-router-dom";
 import {
@@ -185,7 +187,16 @@ const router = createBrowserRouter([
       {
         path: "contractors",
         element: <Contractors />
-      }
+      },
+      {
+        path: "send-links",
+        element: <SendLinks />
+      },
+      {
+        path: "send-messages",
+        element: <SendMessages />
+      },
+
     ]
   }
     
