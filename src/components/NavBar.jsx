@@ -76,10 +76,10 @@ const NavBar = () => {
                 </div>}
                 {token ? 
                 <nav className={`navlinks ${show} auth-nav md:relative md:left-0 md:right-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
-                    <div className='block lg:hidden text-left'>
+                    <div className='pl-2 block lg:hidden text-left'>
                         <Link to="/myProfile">
                             <div className='flex items-center gap-3'>
-                                <div className='flex justify-center items-center w-8 md:text-lg aspect-square text-white font-black bg-BLUE rounded-full'>{initial}</div>
+                                <div className='animate-bounce flex justify-center items-center w-8 md:text-lg aspect-square text-white font-black bg-BLUE rounded-full'>{initial}</div>
                                 <div>
                                     <p className='font-semibold text-md'>{fullname}</p>
                                     <p className='font-semibold text-xs text-slate-400'>{email}</p>
