@@ -35,6 +35,7 @@ import AdminViewCourses from "./components/AdminViewCourses";
 import AllStudents from "./components/AllStudents";
 import Contacts from "./components/Contacts";
 import Contractors from "./components/Contractors";
+import StudentCommentPage from "./components/StudentCommentPage";
 import MyProfile from "./pages/MyProfile";
 // import DashboardCourses from "./dashboard/components/DashboardCourses";
 import PaymentPage from "./pages/PaymentPage";
@@ -135,7 +136,10 @@ const router = createBrowserRouter([
         path: "mentorship",
         element: <Mentorship />
       },
-      
+      {
+        path: "comment",
+        element: <StudentCommentPage />
+      },
       {
         path: "links",
         element: <h1 className="min-h-screen flex justify-center items-center font-bold text-3xl">LINKS PAGE</h1>

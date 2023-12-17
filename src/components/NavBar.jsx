@@ -3,7 +3,7 @@ import LOGO from "../assets/images/logo.jpg";
 import { FaSearch } from "react-icons/fa";
 import { motion } from 'framer-motion';
 import { useStateContext } from "../context/ContextProvider"
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { FaXmark } from "react-icons/fa6";
 import { MdOutlineAddShoppingCart } from "react-icons/md"
@@ -15,6 +15,7 @@ import FetchAllStudents from '../hook/FetchAllStudents';
 const NavBar = () => {
     const { data } = FetchAllStudents()
     // const navigate = useNavigate()
+    const location = useLocation()
     const [fixed, setFixed] = useState("")
     const [show, setShow] = useState("")
     const [cartItem, setCartItem] = useState(()=> {
@@ -88,8 +89,9 @@ const NavBar = () => {
                         </Link>
                     </div>
                     <ul className="md:flex items-center gap-3 md:gap-6 font-normal text-sm">
-                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard">My Courses</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive && location.pathname === "/dashboard" ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard">My Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/comment">Comment</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="mentorship">Mentorship</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/links">Links</NavLink></motion.li>
                         <button onClick={signout} className="md:hidden block my-3 hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-2 py-1 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold mx-auto">
