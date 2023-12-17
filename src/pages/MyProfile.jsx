@@ -33,10 +33,10 @@ const MyProfile = () => {
         <h1 className="text-center md:my-4 text-sm md:text-2xl font-semibold">Public Profile</h1>
         <form action="">
           <div className="mb-4">
-            <input className="border-[1px] border-black w-full md:h-12 pl-3" defaultValue={firstName} type="text" name="" id="" placeholder="First Name" />
+            <input className="border-[1px] border-black w-full h-10 md:h-12 pl-3" defaultValue={firstName} type="text" name="" id="" placeholder="First Name" />
           </div>
           <div className="mb-4">
-            <input className="border-[1px] border-black w-full md:h-12 pl-3" defaultValue={lastName} type="text" name="" id="" placeholder="Last Name" />
+            <input className="border-[1px] border-black w-full h-10 md:h-12 pl-3" defaultValue={lastName} type="text" name="" id="" placeholder="Last Name" />
           </div>
           <button className="px-3 py-2 bg-BLUE text-white font-semibold text-sm md:text-xl">SAVE</button>
         </form>
