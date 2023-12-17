@@ -47,7 +47,7 @@ const StudentTable = () => {
                             <td data-cell="Student Name" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>{info.name}</td>
                             <td data-cell="Email Address" className='text-[13px] leading-7 md:text-sm font-medium  p-1 hidden md:block md:p-2'>{info.email}</td>
 
-                            <td data-cell="Email Address" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>{info.provider}</td>
+                            <td data-cell="Provider" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>{info.provider}</td>
                             
                             {/* <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><IoEyeSharp size={20} /></td>
                             <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><FaTrash size={20} /></td> */}

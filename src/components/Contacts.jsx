@@ -23,8 +23,8 @@ const Contacts = () => {
     }
 
   return (
-    <div className="p-2 md:p-5">
-      <table className="md:p-3 contact-table table-auto border-collapse w-full">
+    <div className="md:p-5 rounded-xl overflow-hidden">
+      <table className="rounded-md lg:rounded-none md:p-3 contact-table table-auto border-collapse w-full">
         <thead className="text-left md:font-black">
           <tr className="">
             <th className="text-sm md:text-base tracking-wide p-1 md:p-2">Date</th>
@@ -36,7 +36,7 @@ const Contacts = () => {
         </thead>
         <tbody>
           {paginatedData.map((contact, index)=> (
-            <tr className="" key={index}>
+            <tr className="bg-white" key={index}>
               <td data-cell="Date" className="text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2">{(new Date(contact.date)).toLocaleDateString()}</td>
               <td data-cell="Name" className="text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2">{contact.name}</td>
               <td data-cell="Email" className="text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2">{contact.email}</td>

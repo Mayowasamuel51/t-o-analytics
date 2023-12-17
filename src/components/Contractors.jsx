@@ -24,13 +24,13 @@ const Contractors = () => {
 
   console.log(data?.data?.response)
   return (
-    <div className="p-2 md:p-5">
+    <div className="md:p-5 rounded-xl overflow-hidden">
       <table className='contractors md:p-3 table-auto border-collapse w-full'>
         <thead className=''>
           <tr className='font-black text-left'>
-            <th className='text-sm md:text-base tracking-wide p-1 md:p-2 hidden lg:block'>Registration Date</th>
+            <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Registration Date</th>
             <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Contractor Names</th>
-            <th className='text-sm md:text-base tracking-wide p-1 md:p-2 hidden md:block'>Email Address</th>
+            <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Email Address</th>
 
             <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>pdfurl</th>
             <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Link_portfolio</th>
@@ -43,10 +43,10 @@ const Contractors = () => {
                 .utc()
                 .format("YYYY-MM-DD")}</td>
               <td data-cell="Contractor Names" className='text-[13px] leading-7 md:text-sm font-medium  md:p-2'>{contractor.name}</td>
-              <td data-cell="Email Address" className='text-[13px] leading-7 md:text-sm font-medium md:p-2 hidden  md:block'>{contractor.email}</td>
+              <td data-cell="Email Address" className='text-[13px] leading-7 md:text-sm font-medium md:p-2'>{contractor.email}</td>
 
-              <td className='text-[13px] leading-7 md:text-sm font-medium  md:p-2'><a href={`${contractor.pdfurl}`}>Open</a></td>
-              <td className='text-[13px] leading-7 md:text-sm font-medium  md:p-2'><a href={`${contractor.pdfurl}`}>{contractor.link_portfolio }</a></td>
+              <td data-cell="URL" className='text-[13px] leading-7 md:text-sm font-medium  md:p-2'><a className='text-blue-400 underline' href={`${contractor.pdfurl}`}>Open</a></td>
+              <td data-cell="Portfolio Link" className='text-[13px] leading-7 md:text-sm font-medium  md:p-2'><a href={`${contractor.pdfurl}`}>{contractor.link_portfolio }</a></td>
             </tr>
           ))}
         </tbody>
