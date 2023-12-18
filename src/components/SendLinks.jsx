@@ -5,6 +5,7 @@ import * as yup from "yup"
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { useState } from "react";
+
 const api_splunk = import.meta.env.VITE_BACKEND_LIVE_SPLUNK;
 const api_educational = import.meta.env.VITE_BACKEND_LIVE_EDUCATIONAL;
 
