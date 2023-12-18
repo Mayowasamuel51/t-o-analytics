@@ -1,11 +1,11 @@
-import { NavLink, Outlet, useLocation } from "react-router-dom"
+import { NavLink, Navigate, Outlet, useLocation } from "react-router-dom"
 import { MdDashboard, MdOutlineViewList, MdOutlineAnalytics } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { FaUserGroup, FaBarsStaggered, FaXmark, FaLink, FaMessage  } from "react-icons/fa6";
 import { FaSearch, FaMicrophone } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
+import { useStateContext } from "../context/ContextProvider";
 const navVariant = {
     initial: {
         y: "-100%",
@@ -30,6 +30,10 @@ const liVariant = {
 }
 
 const AdminLayout = () => {
+    const { token} = useStateContext();
+    if (!token) {
+        return <Navigate to="/" />
+    }
     const location = useLocation()
     const [nav, showNav] = useState(false);
     const [FullScreen, setFullScreen] = useState(false)

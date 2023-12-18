@@ -4,6 +4,7 @@ import StudentTable from "./StudentTable";
 import FetchAllStudents from "../hook/FetchAllStudents";
 
 const AdminDashboard = () => {
+   
     const {data} = FetchAllStudents()
   return (
     <>
