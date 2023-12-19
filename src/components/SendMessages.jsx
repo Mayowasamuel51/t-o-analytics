@@ -5,9 +5,16 @@ import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import * as yup from "yup"
 import { ToastContainer, toast } from 'react-toastify';
+import FetchComments from "../hook/FetchComments";
+import Loader from "./Loader";
 
 const api = import.meta.env.VITE_BACKEND_MESSAGE_P
 const SendMessages = () => {
+  const {data, isLoading, error} = FetchComments()
+  if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
+  if (isLoading) return <Loader />
+
+  console.log(data?.data)
   const notify = () => toast("Your message will be delivered to all students!!");
 
   const schema = yup.object().shape({
@@ -54,7 +61,6 @@ const SendMessages = () => {
   }
   return (
     <div className='p-2 lg:p-5'>
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <ToastContainer />
         <textarea  {...register("message", { required: true })} className='p-2 w-full border-[1px] border-black' placeholder='Type your message' name="message" id="" cols="30" rows="10"></textarea>
@@ -64,6 +70,10 @@ const SendMessages = () => {
       <p className="font-semibold">
         This section is designated for sending general messages to all students.
       </p>
+
+      <div className="mt-10">
+        <h1 className="font-bold text-sm md:text-2xl">COMMENTS</h1>
+      </div>
     </div>
   )
 }
