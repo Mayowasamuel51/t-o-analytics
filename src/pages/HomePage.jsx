@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { Link } from 'react-router-dom';
 import '@splidejs/react-splide/css';
@@ -12,11 +13,20 @@ import student2 from "../assets/images/student2.png"
 import student3 from "../assets/images/student3.jpeg"
 import COURSES from "../coursesAPI/api"
 import { Helmet } from 'react-helmet';
+import { motion, useScroll, useTransform } from "framer-motion"
 
 const HomePage = () => {
+    const targetRef = useRef(null)
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+        offset: ["end end", "end start"],
+
+    });
+    const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.5]);
 
     return (
-        <>
+        <motion.div>
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>To-analytics</title>
@@ -24,15 +34,9 @@ const HomePage = () => {
                 <meta name="description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
 
                 <meta property="og:description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
-
-            
-
             </Helmet>
             <section className="landing-page px-2 md:px-10 py-60 md:py-32 bg-white min-h-screen">
-                <div className="grid md:grid-cols-2 items-center gap-10">
-
-
-
+                <motion.div style={{opacity, scale}} ref={targetRef} className="grid md:grid-cols-2 items-center gap-10">
                     <div>
                         <h1 className="my-4 md:my-9 font-bold text-3xl md:text-5xl">Tech Education for Tomorrow’s Innovators</h1>
                         <p className="font-bold text-sm md:text-xl my-4">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</p>
@@ -51,20 +55,20 @@ const HomePage = () => {
                             <img src={LandingIMG} className="w-full" alt="" />
                         </div>
                     </div>
-                </div>
+                </motion.div>
                 <div className='mobile-landingDIV md:hidden block absolute top-1/2 left-0 translate-y-[-50%] bg-BLUE landingDIV backdrop-blur-2xl'></div>
             </section>
 
             <section className="bg-white">
-                <h1 className="text-center font-black text-2xl md:text-4xl">Why Trust T.O Analytics?</h1>
+                <motion.h1 className="text-center font-black text-2xl md:text-4xl">Why Trust T.O Analytics?</motion.h1>
                 <div className="md:p-10 p-2 overflow-x-hidden">
                     <div className="md:pb-2 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
-                        <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
-                            <p className="font-bold text-BLUE my-2">Learn from industry’s best</p>
+                        <motion.div  data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
+                            <p className="uppercase font-bold text-BLUE my-2">Learn from industry’s best</p>
                             <h1 className="font-bold text-xl md:text-2xl my-2">Experienced Instructors</h1>
                             <p className="font-medium text-sm md:text-base">Our instructors are seasoned professionals with extensive experience in diverse areas of the tech industry. They leverage their deep expertise and real-world project insights to deliver practical, actionable guidance in the classroom.</p>
-                        </div>
-                        <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className="bounce md:block hidden">
+                        </motion.div>
+                        <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className="md:block hidden">
                             <img src={eInstructor} alt="" className='w-fit' />
                         </div>
                     </div>
@@ -73,14 +77,14 @@ const HomePage = () => {
                             <img src={hLearning} alt="" className='w-fit' />
                         </div>
                         <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left">
-                            <p className="font-bold text-BLUE my-2">Fine blend of theory and practice</p>
+                            <p className="uppercase font-bold text-BLUE my-2">Fine blend of theory and practice</p>
                             <h1 className="font-bold text-xl md:text-2xl my-2">Hands-on learning</h1>
                             <p className="font-medium text-sm md:text-base"> Our bootcamp, built around hands-on learning, immerses students in real-world scenarios through projects and practical exercises. This approach helps them gain invaluable experience, develop essential tech skills like problem-solving, collaboration, and critical thinking, and master coding languages like Python by building real-world web applications. Join our bootcamp today and start your journey towards a rewarding tech career.</p>
                         </div>
                     </div>
                     <div className="py-10 md:py-2 grid grid-cols-1 md:grid-cols-2 items-center justify-between gap-20">
                         <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
-                            <p className="font-bold text-BLUE my-2">We put you first</p>
+                            <p className="uppercase font-bold text-BLUE my-2">We put you first</p>
                             <h1 className="font-bold text-xl md:text-2xl my-2">Flexible learning Options</h1>
                             <p className="font-medium text-sm md:text-base">We understand that everyone has different schedules and commitments. That&apos;s why we offer flexible learning options, including part-time and full-time programs, as well as online learning options. This allows students to choose a schedule that works best for them while still receiving high-quality education.</p>
                         </div>
@@ -93,7 +97,7 @@ const HomePage = () => {
                             <img src={guidance} alt="" className='w-fit' />
                         </div>
                         <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left">
-                            <p className="font-bold text-BLUE my-2">From clueless to pro</p>
+                            <p className="uppercase font-bold text-BLUE my-2">From clueless to pro</p>
                             <h1 className="font-bold text-xl md:text-2xl my-2">Career guidance</h1>
                             <p className="font-medium text-sm md:text-base">We provide comprehensive career guidance and support to help students transition into the tech industry. This includes resume building, interview preparation, job search strategies, and networking opportunities. Our goal is to equip students with the necessary skills and resources to succeed in their tech careers.</p>
                         </div>
@@ -208,7 +212,7 @@ const HomePage = () => {
                 </div>
             </section>
 
-        </>
+        </motion.div>
     )
 }
 

@@ -6,6 +6,7 @@ import { app } from "../../firebase.config";
 import { useEffect } from "react";
 import Footer from "../components/Footer";
 const api = 'http://localhost:8000/api/'
+import Messages from "../components/Messages";
 function AuthLayout() {
     const {  token ,  setToken , user, setUser } = useStateContext();
     if (!token) {
@@ -48,7 +49,8 @@ function AuthLayout() {
                 </nav> */}
             </div>
             <Outlet />
-            <Footer black="bg-black text-white" />
+            <Messages />
+            <Footer black="" />
         </>
     )
 }
