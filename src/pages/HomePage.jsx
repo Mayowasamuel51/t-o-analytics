@@ -24,6 +24,7 @@ const HomePage = () => {
     });
     const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
     const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.5]);
+    const transformX = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
 
     return (
         <motion.div>
@@ -36,8 +37,8 @@ const HomePage = () => {
                 <meta property="og:description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
             </Helmet>
             <section className="landing-page px-2 md:px-10 py-60 md:py-32 bg-white min-h-screen">
-                <motion.div style={{opacity, scale}} ref={targetRef} className="grid md:grid-cols-2 items-center gap-10">
-                    <div>
+                <motion.div  className="grid md:grid-cols-2 items-center gap-10">
+                    <motion.div ref={targetRef} style={{transformX}}>
                         <h1 className="my-4 md:my-9 font-bold text-3xl md:text-5xl">Tech Education for Tomorrow’s Innovators</h1>
                         <p className="font-bold text-sm md:text-xl my-4">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</p>
                         <div className="flex gap-2 md:gap-3">
@@ -48,7 +49,7 @@ const HomePage = () => {
                                 <button className="text-sm md:text-xl font-medium border-2 border-BLUE bg-BLUE text-white hover:bg-white hover:text-BLUE px-2 py-3 md:px-4 md:py-3 rounded-xl md:rounded-3xl duration-300">Live Courses</button>
                             </Link>
                         </div>
-                    </div>
+                    </motion.div>
                     <div className="relative hidden md:block">
                         <div className="bg-BLUE landingDIV"></div>
                         <div className="absolute top-0 left-0 right-0">
