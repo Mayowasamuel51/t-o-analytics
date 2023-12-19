@@ -37,20 +37,17 @@ function AuthLayout() {
         <>
             <NavBar />
             <div className="mt-28">
-                {/* <nav className="nav">
-                    <ul className="dashboard-links flex items-center gap-5">
-                        {user.email}
-                        <Link className="hover:text-red-500" to="/dashboard">dashboard</Link>
-                        <Link className="hover:text-red-500" to="/users">users</Link>
-                        <Link className="hover:text-red-500" to="/dashboard/post">post</Link>
-                        <Link className="hover:text-red-500" to="/videos">videos</Link>
-                        <Link className="hover:text-red-500" to="/views">views</Link>
-                    </ul>
-                </nav> */}
             </div>
             <Outlet />
             <Messages />
-            <Footer black="" />
+
+            {
+                location.pathname === "/dashboard" || 
+                location.pathname === "/dashboard/comment" || 
+                location.pathname === "/courses" ||
+                location.pathname === "/checkout"
+                ? <Footer black="bg-black text-white" /> : <Footer />
+            }
         </>
     )
 }
