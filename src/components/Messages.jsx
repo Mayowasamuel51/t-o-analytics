@@ -19,8 +19,9 @@ const messageVariant = {
 
 const Messages = () => {
   const [message, setMessage] = useState(false)
-    const {data} = FetchMessage()
-    console.log(data?.data?.response)
+  const {data} = FetchMessage()
+
+
   return (
     <div className="fixed hei flex flex-col gap-5 top-[30%] left-2 bg-whte z-50">
       <FaMessage size={30} className={`${message && "invisible opacity-0"} animate-bounce cursor-pointer`} onClick={()=> setMessage(true)} />

@@ -7,6 +7,9 @@ import Messages from "../components/Messages";
 
 function HomeLayout() {
     const location = useLocation()
+    console.log(location.pathname)
+    const paths = COURSES.map((course) => `/courses/${course.courseName}`)
+    console.log(COURSES.map((course) => `/courses/${course.courseName}`));
     return (
         <>
             <div>
@@ -16,8 +19,9 @@ function HomeLayout() {
                     location.pathname === "/blog" || 
                     location.pathname === "/contact" || 
                     location.pathname === "/courses" ||
-                    location.pathname === "/checkout"
-                    // COURSES.map((course,index) => location.pathname  == `/courses/${course.courseName[index]}`)
+                    location.pathname === "/checkout" ||
+                    COURSES.map((course,index) => location.pathname  == `/courses/${paths[index]}`) &&
+                    location.pathname !== "/"
                     ? <Footer black="bg-black text-white" /> : <Footer />
                 }
                 <Messages />

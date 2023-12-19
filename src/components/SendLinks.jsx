@@ -93,7 +93,7 @@ const SendLinks = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ToastContainer />
           <label htmlFor="splunk-link" className='font-bold text-lg lg:text-2xl'>Splunk
-            <input  {...register("splunk", { required: true })} placeholder="Send google meet link or zoom to  paid student for splunk   course" className='w-full border-[1px] border-black h-10 lg:h-12 pl-5 my-2 font-medium text-base lg:text-xl' name='splunk' type="url" />
+            <input  {...register("splunk", { required: true })} placeholder="Send google meet link or zoom to  paid student for splunk   course" className='w-full border-[1px] border-black h-10 lg:h-12 pl-3 my-2 font-medium text-base lg:text-xl' name='splunk' type="url" />
           </label>
           <button type="submit" className='my-2 bg-BLUE px-3 py-2 md:px-4 md:py-3 font-semibold text-white'>Send</button>
           <p className='text-red-600'>{errors.splunk?.message}</p>
@@ -102,7 +102,7 @@ const SendLinks = () => {
       <div>
         <form onSubmit={handleSubmit(onSubmitE)}>
           <label htmlFor="edu-link" className='font-bold text-lg lg:text-2xl'>Educational Consulting
-            <input placeholder="Send google meet link or zoom link to  paid student for Educational course" className='w-full border-[1px] border-black h-10 lg:h-12 pl-5 my-2 font-medium text-base lg:text-xl' name="edu-link" type="text" />
+            <input placeholder="Send google meet link or zoom link to  paid student for Educational course" className='w-full border-[1px] border-black h-10 lg:h-12 pl-3 my-2 font-medium text-base lg:text-xl' name="edu-link" type="text" />
           </label>
           <button className='my-2 bg-BLUE px-3 py-2 md:px-4 md:py-3 font-semibold text-white'>Send</button>
           {/* <p className='text-red-600'>{errors.educational?.message}</p> */}

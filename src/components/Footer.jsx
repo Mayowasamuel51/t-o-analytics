@@ -20,7 +20,7 @@ const Footer = ({black}) => {
             </div>
         </div>
         <div className="py-3">
-            <p className="flex items-center justify-center gap-2 text-center text-xs md:text-base font-medium tracking-wide"><span className="font-extralight text-xl md:text-3xl">&copy;</span> T.O Analytics 2023, All Rights Reserved</p>
+            <p className="flex items-center justify-center gap-2 text-center text-xs md:text-base font-medium tracking-wide"><span className="font-extralight text-xl md:text-3xl">&copy;</span> T.O Analytics {(new Date()).getFullYear()}, All Rights Reserved</p>
         </div>
     </footer>
   )
