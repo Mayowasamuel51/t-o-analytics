@@ -21,7 +21,7 @@ const Messages = () => {
   const [message, setMessage] = useState(false)
   const { data } = FetchMessage()
 
-
+  console.log(data?.data)
   return (
     <div className="fixed hei flex flex-col gap-5 top-[30%] left-5 bg-whte z-50">
       <div className="relative">
@@ -32,7 +32,7 @@ const Messages = () => {
       <motion.div variants={messageVariant} animate={message ? "final" : "initial"} key={index} className="relative w-fit p-2 md:p-4 rounded-md shadow-2xl bg-white font-bold whitespace-nowrap">
         <p className="flex items-center justify-between gap-9 text-sm md:text-base">From @admin<FaXmark className="cursor-pointer" size={20} onClick={()=> setMessage(false)} /></p>
         <p className="my-2 border-l-4 border-BLUE pl-2 text-xs md:text-base">{msg.message}</p>
-        <p className="text-xs md:text-base">date:</p>
+        <p className="text-xs md:text-base">Date: {(new Date(msg.date)).toDateString()}</p>
       </motion.div>))}
     </div>
   )
