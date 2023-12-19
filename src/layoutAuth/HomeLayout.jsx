@@ -9,7 +9,6 @@ function HomeLayout() {
     const location = useLocation()
     console.log(location.pathname)
     const paths = COURSES.map((course) => `/courses/${course.courseName}`)
-    console.log(COURSES.map((course) => `/courses/${course.courseName}`));
     return (
         <>
             <div>

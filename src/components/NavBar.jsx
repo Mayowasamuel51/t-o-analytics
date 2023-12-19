@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import LOGO from "../assets/images/logo.jpg";
 import { FaSearch } from "react-icons/fa";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useStateContext } from "../context/ContextProvider"
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
@@ -10,14 +10,40 @@ import { MdOutlineAddShoppingCart } from "react-icons/md"
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
 import FetchAllStudents from '../hook/FetchAllStudents';
+import COURSES from "../coursesAPI/api"
 
+const searchVariant = {
+    initial: { opacity: 0 },
+    animate: { 
+        opacity: 1, 
+        transition: { 
+            type: "spring", stiffness: 200, duration: 0.5, delayChildren: 1, staggerChildren: 1
+        }
+    }
+}
+
+const liVariant = {
+    initial: { y: "-70px", opacity: 0 },
+    animate: { y: 0, opacity: 1 }
+}
 
 const NavBar = () => {
+    const [search, setSearch] = useState("")
     const { data } = FetchAllStudents()
     // const navigate = useNavigate()
     const location = useLocation()
     const [fixed, setFixed] = useState("")
     const [show, setShow] = useState("")
+    const handleSearch = (e)=> {
+        const {value} = e.target
+        setSearch(value)
+    }
+    const searchedData = COURSES.filter((course)=> {
+        if (search.trim() === "") {
+            return false;
+        }
+        return (course.courseName.toLowerCase()).includes(search.toLowerCase());
+    })
     const [cartItem, setCartItem] = useState(()=> {
         let data = JSON.parse(localStorage.getItem("COURSE-CART")) ?? []
         return data
@@ -57,7 +83,6 @@ const NavBar = () => {
     const currentlyLoggedInUSer = data?.data?.response.find((user)=> user.email === localuser)
     const fullname = currentlyLoggedInUSer?.name
     const email = currentlyLoggedInUSer?.email
-
     const initial = currentlyLoggedInUSer?.name.split(" ").map((word)=> word.charAt(0).toUpperCase()).join("")
     
     const navBar = ()=> {
@@ -71,13 +96,21 @@ const NavBar = () => {
                         <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[130px]" alt=""/>
                     </Link>
                 </div>
-                {token && <div className='relative search-box'>
+                {token && (
+                <div className='relative search-box'>
                     <FaSearch className='absolute' />
-                    <input type="text" name="search" id="search" className='border-[1px] md:border-2 border-black w-full h-10 rounded-sm md:rounded-xl placeholder:font-semibold' placeholder='Search for anything' />
-                </div>}
+                    <input onChange={handleSearch} type="text" name="search" id="search" className='flex-[3] border-[1px] md:border-2 border-black w-full h-10 rounded-sm md:rounded-xl placeholder:font-semibold' placeholder='Search for anything' />
+                    <motion.ul variants={searchVariant} animate={search ? "animate" : "initial"} className='font-black p-3 rounded-md text-sm md:text-lg absolute left-0 right-0 bg-white shadow-lg'>
+                        <AnimatePresence>
+                            {searchedData.map((course)=> (
+                                <motion.li exit={{opacity: 0}} variants={liVariant} key={course.id} className={`cursor-pointer duration-300 hover:text-BLUE w-fit ${searchedData.length > 1 && "hover:md:pl-10"}`}><Link to={`/courses/${course.courseName}`}>{(course.courseName).toLowerCase()}</Link></motion.li>
+                            ))}
+                        </AnimatePresence>
+                    </motion.ul>
+                </div>)}
                 {token ? 
                 <nav className={`navlinks ${show} auth-nav md:relative md:left-0 md:right-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
-                    <div className='pl-2 block lg:hidden text-left'>
+                    <div className='pl-2 block md:hidden text-left'>
                         <Link to="/myProfile">
                             <div className='flex items-center gap-3'>
                                 <div className='animate-bounce flex justify-center items-center w-8 md:text-lg aspect-square text-white font-black bg-BLUE rounded-full'>{initial}</div>
@@ -88,7 +121,7 @@ const NavBar = () => {
                             </div>
                         </Link>
                     </div>
-                    <ul className="md:flex items-center gap-3 md:gap-6 font-normal text-sm">
+                    <ul className="md:hidden lg:flex flex items-center gap-3 md:gap-6 font-normal text-sm">
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive && location.pathname === "/dashboard" ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard">My Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/comment">Comment</NavLink></motion.li>

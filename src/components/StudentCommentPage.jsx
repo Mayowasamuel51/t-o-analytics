@@ -50,7 +50,7 @@ const StudentCommentPage = () => {
   }
 
   return (
-    <div className='p-2 lg:p-5'>
+    <div className='p-2'>
       <form onSubmit={handleSubmit(onSubmit)}>
       <ToastContainer />
         <textarea  {...register("comment", { required: true })} className='p-2 w-full border-[1px] border-black' placeholder='Type your Comments' name="comment" id="" cols="30" rows="10"></textarea><p className='text-red-600'>{errors.comment?.message}</p>

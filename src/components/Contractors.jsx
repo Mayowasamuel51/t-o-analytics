@@ -22,7 +22,6 @@ const Contractors = () => {
     pageNumber.push(i)
   }
 
-  console.log(data?.data?.response)
   return (
     <div className="md:p-5 rounded-xl overflow-hidden">
       <table className='contractors md:p-3 table-auto border-collapse w-full'>

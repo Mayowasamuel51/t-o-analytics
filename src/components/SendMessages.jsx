@@ -10,18 +10,12 @@ import Loader from "./Loader";
 
 const api = import.meta.env.VITE_BACKEND_MESSAGE_P
 const SendMessages = () => {
-  const {data, isLoading, error} = FetchComments()
-  if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
-  if (isLoading) return <Loader />
-
-  console.log(data?.data)
+  const {data: message, isLoading, error} = FetchComments()
   const notify = () => toast("Your message will be delivered to all students!!");
-
   const schema = yup.object().shape({
     message: yup.string().required(),
 
   });
- 
   const {
     register,
     formState: { errors },
@@ -29,7 +23,6 @@ const SendMessages = () => {
   } = useForm({
     resolver: yupResolver(schema),
   })
-
   const onSubmit = (data) => {
     console.log(data)
     const payload = {
@@ -57,8 +50,9 @@ const SendMessages = () => {
       }
 
     })
-
   }
+  if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
+  if (isLoading) return <Loader />
   return (
     <div className='p-2 lg:p-5'>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -72,7 +66,15 @@ const SendMessages = () => {
       </p>
 
       <div className="mt-10">
-        <h1 className="font-bold text-sm md:text-2xl">COMMENTS</h1>
+        <h1 className="font-bold text-sm md:text-2xl">COMMENTS FROM STUDENTS</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          {message?.data?.response.map((comment, index)=> (
+            <div key={index} className="bg-textColor p-2 rounded-sm">
+              <p className="break-all">{comment.message}</p>
+              <p>{(new Date(comment.date)).toLocaleDateString()}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

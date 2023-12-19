@@ -31,17 +31,12 @@ const liVariant = {
 
 const AdminLayout = () => {
     const { token} = useStateContext();
-    if (!token) {
-        return <Navigate to="/" />
-    }
     const location = useLocation()
     const [nav, showNav] = useState(false);
     const [FullScreen, setFullScreen] = useState(false)
-
     const displayNav = ()=> {
         showNav(prev=> !prev)
     }
-
     useEffect(()=> {
         const handleResize = ()=> {
             const size = window.innerWidth;
@@ -53,6 +48,10 @@ const AdminLayout = () => {
 
         return ()=> window.removeEventListener("resize", handleResize)
     }, [FullScreen])
+    if (!token) {
+        return <Navigate to="/" />
+    }
+    
 
     return (
         <>

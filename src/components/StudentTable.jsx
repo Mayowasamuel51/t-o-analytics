@@ -76,7 +76,7 @@ const StudentTable = () => {
                               perMove: 2,
                               gap: "10px",
                               focus: "none",
-                              trimSpace: true,
+                              trimSpace: pageNumber.length > 1 && true,
                             },
                         }
                     }} className="">
