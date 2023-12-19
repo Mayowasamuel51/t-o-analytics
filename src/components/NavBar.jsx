@@ -103,7 +103,7 @@ const NavBar = () => {
                     <motion.ul variants={searchVariant} animate={search ? "animate" : "initial"} className='font-black p-3 rounded-md text-sm md:text-lg absolute left-0 right-0 bg-white shadow-lg'>
                         <AnimatePresence>
                             {searchedData.map((course)=> (
-                                <motion.li exit={{opacity: 0}} variants={liVariant} key={course.id} className={`cursor-pointer duration-300 hover:text-BLUE w-fit ${searchedData.length > 1 && "hover:md:pl-10"}`}><Link to={`/courses/${course.courseName}`}>{(course.courseName).toLowerCase()}</Link></motion.li>
+                                <motion.li exit={{opacity: 0}} variants={liVariant} key={course.id} className={`cursor-pointer duration-300 hover:text-BLUE w-fit ${searchedData.length > 1 && "hover:md:pl-10"}`}><Link to={`/courses/${(course.courseName).toLowerCase()}`}>{course.courseName}</Link></motion.li>
                             ))}
                         </AnimatePresence>
                     </motion.ul>
