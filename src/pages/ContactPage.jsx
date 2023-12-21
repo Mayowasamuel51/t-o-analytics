@@ -72,8 +72,8 @@ const ContactPage = () => {
                 <p className="md:text-lg">Need any information? Reach us on</p>
                 <p className="text-BLUE font-black my-3">443-768-8416</p>
             </div>
-            <div className="p-8 bg-BLUE rounded-xl">
-                <h1 className="text-white font-bold text-sm md:text-2xl mb-10 text-center">How may we help you?</h1>
+            <div className="p-3 md:p-8 bg-BLUE rounded-xl">
+                <h1 className="text-white font-bold text-sm md:text-2xl mb-4 md:mb-10 text-center">How may we help you?</h1>
                   <form onSubmit={handleSubmit(onSubmit)} action="" className="bg-BLUE">
                   <ToastContainer />
 

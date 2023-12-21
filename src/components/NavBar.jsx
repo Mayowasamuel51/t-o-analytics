@@ -3,7 +3,7 @@ import LOGO from "../assets/images/logo.jpg";
 import { FaSearch } from "react-icons/fa";
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStateContext } from "../context/ContextProvider"
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { FaXmark } from "react-icons/fa6";
 import { MdOutlineAddShoppingCart } from "react-icons/md"
@@ -30,7 +30,11 @@ const liVariant = {
 const NavBar = () => {
     const [search, setSearch] = useState("")
     const { data } = FetchAllStudents()
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
+    const displayCourse = (name)=> {
+        navigate(`/courses/${name}`)
+        setSearch("")
+    }
     const location = useLocation()
     const [fixed, setFixed] = useState("")
     const [show, setShow] = useState("")
@@ -100,10 +104,15 @@ const NavBar = () => {
                 <div className='relative search-box'>
                     <FaSearch className='absolute' />
                     <input onChange={handleSearch} type="text" name="search" id="search" className='flex-[3] border-[1px] md:border-2 border-black w-full h-10 rounded-sm md:rounded-xl placeholder:font-semibold' placeholder='Search for anything' />
-                    <motion.ul variants={searchVariant} animate={search ? "animate" : "initial"} className='font-black p-3 rounded-md text-sm md:text-lg absolute left-0 right-0 bg-white shadow-lg'>
+                    <motion.ul variants={searchVariant} animate={search ? "animate" : "initial"} className='flex flex-col gap-3 md:gap-4 font-black p-3 rounded-md text-sm md:text-lg absolute left-0 right-0 bg-white shadow-lg'>
                         <AnimatePresence>
                             {searchedData.map((course)=> (
-                                <motion.li exit={{opacity: 0}} variants={liVariant} key={course.id} className={`cursor-pointer duration-300 hover:text-BLUE w-fit ${searchedData.length > 1 && "hover:md:pl-10"}`}><Link to={`/courses/${(course.courseName).toLowerCase()}`}>{course.courseName}</Link></motion.li>
+                                <motion.li exit={{opacity: 0}} variants={liVariant} key={course.id} className={`cursor-pointer duration-300 hover:text-BLUE`}>
+                                    <div onClick={()=> displayCourse(course.courseName.toLowerCase())} className={`flex items-center gap-3 duration-200 ${searchedData.length > 1 && "hover:gap-7"}`} to={`/courses/${(course.courseName).toLowerCase()}`}>
+                                        <FaSearch />
+                                        {course.courseName}
+                                    </div>
+                                </motion.li>
                             ))}
                         </AnimatePresence>
                     </motion.ul>

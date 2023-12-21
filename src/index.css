@@ -160,17 +160,17 @@ div.login-options button:hover {
 
 
 /* AUTH SEARCH BOX */
-div.search-box svg:last-child {
+div.search-box>svg:last-child {
  top: 50%;
  left: 7px;
  transform: translateY(-50%);
 }
-div.search-box svg:first-child {
+div.search-box>svg:first-child {
  top: 50%;
  left: 7px;
  transform: translateY(-50%);
 }
-div.search-box svg:nth-child(2) {
+div.search-box>svg:nth-child(2) {
  top: 50%;
  right: 7px;
  transform: translateY(-50%);
