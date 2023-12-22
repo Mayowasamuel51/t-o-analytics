@@ -83,7 +83,7 @@ const SendMessages = () => {
         <h1 className="font-bold text-sm md:text-2xl my-3">COMMENTS FROM STUDENTS</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {paginatedData?.map((comment, index)=> (
-            <div key={index} className="bg-textColor p-2 rounded-sm">
+            <div key={index} className="bg-grayBG p-2 rounded-sm">
               <p className="break-all">{comment.message}</p>
               <p>{(new Date(comment.date)).toLocaleDateString()}</p>
             </div>

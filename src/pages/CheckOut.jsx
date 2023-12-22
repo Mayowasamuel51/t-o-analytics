@@ -51,12 +51,11 @@ const CheckOut = () => {
   const removeCourse = (id) => {
     const updatedCart = cartItem.filter((item) => item.id !== id);
     setCartItem(updatedCart);
-    
     localStorage.setItem("COURSE-CART", JSON.stringify(updatedCart));
   };
     
   return (
-    <div className="min-h-screen md:px-10 px-2 pt-32 pb-20">
+    <div className="min-h-screen md:px-10 px-2 pt-24 pb-20">
       <h1 className="text-xl md:text-4xl font-black my-4">SHOPPING CART</h1>
       <div>
         <p className="font-semibold text-md flex items-end gap-1"><p className="font-black text-xl">{cartItem.length}</p> {cartItem.length > 1 ? "COURSES" : "COURSE"} in cart </p>

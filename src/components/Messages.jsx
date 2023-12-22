@@ -23,7 +23,7 @@ const Messages = () => {
   const [message, setMessage] = useState(false)
   const { data } = FetchMessage()
   return (
-    <div className="fixed flex flex-col gap-5 top-[25%] left-5 bg-whte w-[10px]">
+    <div className="fixed flex flex-col gap-5 top-[30%] left-5 bg-whte w-[10px]">
       <div className="relative alert-msg">
         <FaMessage size={30} className={`${message && "invisible opacity-0"} cursor-pointer`} onClick={()=> setMessage(true)} color="#2d2065" />
         <FaMessage size={30} className={`${message && "invisible opacity-0"} absolute inset-0 animate-ping cursor-pointer`} onClick={()=> setMessage(true)} color="#2d2065" />

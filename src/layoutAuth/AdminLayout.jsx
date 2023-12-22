@@ -86,7 +86,7 @@ const AdminLayout = () => {
                     <div className="md:p-5 p-2 flex items-center gap-3 md:gap-10  lg:gap-32">
                         <h1 className="font-black text-sm md:text-3xl">Dashboard</h1>
                         <div className="relative search-box flex-1">
-                            <input type="text" className="pl-10 bg-textColor w-full h-10 rounded-md md:rounded-2xl" placeholder="Search here" />
+                            <input type="text" className="pl-10 bg-grayBG w-full h-10 rounded-md md:rounded-xl" placeholder="Search here" />
                             <FaMicrophone size={20} className="absolute" />
                             <FaSearch size={20} className="absolute" />
                         </div>
