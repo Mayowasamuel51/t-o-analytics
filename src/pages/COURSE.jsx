@@ -151,7 +151,7 @@ const COURSE = () => {
         <div className="learn">
           {location.pathname === "/courses/stock%20&%20options" ?
           <>
-              <ul className="md:w-[400px] md:text-base text-sm group">
+              <ul className="md:w-[400px] md:text-base text-sm group z-10">
               {singleCourse.whatToLearn.map((whatToLearn, index)=> (
                 <li key={index} onMouseEnter={()=> stockAndOptionsFn(index)} onMouseLeave={()=>removeStockAndOptionFn()} className="relative flex gap-20 cursor-pointer">{whatToLearn}
                   {stockOptionIndex === index &&(<div className="stock-and-options z-10 absolute top-0 left-0 md:left-[300px] md:right-[-300px] bg-white shadow-xl rounded-lg p-3">

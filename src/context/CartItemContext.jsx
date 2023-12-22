@@ -13,7 +13,7 @@ export const CartItemProvider = ({ children }) => {
     });
     const addToCart = (data) => {
         if (!cartItem.some((item) => item.id === data.id)) {
-            toast.success(`successfully added to cart`);
+            toast.success(`Successfully added to cart`);
             setCartItem((prev) => [...prev, data]);
         }
     }
@@ -31,11 +31,6 @@ export const CartItemProvider = ({ children }) => {
                 cartItem,
                 addToCart,
                 setCartItem,
-                // singleCourse,
-                // stockAndOptions,
-                // stockAndOptionsData,
-                // stockOptionIndex,
-                // setStockOptionIndex,
             }}
         >
             {children}
