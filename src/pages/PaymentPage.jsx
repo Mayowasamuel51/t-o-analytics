@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import React from "react";
 import { Navigate } from "react-router-dom"
 import { ReactDOM } from "react";
@@ -10,15 +10,11 @@ import { useStateContext } from "../context/ContextProvider";
 
 const PaymentPage = () => {
   const { token } = useStateContext();
+  const {cartItem, setCartItem} = useContext(CartItemContext);
   const studentName = window.localStorage.getItem('user')
   const [message, setMessage] = useState("");
   const [totalcart, setTotalCart] = useState([])
-  const [cartItem, setCartItem] = useState([]);
   var totalcartitem = 110;
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("COURSE-CART")) || [];
-    setCartItem(data);
-  }, []);
   let totalfinalpayment = 0;
   let courseName;
   let orderDetail = []
@@ -28,19 +24,17 @@ const PaymentPage = () => {
       cartItem.forEach((item) => {
         totalfinalpayment = item.price
         courseName = item.courseName
-        console.log(courseName, totalfinalpayment)
-        // orderDetail.push({courseName, totalfinalpayment, completelyPaid: false, isPending: true})
+        orderDetail.push({courseName, totalfinalpayment, completelyPaid: false, isPending: true})
       })
       console.log(cartItem)
       console.log('only one course ' + courseName + totalfinalpayment)
       alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
     } 
-
     else if (cartItem.length > 1) {
       totalfinalpayment = cartItem.reduce((acc, cur)=> acc + cur.price, 0)
       alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
       cartItem.forEach((item)=> {
-        totalcart.push(item)
+        orderDetail.push(item)
       })
       console.log(totalcart)
       console.log('more than one course' + cartItem)

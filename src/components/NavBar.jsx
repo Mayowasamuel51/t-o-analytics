@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import LOGO from "../assets/images/logo.jpg";
 import { FaSearch } from "react-icons/fa";
 import { motion, AnimatePresence } from 'framer-motion';
+import CartItemContext from '../context/CartItemContext';
 import { useStateContext } from "../context/ContextProvider"
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
@@ -28,6 +29,7 @@ const liVariant = {
 }
 
 const NavBar = () => {
+    const {cartItem} = useContext(CartItemContext);
     const [search, setSearch] = useState("")
     const { data } = FetchAllStudents()
     const navigate = useNavigate()
@@ -48,10 +50,6 @@ const NavBar = () => {
         }
         return (course.courseName.toLowerCase()).includes(search.toLowerCase());
     })
-    const [cartItem, setCartItem] = useState(()=> {
-        let data = JSON.parse(localStorage.getItem("COURSE-CART")) ?? []
-        return data
-    })
     const { token, setToken } = useStateContext();
     const [localuser, setUser] = useState("")
     const auth = getAuth(app);
@@ -62,10 +60,6 @@ const NavBar = () => {
             setToken(null)
         }).catch((err) => console.log(err.message))
     }
-    useEffect(()=> {
-        const data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
-        setCartItem(data)
-    }, [])
     useEffect(()=> {
         const handleScroll = () => {
             const scrollY = window.scrollY;
@@ -94,7 +88,7 @@ const NavBar = () => {
     }
     return (
         <>
-            <header className={`z-20 fixed w-[100%] right-0 left-0 top-0 bg-white px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
+            <header className={`z-[9999] fixed w-[100%] right-0 left-0 top-0 bg-white px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
                 <div>
                     <Link to="/">
                         <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[130px]" alt=""/>

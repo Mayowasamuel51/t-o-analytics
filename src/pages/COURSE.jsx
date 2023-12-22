@@ -3,57 +3,35 @@ import { Toaster, toast } from 'sonner';
 import { useState, useEffect, useContext } from "react";
 import { motion } from "framer-motion";
 import { FaXmark } from "react-icons/fa6";
-import COURSES from "../coursesAPI/api";
-import { useStateContext } from "../context/ContextProvider";
 import CartItemContext from "../context/CartItemContext";
 import { Helmet } from 'react-helmet';
 
 const COURSE = () => {
-  // const {token: t, location: l, cartItem: c} = useContext(CartItemContext);
-  // console.log(t)
-  // console.log(l)
-  // console.log(c)
-  const { token } = useStateContext();
   const location = useLocation()
   const navigate = useNavigate()
+  const { course } = useParams()
   const [showModal, setShowModal] = useState(false)
+  const {COURSES, token, cartItem, addToCart, setCartItem} = useContext(CartItemContext);
   const [stockOptionIndex, setStockOptionIndex] = useState(()=> {
     if (location.pathname === "/courses/stock%20&%20options") return null
     else return;
   })
-  const { course } = useParams();
-  const [cartItem, setCartItem] = useState(()=> {
-      let data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
-      return data
-    }
-  )
+
   const singleCourse = COURSES?.find((C)=> C.courseName.toLowerCase() === course)
   const stockAndOptions = COURSES?.find((course)=> course.courseName === singleCourse.courseName && location.pathname === "/courses/stock%20&%20options")
   const stockAndOptionsData = stockAndOptions?.otherSubCourses[stockOptionIndex]
-  const addToCart = (id)=> {
-    if (!cartItem.some((item)=> item.id === id) && singleCourse.id === id) {
-      toast.success(`successfully added to cart`)
-      setCartItem(prev => [...prev, singleCourse])
-      setTimeout(() => {
-        window.location.reload()
-      }, 3000);
-    }
+
+  const addStockAndOptionSubCourses = (id)=> {
     if (singleCourse?.otherSubCourses.some((item)=> item.id === id) && !cartItem.some((item)=> item.id === id)) {
       toast.success(`successfully added to cart`)
       setCartItem(prev => [...prev, stockAndOptionsData])
-      setTimeout(() => {
-        window.location.reload()
-      }, 3000);
     }
   }
+
   useEffect(()=> {
     localStorage.setItem("COURSE-CART", JSON.stringify(cartItem))
   },[cartItem]);
 
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("COURSE-CART")) || [];
-    setCartItem(items);
-  }, []);
   const showModalAction = ()=> {
     setShowModal(prev=> !prev)
   }
@@ -83,11 +61,7 @@ const COURSE = () => {
                 <title>Courses</title>
                 <link rel="canonical" href="https://www.to-analytics.com" />
                 <meta name="description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
-
                 <meta property="og:description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
-
-            
-
             </Helmet>
           {singleCourse.courseName.toUpperCase()}
         </h1>
@@ -110,12 +84,12 @@ const COURSE = () => {
                           ))}
                         </ul>
                       </div>
-                      {cartItem?.some((item)=> item.id === singleCourse.id) ? 
+                      {cartItem && cartItem?.some((item)=> item.id === singleCourse.id) ? 
                       <button onClick={()=>buyCourse()} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
                         BUY COURSE
                       </button>
                       :
-                      <button onClick={()=> addToCart(singleCourse.id)} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+                      <button onClick={()=> addToCart(singleCourse)} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-1 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
                         ADD TO CART
                       </button>
                       }  
@@ -138,12 +112,12 @@ const COURSE = () => {
                           ))}
                         </ul>
                       </div>
-                      {cartItem.some((item)=> item.id === singleCourse.id) ? 
+                      {cartItem && cartItem.some((item)=> item.id === singleCourse.id) ? 
                       <button onClick={()=>buyCourse()} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-2 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
                         BUY COURSE
                       </button>
                       :
-                      <button onClick={()=> addToCart(singleCourse.id)} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-2 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
+                      <button onClick={()=> addToCart(singleCourse)} className="text-sm md:text-lg font-bold text-white bg-BLUE w-full my-4 px-2 py-2 md:py-2 rounded-lg hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300">
                         ADD TO CART
                       </button>
                       }  
@@ -156,7 +130,7 @@ const COURSE = () => {
             </p>
             <p className="md:my-6 my-4 font-bold md:text-3xl">${singleCourse.price}</p>
             <div className="">
-              <button onClick={()=>showModalAction()} className="w-[120px] md:w-[150px] hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white md:mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
+              <button onClick={()=>showModalAction()} className="z-10 w-[120px] md:w-[150px] hover:bg-transparent border-2 hover:text-BLUE border-textColor duration-300 hover:bg-white md:mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-4 md:py-3 rounded-md">
                 {showModal? "View Less" : "View More"}
               </button>
             </div>
@@ -203,7 +177,7 @@ const COURSE = () => {
                       </ul>
                     </div>
                     <div>
-                      {cartItem?.some((item)=> item.id === stockAndOptionsData?.id) ? <button onClick={()=>buyCourse()} className="w-full border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-2 md:py-2 rounded-md md:rounded-xl font-semibold">BUY COURSE</button> :<button onClick={()=> addToCart(stockAndOptionsData?.id)} className="w-full border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-2 md:py-2 rounded-md md:rounded-xl font-semibold">ADD TO CART</button>}
+                      {cartItem?.some((item)=> item.id === stockAndOptionsData?.id) ? <button onClick={()=>buyCourse()} className="w-full border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-2 md:py-2 rounded-md md:rounded-xl font-semibold">BUY COURSE</button> :<button onClick={()=> addStockAndOptionSubCourses(stockAndOptionsData?.id)} className="w-full border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-2 md:py-2 rounded-md md:rounded-xl font-semibold">ADD TO CART</button>}
                     </div>
                   </div>)}
                 </li>

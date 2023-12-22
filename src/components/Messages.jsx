@@ -7,10 +7,12 @@ const messageVariant = {
   initial: {
     x: "-100%",
     opacity: 0,
+    zIndex: -1
   },
   final: {
     x: 0,
     opacity: 1,
+    zIndex: 1,
     transition: {
       type: "spring", stiffness:250
     }
@@ -22,7 +24,7 @@ const Messages = () => {
   const { data } = FetchMessage()
 
   return (
-    <div className="fixed hei flex flex-col gap-5 top-[30%] left-5 bg-whte z-50">
+    <div className="fixed flex flex-col gap-5 top-[30%] left-5 bg-whte z-50">
       <div className="relative alert-msg">
         <FaMessage size={30} className={`${message && "invisible opacity-0"} cursor-pointer`} onClick={()=> setMessage(true)} color="#2d2065" />
         <FaMessage size={30} className={`${message && "invisible opacity-0"} absolute inset-0 animate-ping cursor-pointer`} onClick={()=> setMessage(true)} color="#2d2065" />

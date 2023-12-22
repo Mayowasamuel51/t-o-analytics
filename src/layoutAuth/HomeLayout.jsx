@@ -7,7 +7,6 @@ import Messages from "../components/Messages";
 
 function HomeLayout() {
     const location = useLocation()
-    console.log(location.pathname)
     const paths = COURSES.map((course) => `/courses/${course.courseName}`)
     return (
         <>

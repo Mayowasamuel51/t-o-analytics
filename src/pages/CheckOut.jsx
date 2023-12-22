@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom"
+import CartItemContext from "../context/CartItemContext";
 import { useStateContext } from "../context/ContextProvider";
 import { Toaster, toast } from 'sonner';
 import { FaCheck, FaExclamation } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 
 const CheckOut = () => {
-  const [cartItem, setCartItem] = useState([])
+  const { cartItem, setCartItem } = useContext(CartItemContext);
   const { token } = useStateContext();
   const navigate = useNavigate();
   const checkOut = ()=> {
@@ -47,23 +48,12 @@ const CheckOut = () => {
       navigate("/dashboard/makePayment")
     }
   }
-  useEffect(()=> {
-    const data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
-    setCartItem(data)
-  }, [])
   const removeCourse = (id) => {
     const updatedCart = cartItem.filter((item) => item.id !== id);
     setCartItem(updatedCart);
-    setTimeout(() => {
-      window.location.reload()
-    }, 3000);
+    
     localStorage.setItem("COURSE-CART", JSON.stringify(updatedCart));
   };
-  
-  useEffect(()=> {
-    const data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
-    setCartItem(data)
-  }, [])
     
   return (
     <div className="min-h-screen md:px-10 px-2 pt-32 pb-20">
