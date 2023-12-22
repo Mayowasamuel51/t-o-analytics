@@ -63,7 +63,7 @@ const SendMessages = () => {
   const length = message?.data?.response?.length || 0
 
   const pageNumber = []
-  for (let i = 1; i <= Math.ceil((length) / Page); i++) {
+  for (let i = 1; i <= Math.ceil((length) / postsPerPage); i++) {
     pageNumber.push(i)
   }
 
