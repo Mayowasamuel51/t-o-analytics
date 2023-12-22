@@ -16,9 +16,10 @@ const Contractors = () => {
   const lastPostIndex = currentPage * postsPerPage
   const firstPostIndex = lastPostIndex - postsPerPage
   const paginatedData = data?.data?.response?.slice(firstPostIndex, lastPostIndex)
+  const length = data?.data?.response?.length || 0
 
   const pageNumber = []
-  for (let i = 1; i <= Math.ceil((data?.data?.response.length) / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil((length) / postsPerPage); i++) {
     pageNumber.push(i)
   }
 

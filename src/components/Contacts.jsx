@@ -16,11 +16,12 @@ const Contacts = () => {
   const lastPostIndex = currentPage * postsPerPage
   const firstPostIndex = lastPostIndex - postsPerPage
   const paginatedData = data?.data?.data?.slice(firstPostIndex, lastPostIndex)
+  const length = data?.data?.response?.length || 0
 
   const pageNumber = []
-    for (let i = 1; i <= Math.ceil((data?.data?.data.length) / postsPerPage); i++) {
-        pageNumber.push(i)
-    }
+  for (let i = 1; i <= Math.ceil((length) / postsPerPage); i++) {
+      pageNumber.push(i)
+  }
 
   return (
     <div className="md:p-5 rounded-xl overflow-hidden">
@@ -35,7 +36,7 @@ const Contacts = () => {
           </tr>
         </thead>
         <tbody>
-          {paginatedData.map((contact, index)=> (
+          {paginatedData?.map((contact, index)=> (
             <tr className="bg-white" key={index}>
               <td data-cell="Date" className="text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2">{(new Date(contact.date)).toLocaleDateString()}</td>
               <td data-cell="Name" className="text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2">{contact.name}</td>
