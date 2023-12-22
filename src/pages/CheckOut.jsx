@@ -59,7 +59,7 @@ const CheckOut = () => {
     <div className="min-h-screen md:px-10 px-2 pt-32 pb-20">
       <h1 className="text-xl md:text-4xl font-black my-4">SHOPPING CART</h1>
       <div>
-        <p className="font-semibold text-md">{cartItem.length} {cartItem.length > 1 ? "COURSES" : "COURSE"} in cart </p>
+        <p className="font-semibold text-md flex items-end gap-1"><p className="font-black text-xl">{cartItem.length}</p> {cartItem.length > 1 ? "COURSES" : "COURSE"} in cart </p>
       </div>
       <section className="grid md:grid-cols-3 grid-cols-1 gap-10">
         <div className="cart-items md:col-span-2">
@@ -67,10 +67,10 @@ const CheckOut = () => {
             <div key={item.id} className="py-4 px-2">
               <div className="flex items-start gap-2 md:gap-10">
                 <div>
-                  {item.image ? <img src={item.image} className="w-14 aspect-square object-cover" alt="" /> : (<div className="w-14 aspect-square bg-BLUE"></div>)}
+                  {item.image ? <img src={item.image} className="w-12 aspect-square object-cover rounded-md" alt="" /> : (<div className="w-12 aspect-square bg-BLUE rounded-md"></div>)}
                 </div>
-                <div className="grow-[3]">
-                  <p className="font-black">{item.courseName || item.name}</p>
+                <div className="flex-1">
+                  <p className="text-sm md:text-base font-black">{item.courseName || item.name}</p>
                   <p className="text-xs">{item.intro}</p>
                   <p className="text-sm font-medium line-clamp-1">{item.description}</p>
                 </div>
