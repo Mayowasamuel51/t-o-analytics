@@ -32,6 +32,7 @@ const PaymentPage = () => {
 
     else if (cartItem.length > 1) {
       totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
+      const allCourses = cartItem.map(course => course.courseName)
       if (cartItem.length <= 3) {
         courseName = cartItem.map(course => course.courseName).join(', ');
       } else {
