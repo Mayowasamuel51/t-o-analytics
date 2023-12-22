@@ -10,7 +10,6 @@ import { useStateContext } from "../context/ContextProvider";
 
 const PaymentPage = () => {
   const { token } = useStateContext();
-  if (!token) return <Navigate to="/" />
   const studentName = window.localStorage.getItem('user')
   const [message, setMessage] = useState("");
   const [totalcart, setTotalCart] = useState([])
@@ -19,31 +18,34 @@ const PaymentPage = () => {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("COURSE-CART")) || [];
     setCartItem(data);
-    console.log(data)
   }, []);
   let totalfinalpayment = 0;
   let courseName;
+  let orderDetail = []
   const checkoutfunction = () => {
     // when users trys to pay only one course it works
-    if (cartItem.length > 1) {
+    if (cartItem.length === 1) {
       cartItem.forEach((item) => {
-        totalfinalpayment += item.price
+        totalfinalpayment = item.price
         courseName = item.courseName
         console.log(courseName, totalfinalpayment)
+        // orderDetail.push({courseName, totalfinalpayment, completelyPaid: false, isPending: true})
       })
-      //   .reduce((acc, value) => {
-      //   return totalfinalpayment += acc + value.price
-      // }, 0)
-      // // cartItem.reduce((acc, value) => {
-      //   return totalfinalpayment += acc + value.price
-      // }, 0)
-      console.log('only one course ' + totalfinalpayment)
+      console.log(cartItem)
+      console.log('only one course ' + courseName + totalfinalpayment)
+      alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
+    } 
 
-    } else if (cartItem.length > 1) {
+    else if (cartItem.length > 1) {
+      totalfinalpayment = cartItem.reduce((acc, cur)=> acc + cur.price, 0)
+      alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
+      cartItem.forEach((item)=> {
+        totalcart.push(item)
+      })
+      console.log(totalcart)
       console.log('more than one course' + cartItem)
     }
     // when users trys to pay many course at once it still works 
-
     // const totalcart = cartItem.reduce((acc, value) => {
     //   return acc + value.price
     // }, 0)
@@ -65,7 +67,6 @@ const PaymentPage = () => {
   //         }
   //       }
   //     ]
-
   //   })
   // }
   const orderdata = {
@@ -208,7 +209,7 @@ const PaymentPage = () => {
       );
     }
   }
-
+  if (!token) return <Navigate to="/" />
   return (
     <section className="min-h-screen payment-page">
       <div className="p-2 md:p-10">

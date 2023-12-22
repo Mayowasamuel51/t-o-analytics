@@ -130,7 +130,7 @@ const NavBar = () => {
                             </div>
                         </Link>
                     </div>
-                    <ul className="md:hidden lg:flex flex items-center gap-3 md:gap-6 font-normal text-sm">
+                    <ul className="md:hidden lg:flex flex lg:flex-row flex-col items-center gap-3 md:gap-6 font-normal text-sm">
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive && location.pathname === "/dashboard" ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard">My Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/comment">Comment</NavLink></motion.li>

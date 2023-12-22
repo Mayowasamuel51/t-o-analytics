@@ -30,7 +30,6 @@ const Contractors = () => {
             <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Registration Date</th>
             <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Contractor Names</th>
             <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Email Address</th>
-
             <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>pdfurl</th>
             <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Link_portfolio</th>
           </tr>

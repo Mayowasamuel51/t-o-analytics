@@ -5,11 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
-import { useState } from "react";
+// import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 const api_comment = import.meta.env.VITE_BACKEND_C
 const StudentCommentPage = () => {
+  const navigate = useNavigate()
   const notify = () => toast("Thank you for your comment!!");
-
   const schema = yup.object().shape({
     comment: yup.string().required(),
   });
@@ -34,7 +35,9 @@ const StudentCommentPage = () => {
     }).then((res) => {
       if (res.status === 201 || res.status === 200) {
         notify()
-        navigate('/dashboard')
+        setTimeout(() => {
+          navigate('/dashboard')
+        }, 2000);
       }
     }).catch(err => {
       const response = err.response
