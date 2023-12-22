@@ -15,30 +15,36 @@ const PaymentPage = () => {
   const [message, setMessage] = useState("");
   const [totalcart, setTotalCart] = useState([])
   var totalcartitem = 110;
-  let totalfinalpayment = 0;
+  let totalFinalPayment;
   let courseName;
   let orderDetail = []
   const checkoutfunction = () => {
     // when users trys to pay only one course it works
     if (cartItem.length === 1) {
-      cartItem.forEach((item) => {
-        totalfinalpayment = item.price
-        courseName = item.courseName
-        orderDetail.push({courseName, totalfinalpayment, completelyPaid: false, isPending: true})
-      })
-      console.log(cartItem)
-      console.log('only one course ' + courseName + totalfinalpayment)
-      alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
-    } 
+      const singleCourse = cartItem[0];
+      totalFinalPayment = singleCourse.price;
+      courseName = singleCourse.courseName;
+
+      orderDetail.push({courseName, totalFinalPayment, completelyPaid: false, isPending: true})
+      console.log('only one course ' + courseName + totalFinalPayment)
+      alert(`${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`)
+    }
+
     else if (cartItem.length > 1) {
-      totalfinalpayment = cartItem.reduce((acc, cur)=> acc + cur.price, 0)
-      alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
-      cartItem.forEach((item)=> {
-        orderDetail.push(item)
-      })
-      console.log(totalcart)
+      totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
+      if (cartItem.length <= 3) {
+        // If there are 3 or fewer courses, join with commas
+        courseName = cartItem.map(course => course.courseName).join(', ');
+      } else {
+        // If there are more than 3 courses, join with commas and use "and" before the last course
+        const firstCourses = cartItem.slice(0, cartItem.length - 1).map(course => course.courseName).join(', ');
+        const lastCourse = cartItem[cartItem.length - 1].courseName;
+        courseName = `${firstCourses} and ${lastCourse}`;
+      }
+      alert(`${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`)
       console.log('more than one course' + cartItem)
     }
+
     // when users trys to pay many course at once it still works 
     // const totalcart = cartItem.reduce((acc, value) => {
     //   return acc + value.price
@@ -92,23 +98,23 @@ const PaymentPage = () => {
     // always remove the the cart infomation after sending to the backend for payment 
     if (cartItem.length === 1) {
       cartItem.forEach((item) => {
-        totalfinalpayment += item.price
+        totalFinalPayment += item.price
         courseName += item.courseName
-        console.log(courseName, totalfinalpayment)
+        console.log(courseName, totalFinalPayment)
       })
 
     } else if (cartItem.length > 1) {
       // we use a map 
       // const test = cartItem.map((items) => {
-      //   totalfinalpayment += items.price;
+      //   totalFinalPayment += items.price;
       //   courseName = items.courseName
       //   return courseName 
       // })
       // console.log(test)
       const test =  cartItem.forEach((item) => {
-          totalfinalpayment = item.price
+          totalFinalPayment = item.price
           courseName = item.courseName
-          console.log(courseName, totalfinalpayment)
+          console.log(courseName, totalFinalPayment)
       })
       console.log(test)
       // console.log('more than one course   ' + cartItem)
@@ -127,7 +133,7 @@ const PaymentPage = () => {
           cart: [
             {
               courseName: courseName,
-              price: totalfinalpayment
+              price: totalFinalPayment
             },
           ],
         }),
