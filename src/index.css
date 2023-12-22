@@ -160,17 +160,17 @@ div.login-options button:hover {
 
 
 /* AUTH SEARCH BOX */
-div.search-box svg:last-child {
+div.search-box>svg:last-child {
  top: 50%;
  left: 7px;
  transform: translateY(-50%);
 }
-div.search-box svg:first-child {
+div.search-box>svg:first-child {
  top: 50%;
  left: 7px;
  transform: translateY(-50%);
 }
-div.search-box svg:nth-child(2) {
+div.search-box>svg:nth-child(2) {
  top: 50%;
  right: 7px;
  transform: translateY(-50%);
@@ -239,6 +239,14 @@ section.payment-page {
 .customFileInput::before {
   content: 'CV/Resume';
   color: #D9D9D9;
+}
+
+div.alert-msg svg:first-child {
+  filter: 
+    drop-shadow(-1px -1px 0px #fff) 
+    drop-shadow(2px -1px 0px #fff) 
+    drop-shadow(2px 2px 0px #fff)
+    drop-shadow(-1px 2px 0px #fff);
 }
 
 
