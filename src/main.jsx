@@ -5,6 +5,7 @@ import './index.css'
 import ErrorBoundary from './ErrorBoundary';
 import Error from './error';
 import { ContextProvider } from './context/ContextProvider.jsx';
+import { CartItemProvider } from './context/CartItemContext.jsx';
 import {
   QueryClient,
   QueryClientProvider,
@@ -15,11 +16,13 @@ const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary fallback={<Error />}>
-      <ContextProvider>
-        <QueryClientProvider client={queryClient}>
-          <App />
-        </QueryClientProvider>
-      </ContextProvider>
+      <CartItemProvider>
+        <ContextProvider>
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
+        </ContextProvider>
+      </CartItemProvider>
     </ErrorBoundary>
   </React.StrictMode>,
 )

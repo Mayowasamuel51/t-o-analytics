@@ -284,7 +284,7 @@ div.alert-msg svg:first-child {
   table.contact-table thead tr th,
   table.contractors thead tr th,
   table.contact-table thead tr td {
-    background-color: #d9d9d9;
+    background-color: #e8e2e2;
   }
   table.dashboard thead tr th:first-child,
   table.dashboard tbody tr td:first-child,
@@ -373,7 +373,7 @@ div.alert-msg svg:first-child {
   }
   tbody {
     padding: 5px;
-    background-color: #d9d9d9;
+    background-color: #e8e2e2;
     display: grid;
     justify-content: stretch;
     gap: 5px;

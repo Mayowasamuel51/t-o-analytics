@@ -60,13 +60,13 @@ const SendMessages = () => {
   const lastPostIndex = currentPage * postsPerPage
   const firstPostIndex = lastPostIndex - postsPerPage
   const paginatedData = message?.data?.response?.slice(firstPostIndex, lastPostIndex)
+  const length = message?.data?.response?.length || 0
 
   const pageNumber = []
-  for (let i = 1; i <= Math.ceil((message?.data?.response.length) / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil((length) / postsPerPage); i++) {
     pageNumber.push(i)
   }
-  if (fetchError) return <p className='text-center text-red-500 md:text-3xl font-black'>{fetchError.message}</p>
-  if (isLoading) return <Loader />
+
   return (
     <div className='p-2 lg:p-5'>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -81,9 +81,11 @@ const SendMessages = () => {
 
       <div className="mt-10">
         <h1 className="font-bold text-sm md:text-2xl my-3">COMMENTS FROM STUDENTS</h1>
+        {fetchError && <p className='text-center text-red-500 md:text-3xl font-black'>{fetchError.message}</p>}
+        {isLoading && <Loader />}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {paginatedData?.map((comment, index)=> (
-            <div key={index} className="bg-textColor p-2 rounded-sm">
+            <div key={index} className="bg-grayBG p-2 rounded-sm">
               <p className="break-all">{comment.message}</p>
               <p>{(new Date(comment.date)).toLocaleDateString()}</p>
             </div>

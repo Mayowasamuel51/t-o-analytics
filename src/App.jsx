@@ -1,5 +1,5 @@
 import React from "react";
-
+import { CartItemProvider } from "./context/CartItemContext";
 import ErrorPage from "./components/errorPage";
 import AllCourses from "./components/AllCourses";
 const LazyHomePage = React.lazy(()=> import("./pages/HomePage"))
@@ -210,7 +210,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <AnimatePresence>
-      <RouterProvider router={router} />
+      <CartItemProvider>
+        <RouterProvider router={router} />
+      </CartItemProvider>
     </AnimatePresence>
   );
 }

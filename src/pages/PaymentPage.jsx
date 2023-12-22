@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { ReactDOM } from "react";
@@ -10,44 +10,39 @@ import { useStateContext } from "../context/ContextProvider";
 
 const PaymentPage = () => {
   const { token } = useStateContext();
+  const {cartItem, setCartItem} = useContext(CartItemContext);
   const studentName = window.localStorage.getItem("user");
   const [message, setMessage] = useState("");
-  const [totalcart, setTotalCart] = useState([]);
-  const [cartItem, setCartItem] = useState([]);
+  const [totalcart, setTotalCart] = useState([])
+ 
   var totalcartitem = 110;
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("COURSE-CART")) || [];
-    setCartItem(data);
-  }, []);
-  let totalfinalpayment = 0;
+  let totalFinalPayment;
   let courseName;
   let orderDetail = [];
   const checkoutfunction = () => {
     // when users trys to pay only one course it works
     if (cartItem.length === 1) {
       cartItem.forEach((item) => {
-        totalfinalpayment = item.price;
-        courseName = item.courseName;
-        console.log(courseName, totalfinalpayment);
+        totalfinalpayment = item.price
+        courseName = item.courseName
+        console.log(courseName, totalfinalpayment)
         // orderDetail.push({courseName, totalfinalpayment, completelyPaid: false, isPending: true})
-      });
-      console.log(cartItem);
-      console.log("only one course " + courseName + totalfinalpayment);
-      alert(
-        `${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`
-      );
-    } else if (cartItem.length > 1) {
-      totalfinalpayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
-      alert(
-        `${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`
-      );
-      cartItem.forEach((item) => {
-        totalcart.push(item);
-      });
-      console.log(totalcart);
-      console.log("more than one course" + cartItem);
+      })
+      console.log(cartItem)
+      console.log('only one course ' + courseName + totalfinalpayment)
+      alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
+    } 
+
+    else if (cartItem.length > 1) {
+      totalfinalpayment = cartItem.reduce((acc, cur)=> acc + cur.price, 0)
+      alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
+      cartItem.forEach((item)=> {
+        totalcart.push(item)
+      })
+      console.log(totalcart)
+      console.log('more than one course' + cartItem)
     }
-    // when users trys to pay many course at once it still works
+    // when users trys to pay many course at once it still works 
     // const totalcart = cartItem.reduce((acc, value) => {
     //   return acc + value.price
     // }, 0)
@@ -96,33 +91,31 @@ const PaymentPage = () => {
     "data-sdk-integration-source": "integrationbuilder_sc",
   };
   const createOrder = async () => {
-    // always remove the the cart infomation after sending to the backend for payment
-    // want to know when the user picks one course and also know when they pick more than once course
+    // always remove the the cart infomation after sending to the backend for payment 
+    if (cartItem.length === 1) {
+      cartItem.forEach((item) => {
+        totalfinalpayment += item.price
+        courseName += item.courseName
+        console.log(courseName, totalfinalpayment)
+      })
 
+    } else if (cartItem.length > 1) {
+      // we use a map 
+      // const test = cartItem.map((items) => {
+      //   totalfinalpayment += items.price;
+      //   courseName = items.courseName
+      //   return courseName 
+      // })
+      // console.log(test)
+      const test =  cartItem.forEach((item) => {
+          totalfinalpayment = item.price
+          courseName = item.courseName
+          console.log(courseName, totalfinalpayment)
+      })
+      console.log(test)
+      // console.log('more than one course   ' + cartItem)
+    }
     try {
-      if (cartItem.length === 1) {
-        cartItem.forEach((item) => {
-          totalfinalpayment = item.price;
-          courseName = item.courseName;
-          console.log(courseName, totalfinalpayment);
-          // orderDetail.push({courseName, totalfinalpayment, completelyPaid: false, isPending: true})
-        });
-        console.log(cartItem);
-        console.log("only one course " + courseName + totalfinalpayment);
-        alert(
-          `${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`
-        );
-      } else if (cartItem.length > 1) {
-        totalfinalpayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
-        alert(
-          `${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`
-        );
-        cartItem.forEach((item) => {
-          totalcart.push(item);
-        });
-        console.log(totalcart);
-        console.log("more than one course" + cartItem);
-      }
       const response = await fetch(`${api}/api/orders`, {
         method: "POST",
         headers: {
@@ -131,8 +124,8 @@ const PaymentPage = () => {
         body: JSON.stringify({
           cart: [
             {
-              ...totalcart,
-              studentName,
+              courseName: courseName,
+              price: totalfinalpayment
             },
           ],
         }),

@@ -1,66 +1,36 @@
 import { createContext, useState, useEffect } from "react";
 import COURSES from "../coursesAPI/api";
-import { useParams, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { useStateContext } from "./ContextProvider";
 
-const CartItemContext = createContext();
+const CartItemContext = createContext({});
 
 export const CartItemProvider = ({ children }) => {
     const { token } = useStateContext();
-    const { course } = useParams();
-    const location = useLocation();
     const [cartItem, setCartItem] = useState(() => {
         if (localStorage.getItem("COURSE-CART"))
             return JSON.parse(localStorage.getItem("COURSE-CART")) || [];
     });
-    const [stockOptionIndex, setStockOptionIndex] = useState(() => {
-        if (location.pathname === "/courses/stock%20&%20options") return null;
-        else return;
-    });
-    const singleCourse = COURSES?.find(
-        (C) => C.courseName.toLowerCase() === course
-    );
-    const stockAndOptions = COURSES?.find(
-        (C) =>
-            C.courseName === singleCourse.courseName &&
-            location.pathname === "/courses/stock%20&%20options"
-    );
-    const stockAndOptionsData = stockAndOptions?.otherSubCourses[stockOptionIndex];
-    const addToCartItem = (id) => {
-        if (!cartItem.some((item) => item.id === id) && singleCourse.id === id) {
-            toast.success(`successfully added to cartItem`);
-            setCartItem((prev) => [...prev, singleCourse]);
+    const addToCart = (data) => {
+        if (!cartItem.some((item) => item.id === data.id)) {
+            toast.success(`Successfully added to cart`);
+            setCartItem((prev) => [...prev, data]);
         }
-        if (
-            singleCourse?.otherSubCourses.some((item) => item.id === id) &&
-            !cartItem.some((item) => item.id === id)
-        ) {
-            toast.success(`successfully added to cartItem`);
-            setCartItem((prev) => [...prev, stockAndOptionsData]);
-        }
-    };
-    useEffect(()=> {
-        localStorage.setItem("COURSE-CART", JSON.stringify(cartItem))
-      },[cartItem]);
-    
-      useEffect(() => {
+    }
+
+    useEffect(() => {
         const items = JSON.parse(localStorage.getItem("COURSE-CART")) || [];
         setCartItem(items);
-      }, []);
+    }, [])
+
     return (
         <CartItemContext.Provider
             value={{
+                COURSES,
                 token,
-                location,
                 cartItem,
-                singleCourse,
-                stockAndOptions,
-                stockAndOptionsData,
+                addToCart,
                 setCartItem,
-                addToCartItem,
-                stockOptionIndex,
-                setStockOptionIndex,
             }}
         >
             {children}

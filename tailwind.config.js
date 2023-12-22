@@ -12,7 +12,8 @@ export default {
         textColor: "#d9d9d9",
         inputColor: "#D9D9D9",
         BLUE: "#2d2065",
-        courseText: "#d5d2e0"
+        courseText: "#d5d2e0",
+        grayBG: "#e8e2e2"
       }
     },
   },
