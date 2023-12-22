@@ -33,10 +33,8 @@ const PaymentPage = () => {
     else if (cartItem.length > 1) {
       totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
       if (cartItem.length <= 3) {
-        // If there are 3 or fewer courses, join with commas
         courseName = cartItem.map(course => course.courseName).join(', ');
       } else {
-        // If there are more than 3 courses, join with commas and use "and" before the last course
         const firstCourses = cartItem.slice(0, cartItem.length - 1).map(course => course.courseName).join(', ');
         const lastCourse = cartItem[cartItem.length - 1].courseName;
         courseName = `${firstCourses} and ${lastCourse}`;
