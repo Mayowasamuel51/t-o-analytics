@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import { Navigate } from "react-router-dom"
+import { Navigate } from "react-router-dom";
 import { ReactDOM } from "react";
-import { PayPalScriptProvider, PayPalButtons, } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from "axios";
-const api = import.meta.env.VITE_BACKEND_PAY
+const api = import.meta.env.VITE_BACKEND_PAY;
 import CartItemContext from "../context/CartItemContext";
 import { useStateContext } from "../context/ContextProvider";
 
 const PaymentPage = () => {
   const { token } = useStateContext();
-  const studentName = window.localStorage.getItem('user')
+  const studentName = window.localStorage.getItem("user");
   const [message, setMessage] = useState("");
-  const [totalcart, setTotalCart] = useState([])
+  const [totalcart, setTotalCart] = useState([]);
   const [cartItem, setCartItem] = useState([]);
   var totalcartitem = 110;
   useEffect(() => {
@@ -21,42 +21,43 @@ const PaymentPage = () => {
   }, []);
   let totalfinalpayment = 0;
   let courseName;
-  let orderDetail = []
+  let orderDetail = [];
   const checkoutfunction = () => {
     // when users trys to pay only one course it works
     if (cartItem.length === 1) {
       cartItem.forEach((item) => {
-        totalfinalpayment = item.price
-        courseName = item.courseName
-        console.log(courseName, totalfinalpayment)
+        totalfinalpayment = item.price;
+        courseName = item.courseName;
+        console.log(courseName, totalfinalpayment);
         // orderDetail.push({courseName, totalfinalpayment, completelyPaid: false, isPending: true})
-      })
-      console.log(cartItem)
-      console.log('only one course ' + courseName + totalfinalpayment)
-      alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
-    } 
-
-    else if (cartItem.length > 1) {
-      totalfinalpayment = cartItem.reduce((acc, cur)=> acc + cur.price, 0)
-      alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
-      cartItem.forEach((item)=> {
-        totalcart.push(item)
-      })
-      console.log(totalcart)
-      console.log('more than one course' + cartItem)
+      });
+      console.log(cartItem);
+      console.log("only one course " + courseName + totalfinalpayment);
+      alert(
+        `${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`
+      );
+    } else if (cartItem.length > 1) {
+      totalfinalpayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
+      alert(
+        `${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`
+      );
+      cartItem.forEach((item) => {
+        totalcart.push(item);
+      });
+      console.log(totalcart);
+      console.log("more than one course" + cartItem);
     }
-    // when users trys to pay many course at once it still works 
+    // when users trys to pay many course at once it still works
     // const totalcart = cartItem.reduce((acc, value) => {
     //   return acc + value.price
     // }, 0)
 
     // console.log(totalcart)
-  }
+  };
   // const createOrder = (data, actions) => {
   //   const totalPrice = cartItem.reduce((acc, item) => {
   //     return acc + item.price;
   //   }, 0);
-
 
   //   return actions.order.create({
   //     purchase_units: [
@@ -70,11 +71,11 @@ const PaymentPage = () => {
   //   })
   // }
   const orderdata = {
-    courseName: '',
+    courseName: "",
     studentName: studentName,
-    payment_mode: 'Paypal',
-    payment_id: '',
-  }
+    payment_mode: "Paypal",
+    payment_id: "",
+  };
 
   // const onApprove = () => {
   //   return actions.order.capture().then((details) => {
@@ -95,48 +96,60 @@ const PaymentPage = () => {
     "data-sdk-integration-source": "integrationbuilder_sc",
   };
   const createOrder = async () => {
-    // always remove the the cart infomation after sending to the backend for payment 
-    if (cartItem.length === 1) {
-      cartItem.forEach((item) => {
-        totalfinalpayment += item.price
-        courseName += item.courseName
-        console.log(courseName, totalfinalpayment)
-      })
+    // always remove the the cart infomation after sending to the backend for payment
+    // want to know when the user picks one course and also know when they pick more than once course
 
-    } else if (cartItem.length > 1) {
-      // we use a map 
-      // const test = cartItem.map((items) => {
-      //   totalfinalpayment += items.price;
-      //   courseName = items.courseName
-      //   return courseName 
-      // })
-      // console.log(test)
-      const test =  cartItem.forEach((item) => {
-          totalfinalpayment = item.price
-          courseName = item.courseName
-          console.log(courseName, totalfinalpayment)
-      })
-      console.log(test)
-      // console.log('more than one course   ' + cartItem)
-    }
     try {
+      if (cartItem.length === 1) {
+        cartItem.forEach((item) => {
+          totalfinalpayment = item.price;
+          courseName = item.courseName;
+          console.log(courseName, totalfinalpayment);
+          // orderDetail.push({courseName, totalfinalpayment, completelyPaid: false, isPending: true})
+        });
+        console.log(cartItem);
+        console.log("only one course " + courseName + totalfinalpayment);
+        alert(
+          `${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`
+        );
+      } else if (cartItem.length > 1) {
+        totalfinalpayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
+        alert(
+          `${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`
+        );
+        cartItem.forEach((item) => {
+          totalcart.push(item);
+        });
+        console.log(totalcart);
+        console.log("more than one course" + cartItem);
+      }
       const response = await fetch(`${api}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        // use the "body" param to optionally pass additional order information
-        // like product ids and quantities
-
-        // grab the courseName , coursePrice , studentgmail, 
         body: JSON.stringify({
           cart: [
             {
-              courseName: courseName,
-              price: totalfinalpayment
+              ...totalcart,
+              studentName,
             },
           ],
         }),
+        // use the "body" param to optionally pass additional order information
+        // like product ids and quantities
+
+        // grab the courseName , coursePrice , studentgmail,
+        // body: JSON.stringify({
+        //   cart: [
+        //     {
+        //       studentName:studentName,
+        //       courseName: courseName,
+        //       courseInfo:totalcart,
+        //       price: totalfinalpayment
+        //     },
+        //   ],
+        // }),
       });
 
       const orderData = await response.json();
@@ -155,21 +168,16 @@ const PaymentPage = () => {
       console.error(error.message);
       setMessage(`Could not initiate PayPal Checkout...${error}`);
     }
-  }
-
+  };
 
   const onApprove = async (data, actions) => {
-
     try {
-      const response = await fetch(
-        `${api}api/orders/${data.orderID}/capture`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const response = await fetch(`${api}api/orders/${data.orderID}/capture`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       const orderData = await response.json();
       // Three cases to handle:
@@ -185,31 +193,26 @@ const PaymentPage = () => {
         return actions.restart();
       } else if (errorDetail) {
         // (2) Other non-recoverable errors -> Show a failure message
-        throw new Error(
-          `${errorDetail.description} (${orderData.debug_id})`,
-        );
+        throw new Error(`${errorDetail.description} (${orderData.debug_id})`);
       } else {
         // (3) Successful transaction -> Show confirmation or thank you message
         // Or go to another URL:  actions.redirect('thank_you.html');
-        const transaction =
-          orderData.purchase_units[0].payments.captures[0];
+        const transaction = orderData.purchase_units[0].payments.captures[0];
         setMessage(
-          `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`,
+          `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`
         );
         console.log(
           "Capture result",
           orderData,
-          JSON.stringify(orderData, null, 2),
+          JSON.stringify(orderData, null, 2)
         );
       }
     } catch (error) {
       console.error(error);
-      setMessage(
-        `Sorry, your transaction could not be processed...${error}`,
-      );
+      setMessage(`Sorry, your transaction could not be processed...${error}`);
     }
-  }
-  if (!token) return <Navigate to="/" />
+  };
+  if (!token) return <Navigate to="/" />;
   return (
     <section className="min-h-screen payment-page">
       <div className="p-2 md:p-10">
@@ -227,7 +230,6 @@ const PaymentPage = () => {
             }}
             createOrder={(data, actions) => createOrder(data, actions)}
             onApprove={(data) => onApprove(data, actions)}
-
           />
         </PayPalScriptProvider>
         <Message content={message} />
@@ -241,11 +243,15 @@ const PaymentPage = () => {
             <div key={item.id} className="py-4 px-2">
               <div className="flex items-start gap-2 md:gap-10">
                 <div>
-                  {item.image ? <img
-                    src={item.image}
-                    className="w-14 aspect-square object-cover"
-                    alt=""
-                  /> : (<div className="w-14 aspect-square bg-BLUE"></div>)}
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      className="w-14 aspect-square object-cover"
+                      alt=""
+                    />
+                  ) : (
+                    <div className="w-14 aspect-square bg-BLUE"></div>
+                  )}
                 </div>
                 <div className="grow-[3]">
                   <p className="font-black">{item.courseName || item.name}</p>
@@ -283,16 +289,19 @@ const PaymentPage = () => {
           </p>
         </div>
         <div>
-          <button onClick={checkoutfunction} className="duration-300 bg-BLUE hover:bg-white border-2 border-BLUE hover:text-BLUE w-full text-white font-bold py-3 rounded-xl">COMPLETE CHECKOUT</button>
+          <button
+            onClick={checkoutfunction}
+            className="duration-300 bg-BLUE hover:bg-white border-2 border-BLUE hover:text-BLUE w-full text-white font-bold py-3 rounded-xl"
+          >
+            COMPLETE CHECKOUT
+          </button>
         </div>
       </div>
     </section>
   );
-}
+};
 export default PaymentPage;
-
 
 function Message({ content }) {
   return <p>{content}</p>;
 }
-
