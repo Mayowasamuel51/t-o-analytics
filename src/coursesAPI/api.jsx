@@ -191,7 +191,7 @@ export default [
             },
         ],
         
-        price: 500
+        price: 1000
     },
     {
         id: 4,
@@ -272,6 +272,6 @@ export default [
             "College admissions & lots more",
             "1 hour 30 minutes consultation"
         ],
-        price: 250,
+        price: 1000,
     },
 ]

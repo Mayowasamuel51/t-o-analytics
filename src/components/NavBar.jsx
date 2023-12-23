@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import CartItemContext from '../context/CartItemContext';
 import { useStateContext } from "../context/ContextProvider"
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { FaBarsStaggered } from "react-icons/fa6";
-import { FaXmark } from "react-icons/fa6";
+import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
+import { FaChevronDown } from "react-icons/fa";
 import { MdOutlineAddShoppingCart } from "react-icons/md"
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
@@ -138,10 +138,11 @@ const NavBar = () => {
                 :
                 <nav className={`navlinks ${fixed} ${show} md:relative md:left-0 md:right-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                     <ul className="md:flex items-center gap-6 font-semibold">
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/blog">Blog</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/contact">Contact</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110 flex items-center gap-2" : "scale-100 hover:text-BLUE flex items-center gap-2"} to="/company">Company <FaChevronDown /></NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/blog">Blog</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/contact">Contact</NavLink></motion.li>
                         <Link to="/createAccount" className='md:hidden block'>
                             <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-4 md:py-3 rounded-md md:rounded-3xl font-semibold">
                                 Create Account

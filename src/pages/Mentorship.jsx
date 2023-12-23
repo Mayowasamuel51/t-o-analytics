@@ -39,11 +39,10 @@ const Mentorship = () => {
         <div className="p-2 md:p-6 rounded-xl bg-BLUE text-white">
             <h1 className="text-2xl md:text-4xl font-bold mb-10">What you stand to benefit</h1>
             <div className="benefit">
-                <ul>
+                <ul className="text-sm md:text-base">
                     <li>Exclusive access to knowledge and experience</li>
                     <li>Career growth oppurtunities</li>
                     <li>Lifelong connections</li>
-            
                     <li>Accelerated learning and networking oppurtunities</li>
                 </ul>
             </div>

@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet';
 
 const COURSE = () => {
   const location = useLocation()
+  console.log(location.pathname)
   const navigate = useNavigate()
   const { course } = useParams()
   const [showModal, setShowModal] = useState(false)
@@ -136,18 +137,24 @@ const COURSE = () => {
             </div>
           </div>
           <div className="perks">
-            <ul className="text-sm md:text-lg md:font-medium">
+            {location.pathname === "/courses/educational%20consulting" ? 
+            <div>
+              <h1 className="font-bold text-xl md:text-2xl">Consultation</h1>
+              <p className="my-2 font-semibold text-sm md:text-lg">$250 . 1hour 30minutes</p>
+            </div> 
+            : 
+            <ul className="text-sm md:text-lg md:font-semibold">
               <li>BEGINNER FRIENDLY</li>
               <li>LIFETIME ACCESS</li>
               <li>EXERCISES</li>
               <li>ACCESS ON MOBILE & DESKTOP</li>
               <li>CERTIFICATION</li>
-            </ul>
+            </ul>}
           </div>
         </div>
       </section>
-      <section className="px-2 md:px-10 py-10 md:py-20">
-        <h1 className="font-bold text-2xl md:text-4xl md:my-10 my-5">WHAT YOU’LL LEARN</h1>
+      <section className="px-2 md:px-10 py-8 md:py-10">
+        <h1 className="font-bold text-2xl md:text-4xl md:my-7 my-5">WHAT YOU’LL LEARN</h1>
         <div className="learn">
           {location.pathname === "/courses/stock%20&%20options" ?
           <>
@@ -202,15 +209,21 @@ const COURSE = () => {
           }
           
         </div>
+        {location.pathname === "/courses/educational%20consulting" ? 
         <div className="py-5">
-          <h1 className="font-bold text-2xl md:text-4xl md:my-8 my-4">
+          <h1 className="font-bold text-2xl md:text-4xl md:my-5 my-3">
+            Assistance & guidance at all stages
+          </h1>
+        </div> 
+        : 
+        <div className="py-5">
+          <h1 className="font-bold text-2xl md:text-4xl md:my-5 my-3">
             No prior knowledge needed!
           </h1>
           <p className="md:text-base text-xs font-medium ">
-            
-            You don't require prior knowledge of  {singleCourse.courseName}  to enroll in this course. We'll cover everything you need to know right from the basics, guiding you step by step.
+            You don't require prior knowledge of {singleCourse.courseName} to enroll in this course. We'll cover everything you need to know right from the basics, guiding you step by step.
           </p>
-        </div>
+        </div>}
       </section>
 
       <Toaster position="top-center" />

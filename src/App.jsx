@@ -5,6 +5,7 @@ import AllCourses from "./components/AllCourses";
 const LazyHomePage = React.lazy(()=> import("./pages/HomePage"))
 const LazyCourses = React.lazy(()=> import("./pages/Courses"))
 const LazyAbout = React.lazy(()=> import("./pages/AboutPage"))
+const LazyCompany = React.lazy(()=> import("./pages/CompanyPage"))
 const LazyCOURSE = React.lazy(()=> import("./pages/COURSE"))
 const LazyBlogPage = React.lazy(()=> import("./pages/BlogPage"))
 import ContactPage from "./pages/ContactPage";
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <React.Suspense fallback={<Loader />}><LazyAbout /></React.Suspense>,
+      },
+      {
+        path: "/company",
+        element: <React.Suspense fallback={<Loader />}><LazyCompany /></React.Suspense>,
       },
       {
         path: "/blog",
