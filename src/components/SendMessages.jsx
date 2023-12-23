@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
-import * as yup from "yup"
+import * as yup from "yup";
 import { ToastContainer, toast } from 'react-toastify';
 import FetchComments from "../hook/FetchComments";
 import Loader from "./Loader";
