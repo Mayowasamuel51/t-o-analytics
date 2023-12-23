@@ -17,6 +17,8 @@ import LiveCourses from "./pages/LiveCourses";
 import CreateAccountForm from "./pages/CreateAccountForm";
 import OTP_Verification from "./pages/OTP_Verification";
 import ForgotPassword from "./pages/ForgotPassword";
+import CreateNewPassword from "./pages/CreateNewPassword";
+import ConfirmNewPassword from "./pages/ConfirmNewPassword";
 import LoginForm from "./pages/LoginForm";
 import AdminLoginForm from "./pages/AdminLoginForm";
 import CheckOut from "./pages/CheckOut";
@@ -122,6 +124,14 @@ const router = createBrowserRouter([
   {
     path: "/OTP",
     element: <OTP_Verification />
+  },
+  {
+    path: "/createNewPassword",
+    element: <CreateNewPassword />
+  },
+  {
+    path: "/confirmNewPassword",
+    element: <ConfirmNewPassword />
   },
   {
     path: "/partner",

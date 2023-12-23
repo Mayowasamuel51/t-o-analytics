@@ -22,7 +22,7 @@ const OTP_Verification = () => {
                     onChange={setOtp}
                     numInputs={4}
                     inputType='tel'
-                    inputStyle={{border: "2px solid black", width: "50px", aspectRatio: "1/1", borderRadius: "10px" }}
+                    inputStyle={{border: "2px solid gray", width: "50px", aspectRatio: "1/1", borderRadius: "10px" }}
                     renderSeparator={<div className='w-full'></div>}
                     renderInput={(props) => <input {...props} />}
                     />
