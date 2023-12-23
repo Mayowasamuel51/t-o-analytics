@@ -143,7 +143,7 @@ const HomePage = () => {
                 <div className='mobile-landingDIV md:hidden block absolute bottom-0 left-0 bg-BLUE landingDIV'></div>
             </section>
 
-            <section className="">
+            {/* <section className="">
                 <div className="bg-BLUE text-white rounded-lg border-[1px] border-PURPLE mx-2 md:mx-10 grid grid-cols-1 lg:grid-cols-2">
                     <div className="flex justify-center items-center">
                         <div className="p-4">
@@ -161,7 +161,7 @@ const HomePage = () => {
                         <p className="my-2 md:my-6">My stock trading community has made millions in the stock market using my simple strategy and I strongly believes that with the help of God, any dream can come alive if you are willing to put in the work.</p>
                     </div>
                 </div>
-            </section>
+            </section> */}
             <section className="bg-white p-2 py-16 md:py-12">
                 <h1 className="my-2 md:my-8 text-center font-black text-lg md:text-4xl">Here’s what our students are saying</h1>
                 <Splide className='splide' aria-label="Testimonials" options={{
