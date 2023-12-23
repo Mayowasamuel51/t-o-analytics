@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import "../assets/js/index";
 
 
 const Courses = () => {
