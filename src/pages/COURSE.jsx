@@ -221,7 +221,7 @@ const COURSE = () => {
             No prior knowledge needed!
           </h1>
           <p className="md:text-base text-xs font-medium ">
-            You don't require prior knowledge of {singleCourse.courseName} to enroll in this course. We'll cover everything you need to know right from the basics, guiding you step by step.
+            You don&apos;t require prior knowledge of {singleCourse.courseName} to enroll in this course. We&apos;ll cover everything you need to know right from the basics, guiding you step by step.
           </p>
         </div>}
       </section>

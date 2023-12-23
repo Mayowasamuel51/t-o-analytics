@@ -5,7 +5,7 @@ import AllCourses from "./components/AllCourses";
 const LazyHomePage = React.lazy(()=> import("./pages/HomePage"))
 const LazyCourses = React.lazy(()=> import("./pages/Courses"))
 const LazyAbout = React.lazy(()=> import("./pages/AboutPage"))
-const LazyCompany = React.lazy(()=> import("./pages/CompanyPage"))
+const LazyCareer = React.lazy(()=> import("./pages/CareerPage"))
 const LazyCOURSE = React.lazy(()=> import("./pages/COURSE"))
 const LazyBlogPage = React.lazy(()=> import("./pages/BlogPage"))
 import ContactPage from "./pages/ContactPage";
@@ -15,6 +15,8 @@ import Mentorship from "./pages/Mentorship";
 const LazyMentorship = React.lazy(()=> import("./pages/Mentorship"))
 import LiveCourses from "./pages/LiveCourses";
 import CreateAccountForm from "./pages/CreateAccountForm";
+import OTP_Verification from "./pages/OTP_Verification";
+import ForgotPassword from "./pages/ForgotPassword";
 import LoginForm from "./pages/LoginForm";
 import AdminLoginForm from "./pages/AdminLoginForm";
 import CheckOut from "./pages/CheckOut";
@@ -72,8 +74,8 @@ const router = createBrowserRouter([
         element: <React.Suspense fallback={<Loader />}><LazyAbout /></React.Suspense>,
       },
       {
-        path: "/company",
-        element: <React.Suspense fallback={<Loader />}><LazyCompany /></React.Suspense>,
+        path: "/career",
+        element: <React.Suspense fallback={<Loader />}><LazyCareer /></React.Suspense>,
       },
       {
         path: "/blog",
@@ -110,16 +112,20 @@ const router = createBrowserRouter([
     element: <CreateAccountForm />
   },
   {
-    path: "/contractors",
-    element: <ConnectWithContractor />,
-  },
-  {
     path: "/login",
     element: <LoginForm />
   },
   {
-    path: "/createAccount",
-    element: <CreateAccountForm />
+    path: "/forgotPassword",
+    element: <ForgotPassword />
+  },
+  {
+    path: "/OTP",
+    element: <OTP_Verification />
+  },
+  {
+    path: "/partner",
+    element: <ConnectWithContractor />,
   },
   {
     path: "/dashboard",

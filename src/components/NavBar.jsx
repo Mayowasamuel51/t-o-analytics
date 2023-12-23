@@ -16,11 +16,11 @@ import SearchCourseInput from './SearchCourseInput';
 const NavBar = () => {
     const { data } = FetchAllStudents()
     const [show, setShow] = useState("")
+    const [subMenu, setSubMenu] = useState(false)
     const [fixed, setFixed] = useState("")
     const location = useLocation()
     const { cartItem } = useContext(CartItemContext);
-    
-    const { token, setToken } = useStateContext();
+    const { token, setToken, FullScreen } = useStateContext();
     const [localuser, setUser] = useState("")
     const auth = getAuth(app);
     const signout = () => {
@@ -56,6 +56,10 @@ const NavBar = () => {
     const navBar = ()=> {
         setShow("show")
     }
+    const displaySubMenu = ()=> {
+        setSubMenu(prev=> !prev)
+    }
+
     return (
         <>
             <header className={`z-[9999] fixed w-[100%] right-0 left-0 top-0 bg-white px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
@@ -92,11 +96,23 @@ const NavBar = () => {
                 :
                 <nav className={`navlinks ${fixed} ${show} md:relative md:left-0 md:right-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                     <ul className="md:flex items-center gap-6 font-semibold">
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110 flex items-center gap-2 justify-center" : "scale-100 hover:text-BLUE flex items-center gap-2 justify-center"} to="/company">Company <FaChevronDown /></NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/blog">Blog</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/contact">Contact</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
+                        <motion.li onClick={displaySubMenu} whileHover={{scale: 1.1}} transition={{ stiffness:250}} className='group' ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110 flex items-center gap-2 justify-center group" : "scale-100 hover:text-BLUE flex items-center gap-2 justify-center group"} to="/partner">Company <FaChevronDown className={`duration-200 ${subMenu && "group-hover:rotate-180"} ${FullScreen && "group-hover:rotate-180"}`} /></NavLink>
+                           {(subMenu && !FullScreen) ?
+                           <ul className={`bg-white md:p-2 rounded-md duration-200`}>
+                                <li><NavLink to="/career" className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"}>Career</NavLink></li>
+                                <li><NavLink to="/partner" className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"}>Partners</NavLink></li>
+                            </ul>
+                            :
+                            (FullScreen && 
+                            <ul className={`absolute opacity-0 invisible group-hover:opacity-100 group-hover:visible bg-white md:p-2 rounded-md duration-200 shadow-md text-left`}>
+                                <li><NavLink to="/career" className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"}>Career</NavLink></li>
+                                <li><NavLink to="/partner" className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"}>Partners</NavLink></li>
+                            </ul>)}
+                        </motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/blog">Blog</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/contact">Contact</NavLink></motion.li>
                         <Link to="/createAccount" className='md:hidden block'>
                             <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-4 md:py-3 rounded-md md:rounded-3xl font-semibold">
                                 Create Account

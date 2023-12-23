@@ -1,29 +1,29 @@
+import { useContext } from "react";
 import { Outlet, useLocation } from "react-router-dom"
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import COURSES from "../coursesAPI/api";
 import Messages from "../components/Messages";
+import CartItemContext from "../context/CartItemContext";
 
 
 function HomeLayout() {
     const location = useLocation()
+    const { COURSES } = useContext(CartItemContext);
     const paths = COURSES.map((course) => `/courses/${course.courseName}`)
-    console.log(location.pathname)
+    console.log(paths)
     return (
         <>
             <div>
                 <NavBar />
                 <Outlet />
                 {
-                    // location.pathname === "/blog" || 
-                    // location.pathname === "/contact" || 
-                    // location.pathname === "/courses" ||
-                    // location.pathname === "/checkout" ||
-                    // COURSES.map((course,index) => location.pathname  == `/courses/${paths[index]}`)
+                    location.pathname === "/" ||
                     location.pathname === "/blog" ||
+                    location.pathname === "/career" ||
                     location.pathname === "/courses"||
                     location.pathname === "/contact" ||
-                    location.pathname === "/checkout"
+                    location.pathname === "/checkout" ||
+                    (COURSES.map((course, index) => location.pathname  === `${paths[index]}`) && location.pathname !== "/about")
                     ? <Footer black="bg-black text-white" /> : <Footer />
                 }
                 <Messages />

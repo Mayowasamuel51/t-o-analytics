@@ -186,7 +186,7 @@ const HomePage = () => {
                     </SplideSlide>
                     <SplideSlide>
                         <div className="md:w-1/2 mx-auto">
-                            <p className="font-semibold my-2 text-xs md:text-base text-center">I can&apos;t say enough good things about this boot camp! The cybersecurity track, with a focus on Linux, was exactly what I needed to kickstart my career. The hands-on labs and real-world simulations prepared me for the challenges of the industry</p>
+                            <p className="font-semibold my-2 text-xs md:text-base text-center">I canos;t say enough good things about this boot camp! The cybersecurity track, with a focus on Linux, was exactly what I needed to kickstart my career. The hands-on labs and real-world simulations prepared me for the challenges of the industry</p>
                             <div className="flex items-center justify-center gap-1 md:gap-3">
                                 <img src={student2} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt="" />
                                 <p className="font-bold text-sm md:text-2xl">Aishat Oyeleke</p>
