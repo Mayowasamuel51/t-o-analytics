@@ -91,7 +91,7 @@ const SendMessages = () => {
             </div>
           ))}
         </div>
-
+          
         <div className='relative text-sm text-center my-2 md:my-4 font-bold tracking-wider group'>
           <p>{currentPage} 0f {pageNumber.length} pages</p>
           <div className="my-2 md:my-5">
@@ -119,6 +119,9 @@ const SendMessages = () => {
             </Splide>
           </div>
         </div>
+        <div>
+        {!message && <h3 className="font-bold text-center md:text-3xl">No Data Available.</h3>}
+      </div>
       </div>
     </div>
   )
