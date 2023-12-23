@@ -34,9 +34,6 @@ const Messages = () => {
         <p className="my-2 border-l-4 border-BLUE pl-2 text-xs md:text-base">{msg.message}</p>
         <p className="text-xs md:text-base">Date: {(new Date(msg.date)).toDateString()}</p>
       </motion.div>))}
-      <div>
-        {!data && <h3 className="font-bold text-center md:text-3xl">No Message.</h3>}
-      </div>
     </div>
   )
 }
