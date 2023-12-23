@@ -4,8 +4,11 @@ import contractor3 from "../assets/images/partner3.png";
 import contractor4 from "../assets/images/partner4.png";
 import contractor5 from "../assets/images/partner5.png";
 import contractor6 from "../assets/images/partner6.png";
+import LOGO from "../assets/images/logo.jpg";
 import Footer from "../components/Footer";
 import { yupResolver } from "@hookform/resolvers/yup"
+import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
 import doc from "../../woking.txt"
 import * as yup from "yup"
 import { ToastContainer, toast } from 'react-toastify';
@@ -142,6 +145,11 @@ const ConnectWithContractor = () => {
     }
     return (
         <div>
+            <div>
+                <Link to="/">
+                    <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[130px]" alt=""/>
+                </Link>
+            </div>
             <section>
                 <div className="px-2 text-center md:px-10">
                     <p className="font-bold md:p-10 p-2 text-3xl">Our Partners</p>

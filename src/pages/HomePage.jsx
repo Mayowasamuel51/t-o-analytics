@@ -1,13 +1,12 @@
 import { useRef } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import "../../src/assets/css/pagination.css"
 import { Link } from 'react-router-dom';
-import '@splidejs/react-splide/css';
 import LandingIMG from "../assets/images/landingIMG.png"
 import eInstructor from "../assets/images/e-instructor.jpg"
 import hLearning from "../assets/images/h-learning.jpg"
 import flexibleLearning from "../assets/images/flexible-learning.jpg"
 import guidance from "../assets/images/guidance.jpg";
-import client from "../assets/images/client.png"
 import student1 from "../assets/images/student1.png"
 import student2 from "../assets/images/student2.png"
 import student3 from "../assets/images/student3.jpeg"
@@ -162,18 +161,19 @@ const HomePage = () => {
                     </div>
                 </div>
             </section> */}
+
             <section className="bg-white p-2 py-16 md:py-12">
                 <h1 className="my-2 md:my-8 text-center font-black text-lg md:text-4xl">Here’s what our students are saying</h1>
-                <Splide className='splide' aria-label="Testimonials" options={{
+                <Splide className='splide py-10' aria-label="Testimonials" options={{
                     type: 'loop',
                     perPage: 1,
                     gap: '20px',
                     perMove: 1,
                     autoplay: true,
                     interval: 4000,
-                    speed: 3000,
+                    speed: 2000,
                     arrows: false,
-                    pagination: true,
+                    pagination: true
                 }}>
                     <SplideSlide>
                         <div className="md:w-1/2 mx-auto">
