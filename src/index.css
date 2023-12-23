@@ -129,26 +129,33 @@ section.mentorship {
   position: relative;
   background-image: url(../src/assets/images/mentorshipIMG.jpg);
   background-size: cover;
-  z-index: 2;
+  z-index: 1;
 }
 
-section.mentorship::before,
-section.others::before {
+section.mentorship::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0.445);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 section.others {
   position: relative;
   background-image: url(../src/assets/images/mentorshipIMG.jpg);
   background-size: cover;
-  z-index: 2;
+  z-index: 1;
   background-position: center;
   color: #fff;
   background-attachment: fixed;
+}
+
+section.others::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 div.login-options button:hover {
@@ -231,7 +238,7 @@ ul.dashboard-links {
 section.payment-page {
   display: grid;
   gap: 40px;
-  ate-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 /* CUSTOM FILE INPUT */
@@ -242,6 +249,8 @@ section.payment-page {
 }
 
 div.alert-msg svg:first-child {
+  position: relative;
+  z-index: 999;
   filter: 
     drop-shadow(-1px -1px 0px #fff) 
     drop-shadow(2px -1px 0px #fff) 
