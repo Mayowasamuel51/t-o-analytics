@@ -14,7 +14,7 @@ const AllCourses = () => {
           <h1 className="text-center font-bold text-2xl md:text-4xl pt-20">
             Our Courses
           </h1>
-          <p className="w-1/2 mx-auto font-semibold text-sm md:my-14 text-center">Whether you are a beginner or you are looking to expand your career opportunities, our carefully selected and well taught courses give you the knowledge and experience that you need.</p>
+          <p className="w-[90%] mx-auto font-semibold text-sm my-7 md:my-14 text-center">Whether you are a beginner or you are looking to expand your career opportunities, our carefully selected and well taught courses give you the knowledge and experience that you need.</p>
         </div>}
         <div className={`courses grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 justify-center gap-y-4 gap-x-2 ${token && "pt-20"}`}>
           {COURSES.map((course, index)=> (

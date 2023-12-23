@@ -30,8 +30,8 @@ const Mentorship = () => {
   return (
     <>
         <section className="mentorship">
-            <div className="text-center px-10 md:px-0 py-10 md:pt-36 text-white">
-                <h1 className="font-bold text-xl md:text-4xl  pb-10 lg:pb-20">Why Our Mentorship Makes All The Difference</h1>
+            <div className="text-center px-10 md:px-0 py-10 pt-24 md:pt-36 text-white">
+                <h1 className="font-bold text-xl md:text-4xl pb-4 lg:pb-20">Why Our Mentorship Makes All The Difference</h1>
                 <p className="w-full md:w-1/2 text-sm md:text-lg mx-auto"> We believe in the power of mentorship to transform lives and empower individuals to reach their full potential. Our mentorship program is designed to provide guidance, support, and valuable insights to help you navigate your career journey and secure your dream job.</p>
             </div>
         </section>

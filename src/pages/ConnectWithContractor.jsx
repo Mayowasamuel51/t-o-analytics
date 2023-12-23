@@ -174,7 +174,7 @@ const ConnectWithContractor = () => {
                     </div>
                 </div>
             </section>
-            <section className="px-14 my-5 md:my-10">
+            <section className="px-2 md:px-14 my-5 md:my-10">
                 <div className="md:pt-10 md:w-[600px] mx-auto p-6 bg-BLUE rounded-xl">
                     <form onSubmit={handleSubmit(onSubmit)} className="bg-BLUE">
                         <ToastContainer />
