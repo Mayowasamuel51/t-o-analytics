@@ -1,27 +1,29 @@
 import { FaClock, FaCreditCard, FaLaptop  } from "react-icons/fa";
 import { FaCalendarDays } from "react-icons/fa6";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Toaster, toast } from 'sonner';
+import CartItemContext from "../context/CartItemContext";
+import { useNavigate } from "react-router-dom";
 
 const Mentorship = () => {
-    const [cartItem, setCartItem] = useState(()=> {
-        let data = JSON.parse(localStorage.getItem("COURSE-CART")) || []
-        return data
-      }
-    )
+    const {cartItem, setCartItem} = useContext(CartItemContext);
+    const navigate = useNavigate()
     const [mentorship, setMentorship] = useState(false)
     const addToCart = (id)=> {
         if (!cartItem.some((item)=> item.id === id)) {
             toast.success(`successfully added to cart`)
             setCartItem(prev => [...prev, {id: 111, name: "Mentorship", price: 500}])
+        }
+        else {
+            toast.error("Already in the cart")
             setTimeout(() => {
-                window.location.reload()
-            }, 2000);
+                navigate("/checkout")
+            }, 2500);
         }
     }
     useEffect(()=> {
         localStorage.setItem("COURSE-CART", JSON.stringify(cartItem))
-      },[cartItem]);
+    },[cartItem]);
 
   return (
     <>
@@ -72,6 +74,9 @@ const Mentorship = () => {
             {mentorship ?
             <button onMouseLeave={()=>setMentorship(false)} onClick={()=> addToCart(111)} className="w-32 font-bold md:px-3 md:py-2 px-2 py-2 hover:text-BLUE hover:bg-white rounded-md border-[1px] text-white">Add To Cart</button>
             : 
+            cartItem.some((item)=> item.id === 111) ?
+            <button onClick={()=> addToCart(111)} className="w-32 font-bold md:px-3 md:py-2 px-2 py-2 hover:text-BLUE hover:bg-white rounded-md border-[1px] text-white">Add To Cart</button>
+            :
             <button onMouseEnter={()=>setMentorship(true)}  className="w-32 font-bold md:px-3 md:py-2 px-2 py-2 hover:text-BLUE hover:bg-white rounded-md border-[1px] text-white">Register</button>}
         </div>
     </section>

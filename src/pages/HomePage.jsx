@@ -63,7 +63,7 @@ const HomePage = () => {
             <section className="bg-white">
                 <motion.h1 className="text-center font-black text-2xl md:text-4xl">Why Trust T.O Analytics?</motion.h1>
                 <div className="md:p-10 p-2 overflow-x-hidden">
-                    <div className="md:pb-2 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+                    <div className="py-10 md:pb-2 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
                         <motion.div  data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
                             <p className="uppercase font-bold text-BLUE my-2">Learn from industry’s best</p>
                             <h1 className="font-bold text-xl md:text-2xl my-2">Experienced Instructors</h1>
@@ -125,7 +125,7 @@ const HomePage = () => {
                                 </div>
                                 <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
                                     <p className="font-bold text-white text-lg md:my-4 md:text-3xl">{course.courseName}</p>
-                                    <p className="my-2 font-bold text-sm">{course.intro}</p>
+                                    <p className="my-2 font-bold text-sm h-[40px] md:h-auto">{course.intro}</p>
                                     <p className="line-clamp-2 text-sm md:text-base text-textColor md:max-w-[70%]">
                                         {course.description}
                                     </p>
@@ -162,9 +162,9 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
-            <section className="bg-white p-2 py-20 md:py-12">
+            <section className="bg-white p-2 py-16 md:py-12">
                 <h1 className="my-2 md:my-8 text-center font-black text-lg md:text-4xl">Here’s what our students are saying</h1>
-                <Splide className='splide pb-10' aria-label="Testimonials" options={{
+                <Splide className='splide' aria-label="Testimonials" options={{
                     type: 'loop',
                     perPage: 1,
                     gap: '20px',
@@ -172,7 +172,8 @@ const HomePage = () => {
                     autoplay: true,
                     interval: 4000,
                     speed: 3000,
-                    arrows: false
+                    arrows: false,
+                    pagination: true,
                 }}>
                     <SplideSlide>
                         <div className="md:w-1/2 mx-auto">
@@ -203,7 +204,7 @@ const HomePage = () => {
                     </SplideSlide>
                 </Splide>
             </section>
-            <section className="text-center p-10 bg-black text-white">
+            {/* <section className="text-center p-10 bg-black text-white">
                 <h1 className="my-4 md:my-12 text-center font-black text-lg md:text-4xl">Ready to take your career to new heights?</h1>
                 <p className="font-base md:font-medium my-4 md:w-1/2 mx-auto text-sm md:text-lg">Connect directly with industry-leading contractors and discover exciting job opportunities tailored to your skills and aspirations. Don’t wait, start building the future you’ve always dreamed of!</p>
                 <div className="text-center">
@@ -211,7 +212,7 @@ const HomePage = () => {
                         <button className="hover:bg-white hover:border-white hover:text-black duration-300 border-BLUE border-2 w-fit mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-6 md:py-3 mt-8 rounded-2xl">Connect with Contractor</button>
                     </Link>
                 </div>
-            </section>
+            </section> */}
 
         </motion.div>
     )
