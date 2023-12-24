@@ -1,56 +1,26 @@
 import { useState, useEffect, useContext } from 'react';
 import LOGO from "../assets/images/logo.jpg";
-import { FaSearch } from "react-icons/fa";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import CartItemContext from '../context/CartItemContext';
 import { useStateContext } from "../context/ContextProvider"
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { FaBarsStaggered } from "react-icons/fa6";
-import { FaXmark } from "react-icons/fa6";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
+import { FaChevronDown } from "react-icons/fa";
 import { MdOutlineAddShoppingCart } from "react-icons/md"
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
 import FetchAllStudents from '../hook/FetchAllStudents';
-import COURSES from "../coursesAPI/api"
+import SearchCourseInput from './SearchCourseInput';
 
-const searchVariant = {
-    initial: { opacity: 0 },
-    animate: { 
-        opacity: 1, 
-        transition: { 
-            type: "spring", stiffness: 200, duration: 0.5, delayChildren: 1, staggerChildren: 1
-        }
-    }
-}
-
-const liVariant = {
-    initial: { y: "-70px", opacity: 0 },
-    animate: { y: 0, opacity: 1 }
-}
 
 const NavBar = () => {
-    const { cartItem } = useContext(CartItemContext);
-    const [search, setSearch] = useState("")
     const { data } = FetchAllStudents()
-    const navigate = useNavigate()
-    const displayCourse = (name)=> {
-        navigate(`/courses/${name}`)
-        setSearch("")
-    }
-    const location = useLocation()
-    const [fixed, setFixed] = useState("")
     const [show, setShow] = useState("")
-    const handleSearch = (e)=> {
-        const {value} = e.target
-        setSearch(value)
-    }
-    const searchedData = COURSES.filter((course)=> {
-        if (search.trim() === "") {
-            return false;
-        }
-        return (course.courseName.toLowerCase()).includes(search.toLowerCase());
-    })
-    const { token, setToken } = useStateContext();
+    const [subMenu, setSubMenu] = useState(false)
+    const [fixed, setFixed] = useState("")
+    const location = useLocation()
+    const { cartItem } = useContext(CartItemContext);
+    const { token, setToken, FullScreen } = useStateContext();
     const [localuser, setUser] = useState("")
     const auth = getAuth(app);
     const signout = () => {
@@ -86,6 +56,10 @@ const NavBar = () => {
     const navBar = ()=> {
         setShow("show")
     }
+    const displaySubMenu = ()=> {
+        setSubMenu(prev=> !prev)
+    }
+
     return (
         <>
             <header className={`z-[9999] fixed w-[100%] right-0 left-0 top-0 bg-white px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
@@ -94,23 +68,7 @@ const NavBar = () => {
                         <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[130px]" alt=""/>
                     </Link>
                 </div>
-                {token && (
-                <div className='relative search-box'>
-                    <FaSearch className='absolute' />
-                    <input onChange={handleSearch} type="text" name="search" id="search" className='flex-[3] border-[1px] md:border-2 border-black w-full h-10 rounded-sm md:rounded-xl placeholder:font-semibold' placeholder='Search for anything' />
-                    <motion.ul variants={searchVariant} animate={search ? "animate" : "initial"} className='flex flex-col gap-3 md:gap-4 font-black p-3 rounded-md text-sm md:text-lg absolute left-0 right-0 bg-white shadow-lg'>
-                        <AnimatePresence>
-                            {searchedData.map((course)=> (
-                                <motion.li exit={{opacity: 0}} variants={liVariant} key={course.id} className={`cursor-pointer duration-300 hover:text-BLUE`}>
-                                    <div onClick={()=> displayCourse(course.courseName.toLowerCase())} className={`flex items-center gap-3 duration-200 ${searchedData.length > 1 && "hover:gap-7"}`} to={`/courses/${(course.courseName).toLowerCase()}`}>
-                                        <FaSearch />
-                                        {course.courseName}
-                                    </div>
-                                </motion.li>
-                            ))}
-                        </AnimatePresence>
-                    </motion.ul>
-                </div>)}
+                {token && (<SearchCourseInput />)}
                 {token ? 
                 <nav className={`navlinks ${show} auth-nav md:relative md:left-0 md:right-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                     <div className='pl-2 block md:hidden text-left'>
@@ -138,10 +96,23 @@ const NavBar = () => {
                 :
                 <nav className={`navlinks ${fixed} ${show} md:relative md:left-0 md:right-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
                     <ul className="md:flex items-center gap-6 font-semibold">
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/blog">Blog</NavLink></motion.li>
-                        <motion.li whileHover={{scale: 1.2}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE" : "scale-100 hover:text-BLUE"} to="/contact">Contact</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
+                        <motion.li onClick={displaySubMenu} whileHover={{scale: 1.1}} transition={{ stiffness:250}} className='group' ><NavLink to={location.pathname} className={({isActive})=> isActive ? "font-black text-BLUE scale-110 flex items-center gap-2 justify-center group" : "scale-100 hover:text-BLUE flex items-center gap-2 justify-center group"}>Company <FaChevronDown className={`duration-200 ${subMenu && "group-hover:rotate-180"} ${FullScreen && "group-hover:rotate-180"}`} /></NavLink>
+                           {(subMenu && !FullScreen) ?
+                           <ul className={`bg-white md:p-2 rounded-md duration-200`}>
+                                <li><NavLink to="/career" className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"}>Career</NavLink></li>
+                                <li><NavLink to="/partner" className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"}>Partners</NavLink></li>
+                            </ul>
+                            :
+                            (FullScreen && 
+                            <ul className={`absolute opacity-0 invisible group-hover:opacity-100 group-hover:visible bg-white md:p-2 rounded-md duration-200 shadow-md text-left`}>
+                                <li><NavLink to="/career" className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"}>Career</NavLink></li>
+                                <li><NavLink to="/partner" className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"}>Partners</NavLink></li>
+                            </ul>)}
+                        </motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/blog">Blog</NavLink></motion.li>
+                        <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/contact">Contact</NavLink></motion.li>
                         <Link to="/createAccount" className='md:hidden block'>
                             <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-4 md:py-3 rounded-md md:rounded-3xl font-semibold">
                                 Create Account

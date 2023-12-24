@@ -6,6 +6,7 @@ import { FaSearch, FaMicrophone } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useStateContext } from "../context/ContextProvider";
+
 const navVariant = {
     initial: {
         y: "-100%",
@@ -30,29 +31,17 @@ const liVariant = {
 }
 
 const AdminLayout = () => {
-    const { token} = useStateContext();
+    const { token, FullScreen } = useStateContext();
     const location = useLocation()
     const [nav, showNav] = useState(false);
-    const [FullScreen, setFullScreen] = useState(false)
     const displayNav = ()=> {
         showNav(prev=> !prev)
     }
-    useEffect(()=> {
-        const handleResize = ()=> {
-            const size = window.innerWidth;
-            size > 1024 ? setFullScreen(true) : setFullScreen(false)
-        }
-        handleResize()
-
-        window.addEventListener("resize", handleResize)
-
-        return ()=> window.removeEventListener("resize", handleResize)
-    }, [FullScreen])
     if (!token) {
+        // return <Navigate to="/admin_LOGIN" />
         return <Navigate to="/" />
     }
     
-
     return (
         <>
             <div className="grid grid-cols-1 lg:grid-cols-5 lg:min-h-screen">

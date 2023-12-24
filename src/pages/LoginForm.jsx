@@ -115,8 +115,8 @@ const LoginForm = () => {
     }
     
     return (
-        <section className="min-h-screen flex justify-center items-center bg-black opacity-80">
-            <motion.div variants={formVariant} initial="initial" animate="animate" exit={{ x: -100, }} className="border-2 border-black md:w-[400px] p-5 bg-white rounded-3xl">
+        <section className="ANIMATE-BG min-h-screen flex justify-center items-center">
+            <motion.div variants={formVariant} initial="initial" animate="animate" exit={{ x: -100, }} className="md:w-[400px] p-5 bg-white rounded-3xl">
                 <div className="flex items-center justify-between">
                     <div>
                         <Link to="/"><img src={LOGO} className="w-[150px] pl-0" alt="" /></Link>
@@ -126,7 +126,7 @@ const LoginForm = () => {
                     </p>
                 </div>
                 <p className="font-bold">Welcome Back!</p>
-                <p className="text-sm md:text-base text-slate-400">Enter Your details to continue</p>
+                <p className="text-sm md:text-base text-slate-700 font-medium">Enter Your details to continue</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='mt-3 flex flex-col gap-3 font-medium' >
                         {error ? <h2 className='text-red-600'>{error}</h2> : "    "}
@@ -144,7 +144,7 @@ const LoginForm = () => {
                         </label>
                         <p className='text-red-600'>{errors.password?.message}</p>
                     </div>
-                    <p className="text-right my-4 font-bold"><a href="forgotPassword.html" className="text-BLUE">Forgot Password?</a></p>
+                    <p className="text-right my-4 font-bold"><a href="forgotPassword.html" className="text-BLUE"><Link to="/forgotPassword">Forgot Password?</Link></a></p>
                     <button type="submit" className="w-full rounded-xl hover:text-BLUE border-2 hover:bg-transparent border-BLUE duration-300 bg-BLUE py-2 font-semibold text-white text-base md:text-xl">Login</button>
                     <p className='text-center font-extralight py-1'>or</p>
                 </form>

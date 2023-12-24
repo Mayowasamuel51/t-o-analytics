@@ -1,13 +1,12 @@
 import { useRef } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import "../../src/assets/css/pagination.css"
 import { Link } from 'react-router-dom';
-import '@splidejs/react-splide/css';
 import LandingIMG from "../assets/images/landingIMG.png"
 import eInstructor from "../assets/images/e-instructor.jpg"
 import hLearning from "../assets/images/h-learning.jpg"
 import flexibleLearning from "../assets/images/flexible-learning.jpg"
 import guidance from "../assets/images/guidance.jpg";
-import client from "../assets/images/client.png"
 import student1 from "../assets/images/student1.png"
 import student2 from "../assets/images/student2.png"
 import student3 from "../assets/images/student3.jpeg"
@@ -63,7 +62,7 @@ const HomePage = () => {
             <section className="bg-white">
                 <motion.h1 className="text-center font-black text-2xl md:text-4xl">Why Trust T.O Analytics?</motion.h1>
                 <div className="md:p-10 p-2 overflow-x-hidden">
-                    <div className="md:pb-2 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+                    <div className="py-10 md:pb-2 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
                         <motion.div  data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
                             <p className="uppercase font-bold text-BLUE my-2">Learn from industry’s best</p>
                             <h1 className="font-bold text-xl md:text-2xl my-2">Experienced Instructors</h1>
@@ -125,7 +124,7 @@ const HomePage = () => {
                                 </div>
                                 <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
                                     <p className="font-bold text-white text-lg md:my-4 md:text-3xl">{course.courseName}</p>
-                                    <p className="my-2 font-bold text-sm">{course.intro}</p>
+                                    <p className="my-2 font-bold text-sm h-[40px] md:h-auto">{course.intro}</p>
                                     <p className="line-clamp-2 text-sm md:text-base text-textColor md:max-w-[70%]">
                                         {course.description}
                                     </p>
@@ -143,7 +142,7 @@ const HomePage = () => {
                 <div className='mobile-landingDIV md:hidden block absolute bottom-0 left-0 bg-BLUE landingDIV'></div>
             </section>
 
-            <section className="">
+            {/* <section className="">
                 <div className="bg-BLUE text-white rounded-lg border-[1px] border-PURPLE mx-2 md:mx-10 grid grid-cols-1 lg:grid-cols-2">
                     <div className="flex justify-center items-center">
                         <div className="p-4">
@@ -161,18 +160,20 @@ const HomePage = () => {
                         <p className="my-2 md:my-6">My stock trading community has made millions in the stock market using my simple strategy and I strongly believes that with the help of God, any dream can come alive if you are willing to put in the work.</p>
                     </div>
                 </div>
-            </section>
-            <section className="bg-white p-2 py-20 md:py-12">
+            </section> */}
+
+            <section className="bg-white p-2 py-16 md:py-12">
                 <h1 className="my-2 md:my-8 text-center font-black text-lg md:text-4xl">Here’s what our students are saying</h1>
-                <Splide className='splide pb-10' aria-label="Testimonials" options={{
+                <Splide className='splide py-10' aria-label="Testimonials" options={{
                     type: 'loop',
                     perPage: 1,
                     gap: '20px',
                     perMove: 1,
                     autoplay: true,
                     interval: 4000,
-                    speed: 3000,
-                    arrows: false
+                    speed: 2000,
+                    arrows: false,
+                    pagination: true
                 }}>
                     <SplideSlide>
                         <div className="md:w-1/2 mx-auto">
@@ -185,7 +186,7 @@ const HomePage = () => {
                     </SplideSlide>
                     <SplideSlide>
                         <div className="md:w-1/2 mx-auto">
-                            <p className="font-semibold my-2 text-xs md:text-base text-center">I can&apos;t say enough good things about this boot camp! The cybersecurity track, with a focus on Linux, was exactly what I needed to kickstart my career. The hands-on labs and real-world simulations prepared me for the challenges of the industry</p>
+                            <p className="font-semibold my-2 text-xs md:text-base text-center">I canos;t say enough good things about this boot camp! The cybersecurity track, with a focus on Linux, was exactly what I needed to kickstart my career. The hands-on labs and real-world simulations prepared me for the challenges of the industry</p>
                             <div className="flex items-center justify-center gap-1 md:gap-3">
                                 <img src={student2} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt="" />
                                 <p className="font-bold text-sm md:text-2xl">Aishat Oyeleke</p>
@@ -203,7 +204,7 @@ const HomePage = () => {
                     </SplideSlide>
                 </Splide>
             </section>
-            <section className="text-center p-10 bg-black text-white">
+            {/* <section className="text-center p-10 bg-black text-white">
                 <h1 className="my-4 md:my-12 text-center font-black text-lg md:text-4xl">Ready to take your career to new heights?</h1>
                 <p className="font-base md:font-medium my-4 md:w-1/2 mx-auto text-sm md:text-lg">Connect directly with industry-leading contractors and discover exciting job opportunities tailored to your skills and aspirations. Don’t wait, start building the future you’ve always dreamed of!</p>
                 <div className="text-center">
@@ -211,7 +212,7 @@ const HomePage = () => {
                         <button className="hover:bg-white hover:border-white hover:text-black duration-300 border-BLUE border-2 w-fit mx-auto text-md md:text-xl font-semibold bg-BLUE text-white px-3 py-2 md:px-6 md:py-3 mt-8 rounded-2xl">Connect with Contractor</button>
                     </Link>
                 </div>
-            </section>
+            </section> */}
 
         </motion.div>
     )

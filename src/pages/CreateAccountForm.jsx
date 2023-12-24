@@ -93,8 +93,8 @@ const CreateAccountForm = () => {
     
 
     return (
-        <section className="min-h-screen flex justify-center items-center bg-black opacity-80">
-            <motion.div variants={formVariant} initial="initial" animate="animate" exit={{ x: -100, }} className="border-2 border-black md:w-[400px] p-5 bg-white rounded-3xl">
+        <section className="ANIMATE-BG min-h-screen flex justify-center items-center">
+            <motion.div variants={formVariant} initial="initial" animate="animate" exit={{ x: -100, }} className="md:w-[400px] p-5 bg-white rounded-3xl">
                 <div className="flex items-center justify-between">
                     <div>
                         <Link to="/"><img src={LOGO} className="w-[150px] h-[50px] object-cover" alt="" /></Link>
