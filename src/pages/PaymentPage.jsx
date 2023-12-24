@@ -10,11 +10,10 @@ import { useStateContext } from "../context/ContextProvider";
 
 const PaymentPage = () => {
   const { token } = useStateContext();
-  const {cartItem, setCartItem} = useContext(CartItemContext);
+  const { cartItem, setCartItem } = useContext(CartItemContext);
   const studentName = window.localStorage.getItem("user");
   const [message, setMessage] = useState("");
-  const [totalcart, setTotalCart] = useState([])
- 
+  const [totalcart, setTotalCart] = useState([]);
   var totalcartitem = 110;
   let totalFinalPayment;
   let courseName;
@@ -22,27 +21,40 @@ const PaymentPage = () => {
   const checkoutfunction = () => {
     // when users trys to pay only one course it works
     if (cartItem.length === 1) {
-      cartItem.forEach((item) => {
-        totalfinalpayment = item.price
-        courseName = item.courseName
-        console.log(courseName, totalfinalpayment)
-        // orderDetail.push({courseName, totalfinalpayment, completelyPaid: false, isPending: true})
-      })
-      console.log(cartItem)
-      console.log('only one course ' + courseName + totalfinalpayment)
-      alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
-    } 
+      const singleCourse = cartItem[0];
+      totalFinalPayment = singleCourse.price;
+      courseName = singleCourse.courseName;
 
-    else if (cartItem.length > 1) {
-      totalfinalpayment = cartItem.reduce((acc, cur)=> acc + cur.price, 0)
-      alert(`${studentName} is trying to buy ${cartItem.length} courses with a total of $${totalfinalpayment}.`)
-      cartItem.forEach((item)=> {
-        totalcart.push(item)
-      })
-      console.log(totalcart)
-      console.log('more than one course' + cartItem)
+      orderDetail.push({
+        courseName,
+        totalFinalPayment,
+        completelyPaid: false,
+        isPending: true,
+      });
+      console.log("only one course " + courseName + totalFinalPayment);
+      alert(
+        `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
+      );
+    } else if (cartItem.length > 1) {
+      totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
+      const allCourses = cartItem.map((course) => course.courseName);
+      if (cartItem.length <= 3) {
+        courseName = cartItem.map((course) => course.courseName).join(", ");
+      } else {
+        const firstCourses = cartItem
+          .slice(0, cartItem.length - 1)
+          .map((course) => course.courseName)
+          .join(", ");
+        const lastCourse = cartItem[cartItem.length - 1].courseName;
+        courseName = `${firstCourses} and ${lastCourse}`;
+      }
+      alert(
+        `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
+      );
+      console.log("more than one course" + cartItem);
     }
-    // when users trys to pay many course at once it still works 
+
+    // when users trys to pay many course at once it still works
     // const totalcart = cartItem.reduce((acc, value) => {
     //   return acc + value.price
     // }, 0)
@@ -91,62 +103,70 @@ const PaymentPage = () => {
     "data-sdk-integration-source": "integrationbuilder_sc",
   };
   const createOrder = async () => {
-    // always remove the the cart infomation after sending to the backend for payment 
-    if (cartItem.length === 1) {
-      cartItem.forEach((item) => {
-        totalfinalpayment += item.price
-        courseName += item.courseName
-        console.log(courseName, totalfinalpayment)
-      })
+    // always remove the the cart infomation after sending to the backend for payment
 
-    } else if (cartItem.length > 1) {
-      // we use a map 
-      // const test = cartItem.map((items) => {
-      //   totalfinalpayment += items.price;
-      //   courseName = items.courseName
-      //   return courseName 
-      // })
-      // console.log(test)
-      const test =  cartItem.forEach((item) => {
-          totalfinalpayment = item.price
-          courseName = item.courseName
-          console.log(courseName, totalfinalpayment)
-      })
-      console.log(test)
-      // console.log('more than one course   ' + cartItem)
-    }
     try {
+      if (cartItem.length === 1) {
+        const singleCourse = cartItem[0];
+        totalFinalPayment = singleCourse.price;
+        courseName = singleCourse.courseName;
+
+        orderDetail.push({
+          courseName,
+          totalFinalPayment,
+          completelyPaid: false,
+          isPending: true,
+        });
+        console.log("only one course " + courseName + totalFinalPayment);
+        // alert(
+        //   `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
+        // );
+      } else if (cartItem.length > 1) {
+        totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
+        const allCourses = cartItem.map((course) => course.courseName);
+        if (cartItem.length <= 3) {
+          courseName = cartItem.map((course) => course.courseName).join(", ");
+        } else {
+          const firstCourses = cartItem
+            .slice(0, cartItem.length - 1)
+            .map((course) => course.courseName)
+            .join(", ");
+          const lastCourse = cartItem[cartItem.length - 1].courseName;
+          courseName = `${firstCourses} and ${lastCourse}`;
+        }
+        // alert(
+        //   `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
+        // );
+        console.log("more than one course" + cartItem);
+      }
       const response = await fetch(`${api}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          cart: [
-            {
-              courseName: courseName,
-              price: totalfinalpayment
-            },
-          ],
-        }),
         // use the "body" param to optionally pass additional order information
         // like product ids and quantities
-
         // grab the courseName , coursePrice , studentgmail,
         // body: JSON.stringify({
         //   cart: [
         //     {
-        //       studentName:studentName,
-        //       courseName: courseName,
-        //       courseInfo:totalcart,
-        //       price: totalfinalpayment
+        //       ...totalFinalPayment,
+        //       courseName,
         //     },
         //   ],
         // }),
+        body: JSON.stringify({
+          cart: [
+            {
+              studentName:studentName,
+              courseName: courseName,
+              price: totalFinalPayment,
+            },
+          ],
+        }),
       });
 
       const orderData = await response.json();
-
       if (orderData.id) {
         return orderData.id;
       } else {
@@ -215,15 +235,17 @@ const PaymentPage = () => {
         </div>
 
         <h1 className="font-bold md:text-lg my-6">PAYMENT METHOD</h1>
-        <PayPalScriptProvider options={initialOptions}>
-          <PayPalButtons
+        <PayPalScriptProvider deferLoading={true}  options={initialOptions}>
+        <PayPalButtons style={{ layout: "horizontal", shape:"pill"}}   createOrder={(data, actions) => createOrder(data, actions)}
+            onApprove={(data) => onApprove(data, actions)} />
+          {/* <PayPalButtons
             style={{
               shape: "rect",
               layout: "vertical",
             }}
             createOrder={(data, actions) => createOrder(data, actions)}
             onApprove={(data) => onApprove(data, actions)}
-          />
+          /> */}
         </PayPalScriptProvider>
         <Message content={message} />
         {/* <button className="font-bold w-full border-[1px] border-BLUE py-2 text-BLUE bg-white rounded-2xl"> */}
