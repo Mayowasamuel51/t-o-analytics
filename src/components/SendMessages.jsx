@@ -4,9 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import 'react-toastify/dist/ReactToastify.css';
 import * as yup from "yup";
-import { ToastContainer, toast } from 'react-toastify';
+import { Toaster, toast } from 'sonner';
 import FetchComments from "../hook/FetchComments";
 import Loader from "./Loader";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
@@ -19,7 +18,7 @@ const SendMessages = () => {
   const [error, setError] = useState("")
   const navigate = useNavigate()
   const {data: message, isLoading, error: fetchError} = FetchComments()
-  const notify = () => toast("Your message will be delivered to all students!!");
+  const notify = () => toast.success("Your message will be delivered to all students!!");
   const schema = yup.object().shape({
     message: yup.string().required(),
   });
@@ -42,10 +41,10 @@ const SendMessages = () => {
       }
     }).then((res) => {
       if (res.status === 201 || res.status === 200) {
-
         notify()
-
-        navigate('/ADMIN-DASHBOARD')
+        setTimeout(() => {
+          navigate('/ADMIN-DASHBOARD')
+        }, 2500);
       }
     }).catch(err => {
       const response = err.response
@@ -60,7 +59,7 @@ const SendMessages = () => {
   const lastPostIndex = currentPage * postsPerPage
   const firstPostIndex = lastPostIndex - postsPerPage
   const paginatedData = message?.data?.response?.slice(firstPostIndex, lastPostIndex)
-  const length = message?.data?.response?.length || 0
+  const length = message?.data?.response?.length || 1
 
   const pageNumber = []
   for (let i = 1; i <= Math.ceil((length) / postsPerPage); i++) {
@@ -70,7 +69,7 @@ const SendMessages = () => {
   return (
     <div className='p-2 lg:p-5'>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <ToastContainer />
+        <Toaster position="top-right" />
         <textarea  {...register("message", { required: true })} className='p-2 w-full border-[1px] border-black' placeholder='Type your message' name="message" id="" cols="30" rows="10"></textarea>
         <button type="submit" className='my-2 bg-BLUE px-3 py-2 md:px-4 md:py-3 font-semibold text-white flex items-center gap-2 group'><FaPaperPlane className="" /> Send Message</button>
         <p className='text-red-600'>{errors.message?.message}</p>

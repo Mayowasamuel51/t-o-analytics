@@ -16,7 +16,7 @@ const Contacts = () => {
   const lastPostIndex = currentPage * postsPerPage
   const firstPostIndex = lastPostIndex - postsPerPage
   const paginatedData = data?.data?.data?.slice(firstPostIndex, lastPostIndex)
-  const length = data?.data?.response?.length || 0
+  const length = data?.data?.response?.length || 1
 
   const pageNumber = []
   for (let i = 1; i <= Math.ceil((length) / postsPerPage); i++) {
@@ -52,7 +52,7 @@ const Contacts = () => {
         {!data && <h3 className="font-bold text-center md:text-3xl">No Data Available.</h3>}
       </div>
       <div className='relative text-sm text-center my-2 md:my-4 font-bold tracking-wider group'>
-          <p>{currentPage} 0f {pageNumber.length} pages</p>
+          {pageNumber.length > 0 && <p>{currentPage} 0f {pageNumber.length} {pageNumber.length > 1 ? "pages" : "page" }</p>}
           <div className="my-2 md:my-5">
               <Splide options={{
                   drag: "free",
@@ -73,7 +73,7 @@ const Contacts = () => {
                   }
               }} className="">
                   {pageNumber.map((num) => (
-                      <SplideSlide key={num}><button onClick={() => setCurrentPage(num)} key={num} className={`${currentPage === num && "bg-BLUE text-white px-3 py-2 rounded-md"} px-3 py-2 text-sm md:text-base font-bold`}>{num}</button></SplideSlide>
+                    <SplideSlide key={num}><button onClick={() => setCurrentPage(num)} key={num} className={`${currentPage === num && "bg-BLUE text-white px-3 py-2 rounded-md"} px-3 py-2 text-sm md:text-base font-bold`}>{num}</button></SplideSlide>
                   ))}
               </Splide>
           </div>

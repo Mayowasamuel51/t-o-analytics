@@ -24,7 +24,6 @@ import AdminLoginForm from "./pages/AdminLoginForm";
 import CheckOut from "./pages/CheckOut";
 import SendLinks from "./components/SendLinks"
 import SendMessages from "./components/SendMessages"
-import { AnimatePresence } from "framer-motion";
 // import { Route, Switch, useLocation } from "react-router-dom";
 import {
   createBrowserRouter,
@@ -45,7 +44,11 @@ import MyProfile from "./pages/MyProfile";
 // import DashboardCourses from "./dashboard/components/DashboardCourses";
 import PaymentPage from "./pages/PaymentPage";
 import Loader from "./components/Loader";
+<<<<<<< HEAD
 import Links from "./components/Links";
+=======
+import { AnimatePresence } from "framer-motion";
+>>>>>>> 29127f9623cd956c01fe52e6be329c93a0e9b38d
 
 const router = createBrowserRouter([
   {
@@ -232,11 +235,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <AnimatePresence>
-      <CartItemProvider>
+    <CartItemProvider>
+      <AnimatePresence>
         <RouterProvider router={router} />
-      </CartItemProvider>
-    </AnimatePresence>
+      </AnimatePresence>
+    </CartItemProvider>
   );
 }
 

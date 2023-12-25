@@ -3,14 +3,13 @@ import axios from 'axios';
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
-// import { useState } from "react";
+import { Toaster, toast } from 'sonner';
 import { useNavigate } from "react-router-dom"
 const api_comment = import.meta.env.VITE_BACKEND_C
+
 const StudentCommentPage = () => {
   const navigate = useNavigate()
-  const notify = () => toast("Thank you for your comment!!");
+  const notify = ()=> toast.success("Thank you for your comment!!");
   const schema = yup.object().shape({
     comment: yup.string().required(),
   });
@@ -35,9 +34,10 @@ const StudentCommentPage = () => {
     }).then((res) => {
       if (res.status === 201 || res.status === 200) {
         notify()
+
         setTimeout(() => {
           navigate('/dashboard')
-        }, 2000);
+        }, 2500);
       }
     }).catch(err => {
       const response = err.response
@@ -55,7 +55,7 @@ const StudentCommentPage = () => {
   return (
     <div className='p-2'>
       <form onSubmit={handleSubmit(onSubmit)}>
-      <ToastContainer />
+        <Toaster position="top-right" />
         <textarea  {...register("comment", { required: true })} className='p-2 w-full border-[1px] border-black' placeholder='Type your Comments' name="comment" id="" cols="30" rows="10"></textarea><p className='text-red-600'>{errors.comment?.message}</p>
         <button type="submit" className='my-2 bg-BLUE px-3 py-2 md:px-4 md:py-3 font-semibold text-white flex items-center gap-2'><FaPaperPlane /> Comment</button>
       </form>

@@ -21,7 +21,7 @@ const CheckOut = () => {
       })
       setTimeout(() => {
         navigate("/login")
-      }, 4000);
+      }, 5000);
     }
     if (cartItem.length === 0) {
       toast.error("Oops, Your cart is empty", {
@@ -44,7 +44,7 @@ const CheckOut = () => {
         },
       });
     }
-    else {
+    if (token) {
       navigate("/dashboard/makePayment")
     }
   }
