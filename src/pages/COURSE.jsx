@@ -47,7 +47,6 @@ const COURSE = () => {
   const whatToLearnRef = useRef()
   const isInView = useInView(whatToLearnRef, {once: true})
   const location = useLocation()
-  console.log(location.pathname)
   const navigate = useNavigate()
   const { course } = useParams()
   const [showModal, setShowModal] = useState(false)
