@@ -63,7 +63,7 @@ const LoginForm = () => {
                     
                         window.localStorage.setItem("ACCESS_TOKEN", res.data.token)
                          window.localStorage.setItem("user", res.data.email)
-                        navigate(-1)
+                         navigate('/dashboard')
                         setToken(res.data.token)
                     }
                 }).catch((err) => notifyfail())
@@ -100,7 +100,7 @@ const LoginForm = () => {
                 setUser(res.data.data)
                 console.log(res.data.token)
                 window.localStorage.setItem("user", res.data.data.email)
-                navigate(-1)
+                navigate('/dashboard')
                 setToken(res.data.token)
             }
         }).catch(err => {
