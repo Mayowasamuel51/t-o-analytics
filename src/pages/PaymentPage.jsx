@@ -39,7 +39,7 @@ const PaymentPage = () => {
         courseName:courseName,
         price:totalFinalPayment
       }
-      axios.post('http://localhost:8000/api/order', data).then((res)=>{
+      axios.post('https://to-backendapi-v1.vercel.app/api/order', data).then((res)=>{
         if(res.status === 200 || res.status === 201){
           alert('working welll')
         }
@@ -74,7 +74,7 @@ const PaymentPage = () => {
           price:totalFinalPayment
         }
       ]
-      axios.post('http://localhost:8000/api/order', data).then((res)=>{
+      axios.post('https://to-backendapi-v1.vercel.app/api/order', data).then((res)=>{
         if(res.status === 200 || res.status === 201){
           alert('working welll')
         }
