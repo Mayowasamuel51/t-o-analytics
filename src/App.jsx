@@ -44,11 +44,7 @@ import MyProfile from "./pages/MyProfile";
 // import DashboardCourses from "./dashboard/components/DashboardCourses";
 import PaymentPage from "./pages/PaymentPage";
 import Loader from "./components/Loader";
-<<<<<<< HEAD
 import Links from "./components/Links";
-=======
-import { AnimatePresence } from "framer-motion";
->>>>>>> 29127f9623cd956c01fe52e6be329c93a0e9b38d
 
 const router = createBrowserRouter([
   {
