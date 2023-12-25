@@ -50,7 +50,6 @@ const PaymentPage = () => {
       totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
       const allCourses = cartItem.map((course) => course.courseName);
       if (cartItem.length <= 3) {
-<<<<<<< HEAD
         courseName = cartItem.map((course) => course.courseName).join(", ");
       } else {
         const firstCourses = cartItem
@@ -58,12 +57,6 @@ const PaymentPage = () => {
           .map((course) => course.courseName)
           .join(", ");
         const lastCourse = cartItem[cartItem.length - 1].courseName;
-=======
-        courseName = cartItem.map(course => course.courseName || course.name).join(', ');
-      } else {
-        const firstCourses = cartItem.slice(0, cartItem.length - 1).map(course => course.courseName || course.name).join(', ');
-        const lastCourse = cartItem[cartItem.length - 1].courseName || cartItem[cartItem.length - 1].name;
->>>>>>> 29127f9623cd956c01fe52e6be329c93a0e9b38d
         courseName = `${firstCourses} and ${lastCourse}`;
       }
       alert(
@@ -293,7 +286,6 @@ const PaymentPage = () => {
             <div key={item.id} className="py-4 px-2">
               <div className="flex items-start gap-2 md:gap-10">
                 <div>
-<<<<<<< HEAD
                   {item.image ? (
                     <img
                       src={item.image}
@@ -303,13 +295,6 @@ const PaymentPage = () => {
                   ) : (
                     <div className="w-14 aspect-square bg-BLUE"></div>
                   )}
-=======
-                  {item.image ? <img
-                    src={item.image}
-                    className="w-12 aspect-square object-cover rounded-md"
-                    alt=""
-                  /> : (<div className="w-12 aspect-square bg-BLUE rounded-md"></div>)}
->>>>>>> 29127f9623cd956c01fe52e6be329c93a0e9b38d
                 </div>
                 <div className="grow-[3]">
                   <p className="font-black">{item.courseName || item.name}</p>

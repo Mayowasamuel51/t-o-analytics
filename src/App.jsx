@@ -45,6 +45,7 @@ import MyProfile from "./pages/MyProfile";
 import PaymentPage from "./pages/PaymentPage";
 import Loader from "./components/Loader";
 import Links from "./components/Links";
+import { AnimatePresence } from "framer-motion";
 
 const router = createBrowserRouter([
   {
