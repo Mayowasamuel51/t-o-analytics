@@ -3,20 +3,49 @@ import { Link } from "react-router-dom";
 // import 'react-lazy-load-image-component/src/effects/blur.css';
 import COURSES from "../coursesAPI/api"
 import { useStateContext } from "../context/ContextProvider"
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 250,
+      delayChildren: 0.5,
+      staggerChildren: 0.5
+    }
+  }
+}
+
+const h1 = {
+  hidden: { y: "-40px", opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  }
+}
+const p = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1
+  }
+}
 
 const AllCourses = () => {
   const { token } = useStateContext();
   return (
     <div>
-      <section className="bg-white px-2 md:px-10 py-10">
+      <section className="bg-white px-5 md:px-10 py-6">
        {!token && 
-        <div>
-          <h1 className="text-center font-bold text-2xl md:text-4xl pt-20">
+        <motion.div variants={container} initial="hidden" animate="visible">
+          <motion.h1 variants={h1} className="OUR-COURSES text-center font-black text-2xl md:text-4xl pt-20">
             Our Courses
-          </h1>
-          <p className="w-[90%] mx-auto font-semibold text-sm my-7 md:my-14 text-center">Whether you are a beginner or you are looking to expand your career opportunities, our carefully selected and well taught courses give you the knowledge and experience that you need.</p>
-        </div>}
-        <div className={`courses grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 justify-center gap-y-4 gap-x-2 ${token && "pt-20"}`}>
+          </motion.h1>
+          <motion.p variants={p} className="md:w-1/2 mx-auto font-normal md:font-semibold text-sm md:text-base my-7 md:mb-14 text-center">Whether you are a beginner or you are looking to expand your career opportunities, our carefully selected and well taught courses give you the knowledge and experience that you need.</motion.p>
+        </motion.div>}
+        <div className={`courses gap-y-4 gap-x-4 ${token && "pt-20"}`}>
           {COURSES.map((course, index)=> (
             <Link key={index} to={course.courseName.toLowerCase()} className="">
             <div
@@ -33,8 +62,8 @@ const AllCourses = () => {
                 />
               </div>
               <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
-                <p className="font-bold text-white text-lg md:my-4 md:text-3xl">{course.courseName}</p>
-                <p className="my-2 font-bold text-sm">{course.intro}</p>
+                <p className="font-bold text-white text-lg md:my-4 md:text-3xl line-clamp-1">{course.courseName}</p>
+                <p className="my-2 font-bold text-base">{course.intro}</p>
                 <p className="line-clamp-2 text-sm md:text-base text-textColor md:max-w-[70%]">
                   {course.description}
                 </p>

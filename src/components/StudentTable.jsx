@@ -21,7 +21,7 @@ const StudentTable = () => {
     const lastPostIndex = currentPage * postsPerPage
     const firstPostIndex = lastPostIndex - postsPerPage
     const paginatedData = data?.data?.response?.slice(firstPostIndex, lastPostIndex)
-    const length = data?.data?.response?.length || 0
+    const length = data?.data?.response?.length || 1
 
     const pageNumber = []
     for (let i = 1; i <= Math.ceil((length) / postsPerPage); i++) {
@@ -60,7 +60,7 @@ const StudentTable = () => {
                 {!data && <h3 className="font-bold text-center md:text-3xl">No Data Available.</h3>}
             </div>
             <div className='relative text-sm text-center my-2 md:my-4 font-bold tracking-wider group'>
-                <p>{currentPage} 0f {pageNumber.length} {pageNumber.length > 1 ? "pages" : "page" }</p>
+                {pageNumber.length > 0 && <p>{currentPage} 0f {pageNumber.length} {pageNumber.length > 1 ? "pages" : "page" }</p>}
                 <div className="my-2 md:my-5">
                     <Splide options={{
                         drag: "free",

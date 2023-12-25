@@ -63,7 +63,7 @@ const LoginForm = () => {
                     
                         window.localStorage.setItem("ACCESS_TOKEN", res.data.token)
                          window.localStorage.setItem("user", res.data.email)
-                        navigate('/dashboard')
+                        navigate(-1)
                         setToken(res.data.token)
                     }
                 }).catch((err) => notifyfail())
@@ -98,7 +98,7 @@ const LoginForm = () => {
             if (res.status === 201 || res.status === 200) {
                 setUser(res.data.data)
                 window.localStorage.setItem("user", res.data.data.email)
-                navigate('/dashboard')
+                navigate(-1)
                 setToken(res.data.token)
             }
         }).catch(err => {

@@ -40,9 +40,9 @@ function AuthLayout() {
             </div>
             <Outlet />
             <Messages />
-
             {
-                location.pathname === "/dashboard" || 
+                location.pathname === "/dashboard" ||
+                location.pathname === "/dashboard/makePayment" ||
                 location.pathname === "/dashboard/comment"
                 ? <Footer black="bg-black text-white" /> : <Footer />
             }

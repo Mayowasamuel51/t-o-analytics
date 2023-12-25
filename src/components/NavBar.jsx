@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import LOGO from "../assets/images/logo.jpg";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import CartItemContext from '../context/CartItemContext';
 import { useStateContext } from "../context/ContextProvider"
 import { Link, NavLink, useLocation } from "react-router-dom";
@@ -98,7 +98,7 @@ const NavBar = () => {
                     <ul className="md:flex items-center gap-6 font-semibold">
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
-                        <motion.li onClick={displaySubMenu} whileHover={{scale: 1.1}} transition={{ stiffness:250}} className='group' ><NavLink to={location.pathname} className={({isActive})=> isActive ? "font-black text-BLUE scale-110 flex items-center gap-2 justify-center group" : "scale-100 hover:text-BLUE flex items-center gap-2 justify-center group"}>Company <FaChevronDown className={`duration-200 ${subMenu && "group-hover:rotate-180"} ${FullScreen && "group-hover:rotate-180"}`} /></NavLink>
+                        <motion.li onClick={displaySubMenu} whileHover={{scale: 1.1}} transition={{ stiffness:250}} className='group' ><p className='flex gap-1 items-center justify-center'>Company <FaChevronDown className={`duration-200 ${subMenu && "group-hover:rotate-180"} ${FullScreen && "group-hover:rotate-180"}`} /></p>
                            {(subMenu && !FullScreen) ?
                            <ul className={`bg-white md:p-2 rounded-md duration-200`}>
                                 <li><NavLink to="/career" className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"}>Career</NavLink></li>
