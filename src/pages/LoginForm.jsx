@@ -94,9 +94,11 @@ const LoginForm = () => {
                 Accept: "application/json",
                 "Content-Type": "application/json"
             }
+            
         }).then((res) => {
             if (res.status === 201 || res.status === 200) {
                 setUser(res.data.data)
+                console.log(res.data.token)
                 window.localStorage.setItem("user", res.data.data.email)
                 navigate('/dashboard')
                 setToken(res.data.token)

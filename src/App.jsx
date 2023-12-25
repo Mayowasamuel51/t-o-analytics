@@ -45,6 +45,7 @@ import MyProfile from "./pages/MyProfile";
 // import DashboardCourses from "./dashboard/components/DashboardCourses";
 import PaymentPage from "./pages/PaymentPage";
 import Loader from "./components/Loader";
+import Links from "./components/Links";
 
 const router = createBrowserRouter([
   {
@@ -163,7 +164,8 @@ const router = createBrowserRouter([
       },
       {
         path: "links",
-        element: <h1 className="min-h-screen flex justify-center items-center font-bold text-3xl">LINKS PAGE</h1>
+        element: <Links/>
+        // <h1 className="min-h-screen flex justify-center items-center font-bold text-3xl">LINKS PAGE</h1>
       },
       {
         path: "makePayment",

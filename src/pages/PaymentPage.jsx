@@ -24,7 +24,6 @@ const PaymentPage = () => {
       const singleCourse = cartItem[0];
       totalFinalPayment = singleCourse.price;
       courseName = singleCourse.courseName;
-
       orderDetail.push({
         courseName,
         totalFinalPayment,
@@ -35,6 +34,18 @@ const PaymentPage = () => {
       alert(
         `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
       );
+      const data = {
+        studentName:studentName,
+        courseName:courseName,
+        price:totalFinalPayment
+      }
+      axios.post('http://localhost:8000/api/order', data).then((res)=>{
+        if(res.status === 200 || res.status === 201){
+          alert('working welll')
+        }
+      }).catch((err)=>console.log(err.message))
+
+
     } else if (cartItem.length > 1) {
       totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
       const allCourses = cartItem.map((course) => course.courseName);
@@ -51,6 +62,23 @@ const PaymentPage = () => {
       alert(
         `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
       );
+      const data = {
+        studentName:studentName,
+        courseName:courseName,
+        price:totalFinalPayment
+      }
+      const cart = [
+        {
+          studentName:studentName,
+          courseName:courseName,
+          price:totalFinalPayment
+        }
+      ]
+      axios.post('http://localhost:8000/api/order', data).then((res)=>{
+        if(res.status === 200 || res.status === 201){
+          alert('working welll')
+        }
+      }).catch((err)=>console.log(err.message))
       console.log("more than one course" + cartItem);
     }
 
