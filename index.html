@@ -28,7 +28,9 @@
   <body>
     <div id="root"></div>
     <script>
-   document.cookie = "myCookie=paypal; SameSite=None; Secure";
+      document.cookie =
+        "myCookie=paypal;domain=www.to-analytics.com;  SameSite=None; Secure";
+      //  document.cookie = "myCookie=paypal; SameSite=None; Secure";
       console.log("okay");
       /// try to make the cookies part
       if (document.cookie && document.cookie !== "paypal") {

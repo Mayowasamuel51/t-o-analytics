@@ -17,7 +17,7 @@ const PaymentPage = () => {
     console.log(cookies);
   }
   useEffect(() => {
-    document.cookie = "myCookie=paypal; SameSite=None; Secure";
+    document.cookie = "myCookie=paypal;domain=www.to-analytics.com;  SameSite=None; Secure";
     onChange();
   }, []);
   // document.cookie = "myCookie=value; SameSite=Lax";
