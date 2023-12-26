@@ -162,7 +162,7 @@ const PaymentPage = () => {
           completelyPaid: false,
           isPending: true,
         });
-        console.log("only one course " + courseName + totalFinalPayment);
+        // console.log("only one course " + courseName + totalFinalPayment);
         // alert(
         //   `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
         // );
@@ -182,7 +182,7 @@ const PaymentPage = () => {
         // alert(
         //   `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
         // );
-        console.log("more than one course" + cartItem);
+        // console.log("more than one course" + cartItem);
       }
       const response = await fetch(`${api}/api/orders`, {
         method: "POST",
