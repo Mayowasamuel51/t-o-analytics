@@ -7,8 +7,22 @@ import axios from "axios";
 const api = import.meta.env.VITE_BACKEND_PAY;
 import CartItemContext from "../context/CartItemContext";
 import { useStateContext } from "../context/ContextProvider";
-
+import { useThirdPartyCookieCheck } from "../useThirdPartyCookieCheck";
+import { useCookies } from "react-cookie";
 const PaymentPage = () => {
+  const [cookies, setCookie] = useCookies(["paypal"]);
+
+
+  function onChange(newName) {
+    setCookie("name", newName);
+    console.log(cookies)
+  }
+  useEffect(() => {
+    document.cookie = "cookieName=cookieValue; SameSite=None; Secure";
+    onChange();
+  }, []);
+  // document.cookie = "myCookie=value; SameSite=Lax";
+  const status = useThirdPartyCookieCheck();
   const { token } = useStateContext();
   const { cartItem, setCartItem } = useContext(CartItemContext);
   const studentName = window.localStorage.getItem("user");
@@ -35,17 +49,18 @@ const PaymentPage = () => {
         `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
       );
       const data = {
-        studentName:studentName,
-        courseName:courseName,
-        price:totalFinalPayment
-      }
-      axios.post('https://to-backendapi-v1.vercel.app/api/order', data).then((res)=>{
-        if(res.status === 200 || res.status === 201){
-          alert('working welll')
-        }
-      }).catch((err)=>console.log(err.message))
-
-
+        studentName: studentName,
+        courseName: courseName,
+        price: totalFinalPayment,
+      };
+      axios
+        .post("https://to-backendapi-v1.vercel.app/api/order", data)
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            alert("working welll");
+          }
+        })
+        .catch((err) => console.log(err.message));
     } else if (cartItem.length > 1) {
       totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
       const allCourses = cartItem.map((course) => course.courseName);
@@ -63,22 +78,25 @@ const PaymentPage = () => {
         `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
       );
       const data = {
-        studentName:studentName,
-        courseName:courseName,
-        price:totalFinalPayment
-      }
+        studentName: studentName,
+        courseName: courseName,
+        price: totalFinalPayment,
+      };
       const cart = [
         {
-          studentName:studentName,
-          courseName:courseName,
-          price:totalFinalPayment
-        }
-      ]
-      axios.post('https://to-backendapi-v1.vercel.app/api/order', data).then((res)=>{
-        if(res.status === 200 || res.status === 201){
-          alert('working welll')
-        }
-      }).catch((err)=>console.log(err.message))
+          studentName: studentName,
+          courseName: courseName,
+          price: totalFinalPayment,
+        },
+      ];
+      axios
+        .post("https://to-backendapi-v1.vercel.app/api/order", data)
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            alert("working welll");
+          }
+        })
+        .catch((err) => console.log(err.message));
       console.log("more than one course" + cartItem);
     }
 
@@ -186,7 +204,7 @@ const PaymentPage = () => {
         body: JSON.stringify({
           cart: [
             {
-              studentName:studentName,
+              studentName: studentName,
               courseName: courseName,
               price: totalFinalPayment,
             },
@@ -263,9 +281,13 @@ const PaymentPage = () => {
         </div>
 
         <h1 className="font-bold md:text-lg my-6">PAYMENT METHOD</h1>
-        <PayPalScriptProvider deferLoading={true}  options={initialOptions}>
-        <PayPalButtons style={{ layout: "horizontal", shape:"pill"}}   createOrder={(data, actions) => createOrder(data, actions)}
-            onApprove={(data) => onApprove(data, actions)} />
+        <h2>Third-Party Cookies enabled? {status ? "Yes" : "No"}</h2>
+        <PayPalScriptProvider name={cookies.paypal} onChange={onChange} deferLoading={true} options={initialOptions}>
+          <PayPalButtons
+            style={{ layout: "horizontal", shape: "pill" }}
+            createOrder={(data, actions) => createOrder(data, actions)}
+            onApprove={(data) => onApprove(data, actions)}
+          />
           {/* <PayPalButtons
             style={{
               shape: "rect",
