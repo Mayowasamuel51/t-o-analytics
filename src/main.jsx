@@ -21,10 +21,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               defaultSetOptions={{
                 expires: new Date(2029, 11, 26, 12, 30, 0, 0),
                 maxAge: "1000",
-                path: "/",
+                path: "https://www.paypal.com/",
                 secure: true,
                 sameSite: "none",
-                domain: "https://www.to-analytics.com/",
+                domain: "https://www.paypal.com/",
                 httpOnly: true,
               }}
             >
