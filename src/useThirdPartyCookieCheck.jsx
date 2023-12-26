@@ -8,7 +8,7 @@ export const useThirdPartyCookieCheck = () => {
         const frame = document.createElement("iframe");
         frame.id = "3pc";
         frame.src =
-            "http://localhost:5173/";// Add your domain here
+            "www.to-analytics.com";// Add your domain here
         frame.style.display = "none";
         frame.style.position = "fixed";
         document.body.appendChild(frame);
