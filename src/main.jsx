@@ -16,7 +16,9 @@ const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary fallback={<Error />}>
-    <CookiesProvider defaultSetOptions={{ expires: new Date(2029, 11, 26, 12, 30, 0, 0), maxAge:'12',   path: 'https://www.to-analytics.com/' ,secure:true,  sameSite:"none" , domain:"https://www.to-analytics.com/", httpOnly:true, }} >
+    <CookiesProvider 
+    defaultSetOptions={{ expires: new Date(2029, 11, 26, 12, 30, 0, 0), maxAge:'1000', 
+      path: 'https://www.to-analytics.com/' ,secure:true,  sameSite:"none" , domain:"https://www.to-analytics.com/", httpOnly:true, }} >
       <CartItemProvider>
         <ContextProvider>
           <QueryClientProvider client={queryClient}>
