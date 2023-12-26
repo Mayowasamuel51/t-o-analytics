@@ -12,13 +12,12 @@ import { useCookies } from "react-cookie";
 const PaymentPage = () => {
   const [cookies, setCookie] = useCookies(["paypal"]);
 
-
   function onChange(newName) {
-    setCookie("name", newName);
-    console.log(cookies)
+    setCookie("paypal", newName);
+    console.log(cookies);
   }
   useEffect(() => {
-    document.cookie = "cookieName=cookieValue; SameSite=None; Secure";
+    // console.log( document.cookie = "myCookie=paypal; SameSite=none")
     onChange();
   }, []);
   // document.cookie = "myCookie=value; SameSite=Lax";
@@ -282,21 +281,25 @@ const PaymentPage = () => {
 
         <h1 className="font-bold md:text-lg my-6">PAYMENT METHOD</h1>
         <h2>Third-Party Cookies enabled? {status ? "Yes" : "No"}</h2>
-        <PayPalScriptProvider name={cookies.paypal} onChange={onChange} deferLoading={true} options={initialOptions}>
+        <PayPalScriptProvider deferLoading={true} options={initialOptions}>
           <PayPalButtons
+            name={cookies.paypal}
+            onChange={onChange}
             style={{ layout: "horizontal", shape: "pill" }}
             createOrder={(data, actions) => createOrder(data, actions)}
             onApprove={(data) => onApprove(data, actions)}
           />
-          {/* <PayPalButtons
-            style={{
-              shape: "rect",
-              layout: "vertical",
-            }}
-            createOrder={(data, actions) => createOrder(data, actions)}
-            onApprove={(data) => onApprove(data, actions)}
-          /> */}
+
+          {/* <PayPalButtons */}
+          {/* //   style={{ */}
+          {/* //     shape: "rect",
+          //     layout: "vertical",
+          //   }}
+          //   createOrder={(data, actions) => createOrder(data, actions)}
+          //   onApprove={(data) => onApprove(data, actions)}
+          // /> */}
         </PayPalScriptProvider>
+        {cookies.name && <h1>Hello {cookies.name}!</h1>}
         <Message content={message} />
         {/* <button className="font-bold w-full border-[1px] border-BLUE py-2 text-BLUE bg-white rounded-2xl"> */}
         {/* Pay With Paypal */}
