@@ -16,7 +16,7 @@ const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary fallback={<Error />}>
-    <CookiesProvider defaultSetOptions={{ path: 'https://www.to-analytics.com/dashboard/makePayment' ,secure:true,  sameSite:"none" , domain:"https://www.to-analytics.com/", httpOnly:true, }} >
+    <CookiesProvider defaultSetOptions={{ path: 'https://www.to-analytics.com/' ,secure:true,  sameSite:"none" , domain:"https://www.to-analytics.com/", httpOnly:true, }} >
       <CartItemProvider>
         <ContextProvider>
           <QueryClientProvider client={queryClient}>
