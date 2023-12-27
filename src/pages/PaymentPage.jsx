@@ -10,7 +10,7 @@ import { useStateContext } from "../context/ContextProvider";
 import { useThirdPartyCookieCheck } from "../useThirdPartyCookieCheck";
 import { useCookies } from "react-cookie";
 const PaymentPage = () => {
-  const [cookies, setCookie] = useCookies(["paypal"]);
+  const [cookies, setCookie] = useCookies(["myCookie"]);
 
   function onChange(newName) {
     setCookie("paypal", newName);
@@ -270,6 +270,13 @@ const PaymentPage = () => {
       setMessage(`Sorry, your transaction could not be processed...${error}`);
     }
   };
+  const handleSetCookie = () => {
+    setCookie('myCookie', 'paypal', {
+      domain: 'www.paypal.com',
+      sameSite: 'None',
+      secure: true,
+    });
+  };
   if (!token) return <Navigate to="/" />;
   return (
     <section className="min-h-screen payment-page">
@@ -280,6 +287,7 @@ const PaymentPage = () => {
         </div>
 
         <h1 className="font-bold md:text-lg my-6">PAYMENT METHOD</h1>
+        <button onClick={handleSetCookie}>Set Cookie</button>
         <h2>Third-Party Cookies enabled? {status ? "Yes" : "No"}</h2>
         <PayPalScriptProvider deferLoading={true} options={initialOptions}>
           <PayPalButtons

@@ -19,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <CookiesProvider
               allCookies
               defaultSetOptions={{
+              
                 expires: new Date(2029, 11, 26, 12, 30, 0, 0),
                 maxAge: "1000",
                 path: "https://www.paypal.com/",
