@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { ReactDOM } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from "axios";
@@ -12,13 +12,13 @@ import { useCookies } from "react-cookie";
 const PaymentPage = () => {
   const [cookies, setCookie] = useCookies(["paypal"]);
 
-
   function onChange(newName) {
-    setCookie("name", newName);
-    console.log(cookies)
+    setCookie("paypal", newName);
+    console.log(cookies);
   }
   useEffect(() => {
-    document.cookie = "cookieName=cookieValue; SameSite=None; Secure";
+    document.cookie =
+      "myCookie=paypal;domain=www.to-analytics.com;  SameSite=None; Secure";
     onChange();
   }, []);
   // document.cookie = "myCookie=value; SameSite=Lax";
@@ -163,7 +163,7 @@ const PaymentPage = () => {
           completelyPaid: false,
           isPending: true,
         });
-        console.log("only one course " + courseName + totalFinalPayment);
+        // console.log("only one course " + courseName + totalFinalPayment);
         // alert(
         //   `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
         // );
@@ -183,7 +183,7 @@ const PaymentPage = () => {
         // alert(
         //   `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
         // );
-        console.log("more than one course" + cartItem);
+        // console.log("more than one course" + cartItem);
       }
       const response = await fetch(`${api}/api/orders`, {
         method: "POST",
@@ -271,32 +271,158 @@ const PaymentPage = () => {
       setMessage(`Sorry, your transaction could not be processed...${error}`);
     }
   };
+  const handleSetCookie = () => {
+    setCookie("paypal", "paypal", {
+      // path: "/",
+      // expires: new Date(2029, 11, 26, 12, 30, 0, 0),
+      // maxAge: "1000",
+      // path: "https://www.paypal.com/",
+      // secure: true,
+      // sameSite: "none",
+      // domain: "https://www.paypal.com/",
+      // httpOnly: true,
+      // domain: "www.paypal.com",
+      // sameSite: "None",
+      // secure: true,
+    });
+    console.log(cookies);
+  };
   if (!token) return <Navigate to="/" />;
   return (
     <section className="min-h-screen payment-page">
       <div className="p-2 md:p-10">
+        <form action="" target="paypal"></form>
+        <button>
+          {/* <link href="https://py.pl/4uHV0Hd3Ctx">Buynow</link> */}
+        </button>
+
+        <Link to={"https://py.pl/4uHV0Hd3Ctx"}>Buy now</Link>
         <div>
           <h1 className="font-bold md:text-xl">Checkout</h1>
           <p className="my-5 text-slate-500">billing Address</p>
         </div>
 
         <h1 className="font-bold md:text-lg my-6">PAYMENT METHOD</h1>
+
+        <button onClick={handleSetCookie}>Set Cookie</button>
         <h2>Third-Party Cookies enabled? {status ? "Yes" : "No"}</h2>
-        <PayPalScriptProvider name={cookies.paypal} onChange={onChange} deferLoading={true} options={initialOptions}>
+        <PayPalScriptProvider options={initialOptions}>
           <PayPalButtons
-            style={{ layout: "horizontal", shape: "pill" }}
-            createOrder={(data, actions) => createOrder(data, actions)}
-            onApprove={(data) => onApprove(data, actions)}
-          />
-          {/* <PayPalButtons
             style={{
               shape: "rect",
               layout: "vertical",
             }}
+            createOrder={async () => {
+              try {
+                const response = await fetch(
+                  "http://localhost:8000/api/orders",
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    // use the "body" param to optionally pass additional order information
+                    // like product ids and quantities
+                    body: JSON.stringify({
+                      cart: [
+                        {
+                          id: "YOUR_PRODUCT_ID",
+                          quantity: "YOUR_PRODUCT_QUANTITY",
+                        },
+                      ],
+                    }),
+                  }
+                );
+
+                const orderData = await response.json();
+
+                if (orderData.id) {
+                  return orderData.id;
+                } else {
+                  const errorDetail = orderData?.details?.[0];
+                  const errorMessage = errorDetail
+                    ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
+                    : JSON.stringify(orderData);
+
+                  throw new Error(errorMessage);
+                }
+              } catch (error) {
+                console.error(error);
+                setMessage(`Could not initiate PayPal Checkout...${error}`);
+              }
+            }}
+            onApprove={async (data, actions) => {
+              try {
+                const response = await fetch(
+                  `http://localhost:8000/api/orders/${data.orderID}/capture`,
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  }
+                );
+
+                const orderData = await response.json();
+                // Three cases to handle:
+                //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+                //   (2) Other non-recoverable errors -> Show a failure message
+                //   (3) Successful transaction -> Show confirmation or thank you message
+
+                const errorDetail = orderData?.details?.[0];
+
+                if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
+                  // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+                  // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
+                  return actions.restart();
+                } else if (errorDetail) {
+                  // (2) Other non-recoverable errors -> Show a failure message
+                  throw new Error(
+                    `${errorDetail.description} (${orderData.debug_id})`
+                  );
+                } else {
+                  // (3) Successful transaction -> Show confirmation or thank you message
+                  // Or go to another URL:  actions.redirect('thank_you.html');
+                  const transaction =
+                    orderData.purchase_units[0].payments.captures[0];
+                  setMessage(
+                    `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`
+                  );
+                  console.log(
+                    "Capture result",
+                    orderData,
+                    JSON.stringify(orderData, null, 2)
+                  );
+                }
+              } catch (error) {
+                console.error(error);
+                setMessage(
+                  `Sorry, your transaction could not be processed...${error}`
+                );
+              }
+            }}
+          />
+        </PayPalScriptProvider>
+        {/* <PayPalScriptProvider deferLoading={true} options={initialOptions}>
+          <PayPalButtons
+            to="paypal"
+            name={cookies.paypal}
+            onChange={onChange}
+            style={{ layout: "horizontal", shape: "pill" }}
             createOrder={(data, actions) => createOrder(data, actions)}
             onApprove={(data) => onApprove(data, actions)}
           /> */}
-        </PayPalScriptProvider>
+
+        {/* <PayPalButtons */}
+        {/* //   style={{ */}
+        {/* //     shape: "rect",
+          //     layout: "vertical",
+          //   }}
+          //   createOrder={(data, actions) => createOrder(data, actions)}
+          //   onApprove={(data) => onApprove(data, actions)}
+          // /> */}
+        {/* </PayPalScriptProvider> */}
+        {cookies.name && <h1>Hello {cookies.name}!</h1>}
         <Message content={message} />
         {/* <button className="font-bold w-full border-[1px] border-BLUE py-2 text-BLUE bg-white rounded-2xl"> */}
         {/* Pay With Paypal */}
