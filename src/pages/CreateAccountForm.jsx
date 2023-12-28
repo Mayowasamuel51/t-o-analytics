@@ -71,7 +71,6 @@ const CreateAccountForm = () => {
             if (res.status === 201 || res.status === 200) {
                 setUser(res.data.data)
                 window.localStorage.setItem("user", res.data.data.email)
-               
                 setToken(res.data.token)
                 navigate('/dashboard')
             }

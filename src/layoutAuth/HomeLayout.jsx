@@ -10,7 +10,6 @@ function HomeLayout() {
     const location = useLocation()
     const { COURSES } = useContext(CartItemContext);
     const paths = COURSES.map((course) => `/courses/${course.courseName}`)
-    console.log(paths)
     return (
         <>
             <div>

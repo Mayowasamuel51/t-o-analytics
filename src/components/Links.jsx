@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
@@ -66,6 +67,9 @@ const Links = () => {
     geteductional();
   }, []);
 
+  console.log(data)
+  console.log(educational)
+
   return (
     <>
       <div>
@@ -86,7 +90,7 @@ const Links = () => {
             </div>
           );
         })}
-        <h1>LINKS PAGESsdsacadsd</h1>
+        <h1>LINKS PAGE</h1>
       </div>
     </>
   );
