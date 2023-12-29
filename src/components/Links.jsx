@@ -23,7 +23,7 @@ const Links = () => {
   const [data, setData] = useState([]);
   const [educational, setEducational] = useState([]);
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState("")
 
   // const { splunk, isLoading, error } = useQuery({
   //   queryKey: ["splunk-link", email, ACCESS_TOKEN],
@@ -63,16 +63,19 @@ const Links = () => {
         console.log(response.data.response);
         setData(response.data.response);
         setLoading(false)
-        setError(false)
+        setError("")
       }
     } catch (err) {
       const response = err.response;
-      console.log(err);
+  
+      if (err.message === "Network Error") {
+        setError("Network Error")
+      }
       if (response.status === 404) {
-        setError(true)
+        setError(response.data.message)
         console.log(response.data.message);
       } else if (response.status === 403) {
-        setError(true)
+        setError(response.data.message)
         console.log(response.data.message);
       }
     }
@@ -97,14 +100,15 @@ const Links = () => {
       }
     } catch (err) {
       const response = err.response;
+      console.log(response)
       if (response.status === 404) {
         console.log(response.data.message);
         setLoading(false)
-        setError(true)
+        setError(response.data.message)
       } else if (response.status === 403) {
         console.log(response.data.message);
         setLoading(false)
-        setError(true)
+        setError(response.data.message)
       }
     }
   };
