@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { Toaster, toast } from 'sonner';
 import FetchComments from "../hook/FetchComments";
 import Loader from "./Loader";
+import ServerErrorPage from "./ServerErrorPage";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 
@@ -65,6 +66,8 @@ const SendMessages = () => {
   for (let i = 1; i <= Math.ceil((length) / postsPerPage); i++) {
     pageNumber.push(i)
   }
+
+  if (message?.status === 500) return <ServerErrorPage />
 
   return (
     <div className='p-2 lg:p-5'>

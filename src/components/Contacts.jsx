@@ -2,6 +2,7 @@ import FetchContacts from "../hook/FetchContacts";
 import Loader from "./Loader";
 import { useState } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import ServerErrorPage from "./ServerErrorPage";
 import '@splidejs/react-splide/css';
 
 
@@ -12,6 +13,8 @@ const Contacts = () => {
 
   if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
   if (isLoading) return <Loader />
+  if (data?.status === 500) return <ServerErrorPage />
+  
 
   const lastPostIndex = currentPage * postsPerPage
   const firstPostIndex = lastPostIndex - postsPerPage
