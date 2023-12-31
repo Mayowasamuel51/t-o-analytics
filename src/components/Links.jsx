@@ -18,142 +18,78 @@ const api = import.meta.env.VITE_SPLUNK_SEND;
 const api_educational = import.meta.env.VITE_EDUCATIONAL_SEND;
 
 const Links = () => {
-  const email = localStorage.getItem("user");
-  // const ACCESS_TOKEN = localStorage.getItem('ACCESS_TOKEN')
-  const [data, setData] = useState([]);
-  const [educational, setEducational] = useState([]);
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
+  const email = (localStorage.getItem("user"));
+  const ACCESS_TOKEN = (localStorage.getItem('ACCESS_TOKEN'))
 
-  // const { splunk, isLoading, error } = useQuery({
-  //   queryKey: ["splunk-link", email, ACCESS_TOKEN],
-  //   queryFn: async ({ queryKey }) => {
-  //     const response = await axios.get(`${api}link/${queryKey[1]}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${queryKey[2]}`,
-  //       },
-
-  //     })
-  //     return response
-  //   }
-  // })
-  // console.log(splunk)
-  // const { consulting } = useQuery({
-  //   queryKey: ["educational-consult-link", email, ACCESS_TOKEN],
-  //   queryFn: async ({ queryKey }) => {
-  //     const response = await axios.get(`${api_educational}linkeducational/${queryKey[1]}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${queryKey[2]}`
-  //       }
-  //     })
-  //     return response
-  //   }
-  // })
-  // console.log(consulting)
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`${api}link/${email}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
-        }
-      });
-      setLoading(true)
-      if (response.status === 200 || response.status === 201) {
-        console.log(response.data.response);
-        setData(response.data.response);
-        setLoading(false)
-        setError("")
-      }
-    } catch (err) {
-      const response = err.response;
-  
-      if (err.message === "Network Error") {
-        setError("Network Error")
-      }
-      if (response.status === 404) {
-        setError(response.data.message)
-        console.log(response.data.message);
-      } else if (response.status === 403) {
-        setError(response.data.message)
-        console.log(response.data.message);
-      }
-    }
-  };
-
-  const geteductional = async () => {
-    try {
-      const links = await axios.get(
-        `${api_educational}linkeducational/${email}`
-        , {
+  const { data:splunk, isLoading: isSplunkLoading, error: splunkError } = useQuery({
+    queryKey: ["splunk-link", email, ACCESS_TOKEN],
+    queryFn: async ({ queryKey }) => {
+      try {
+        const response = await axios.get(`${api}link/${queryKey[1]}`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
-          }
-        }
-      );
-      setLoading(true)
-      console.log(links.data.response);
-      if (links.status === 201 || links.status === 200) {
-        setEducational(links.data.response);
-        setLoading(false)
-        setError(false)
-      }
-    } catch (err) {
-      const response = err.response;
-      console.log(response)
-      if (response.status === 404) {
-        console.log(response.data.message);
-        setLoading(false)
-        setError(response.data.message)
-      } else if (response.status === 403) {
-        console.log(response.data.message);
-        setLoading(false)
-        setError(response.data.message)
+            Authorization: `Bearer ${queryKey[2]}`,
+          },
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error.response?.data || 'An error occurred');
       }
     }
-  };
+  })
+  
+  const { data:consulting, isLoading: isConsultingLoading, error: consultingError } = useQuery({
+    queryKey: ["educational-consult-link", email, ACCESS_TOKEN],
+    queryFn: async ({ queryKey }) => {
+      try {
+        const response = await axios.get(`${api_educational}linkeducational/${queryKey[1]}`, {
+          headers: {
+            Authorization: `Bearer ${queryKey[2]}`,
+          },
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error.response?.data || 'An error occurred');
+      }
+    }
+  })
+  // React query is asynchronous so the data is not always accessed immediately so it returns undefined till it has fetched the data
+  console.log("splunk status" ,splunk?.status)
+  console.log("splunk status" ,consulting?.status)
 
-  useEffect(() => {
-    fetchData();
-    geteductional();
-  }, [email]);
-
-  // if (isLoading) return <Loader />
-  // if (error) return <div className="text-base md:text-3xl text-red-500 text-center">Error...</div>;
-  // if (data?.status === 500) return <ServerErrorPage />
+  if (splunkError || consultingError ) return <p className='text-center text-red-500 md:text-3xl font-black'>{splunkError.message || consultingError}</p>
+  if (splunk?.status === 500 || consulting?.status === 500) return <ServerErrorPage />
 
   return (
     <>
       <div className="mx-auto p-2 md:p-10">
-        {(error) && <div className="text-base md:text-3xl text-red-500 text-center">{error}</div>}
-        {(loading) && <Loader />}
+        {(isSplunkLoading || isConsultingLoading) && <Loader />}
         <table className="rounded-md md:rounded-none md:mb-40 w-full table-fixed border-separate border-2 border-black border-spacing-1">
           <thead>
             <tr className="text-left">
-              <th className="border-2 border-black p-2 font-black md:text-2xl">SPLUNK</th>
-              <th className="border-2 border-black p-2 font-black md:text-2xl">EDUCATIONAL CONSULTING</th>
+              <th className="border-2 border-black p-2 font-black text-xs md:text-2xl">SPLUNK</th>
+              <th className="border-2 border-black p-2 font-black text-xs md:text-2xl">EDUCATIONAL CONSULTING</th>
             </tr>
           </thead>
           <tbody className="bg-white">
             <tr>
-              {data.map((x) => {
+              {splunk?.data?.response?.map((x) => {
                 return (
                   <td data-cell="SPLUNK" key={x._id} className="border-2 border-black p-2">
-                    <Link to={x.link} className="underline text-blue-500">{x.link}</Link>
+                    <Link to={x.link} className="underline text-blue-500 line-clamp-1">{x.link}</Link>
                   </td>
                 );
               })}
-               {educational.map((x) => {
+               {consulting?.data?.response?.map((x) => {
                 return (
                   <td data-cell="EDUCATIONAL CONSULTING" key={x._id} className="border-2 border-black p-2">
-                    <Link to={x.link} className="underline text-blue-500">{x.link}</Link>
+                    <Link to={x.link} className="underline text-blue-500 line-clamp-1">{x.link}</Link>
                   </td>
                 );
               })}
             </tr>
           </tbody>
-        </table>
-        {(!data && !educational) && <h1 className="min-h-screenmd:text-2xl text-xl flex justify-center items-center">LINKS PAGE</h1>}
+        </table> 
+        {(!splunk && !consulting) && <h1 className="min-h-screenmd:text-2xl text-xl flex justify-center items-center">LINKS PAGE</h1>}
       </div>
     </>
   );
