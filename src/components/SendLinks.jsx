@@ -100,6 +100,7 @@ const SendLinks = () => {
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
           notify_educational();
+          // setEducational("");
           setTimeout(() => {
             navigate("/ADMIN-DASHBOARD");
           }, 3000);
