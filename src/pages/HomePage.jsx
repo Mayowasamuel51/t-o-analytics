@@ -100,7 +100,7 @@ const HomePage = () => {
             <section className="landing-page px-6 md:px-10 py-60 md:py-32 bg-white min-h-screen">
                 <motion.div  className="grid md:grid-cols-2 items-center gap-10">
                     <motion.div variants={landingContainer} initial="hidden" animate="visible">
-                        <motion.h1 variants={h1} className="my-4 md:my-7 font-semibold md:font-bold text-4xl md:text-5xl">Tech Education for Tomorrow’s Innovators</motion.h1>
+                        <motion.h1 variants={h1} className="my-4 md:my-7 font-semibold md:font-bold text-4xl md:text-5xl LANDING-TEXT">Tech Education for Tomorrow’s Innovators</motion.h1>
                         <motion.p variants={p} className="font-medium md:font-bold text-2xl md:text-xl my-4">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</motion.p>
                         <motion.div variants={buttonContainer} initial="hidden" animate="visible" className="flex gap-2 md:gap-3">
                             <motion.div variants={button}>
@@ -126,7 +126,7 @@ const HomePage = () => {
             </section>
 
             <section className="bg-white">
-                <motion.h1 className="text-center font-black text-2xl md:text-4xl my-4">Why Trust T.O Analytics?</motion.h1>
+                <h1 data-aos-once="true" data-aos-duration="1000" data-aos="fade-up" className="text-center font-black text-2xl md:text-4xl my-4">Why Trust T.O Analytics?</h1>
                 <div className="md:px-10 p-4 overflow-x-hidden">
                     <div className="md:text-left md:pb-10 md:py-2 grid grid-cols-1 md:grid-cols-2 items-center md:gap-20">
                         <motion.div  data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
@@ -189,7 +189,7 @@ const HomePage = () => {
                                     />
                                 </div>
                                 <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
-                                    <p className="font-bold text-white text-lg md:my-4 md:text-3xl">{course.courseName}</p>
+                                    <p className="font-bold text-white text-lg md:my-4 md:text-3xl line-clamp-1 lg:line-clamp-2">{course.courseName}</p>
                                     <p className="my-2 font-bold text-sm h-[40px] md:h-auto">{course.intro}</p>
                                     <p className="line-clamp-2 text-sm md:text-base text-textColor md:max-w-[70%]">
                                         {course.description}

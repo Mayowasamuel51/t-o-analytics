@@ -461,7 +461,7 @@ section.ANIMATE-BG {
 
 /* text animation */
 
-h1.OUR-COURSES, h1.OUR-MISSION, h1.ABOUT-US {
+h1.OUR-COURSES, h1.OUR-MISSION, h1.ABOUT-US, h1.LANDING-TEXT {
   background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.8), #2d2065, #c418ac);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

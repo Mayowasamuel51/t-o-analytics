@@ -2,15 +2,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import * as yup from "yup";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from 'sonner';
 import { useEffect, useState } from "react";
 import FetchTotalSplunkUser from "../hook/FetchTotalSplunkUser";
+
 import FetchTotalEdcationalUser from "../hook/FetchTotalEdcationalUser";
+
 const api_splunk = import.meta.env.VITE_BACKEND_LIVE_SPLUNK;
 const api_educational = import.meta.env.VITE_BACKEND_LIVE_EDUCATIONAL;
 const api_education = import.meta.env.VITE_EDUCATIONAL_GET_TOTAL 
 const SendLinks = () => {
+  const navigate = useNavigate()
   const {data} = FetchTotalSplunkUser()
   const [maindataeductional , setMainDataEducational] = useState([])
   const geteductional = async ()=>{
@@ -34,9 +37,8 @@ const SendLinks = () => {
   const hanldeInput = (e) => {
     setEducational(e.target.value);
   };
-  const notify = () => toast("Splunk Live Session sent to paid  Users!!");
-  const notify_educational = () =>
-    toast("Educational Live Session sent to paid  Users!!");
+  const notify = () => toast.success("Splunk Live Session sent to paid  Users!!");
+  const notify_educational = () => toast.success("Educational Live Session sent to paid  Users!!");
   const schema = yup.object().shape({
     splunk: yup.string().required(),
   });
@@ -66,7 +68,9 @@ const SendLinks = () => {
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
           notify();
-          navigate("/ADMIN-DASHBOARD");
+          setTimeout(() => {
+            navigate("/ADMIN-DASHBOARD");
+          }, 3000);
         }
       })
       .catch((err) => {
@@ -81,6 +85,7 @@ const SendLinks = () => {
   };
   const onSubmitE = (e) => {
     e.preventDefault();
+    if (!educational.trim()) return
     const payload = {
       link: educational,
     };
@@ -95,7 +100,9 @@ const SendLinks = () => {
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
           notify_educational();
-          navigate("/ADMIN-DASHBOARD");
+          setTimeout(() => {
+            navigate("/ADMIN-DASHBOARD");
+          }, 3000);
         }
       })
       .catch((err) => {
@@ -108,15 +115,16 @@ const SendLinks = () => {
         }
       });
   };
+
   useEffect(()=>{
-      geteductional()
+    geteductional()
   }, [])
 
   return (
     <div className="p-2 lg:p-5">
       <div className="mb-4 lg:mb-7">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <ToastContainer />
+          <Toaster position="bottom-center" />
           <label
             htmlFor="splunk-link"
             className="font-bold text-lg lg:text-2xl"
@@ -144,7 +152,7 @@ const SendLinks = () => {
       </div>
       <div>
         <form onSubmit={onSubmitE}>
-          <ToastContainer />
+          <Toaster position="bottom-center" />
           <label htmlFor="edu-link" className="font-bold text-lg lg:text-2xl">
             Educational Consulting
             <input

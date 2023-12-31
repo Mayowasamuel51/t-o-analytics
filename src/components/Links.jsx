@@ -63,7 +63,7 @@ const Links = () => {
     <>
       <div className="mx-auto p-2 md:p-10">
         {(isSplunkLoading || isConsultingLoading) && <Loader />}
-        <table className="rounded-md md:rounded-none md:mb-40 w-full table-fixed border-separate border-2 border-black border-spacing-1">
+        <table className="rounded-md md:rounded-none md:mb-40 w-full table-fixed border-collapse md:border-separate md:border-2 border-black md:border-spacing-1">
           <thead>
             <tr className="text-left">
               <th className="border-2 border-black p-2 font-black text-xs md:text-2xl">SPLUNK</th>
