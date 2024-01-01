@@ -8,7 +8,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
-import FetchComments from "../hook/FetchComments";
+import FetchComments from "../hooks/FetchComments";
 import ServerErrorPage from "./ServerErrorPage";
 import Loader from "./Loader";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -56,14 +56,14 @@ const Links = () => {
   console.log("splunk status" ,splunk?.status)
   console.log("splunk status" ,consulting?.status)
 
-  if (splunkError || consultingError ) return <p className='text-center text-red-500 md:text-3xl font-black'>{splunkError.message || consultingError}</p>
+  if (splunkError || consultingError ) return <p className='text-center text-red-500 md:text-3xl font-black'>{splunkError.message || consultingError.message}</p>
   if (splunk?.status === 500 || consulting?.status === 500) return <ServerErrorPage />
 
   return (
     <>
       <div className="mx-auto p-2 md:p-10">
         {(isSplunkLoading || isConsultingLoading) && <Loader />}
-        <table className="rounded-md md:rounded-none md:mb-40 w-full table-fixed border-collapse md:border-separate md:border-2 border-black md:border-spacing-1">
+        <table className="min-h-screen md:min-h-min rounded-md md:rounded-none md:mb-40 w-full table-fixed border-collapse md:border-separate md:border-2 border-black md:border-spacing-1">
           <thead>
             <tr className="text-left">
               <th className="border-2 border-black p-2 font-black text-xs md:text-2xl">SPLUNK</th>

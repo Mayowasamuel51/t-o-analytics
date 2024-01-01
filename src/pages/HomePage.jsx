@@ -52,6 +52,7 @@ const h1 = {
         x: 0
     }
 }
+
 const p = {
     hidden: {
         opacity: 0,
@@ -126,11 +127,11 @@ const HomePage = () => {
             </section>
 
             <section className="bg-white">
-                <h1 data-aos-once="true" data-aos-duration="1000" data-aos="fade-up" className="text-center font-black text-2xl md:text-4xl my-4">Why Trust T.O Analytics?</h1>
+                <h1 data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" className="text-center font-black text-2xl md:text-4xl my-4">Why Trust T.O Analytics?</h1>
                 <div className="md:px-10 p-4 overflow-x-hidden">
                     <div className="md:text-left md:pb-10 md:py-2 grid grid-cols-1 md:grid-cols-2 items-center md:gap-20">
                         <motion.div  data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
-                            <p className="uppercase font-bold text-BLUE my-2">Learn from industry’s best</p>
+                            <p className="uppercase font-black text-BLUE my-2">Learn from industry’s best</p>
                             <h1 className="font-bold text-2xl md:text-2xl my-2">Experienced Instructors</h1>
                             <p className="font-medium text-base">Our instructors are seasoned professionals with extensive experience in diverse areas of the tech industry. They leverage their deep expertise and real-world project insights to deliver practical, actionable guidance in the classroom.</p>
                         </motion.div>
@@ -143,14 +144,14 @@ const HomePage = () => {
                             <img src={hLearning} alt="" className='w-fit p-14 md:p-0' />
                         </div>
                         <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className='order-1 md:order-2'>
-                            <p className="uppercase font-bold text-BLUE my-2">Fine blend of theory and practice</p>
+                            <p className="uppercase font-black text-BLUE my-2">Fine blend of theory and practice</p>
                             <h1 className="font-bold text-2xl md:text-2xl my-2">Hands-on learning</h1>
                             <p className="font-medium text-base"> Our bootcamp, built around hands-on learning, immerses students in real-world scenarios through projects and practical exercises. This approach helps them gain invaluable experience, develop essential tech skills like problem-solving, collaboration, and critical thinking, and master coding languages like Python by building real-world web applications. Join our bootcamp today and start your journey towards a rewarding tech career.</p>
                         </div>
                     </div>
                     <div className="py-2 grid grid-cols-1 md:grid-cols-2 items-center justify-between md:gap-20">
                         <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
-                            <p className="uppercase font-bold text-BLUE my-2">We put you first</p>
+                            <p className="uppercase font-black text-BLUE my-2">We put you first</p>
                             <h1 className="font-bold text-2xl md:text-2xl my-2">Flexible learning Options</h1>
                             <p className="font-medium text-base">We understand that everyone has different schedules and commitments. That&apos;s why we offer flexible learning options, including part-time and full-time programs, as well as online learning options. This allows students to choose a schedule that works best for them while still receiving high-quality education.</p>
                         </div>
@@ -163,7 +164,7 @@ const HomePage = () => {
                             <img src={guidance} alt="" className='w-fit p-14 md:p-0' />
                         </div>
                         <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className='order-1 md:order-2'>
-                            <p className="uppercase font-bold text-BLUE my-2">From clueless to pro</p>
+                            <p className="uppercase font-black text-BLUE my-2">From clueless to pro</p>
                             <h1 className="font-bold text-2xl md:text-2xl my-2">Career guidance</h1>
                             <p className="font-medium text-base">We provide comprehensive career guidance and support to help students transition into the tech industry. This includes resume building, interview preparation, job search strategies, and networking opportunities. Our goal is to equip students with the necessary skills and resources to succeed in their tech careers.</p>
                         </div>

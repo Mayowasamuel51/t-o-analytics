@@ -5,9 +5,8 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from 'sonner';
 import { useEffect, useState } from "react";
-import FetchTotalSplunkUser from "../hook/FetchTotalSplunkUser";
-
-import FetchTotalEdcationalUser from "../hook/FetchTotalEdcationalUser";
+import FetchTotalSplunkUser from "../hooks/FetchTotalSplunkUser";
+import FetchTotalEdcationalUser from "../hooks/FetchTotalEdcationalUser";
 
 const api_splunk = import.meta.env.VITE_BACKEND_LIVE_SPLUNK;
 const api_educational = import.meta.env.VITE_BACKEND_LIVE_EDUCATIONAL;

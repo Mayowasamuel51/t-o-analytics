@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import FetchContractors from "../hook/FetchContractors"
+import FetchContractors from "../hooks/FetchContractors"
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import ServerErrorPage from './ServerErrorPage';
 import '@splidejs/react-splide/css';

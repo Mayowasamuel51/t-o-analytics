@@ -1,4 +1,4 @@
-import FetchContacts from "../hook/FetchContacts";
+import FetchContacts from "../hooks/FetchContacts";
 import Loader from "./Loader";
 import { useState } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';

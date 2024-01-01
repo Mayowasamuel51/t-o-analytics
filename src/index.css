@@ -459,6 +459,15 @@ section.ANIMATE-BG {
   
 }
 
+h1.stories::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background-color: #2d2065;
+}
+
 /* text animation */
 
 h1.OUR-COURSES, h1.OUR-MISSION, h1.ABOUT-US, h1.LANDING-TEXT {

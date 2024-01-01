@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import LOGO from "../assets/images/logo.jpg";
-import { motion } from 'framer-motion';
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import CartItemContext from '../context/CartItemContext';
 import { useStateContext } from "../context/ContextProvider"
 import { Link, NavLink, useLocation } from "react-router-dom";
@@ -9,13 +9,21 @@ import { FaChevronDown } from "react-icons/fa";
 import { MdOutlineAddShoppingCart } from "react-icons/md"
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
-import FetchAllStudents from '../hook/FetchAllStudents';
+import FetchAllStudents from '../hooks/FetchAllStudents';
 import SearchCourseInput from './SearchCourseInput';
+
+const headerVariant = {
+    visible: { y: 0},
+    hidden: { y: "-100%",
+        transition:{ duration: .35, ease:"easeInOut"}
+    }
+}
 
 
 const NavBar = () => {
     const { data } = FetchAllStudents()
     const [show, setShow] = useState("")
+    const [hidden, setHidden] = useState(false)
     const [subMenu, setSubMenu] = useState(false)
     const [fixed, setFixed] = useState("")
     const location = useLocation()
@@ -59,10 +67,19 @@ const NavBar = () => {
     const displaySubMenu = ()=> {
         setSubMenu(prev=> !prev)
     }
-
+    const { scrollY } = useScroll()
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const previous = scrollY.getPrevious()
+        if (latest > previous && latest > 150) {
+            setHidden(true)
+        }
+        else {
+            setHidden(false)
+        }
+    })
     return (
         <>
-            <header className={`z-[9999] fixed w-[100vw] right-0 left-0 top-0 bg-white px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
+            <motion.header variants={headerVariant} animate={(hidden && !FullScreen) ? "hidden" : "visible"} className={`z-[9999] fixed w-[100vw] right-0 left-0 top-0 bg-white px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
                 <div>
                     <Link to="/">
                         <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[130px]" alt=""/>
@@ -165,7 +182,7 @@ const NavBar = () => {
                         </div>}
                     </div>
                 </div>
-            </header>
+            </motion.header>
         </>
     )
 }

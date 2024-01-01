@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import * as yup from "yup";
 import { Toaster, toast } from 'sonner';
-import FetchComments from "../hook/FetchComments";
+import FetchComments from "../hooks/FetchComments";
 import Loader from "./Loader";
 import ServerErrorPage from "./ServerErrorPage";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
