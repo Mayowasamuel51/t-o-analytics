@@ -6,6 +6,8 @@ import { FaXmark } from "react-icons/fa6";
 import CartItemContext from "../context/CartItemContext";
 import { useStateContext } from "../context/ContextProvider";
 import { Helmet } from 'react-helmet';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const courseName = {
   hidden: {
