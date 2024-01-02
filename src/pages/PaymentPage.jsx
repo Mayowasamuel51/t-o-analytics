@@ -65,13 +65,13 @@ const PaymentPage = () => {
       totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
       const allCourses = cartItem.map((course) => course.courseName);
       if (cartItem.length <= 3) {
-        courseName = cartItem.map((course) => course.courseName).join(", ");
+        courseName = cartItem.map((course) => course.courseName || course.name).join(", ");
       } else {
         const firstCourses = cartItem
           .slice(0, cartItem.length - 1)
-          .map((course) => course.courseName)
+          .map((course) => course.courseName || course.name)
           .join(", ");
-        const lastCourse = cartItem[cartItem.length - 1].courseName;
+        const lastCourse = cartItem[cartItem.length - 1].courseName || cartItem[cartItem.length - 1].name;
         courseName = `${firstCourses} and ${lastCourse}`;
       }
       alert(

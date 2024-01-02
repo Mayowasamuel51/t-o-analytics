@@ -3,7 +3,7 @@ import { FaPaperPlane } from "react-icons/fa";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup";
@@ -11,8 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import FetchComments from "../hooks/FetchComments";
 import ServerErrorPage from "./ServerErrorPage";
 import Loader from "./Loader";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
+
 
 const api = import.meta.env.VITE_SPLUNK_SEND;
 const api_educational = import.meta.env.VITE_EDUCATIONAL_SEND;
@@ -20,7 +19,7 @@ const api_educational = import.meta.env.VITE_EDUCATIONAL_SEND;
 const Links = () => {
   const email = (localStorage.getItem("user"));
   const ACCESS_TOKEN = (localStorage.getItem('ACCESS_TOKEN'))
-
+  const [error, setError] = useState()
   const { data:splunk, isLoading: isSplunkLoading, error: splunkError } = useQuery({
     queryKey: ["splunk-link", email, ACCESS_TOKEN],
     queryFn: async ({ queryKey }) => {
@@ -32,7 +31,8 @@ const Links = () => {
         });
         return response;
       } catch (error) {
-        throw new Error(error.response?.data || 'An error occurred');
+        console.log(error)
+        setError(error?.response?.status)
       }
     }
   })
@@ -48,24 +48,22 @@ const Links = () => {
         });
         return response;
       } catch (error) {
-        throw new Error(error.response?.data || 'An error occurred');
+        console.log(error)
+        setError(error?.response?.status)
       }
     }
   })
-  // React query is asynchronous so the data is not always accessed immediately so it returns undefined till it has fetched the data
-  console.log("splunk status" ,splunk?.status)
-  console.log("consult status" ,consulting?.status)
 
-  console.log("splunk error", splunkError)
-  console.log("consult error", splunkError)
 
-  if (splunkError || consultingError ) return <p className='text-center text-red-500 md:text-3xl font-black'>{splunkError?.message || consultingError?.message}</p>
+  if (error === 404 ) return <p className='min-h-screen text-center text-red-500 md:text-3xl font-black'>You have not paid for any Live Course</p>
   if (splunk?.status === 500 || consulting?.status === 500) return <ServerErrorPage />
+  if (splunkError || consultingError) return <p className='min-h-screen text-center text-red-500 md:text-3xl font-black'>Refresh The Page</p>
 
   return (
     <>
       <div className="mx-auto p-2 md:p-10">
         {(isSplunkLoading || isConsultingLoading) && <Loader />}
+        {(splunk?.data?.response && consulting?.data?.response) && 
         <table className="min-h-screen md:min-h-min rounded-md md:rounded-none md:mb-40 w-full table-fixed border-collapse md:border-separate md:border-2 border-black md:border-spacing-1">
           <thead>
             <tr className="text-left">
@@ -91,7 +89,7 @@ const Links = () => {
               })}
             </tr>
           </tbody>
-        </table> 
+        </table>} 
         {(!splunk && !consulting) && <h1 className="min-h-screenmd:text-2xl text-xl flex justify-center items-center">LINKS PAGE</h1>}
       </div>
     </>
