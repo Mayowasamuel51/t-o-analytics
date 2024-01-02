@@ -54,9 +54,12 @@ const Links = () => {
   })
   // React query is asynchronous so the data is not always accessed immediately so it returns undefined till it has fetched the data
   console.log("splunk status" ,splunk?.status)
-  console.log("splunk status" ,consulting?.status)
+  console.log("consult status" ,consulting?.status)
 
-  if (splunkError || consultingError ) return <p className='text-center text-red-500 md:text-3xl font-black'>{splunkError.message || consultingError.message}</p>
+  console.log("splunk error", splunkError)
+  console.log("consult error", splunkError)
+
+  if (splunkError || consultingError ) return <p className='text-center text-red-500 md:text-3xl font-black'>{splunkError?.message || consultingError?.message}</p>
   if (splunk?.status === 500 || consulting?.status === 500) return <ServerErrorPage />
 
   return (
