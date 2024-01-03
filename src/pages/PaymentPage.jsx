@@ -33,115 +33,85 @@ const PaymentPage = () => {
   let totalFinalPayment;
   let courseName;
   let orderDetail = [];
-  const checkoutfunction = () => {
-    // when users trys to pay only one course it works
-    if (cartItem.length === 1) {
-      const singleCourse = cartItem[0];
-      totalFinalPayment = singleCourse.price;
-      courseName = singleCourse.courseName;
-      orderDetail.push({
-        courseName,
-        totalFinalPayment,
-        completelyPaid: false,
-        isPending: true,
-      });
-      console.log("only one course " + courseName + totalFinalPayment);
-      alert(
-        `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
-      );
-      const data = {
-        studentName: studentName,
-        courseName: courseName,
-        price: totalFinalPayment,
-      };
-      axios
-        .post("https://to-backendapi-v1.vercel.app/api/order", data)
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            alert("working welll");
-          }
-        })
-        .catch((err) => console.log(err.message));
-    } else if (cartItem.length > 1) {
-      totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
-      const allCourses = cartItem.map((course) => course.courseName);
-      if (cartItem.length <= 3) {
-        courseName = cartItem.map((course) => course.courseName || course.name).join(", ");
-      } else {
-        const firstCourses = cartItem
-          .slice(0, cartItem.length - 1)
-          .map((course) => course.courseName || course.name)
-          .join(", ");
-        const lastCourse = cartItem[cartItem.length - 1].courseName || cartItem[cartItem.length - 1].name;
-        courseName = `${firstCourses} and ${lastCourse}`;
-      }
-      alert(
-        `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
-      );
-      const data = {
-        studentName: studentName,
-        courseName: courseName,
-        price: totalFinalPayment,
-      };
-      const cart = [
-        {
-          studentName: studentName,
-          courseName: courseName,
-          price: totalFinalPayment,
-        },
-      ];
-      axios
-        .post("https://to-backendapi-v1.vercel.app/api/order", data)
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            alert("working welll");
-          }
-        })
-        .catch((err) => console.log(err.message));
-      console.log("more than one course" + cartItem);
-    }
-
-    // when users trys to pay many course at once it still works
-    // const totalcart = cartItem.reduce((acc, value) => {
-    //   return acc + value.price
-    // }, 0)
-
-    // console.log(totalcart)
-  };
-  // const createOrder = (data, actions) => {
-  //   const totalPrice = cartItem.reduce((acc, item) => {
-  //     return acc + item.price;
-  //   }, 0);
-
-  //   return actions.order.create({
-  //     purchase_units: [
-  //       {
-  //         amount: {
-  //           value:totalPrice
-  //           // value: "0.1"
+  // const checkoutfunction = () => {
+  //   // when users trys to pay only one course it works
+  //   if (cartItem.length === 1) {
+  //     const singleCourse = cartItem[0];
+  //     totalFinalPayment = singleCourse.price;
+  //     courseName = singleCourse.courseName;
+  //     orderDetail.push({
+  //       courseName,
+  //       totalFinalPayment,
+  //       completelyPaid: false,
+  //       isPending: true,
+  //     });
+  //     console.log("only one course " + courseName + totalFinalPayment);
+  //     alert(
+  //       `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
+  //     );
+  //     const data = {
+  //       studentName: studentName,
+  //       courseName: courseName,
+  //       price: totalFinalPayment,
+  //     };
+  //     axios
+  //       .post("https://to-backendapi-v1.vercel.app/api/order", data)
+  //       .then((res) => {
+  //         if (res.status === 200 || res.status === 201) {
+  //           alert("working welll");
   //         }
-  //       }
-  //     ]
-  //   })
-  // }
-  const orderdata = {
-    courseName: "",
-    studentName: studentName,
-    payment_mode: "Paypal",
-    payment_id: "",
-  };
+  //       })
+  //       .catch((err) => console.log(err.message));
+  //   } else if (cartItem.length > 1) {
+  //     totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
+  //     const allCourses = cartItem.map((course) => course.courseName);
+  //     if (cartItem.length <= 3) {
+  //       courseName = cartItem
+  //         .map((course) => course.courseName || course.name)
+  //         .join(", ");
+  //     } else {
+  //       const firstCourses = cartItem
+  //         .slice(0, cartItem.length - 1)
+  //         .map((course) => course.courseName || course.name)
+  //         .join(", ");
+  //       const lastCourse =
+  //         cartItem[cartItem.length - 1].courseName ||
+  //         cartItem[cartItem.length - 1].name;
+  //       courseName = `${firstCourses} and ${lastCourse}`;
+  //     }
+  //     alert(
+  //       `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
+  //     );
+  //     const data = {
+  //       studentName: studentName,
+  //       courseName: courseName,
+  //       price: totalFinalPayment,
+  //     };
+  //     const cart = [
+  //       {
+  //         studentName: studentName,
+  //         courseName: courseName,
+  //         price: totalFinalPayment,
+  //       },
+  //     ];
+  //     axios
+  //       .post("https://to-backendapi-v1.vercel.app/api/order", data)
+  //       .then((res) => {
+  //         if (res.status === 200 || res.status === 201) {
+  //           alert("working welll");
+  //         }
+  //       })
+  //       .catch((err) => console.log(err.message));
+  //     console.log("more than one course" + cartItem);
+  //   }
 
-  // const onApprove = () => {
-  //   return actions.order.capture().then((details) => {
-  //     console.log(details)
-  //     orderdata.payment_id = details.id
-  //     axios.post(`${api}api/order`, orderdata).then((res) => {
-  //       if (res.status === 201) {
-  //         alert("payment is done")
-  //       }
-  //     }).catch((err) => alert(err.message))
-  //   })
-  // }
+  //   // when users trys to pay many course at once it still works
+  //   // const totalcart = cartItem.reduce((acc, value) => {
+  //   //   return acc + value.price
+  //   // }, 0)
+
+  //   // console.log(totalcart)
+  // };
 
   const initialOptions = {
     "client-id": import.meta.env.VITE_clientId,
@@ -149,129 +119,7 @@ const PaymentPage = () => {
     "disable-funding": "",
     "data-sdk-integration-source": "integrationbuilder_sc",
   };
-  const createOrder = async () => {
-    // always remove the the cart infomation after sending to the backend for payment
 
-    try {
-      if (cartItem.length === 1) {
-        const singleCourse = cartItem[0];
-        totalFinalPayment = singleCourse.price;
-        courseName = singleCourse.courseName;
-
-        orderDetail.push({
-          courseName,
-          totalFinalPayment,
-          completelyPaid: false,
-          isPending: true,
-        });
-        // console.log("only one course " + courseName + totalFinalPayment);
-        // alert(
-        //   `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
-        // );
-      } else if (cartItem.length > 1) {
-        totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
-        const allCourses = cartItem.map((course) => course.courseName);
-        if (cartItem.length <= 3) {
-          courseName = cartItem.map((course) => course.courseName).join(", ");
-        } else {
-          const firstCourses = cartItem
-            .slice(0, cartItem.length - 1)
-            .map((course) => course.courseName)
-            .join(", ");
-          const lastCourse = cartItem[cartItem.length - 1].courseName;
-          courseName = `${firstCourses} and ${lastCourse}`;
-        }
-        // alert(
-        //   `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
-        // );
-        // console.log("more than one course" + cartItem);
-      }
-      const response = await fetch(`${api}/api/orders`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        // use the "body" param to optionally pass additional order information
-        // like product ids and quantities
-        // grab the courseName , coursePrice , studentgmail,
-        // body: JSON.stringify({
-        //   cart: [
-        //     {
-        //       ...totalFinalPayment,
-        //       courseName,
-        //     },
-        //   ],
-        // }),
-        body: JSON.stringify({
-          cart: [
-            {
-              studentName: studentName,
-              courseName: courseName,
-              price: totalFinalPayment,
-            },
-          ],
-        }),
-      });
-
-      const orderData = await response.json();
-      if (orderData.id) {
-        return orderData.id;
-      } else {
-        const errorDetail = orderData?.details?.[0];
-        const errorMessage = errorDetail
-          ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
-          : JSON.stringify(orderData);
-
-        throw new Error(errorMessage);
-      }
-    } catch (error) {
-      console.error(error.message);
-      setMessage(`Could not initiate PayPal Checkout...${error}`);
-    }
-  };
-
-  const onApprove = async (data, actions) => {
-    try {
-      const response = await fetch(`${api}api/orders/${data.orderID}/capture`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const orderData = await response.json();
-      // Three cases to handle:
-      //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-      //   (2) Other non-recoverable errors -> Show a failure message
-      //   (3) Successful transaction -> Show confirmation or thank you message
-
-      const errorDetail = orderData?.details?.[0];
-
-      if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
-        // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-        // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
-        return actions.restart();
-      } else if (errorDetail) {
-        // (2) Other non-recoverable errors -> Show a failure message
-        throw new Error(`${errorDetail.description} (${orderData.debug_id})`);
-      } else {
-        // (3) Successful transaction -> Show confirmation or thank you message
-        // Or go to another URL:  actions.redirect('thank_you.html');
-        const transaction = orderData.purchase_units[0].payments.captures[0];
-        setMessage(
-          `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`
-        );
-        console.log(
-          "Capture result",
-          orderData,
-          JSON.stringify(orderData, null, 2)
-        );
-      }
-    } catch (error) {
-      console.error(error);
-      setMessage(`Sorry, your transaction could not be processed...${error}`);
-    }
-  };
   const handleSetCookie = () => {
     setCookie("paypal", "paypal", {
       // path: "/",
@@ -293,6 +141,7 @@ const PaymentPage = () => {
     <section className="min-h-screen payment-page">
       <div className="p-5 md:p-10">
         <form action="" target="paypal"></form>
+
         <button>
           {/* <link href="https://py.pl/4uHV0Hd3Ctx">Buynow</link> */}
         </button>
@@ -303,8 +152,8 @@ const PaymentPage = () => {
           <p className="my-2 text-slate-500 uppercase">billing Address</p>
         </div>
         <h1 className="font-bold md:text-lg my-2">PAYMENT METHOD</h1>
-        <button onClick={handleSetCookie}>Set Cookie</button>
-        <h2>Third-Party Cookies enabled? {status ? "Yes" : "No"}</h2>
+        {/* <button onClick={handleSetCookie}>Set Cookie</button> */}
+        {/* <h2>Third-Party Cookies enabled? {status ? "Yes" : "No"}</h2> */}
         <PayPalScriptProvider options={initialOptions}>
           <PayPalButtons
             style={{
@@ -312,6 +161,7 @@ const PaymentPage = () => {
               layout: "vertical",
             }}
             createOrder={async () => {
+              // when users trys to pay only one course it works
               if (cartItem.length === 1) {
                 const singleCourse = cartItem[0];
                 totalFinalPayment = singleCourse.price;
@@ -322,52 +172,37 @@ const PaymentPage = () => {
                   completelyPaid: false,
                   isPending: true,
                 });
-                console.log(
-                  "only one course " + courseName + totalFinalPayment
-                );
+                // console.log(
+                //   "only one course " + courseName + totalFinalPayment
+                // );
                 // alert(
                 //   `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
                 // );
-                const data = {
-                  studentName: studentName,
-                  courseName: courseName,
-                  price: totalFinalPayment,
-                };
               } else if (cartItem.length > 1) {
                 totalFinalPayment = cartItem.reduce(
                   (acc, cur) => acc + cur.price,
-                  0
+                0
                 );
                 const allCourses = cartItem.map((course) => course.courseName);
                 if (cartItem.length <= 3) {
                   courseName = cartItem
-                    .map((course) => course.courseName)
+                    .map((course) => course.courseName || course.name)
                     .join(", ");
                 } else {
                   const firstCourses = cartItem
                     .slice(0, cartItem.length - 1)
-                    .map((course) => course.courseName)
+                    .map((course) => course.courseName || course.name)
                     .join(", ");
-                  const lastCourse = cartItem[cartItem.length - 1].courseName;
+                  const lastCourse =
+                    cartItem[cartItem.length - 1].courseName ||
+                    cartItem[cartItem.length - 1].name;
                   courseName = `${firstCourses} and ${lastCourse}`;
                 }
                 // alert(
                 //   `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
                 // );
-                const data = {
-                  studentName: studentName,
-                  courseName: courseName,
-                  price: totalFinalPayment,
-                };
-                const cart = [
-                  {
-                    studentName: studentName,
-                    courseName: courseName,
-                    price: totalFinalPayment,
-                  },
-                ];
 
-                console.log("more than one course" + cartItem);
+                // console.log("more than one course" + cartItem);
               }
 
               try {
@@ -390,18 +225,14 @@ const PaymentPage = () => {
                     ],
                   }),
                 });
-
                 const orderData = await response.json();
-
                 if (orderData.id) {
-
                   return orderData.id;
                 } else {
                   const errorDetail = orderData?.details?.[0];
                   const errorMessage = errorDetail
                     ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
                     : JSON.stringify(orderData);
-
                   throw new Error(errorMessage);
                 }
               } catch (error) {
@@ -420,17 +251,15 @@ const PaymentPage = () => {
                     },
                   }
                 );
-                // clear the cart away to be empty
-              localStorage.removeItem('c')
 
                 const orderData = await response.json();
+                // clear the cart away to be empty
+                localStorage.removeItem("COURSE-CART");
                 // Three cases to handle:
                 //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
                 //   (2) Other non-recoverable errors -> Show a failure message
                 //   (3) Successful transaction -> Show confirmation or thank you message
-
                 const errorDetail = orderData?.details?.[0];
-
                 if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
                   // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
                   // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
@@ -463,30 +292,9 @@ const PaymentPage = () => {
             }}
           />
         </PayPalScriptProvider>
-        {/* <PayPalScriptProvider deferLoading={true} options={initialOptions}>
-          <PayPalButtons
-            to="paypal"
-            name={cookies.paypal}
-            onChange={onChange}
-            style={{ layout: "horizontal", shape: "pill" }}
-            createOrder={(data, actions) => createOrder(data, actions)}
-            onApprove={(data) => onApprove(data, actions)}
-          /> */}
 
-        {/* <PayPalButtons */}
-        {/* //   style={{ */}
-        {/* //     shape: "rect",
-          //     layout: "vertical",
-          //   }}
-          //   createOrder={(data, actions) => createOrder(data, actions)}
-          //   onApprove={(data) => onApprove(data, actions)}
-          // /> */}
-        {/* </PayPalScriptProvider> */}
         {cookies.name && <h1>Hello {cookies.name}!</h1>}
         <Message content={message} />
-        {/* <button className="font-bold w-full border-[1px] border-BLUE py-2 text-BLUE bg-white rounded-2xl"> */}
-        {/* Pay With Paypal */}
-        {/* </button> */}
 
         <h1 className="font-bold md:text-lg my-6">Order Details</h1>
         <div className="md:col-span-2">
@@ -541,7 +349,7 @@ const PaymentPage = () => {
         </div>
         <div>
           <button
-            onClick={checkoutfunction}
+            // onClick={checkoutfunction}
             className="duration-300 bg-BLUE hover:bg-white border-2 border-BLUE hover:text-BLUE w-full text-white font-bold py-3 rounded-xl"
           >
             COMPLETE CHECKOUT

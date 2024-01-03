@@ -65,9 +65,9 @@ const AboutPage = () => {
                     <title>About </title>
                 <meta name="keywords" content="splunk , photography, stock , Linux, Data Science"/>
                 <link rel="canonical" href="https://www.to-analytics.com" />
-                <meta name="description" content={"To-Analytics is an empowering educational platform dedicated to fostering career growth. Our diverse range of affordable courses spans fields such as Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more. Explore and elevate your skill set with To-Analytics, where learning meets opportunity."} />
+                <meta name="description" content={"To-Analytics is an educational platform that offers affordable courses across a wide array of fields, including Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more. Our courses are designed to foster career advancement and help you achieve your professional goals."} />
 
-                <meta property="og:description" content={"to-analytics is an educational platform empowering career growth through affordable courses in diverse fields like Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more."} />
+                <meta property="og:description" content={"To-Analytics is an educational platform that offers affordable courses across a wide array of fields, including Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more. Our courses are designed to foster career advancement and help you achieve your professional goals."} />
             </Helmet>
                 <motion.div variants={container} initial="hidden" animate="visible" className="md:py-8 bg-white z-20">
                     <motion.h1 variants={h1} className="OUR-MISSION md:font-black my-4 md:my-8 font-bold text-3xl md:text-4xl">Our Mission</motion.h1>

@@ -16,58 +16,6 @@ import Loader from "./Loader";
 const api = import.meta.env.VITE_SPLUNK_SEND;
 const api_educational = import.meta.env.VITE_EDUCATIONAL_SEND;
 
-<<<<<<< HEAD
-  const geteductional = async () => {
-    try {
-      const link = await axios.get(
-        `${api_educational}linkeducational/${email}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
-          },
-        }
-      );
-      console.log(link.data.response);
-      if (link.status === 201 || link.status === 200) {
-        setEducational(link.data.response);
-      }
-    } catch (err) {
-      const response = err.response;
-      if (response.status === 404) {
-        console.log(response.data.message);
-      } else if (response.status === 403) {
-        console.log(response.data.message);
-      }
-    }
-  };
-
-
-  // fetchTechNews();
-  useEffect(() => {
-    // fetchTechNews();
-    // axios
-    //   .get(`${api}link/${email}`, {
-    //     headers: {
-    //       Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       console.log(res.data.response);
-    //       setData(res.data.response);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     const response = err.response;
-    //     if (response.status === 404) {
-    //       console.log(response.data.message);
-    //     } else if (response.status === 403) {
-    //       console.log(response.data.message);
-    //     }
-    //   });
-    // geteductional();
-  }, []);
-=======
 const Links = () => {
   const email = (localStorage.getItem("user"));
   const ACCESS_TOKEN = (localStorage.getItem('ACCESS_TOKEN'))
@@ -110,7 +58,6 @@ const Links = () => {
   if (error === 404 ) return <p className='min-h-screen text-center text-red-500 md:text-3xl font-black'>You have not paid for any Live Course</p>
   if (splunk?.status === 500 || consulting?.status === 500) return <ServerErrorPage />
   if (splunkError || consultingError) return <p className='min-h-screen text-center text-red-500 md:text-3xl font-black'>Refresh The Page</p>
->>>>>>> 12a8ba075f3fe8c672679782c771d1becb742363
 
   return (
     <>

@@ -203,7 +203,7 @@ const router = createBrowserRouter([
           },
         ]
       },
-      {
+    {
         path: "allStudents",
         element: <AllStudents />
       },
