@@ -22,7 +22,8 @@ const BlogPage = () => {
     queryKey: ["someOtherBlogs", window.location.href],
     queryFn: ()=> axios.get("https://to-backendapi-v1.vercel.app/api/news")
   })
-  console.log(blog?.data?.response?.sources)
+  console.log(data?.data)
+  // console.log(blog?.data?.response?.sources)
   const isInView = useInView(lastBlogRef, { once: true })
 
   useEffect(() => {
