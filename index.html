@@ -31,11 +31,11 @@
       document.cookie =
         "myCookie=paypal;domain=www.to-analytics.com;  SameSite=None; Secure; Partitioned;";
       //  document.cookie = "myCookie=paypal; SameSite=None; Secure";
-      console.log("okay");
+      // console.log("okay");
       /// try to make the cookies part
       if (document.cookie && document.cookie !== "paypal") {
         var ca = document.cookie.split(";");
-        console.log(ca);
+        // console.log(ca);
         ca.forEach((x) => {
           var c = x.substring(0, x.indexOf("="));
           document.cookie = c + "=;expires=-1";

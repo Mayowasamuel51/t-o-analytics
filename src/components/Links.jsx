@@ -22,11 +22,11 @@ const Links = () => {
   const geteductional = async () => {
     try {
       const link = await axios.get(
-        `${api_educational}linkeducational/${email}`
-        ,{
-          headers:{
-            Authorization:`Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
-          }
+        `${api_educational}linkeducational/${email}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
+          },
         }
       );
       console.log(link.data.response);
@@ -42,28 +42,32 @@ const Links = () => {
       }
     }
   };
+
+
+  // fetchTechNews();
   useEffect(() => {
-    axios
-      .get(`${api}link/${email}`,{
-        headers:{
-          Authorization:`Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
-        }
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res.data.response);
-          setData(res.data.response);
-        }
-      })
-      .catch((err) => {
-        const response = err.response;
-        if (response.status === 404) {
-          console.log(response.data.message);
-        } else if (response.status === 403) {
-          console.log(response.data.message);
-        }
-      });
-    geteductional();
+    // fetchTechNews();
+    // axios
+    //   .get(`${api}link/${email}`, {
+    //     headers: {
+    //       Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     if (res.status === 200) {
+    //       console.log(res.data.response);
+    //       setData(res.data.response);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     const response = err.response;
+    //     if (response.status === 404) {
+    //       console.log(response.data.message);
+    //     } else if (response.status === 403) {
+    //       console.log(response.data.message);
+    //     }
+    //   });
+    // geteductional();
   }, []);
 
   return (

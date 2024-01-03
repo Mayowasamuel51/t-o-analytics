@@ -4,17 +4,19 @@ import { Link, Navigate } from "react-router-dom";
 import { ReactDOM } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from "axios";
+
 const api = import.meta.env.VITE_BACKEND_PAY;
 import CartItemContext from "../context/CartItemContext";
 import { useStateContext } from "../context/ContextProvider";
 import { useThirdPartyCookieCheck } from "../useThirdPartyCookieCheck";
 import { useCookies } from "react-cookie";
+
 const PaymentPage = () => {
   const [cookies, setCookie] = useCookies(["paypal"]);
 
   function onChange(newName) {
     setCookie("paypal", newName);
-    console.log(cookies);
+    // console.log(cookies);
   }
   useEffect(() => {
     document.cookie =
@@ -313,30 +315,89 @@ const PaymentPage = () => {
               layout: "vertical",
             }}
             createOrder={async () => {
-              try {
-                const response = await fetch(
-                  "http://localhost:8000/api/orders",
-                  {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    // use the "body" param to optionally pass additional order information
-                    // like product ids and quantities
-                    body: JSON.stringify({
-                      cart: [
-                        {
-                          id: "YOUR_PRODUCT_ID",
-                          quantity: "YOUR_PRODUCT_QUANTITY",
-                        },
-                      ],
-                    }),
-                  }
+              if (cartItem.length === 1) {
+                const singleCourse = cartItem[0];
+                totalFinalPayment = singleCourse.price;
+                courseName = singleCourse.courseName;
+                orderDetail.push({
+                  courseName,
+                  totalFinalPayment,
+                  completelyPaid: false,
+                  isPending: true,
+                });
+                console.log(
+                  "only one course " + courseName + totalFinalPayment
                 );
+                // alert(
+                //   `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
+                // );
+                const data = {
+                  studentName: studentName,
+                  courseName: courseName,
+                  price: totalFinalPayment,
+                };
+              } else if (cartItem.length > 1) {
+                totalFinalPayment = cartItem.reduce(
+                  (acc, cur) => acc + cur.price,
+                  0
+                );
+                const allCourses = cartItem.map((course) => course.courseName);
+                if (cartItem.length <= 3) {
+                  courseName = cartItem
+                    .map((course) => course.courseName)
+                    .join(", ");
+                } else {
+                  const firstCourses = cartItem
+                    .slice(0, cartItem.length - 1)
+                    .map((course) => course.courseName)
+                    .join(", ");
+                  const lastCourse = cartItem[cartItem.length - 1].courseName;
+                  courseName = `${firstCourses} and ${lastCourse}`;
+                }
+                // alert(
+                //   `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
+                // );
+                const data = {
+                  studentName: studentName,
+                  courseName: courseName,
+                  price: totalFinalPayment,
+                };
+                const cart = [
+                  {
+                    studentName: studentName,
+                    courseName: courseName,
+                    price: totalFinalPayment,
+                  },
+                ];
+
+                console.log("more than one course" + cartItem);
+              }
+
+              try {
+                const response = await fetch(`${api}orders`, {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  // use the "body" param to optionally pass additional order information
+                  // like product ids and quantities
+                  body: JSON.stringify({
+                    cart: [
+                      {
+                        studentName: studentName,
+                        courseName: courseName,
+                        price: totalFinalPayment,
+                        id: "YOUR_PRODUCT_ID",
+                        quantity: "YOUR_PRODUCT_QUANTITY",
+                      },
+                    ],
+                  }),
+                });
 
                 const orderData = await response.json();
 
                 if (orderData.id) {
+
                   return orderData.id;
                 } else {
                   const errorDetail = orderData?.details?.[0];
@@ -354,7 +415,7 @@ const PaymentPage = () => {
             onApprove={async (data, actions) => {
               try {
                 const response = await fetch(
-                  `http://localhost:8000/api/orders/${data.orderID}/capture`,
+                  `${api}/orders/${data.orderID}/capture`,
                   {
                     method: "POST",
                     headers: {
@@ -362,6 +423,8 @@ const PaymentPage = () => {
                     },
                   }
                 );
+                // clear the cart away to be empty
+              localStorage.removeItem('c')
 
                 const orderData = await response.json();
                 // Three cases to handle:
