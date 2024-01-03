@@ -227,6 +227,7 @@ const PaymentPage = () => {
                 });
                 const orderData = await response.json();
                 if (orderData.id) {
+ 
                   return orderData.id;
                 } else {
                   const errorDetail = orderData?.details?.[0];
@@ -253,6 +254,7 @@ const PaymentPage = () => {
                 );
 
                 const orderData = await response.json();
+                alert("Payment Successfully")
                 // clear the cart away to be empty
                 localStorage.removeItem("COURSE-CART");
                 // Three cases to handle:
