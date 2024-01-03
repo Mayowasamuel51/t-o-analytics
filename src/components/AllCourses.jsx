@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-// import { LazyLoadImage } from 'react-lazy-load-image-component';
-// import 'react-lazy-load-image-component/src/effects/blur.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import COURSES from "../coursesAPI/api"
 import { useStateContext } from "../context/ContextProvider"
 import { motion } from "framer-motion";
+import { LandingSpike } from "./BgDesigns";
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -54,11 +55,11 @@ const AllCourses = () => {
               data-aos-duration="5000"
               data-aos="fade-up"
             >
-              <div className=" rounded-tr-2xl rounded-tl-2xl">
-                <img
+              <div className="rounded-tr-2xl rounded-tl-2xl">
+                <LazyLoadImage
                   src={course.image}
                   className="rounded-tr-2xl rounded-tl-2xl w-full h-[200px] object-cover"
-                  alt=""
+                  alt={`Image for ${course.courseName} course`}
                 />
               </div>
               <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">

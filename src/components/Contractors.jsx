@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import FetchContractors from "../hook/FetchContractors"
+import FetchContractors from "../hooks/FetchContractors"
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import ServerErrorPage from './ServerErrorPage';
 import '@splidejs/react-splide/css';
 import moment from "moment";
 import Loader from "./Loader"
@@ -8,10 +9,11 @@ import Loader from "./Loader"
 const Contractors = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
-  const { data, isLoading, error } = FetchContractors()
+  const { data, isLoading, error } = FetchContractors();
 
   if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
   if (isLoading) return <Loader />
+  if (data?.status === 500) return <ServerErrorPage />
 
   const lastPostIndex = currentPage * postsPerPage
   const firstPostIndex = lastPostIndex - postsPerPage

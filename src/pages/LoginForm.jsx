@@ -16,6 +16,7 @@ import { app } from "../../firebase.config";
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { useStateContext } from '../context/ContextProvider';
 const api = import.meta.env.VITE_BACKEND_API
+
 const formVariant = {
     initial: {
         opacity: 0
@@ -57,13 +58,11 @@ const LoginForm = () => {
                     }
                 }).then((res) => {
                     if (res.status === 201 || res.status === 200) {
-                      
                         settempToken(res.data.token)
                         settempName(res.data.email)
-                    
                         window.localStorage.setItem("ACCESS_TOKEN", res.data.token)
-                         window.localStorage.setItem("user", res.data.email)
-                         navigate('/dashboard')
+                        window.localStorage.setItem("user", res.data.email)
+                        navigate('/dashboard')
                         setToken(res.data.token)
                     }
                 }).catch((err) => notifyfail())
@@ -100,20 +99,20 @@ const LoginForm = () => {
                 setUser(res.data.data)
                 console.log(res.data.token)
                 window.localStorage.setItem("user", res.data.data.email)
-                navigate('/dashboard')
                 setToken(res.data.token)
+                navigate('/dashboard')
             }
         }).catch(err => {
             const response = err.response
+            console.log(err)
+            console.log(err.response)
             if (response.status === 401) {
                 setError(response.data.message)
             } else if (response.status === 403) {
                 setCheckPassword(response.data.message)
                 setError(response.data.message)
             }
-
         })
-
     }
     
     return (
@@ -153,7 +152,7 @@ const LoginForm = () => {
                 <div className='login-options flex flex-col gap-3 font-medium'>
                     <button onClick={loginwihGoogle} className='flex items-center justify-center gap-2 border-[1px] border-black rounded-3xl py-2 hover:bg-black hover:text-white duration-300'><img src={GOOGLE} alt="" className='w-5' />Continue with Google</button>
                 </div>
-                <p className="text-sm md:text-base mt-4 font-semibold ">Don't have an account? <Link className="underline underline-offset-2 text-BLUE" to="/createAccount">Create Account</Link></p>
+                <p className="text-sm md:text-base mt-4 font-semibold ">Don&apos;t have an account? <Link className="underline underline-offset-2 text-BLUE" to="/createAccount">Create Account</Link></p>
             </motion.div>
         </section>
     )

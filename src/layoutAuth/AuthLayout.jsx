@@ -43,7 +43,8 @@ function AuthLayout() {
             {
                 location.pathname === "/dashboard" ||
                 location.pathname === "/dashboard/makePayment" ||
-                location.pathname === "/dashboard/comment"
+                location.pathname === "/dashboard/comment" ||
+                location.pathname === "/dashboard/links"
                 ? <Footer black="bg-black text-white" /> : <Footer />
             }
         </>

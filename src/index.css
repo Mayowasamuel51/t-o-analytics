@@ -5,6 +5,7 @@
 
 body {
   font-family: "Plus Jakarta Sans", sans-serif;
+  scroll-behavior: smooth;
 }
 
 /* COURSES IMAGES DIMENSION */
@@ -82,9 +83,6 @@ div.mobile-landingDIV {
   font-weight: 900;
 }
 
-nav {
-  background: #fff;
-}
 
 nav.active {
   height: 100vh;
@@ -364,8 +362,8 @@ div.alert-msg svg:first-child {
     opacity: 0;
     line-height: 30px;
     transition: all 300ms ease-in-out;
+    background-color: #fff;
   }
-
   nav.navlinks {
     width: 100%;
   }
@@ -459,9 +457,18 @@ section.ANIMATE-BG {
   
 }
 
+h1.stories::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background-color: #2d2065;
+}
+
 /* text animation */
 
-h1.OUR-COURSES, h1.OUR-MISSION, h1.ABOUT-US {
+h1.OUR-COURSES, h1.OUR-MISSION, h1.ABOUT-US, h1.LANDING-TEXT {
   background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.8), #2d2065, #c418ac);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -480,3 +487,37 @@ h1.OUR-COURSES, h1.OUR-MISSION, h1.ABOUT-US {
   75% {background-position: center;}
   100% {background-position: left;}
 }
+
+div.shape-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  filter: blur(50px);
+}
+
+div.shape-spike {
+  width: 80vw;
+  aspect-ratio: 1/1;
+  clip-path: polygon(25% 0%, 48% 100%, 75% 0, 33% 44%, 0 100%, 10% 45%);
+  opacity: 0.3;
+  background: linear-gradient(90deg, #c418ac, #2d2065);
+}
+
+div.shape-triangle-left {
+  position: absolute;
+  width: 10vw;
+  aspect-ratio: 1/1;
+  clip-path: polygon(100% 52%, 0 0, 0 100%);
+  opacity: 0.5;
+  background: linear-gradient(to right, rgb(251, 113, 133), rgb(217, 70, 239), rgb(99, 102, 241));
+}
+
+div.shape-triangle-right {
+  position: absolute;
+  width: 10vw;
+  aspect-ratio: 1/1;
+  clip-path: polygon(0 51%, 100% 0, 100% 89%);
+  opacity: 0.5;
+  background: linear-gradient(to right, rgb(251, 113, 133), rgb(217, 70, 239), rgb(99, 102, 241));
+}
+

@@ -39,7 +39,7 @@ const AdminLoginForm = () => {
             }
         }).then((res) => {
             if (res.status === 201 || res.status === 200) {
-                window.localStorage.setItem("user", res.data.response.email)
+                window.localStorage.setItem("ADMIN", res.data.response.email)
                 navigate('/ADMIN-DASHBOARD')
                 setToken(res.data.token)
                 console.log(res.data.token)

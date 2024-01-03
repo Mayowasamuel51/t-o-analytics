@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FetchMessage from "../hook/FetchMessage"
+import FetchMessage from "../hooks/FetchMessage"
 import { FaMessage, FaXmark } from "react-icons/fa6";
 import { motion } from "framer-motion"
 

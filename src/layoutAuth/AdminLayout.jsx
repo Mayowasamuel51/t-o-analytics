@@ -38,10 +38,8 @@ const AdminLayout = () => {
         showNav(prev=> !prev)
     }
     if (!token) {
-        // return <Navigate to="/admin_LOGIN" />
         return <Navigate to="/" />
-    }
-    
+    }   
     return (
         <>
             <div className="grid grid-cols-1 lg:grid-cols-5 lg:min-h-screen">

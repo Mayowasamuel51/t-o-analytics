@@ -5,6 +5,9 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { Toaster, toast } from 'sonner';
 import { useNavigate } from "react-router-dom"
+
+import { useMutation } from "@tanstack/react-query";
+
 const api_comment = import.meta.env.VITE_BACKEND_C
 
 const StudentCommentPage = () => {
@@ -53,7 +56,7 @@ const StudentCommentPage = () => {
   }
 
   return (
-    <div className='p-2'>
+    <div className='p-2 px-5 md:px-10'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Toaster position="top-right" />
         <textarea  {...register("comment", { required: true })} className='p-2 w-full border-[1px] border-black' placeholder='Type your Comments' name="comment" id="" cols="30" rows="10"></textarea><p className='text-red-600'>{errors.comment?.message}</p>

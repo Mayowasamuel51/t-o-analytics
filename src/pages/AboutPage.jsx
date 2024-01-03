@@ -5,7 +5,9 @@ import about2 from "../assets/images/about2.jpg"
 import about3 from "../assets/images/about3.png"
 import about4 from "../assets/images/about4.png"
 import client from "../assets/images/client.png"
-import { motion, useScroll, useInView, backInOut } from "framer-motion"
+import { motion, useScroll, useInView, backInOut } from "framer-motion";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const container = {
     hidden: { opacity: 1, scale: 0 },
@@ -76,10 +78,18 @@ const AboutPage = () => {
             <motion.section ref={targetRef} className="relative z-10 px-5 py-14 md:px-10 bg-white font-bold">
                 <div className="grid gap-10 grid-cols-1 md:grid-cols-2 items-center">
                     <motion.div variants={container} initial="hidden" animate="visible" className="grid grid-cols-2 gap-3 relative">
-                        <motion.img variants={image} src={about1} className="rounded-xl" alt="" />
-                        <motion.img variants={image} src={about2} className="rounded-xl" alt="" />
-                        <motion.img variants={image} src={about3} className="rounded-xl" alt="" />
-                        <motion.img variants={image} src={about4} className="rounded-xl" alt="" />
+                        <motion.div variants={image}>
+                            <LazyLoadImage effect="blur" src={about1} className="rounded-xl" alt="" />
+                        </motion.div>
+                        <motion.div variants={image}>
+                            <LazyLoadImage effect="blur" src={about2} className="rounded-xl" alt="" />
+                        </motion.div>
+                        <motion.div variants={image}>
+                            <LazyLoadImage effect="blur" src={about3} className="rounded-xl" alt="" />
+                        </motion.div>
+                        <motion.div variants={image}>
+                            <LazyLoadImage effect="blur" src={about4} className="rounded-xl" alt="" />
+                        </motion.div>
                     </motion.div>
                     <motion.div>
                         <h1 className="ABOUT-US my-5 font-black text-3xl md:text-4xl">About Us</h1>

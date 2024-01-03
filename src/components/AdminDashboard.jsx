@@ -1,7 +1,7 @@
 import { FaUserCheck } from "react-icons/fa6";
 import { BsTruck } from "react-icons/bs";
 import StudentTable from "./StudentTable";
-import FetchAllStudents from "../hook/FetchAllStudents";
+import FetchAllStudents from "../hooks/FetchAllStudents";
 
 const AdminDashboard = () => {
     const {data} = FetchAllStudents()

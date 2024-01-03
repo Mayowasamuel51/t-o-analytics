@@ -13,7 +13,6 @@ import { useCookies } from "react-cookie";
 
 const PaymentPage = () => {
   const [cookies, setCookie] = useCookies(["paypal"]);
-
   function onChange(newName) {
     setCookie("paypal", newName);
     // console.log(cookies);
@@ -67,13 +66,13 @@ const PaymentPage = () => {
       totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
       const allCourses = cartItem.map((course) => course.courseName);
       if (cartItem.length <= 3) {
-        courseName = cartItem.map((course) => course.courseName).join(", ");
+        courseName = cartItem.map((course) => course.courseName || course.name).join(", ");
       } else {
         const firstCourses = cartItem
           .slice(0, cartItem.length - 1)
-          .map((course) => course.courseName)
+          .map((course) => course.courseName || course.name)
           .join(", ");
-        const lastCourse = cartItem[cartItem.length - 1].courseName;
+        const lastCourse = cartItem[cartItem.length - 1].courseName || cartItem[cartItem.length - 1].name;
         courseName = `${firstCourses} and ${lastCourse}`;
       }
       alert(
@@ -292,7 +291,7 @@ const PaymentPage = () => {
   if (!token) return <Navigate to="/" />;
   return (
     <section className="min-h-screen payment-page">
-      <div className="p-2 md:p-10">
+      <div className="p-5 md:p-10">
         <form action="" target="paypal"></form>
         <button>
           {/* <link href="https://py.pl/4uHV0Hd3Ctx">Buynow</link> */}
@@ -300,12 +299,10 @@ const PaymentPage = () => {
 
         <Link to={"https://py.pl/4uHV0Hd3Ctx"}>Buy now</Link>
         <div>
-          <h1 className="font-bold md:text-xl">Checkout</h1>
-          <p className="my-5 text-slate-500">billing Address</p>
+          <h1 className="font-bold md:text-2xl">Checkout</h1>
+          <p className="my-2 text-slate-500 uppercase">billing Address</p>
         </div>
-
-        <h1 className="font-bold md:text-lg my-6">PAYMENT METHOD</h1>
-
+        <h1 className="font-bold md:text-lg my-2">PAYMENT METHOD</h1>
         <button onClick={handleSetCookie}>Set Cookie</button>
         <h2>Third-Party Cookies enabled? {status ? "Yes" : "No"}</h2>
         <PayPalScriptProvider options={initialOptions}>
@@ -495,19 +492,19 @@ const PaymentPage = () => {
         <div className="md:col-span-2">
           {cartItem.map((item) => (
             <div key={item.id} className="py-4 px-2">
-              <div className="flex items-start gap-2 md:gap-10">
+              <div className="flex items-start gap-2 md:gap-6">
                 <div>
                   {item.image ? (
                     <img
                       src={item.image}
-                      className="w-14 aspect-square object-cover"
+                      className="w-12 aspect-square object-cover rounded-md"
                       alt=""
                     />
                   ) : (
-                    <div className="w-14 aspect-square bg-BLUE"></div>
+                    <div className="w-12 aspect-square bg-BLUE rounded-md"></div>
                   )}
                 </div>
-                <div className="grow-[3]">
+                <div className="flex-1">
                   <p className="font-black">{item.courseName || item.name}</p>
                   <p className="text-xs">{item.intro}</p>
                   <p className="text-sm font-medium line-clamp-1">
@@ -522,7 +519,7 @@ const PaymentPage = () => {
           ))}
         </div>
       </div>
-      <div className="p-2 md:p-10">
+      <div className="p-5 md:p-10">
         <h1 className="font-bold md:text-xl">Summary</h1>
         <div className="flex items-center justify-between my-5">
           <p className="font-bold md:text-md">Original Price</p>

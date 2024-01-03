@@ -4,7 +4,9 @@ import { useState, useEffect, useContext, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaXmark } from "react-icons/fa6";
 import CartItemContext from "../context/CartItemContext";
+import { useStateContext } from "../context/ContextProvider";
 import { Helmet } from 'react-helmet';
+
 
 const courseName = {
   hidden: {
@@ -27,7 +29,7 @@ const learnUl = {
   visible: {
     opacity: 1,
     transition: {
-      type: "spring", duration: 0.3, staggerChildren: 0.3, delayChildren: 0.3
+      type: "spring", duration: 0.3, staggerChildren: 0.3, delayChildren: 0.5
     }
   }
 }
@@ -35,10 +37,12 @@ const learnUl = {
 const li = {
   hidden: {
     opacity: 0,
+    visibility: "invisible",
     y: "-80px"
   },
   visible: {
     opacity: 1,
+    visibility: "visible",
     y: 0
   }
 }
@@ -48,6 +52,7 @@ const COURSE = () => {
   const isInView = useInView(whatToLearnRef, {once: true})
   const location = useLocation()
   const navigate = useNavigate()
+  const { FullScreen } = useStateContext()
   const { course } = useParams()
   const [showModal, setShowModal] = useState(false)
   const {COURSES, token, cartItem, addToCart, setCartItem} = useContext(CartItemContext);
@@ -236,13 +241,13 @@ const COURSE = () => {
           :
           <div className="relative learn grid grid-cols-1 md:grid-cols-2 py-5">
             <motion.ul variants={learnUl} animate={isInView ? "visible" : "hidden"} className="md:text-base text-sm">
-              {singleCourse.whatToLearn.map((whatToLearn, index)=> index < 6 && (
+              {singleCourse.whatToLearn.slice(0, 6).map((whatToLearn, index)=> (
                 <motion.li variants={li} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
                 </motion.li>
               ))}
             </motion.ul>
             <motion.ul variants={learnUl} animate={isInView ? "visible" : "hidden"} className="md:text-base text-sm">
-            {singleCourse.whatToLearn.map((whatToLearn, index)=> index > 5 && (
+            {singleCourse.whatToLearn.slice(6).map((whatToLearn, index)=> (
               <motion.li variants={li} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
               </motion.li>
             ))}

@@ -1,4 +1,4 @@
-import FetchAllStudents from "../hook/FetchAllStudents";
+import FetchAllStudents from "../hooks/FetchAllStudents";
 import { useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useStateContext } from "../context/ContextProvider";

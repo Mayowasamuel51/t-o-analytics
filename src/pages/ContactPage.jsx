@@ -55,7 +55,7 @@ const ContactPage = () => {
     }
 
   return (
-      <section className="bg-white py-32 md:px-10 px-2 text-2xl md:text-4xl">
+      <section className="bg-white py-32 md:px-10 px-5 text-2xl md:text-4xl">
            <Helmet>
                 <meta charSet="utf-8" />
                 <title>contact</title>

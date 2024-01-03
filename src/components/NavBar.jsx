@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
-import LOGO from "../assets/images/logo.jpg";
-import { motion, AnimatePresence } from 'framer-motion';
+import LOGO from "../assets/images/logo2.png";
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import CartItemContext from '../context/CartItemContext';
 import { useStateContext } from "../context/ContextProvider"
 import { Link, NavLink, useLocation } from "react-router-dom";
@@ -9,13 +9,21 @@ import { FaChevronDown } from "react-icons/fa";
 import { MdOutlineAddShoppingCart } from "react-icons/md"
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
-import FetchAllStudents from '../hook/FetchAllStudents';
+import FetchAllStudents from '../hooks/FetchAllStudents';
 import SearchCourseInput from './SearchCourseInput';
+
+const headerVariant = {
+    visible: { y: 0},
+    hidden: { y: "-100%",
+        transition:{ type: "linear", duration: .25, ease:"easeInOut"}
+    }
+}
 
 
 const NavBar = () => {
     const { data } = FetchAllStudents()
     const [show, setShow] = useState("")
+    const [hidden, setHidden] = useState(false)
     const [subMenu, setSubMenu] = useState(false)
     const [fixed, setFixed] = useState("")
     const location = useLocation()
@@ -59,10 +67,19 @@ const NavBar = () => {
     const displaySubMenu = ()=> {
         setSubMenu(prev=> !prev)
     }
-
+    const { scrollY } = useScroll()
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const previous = scrollY.getPrevious()
+        if (latest > previous && latest > 150) {
+            setHidden(true)
+        }
+        else {
+            setHidden(false)
+        }
+    })
     return (
         <>
-            <header className={`z-[9999] fixed w-[100%] right-0 left-0 top-0 bg-white px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
+            <motion.header variants={headerVariant} animate={(hidden && !FullScreen) ? "hidden" : "visible"} className={`z-[9999] fixed right-0 left-0 top-0 bg-white ${!token && "md:bg-opacity-50"} px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
                 <div>
                     <Link to="/">
                         <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[130px]" alt=""/>
@@ -95,7 +112,7 @@ const NavBar = () => {
                 </nav>
                 :
                 <nav className={`navlinks ${fixed} ${show} md:relative md:left-0 md:right-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
-                    <ul className="md:flex items-center gap-6 font-semibold">
+                    <ul className="md:flex items-center gap-3 md:gap-6 font-semibold">
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/courses">Courses</NavLink></motion.li>
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "font-black text-BLUE scale-110" : "scale-100 hover:text-BLUE"} to="/about">About</NavLink></motion.li>
                         <motion.li onClick={displaySubMenu} whileHover={{scale: 1.1}} transition={{ stiffness:250}} className='group' ><p className='flex gap-1 items-center justify-center'>Company <FaChevronDown className={`duration-200 ${subMenu && "group-hover:rotate-180"} ${FullScreen && "group-hover:rotate-180"}`} /></p>
@@ -156,7 +173,7 @@ const NavBar = () => {
                                     <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard">My Courses</NavLink></motion.li>
                                     <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/courses">All Courses</NavLink></motion.li>
                                     <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/mentorship">Mentorship</NavLink></motion.li>
-                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/links">Links</NavLink></motion.li>
+                                    <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/links">Links</NavLink></motion.li>
                                     <li onClick={signout} className="hover:bg-transparent hover:text-BLUE duration-300 text-red-500 rounded-md md:rounded-xl font-semibold cursor-pointer">
                                         Sign Out
                                     </li>
@@ -165,7 +182,7 @@ const NavBar = () => {
                         </div>}
                     </div>
                 </div>
-            </header>
+            </motion.header>
         </>
     )
 }

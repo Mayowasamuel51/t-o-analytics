@@ -14,6 +14,7 @@ import COURSES from "../coursesAPI/api"
 import { FaQuoteLeft } from "react-icons/fa";
 import { Helmet } from 'react-helmet';
 import { backInOut, motion } from "framer-motion"
+import { LandingSpike ,RectangleLeft, RectangleRight } from '../components/BgDesigns';
 
 const home = {
     hidden: {
@@ -52,6 +53,7 @@ const h1 = {
         x: 0
     }
 }
+
 const p = {
     hidden: {
         opacity: 0,
@@ -100,7 +102,7 @@ const HomePage = () => {
             <section className="landing-page px-6 md:px-10 py-60 md:py-32 bg-white min-h-screen">
                 <motion.div  className="grid md:grid-cols-2 items-center gap-10">
                     <motion.div variants={landingContainer} initial="hidden" animate="visible">
-                        <motion.h1 variants={h1} className="my-4 md:my-7 font-semibold md:font-bold text-4xl md:text-5xl">Tech Education for Tomorrow’s Innovators</motion.h1>
+                        <motion.h1 variants={h1} className="my-4 md:my-7 font-semibold md:font-bold text-4xl md:text-5xl LANDING-TEXT">Tech Education for Tomorrow’s Innovators</motion.h1>
                         <motion.p variants={p} className="font-medium md:font-bold text-2xl md:text-xl my-4">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</motion.p>
                         <motion.div variants={buttonContainer} initial="hidden" animate="visible" className="flex gap-2 md:gap-3">
                             <motion.div variants={button}>
@@ -123,17 +125,19 @@ const HomePage = () => {
                     </div>
                 </motion.div>
                 <motion.div initial={{scale: 0, opacity:0, rotate: "180deg"}} animate={{scale: 1, opacity:0.3, rotate:"0deg"}} transition={{ease:backInOut, duration: 1,delay: 1.5}} className='mobile-landingDIV md:hidden block absolute top-40 left-0 translate-y-[-50%] bg-BLUE landingDIV backdrop-blur-2xl'></motion.div>
+                {FullScreen && <LandingSpike />}
             </section>
 
-            <section className="bg-white">
-                <motion.h1 className="text-center font-black text-2xl md:text-4xl my-4">Why Trust T.O Analytics?</motion.h1>
+            <section className="md:pb-20 bg-transparent relative z-[10] min-h-fit">
+                <h1 data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" className="text-center font-black text-2xl md:text-4xl my-4">Why Trust T.O Analytics?</h1>
                 <div className="md:px-10 p-4 overflow-x-hidden">
                     <div className="md:text-left md:pb-10 md:py-2 grid grid-cols-1 md:grid-cols-2 items-center md:gap-20">
-                        <motion.div  data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
-                            <p className="uppercase font-bold text-BLUE my-2">Learn from industry’s best</p>
+                        <div  data-aos-once="true" data-aos-duration="6000" data-aos="fade-right" className='relative'>
+                            <p className="uppercase font-black text-BLUE my-2">Learn from industry’s best</p>
                             <h1 className="font-bold text-2xl md:text-2xl my-2">Experienced Instructors</h1>
                             <p className="font-medium text-base">Our instructors are seasoned professionals with extensive experience in diverse areas of the tech industry. They leverage their deep expertise and real-world project insights to deliver practical, actionable guidance in the classroom.</p>
-                        </motion.div>
+                            <RectangleLeft />
+                        </div>
                         <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className="md:block">
                             <img src={eInstructor} alt="" className='w-fit p-14 md:p-0' />
                         </div>
@@ -142,17 +146,19 @@ const HomePage = () => {
                         <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right" className="md:block order-2 md:order-1">
                             <img src={hLearning} alt="" className='w-fit p-14 md:p-0' />
                         </div>
-                        <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className='order-1 md:order-2'>
-                            <p className="uppercase font-bold text-BLUE my-2">Fine blend of theory and practice</p>
+                        <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className='relative order-1 md:order-2'>
+                            <p className="uppercase font-black text-BLUE my-2">Fine blend of theory and practice</p>
                             <h1 className="font-bold text-2xl md:text-2xl my-2">Hands-on learning</h1>
                             <p className="font-medium text-base"> Our bootcamp, built around hands-on learning, immerses students in real-world scenarios through projects and practical exercises. This approach helps them gain invaluable experience, develop essential tech skills like problem-solving, collaboration, and critical thinking, and master coding languages like Python by building real-world web applications. Join our bootcamp today and start your journey towards a rewarding tech career.</p>
+                            <RectangleRight />
                         </div>
                     </div>
                     <div className="py-2 grid grid-cols-1 md:grid-cols-2 items-center justify-between md:gap-20">
-                        <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right">
-                            <p className="uppercase font-bold text-BLUE my-2">We put you first</p>
+                        <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right" className='relative'>
+                            <p className="uppercase font-black text-BLUE my-2">We put you first</p>
                             <h1 className="font-bold text-2xl md:text-2xl my-2">Flexible learning Options</h1>
                             <p className="font-medium text-base">We understand that everyone has different schedules and commitments. That&apos;s why we offer flexible learning options, including part-time and full-time programs, as well as online learning options. This allows students to choose a schedule that works best for them while still receiving high-quality education.</p>
+                            <RectangleLeft />
                         </div>
                         <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className="md:block">
                             <img src={flexibleLearning} alt="" className='w-fit p-14 md:p-0' />
@@ -162,10 +168,11 @@ const HomePage = () => {
                         <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right" className="md:block order-2 md:order-1">
                             <img src={guidance} alt="" className='w-fit p-14 md:p-0' />
                         </div>
-                        <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className='order-1 md:order-2'>
-                            <p className="uppercase font-bold text-BLUE my-2">From clueless to pro</p>
+                        <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-left" className='relative order-1 md:order-2'>
+                            <p className="uppercase font-black text-BLUE my-2">From clueless to pro</p>
                             <h1 className="font-bold text-2xl md:text-2xl my-2">Career guidance</h1>
                             <p className="font-medium text-base">We provide comprehensive career guidance and support to help students transition into the tech industry. This includes resume building, interview preparation, job search strategies, and networking opportunities. Our goal is to equip students with the necessary skills and resources to succeed in their tech careers.</p>
+                            <RectangleRight />
                         </div>
                     </div>
                 </div>
@@ -189,7 +196,7 @@ const HomePage = () => {
                                     />
                                 </div>
                                 <div className="text-white p-4 rounded-bl-2xl rounded-br-2xl bg-BLUE">
-                                    <p className="font-bold text-white text-lg md:my-4 md:text-3xl">{course.courseName}</p>
+                                    <p className="font-bold text-white text-lg md:my-4 md:text-3xl line-clamp-1 lg:line-clamp-2">{course.courseName}</p>
                                     <p className="my-2 font-bold text-sm h-[40px] md:h-auto">{course.intro}</p>
                                     <p className="line-clamp-2 text-sm md:text-base text-textColor md:max-w-[70%]">
                                         {course.description}
@@ -208,7 +215,8 @@ const HomePage = () => {
                 <div className='mobile-landingDIV md:hidden block absolute bottom-0 left-0 bg-BLUE landingDIV'></div>
             </section>
 
-            <section className="bg-white py-16 md:py-12">
+            <section className="relative bg-white py-16 md:py-12 overflow-hidden">
+                <LandingSpike />
                 <h1 className="my-2 md:my-8 text-center font-bold text-xl md:text-4xl">Here’s what our students are saying</h1>
                 <FaQuoteLeft className='mx-auto' size={FullScreen ? 30 : 20} color='#2d2065' />
                 <Splide className='splide pb-8 md:pb-12 px-5 md:px-44' aria-label="Testimonials" options={{

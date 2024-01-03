@@ -1,9 +1,8 @@
-
-
 import Loader from "./Loader"
 import { useState } from 'react';
-import FetchAllStudents from '../hook/FetchAllStudents';
+import FetchAllStudents from '../hooks/FetchAllStudents';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import ServerErrorPage from "./ServerErrorPage";
 import { IoEyeSharp } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa"
 import '@splidejs/react-splide/css';
@@ -14,8 +13,11 @@ const StudentTable = () => {
     const [postsPerPage] = useState(10)
     const { data, isLoading, error } = FetchAllStudents()
 
+
     if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
     if (isLoading) return <Loader />
+    if (data?.status === 500) return <ServerErrorPage />
+
 
 
     const lastPostIndex = currentPage * postsPerPage
