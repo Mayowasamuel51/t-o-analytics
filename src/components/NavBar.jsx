@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import LOGO from "../assets/images/logo.jpg";
+import LOGO from "../assets/images/logo2.png";
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import CartItemContext from '../context/CartItemContext';
 import { useStateContext } from "../context/ContextProvider"
@@ -15,7 +15,7 @@ import SearchCourseInput from './SearchCourseInput';
 const headerVariant = {
     visible: { y: 0},
     hidden: { y: "-100%",
-        transition:{ type: "linear", duration: .35, ease:"easeInOut"}
+        transition:{ type: "linear", duration: .25, ease:"easeInOut"}
     }
 }
 
@@ -79,7 +79,7 @@ const NavBar = () => {
     })
     return (
         <>
-            <motion.header variants={headerVariant} animate={(hidden && !FullScreen) ? "hidden" : "visible"} className={`z-[9999] fixed w-[100vw] right-0 left-0 top-0 bg-white px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
+            <motion.header variants={headerVariant} animate={(hidden && !FullScreen) ? "hidden" : "visible"} className={`z-[9999] fixed right-0 left-0 top-0 bg-white ${!token && "md:bg-opacity-50"} px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
                 <div>
                     <Link to="/">
                         <motion.img initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{type:"spring", stiffness: 260, duration: 2000}} src={LOGO} className="md:w-[200px] w-[130px]" alt=""/>

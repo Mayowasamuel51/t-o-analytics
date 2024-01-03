@@ -289,7 +289,7 @@ const PaymentPage = () => {
   if (!token) return <Navigate to="/" />;
   return (
     <section className="min-h-screen payment-page">
-      <div className="p-2 md:p-10">
+      <div className="p-5 md:p-10">
         <form action="" target="paypal"></form>
         <button>
           {/* <link href="https://py.pl/4uHV0Hd3Ctx">Buynow</link> */}
@@ -297,12 +297,10 @@ const PaymentPage = () => {
 
         <Link to={"https://py.pl/4uHV0Hd3Ctx"}>Buy now</Link>
         <div>
-          <h1 className="font-bold md:text-xl">Checkout</h1>
-          <p className="my-5 text-slate-500">billing Address</p>
+          <h1 className="font-bold md:text-2xl">Checkout</h1>
+          <p className="my-2 text-slate-500 uppercase">billing Address</p>
         </div>
-
-        <h1 className="font-bold md:text-lg my-6">PAYMENT METHOD</h1>
-
+        <h1 className="font-bold md:text-lg my-2">PAYMENT METHOD</h1>
         <button onClick={handleSetCookie}>Set Cookie</button>
         <h2>Third-Party Cookies enabled? {status ? "Yes" : "No"}</h2>
         <PayPalScriptProvider options={initialOptions}>
@@ -458,7 +456,7 @@ const PaymentPage = () => {
           ))}
         </div>
       </div>
-      <div className="p-2 md:p-10">
+      <div className="p-5 md:p-10">
         <h1 className="font-bold md:text-xl">Summary</h1>
         <div className="flex items-center justify-between my-5">
           <p className="font-bold md:text-md">Original Price</p>

@@ -6,8 +6,7 @@ import { FaXmark } from "react-icons/fa6";
 import CartItemContext from "../context/CartItemContext";
 import { useStateContext } from "../context/ContextProvider";
 import { Helmet } from 'react-helmet';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css'
+
 
 const courseName = {
   hidden: {
@@ -30,7 +29,7 @@ const learnUl = {
   visible: {
     opacity: 1,
     transition: {
-      type: "spring", duration: 0.3, staggerChildren: 0.5, delayChildren: 1
+      type: "spring", duration: 0.3, staggerChildren: 0.3, delayChildren: 0.5
     }
   }
 }

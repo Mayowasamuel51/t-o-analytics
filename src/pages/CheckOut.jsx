@@ -55,7 +55,7 @@ const CheckOut = () => {
   };
     
   return (
-    <div className="min-h-screen md:px-10 px-2 pt-24 pb-20">
+    <div className="min-h-screen md:px-10 px-5 pt-24 pb-20">
       <h1 className="text-xl md:text-4xl font-black my-4">SHOPPING CART</h1>
       <div>
         <p className="font-semibold text-md flex items-end gap-1"><p className="font-black text-xl">{cartItem.length}</p> {cartItem.length > 1 ? "COURSES" : "COURSE"} in cart </p>
@@ -83,7 +83,7 @@ const CheckOut = () => {
             </div>
           )) : <h1 className="col-span-3 flex justify-center items-center font-bold text-xl">NO ITEM IN YOUR CART</h1>}
         </div>
-        <div className="px-2 mb-3">
+        <div className="px-5 mb-3">
           <div className="my-8">
             <h1 className="text-slate-600 text-sm font-bold">TOTAL:</h1>
             <p className="font-black text-2xl">${cartItem.map((price)=> price.price).reduce((acc, cur)=> acc + cur , 0)}</p>

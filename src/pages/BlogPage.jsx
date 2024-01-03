@@ -1,17 +1,28 @@
 import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
+import Splunk from "../assets/images/Splunk-blog-img.jpg"
+import Twitter from "../assets/images/Twitter-Logо.svg"
 import NoBlog from "../components/NoBlog"
 import FetchBlogs from "../hooks/FetchBlogs"
 import { useInView } from "framer-motion";
 import Loader from "../components/Loader";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css'
+import "../../src/assets/css/blogpagination.css"
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 
 const BlogPage = () => {
   const lastBlogRef = useRef(null)
   const [blogNumber, setBlogNumber] = useState(4)
   const { data, isLoading, error } = FetchBlogs()
+  const {data: blog} = useQuery({
+    queryKey: ["someOtherBlogs", window.location.href],
+    queryFn: ()=> axios.get("https://to-backendapi-v1.vercel.app/api/news")
+  })
+  console.log(blog?.data?.response?.sources)
   const isInView = useInView(lastBlogRef, { once: true })
 
   useEffect(() => {
@@ -20,15 +31,51 @@ const BlogPage = () => {
     }
   }, [isInView]);
 
+  let date = new Date()
+  let hour = date.getHours()
+  let timeOfDay;
+
+  if (hour < 12) {
+    timeOfDay = 'Good Morning'
+  }
+  else if (hour >= 12 && hour < 17) {
+    timeOfDay = 'Good Afternoon'
+  }
+  else {
+    timeOfDay = 'Good Evening'
+  }
+
   if (isLoading) return <Loader />
   if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
+
 
   return (
     <>
       {!data?.data?.items.length && <NoBlog />}
-      <section className="relative flex flex-col gap-3 md:gap-5 px-5 md:px-32 py-10 md:py-28">
+      <section className="relative flex flex-col gap-3 md:gap-5 px-5 md:px-32 py-20 md:py-28">
+      <h1 className="font-bold text-gray-900 dark:text-gray-200 sm:text-xl lg:text-3xl">{timeOfDay}!!</h1>
+        <div className="flex items-center gap-2 md:gap-6">
+          <Link to="https://splunk.com/en_us/blog" target="_blank">
+            <div className="flex gap-2 items-center group">
+              <img src={Splunk} alt="" className="w-20 lg:w-36 rounded-2xl" />
+              <div>
+                <h1 className="text-sm group-hover:text-BLUE duration-200 font-bold text-gray-900 dark:text-gray-200 sm:text-xl lg:text-2xl">For splunk News</h1>
+                <p className="font-semibold text-sm"><span className="group-hover:animate-pulse">👈</span>Click Here</p>
+              </div>
+            </div>
+          </Link>
+          <Link to="https://twitter.com/splunk?ref_src=twsrc%5Etfw%7Ctwcamp%5Eembeddedtimeline%7Ctwterm%5Escreen-name%3Asplunk%7Ctwcon%5Es1_c1" target="_blank">
+            <div className="flex gap-2 items-center group">
+              <img src={Twitter} alt="" className="w-20 md:w-40 rounded-2xl" />
+              <div>
+                <h1 className="text-sm group-hover:text-BLUE duration-200 font-bold text-gray-900 dark:text-gray-200 sm:text-xl lg:text-2xl">Splunk on Twitter</h1>
+                <p className="font-semibold text-sm"><span className="group-hover:animate-pulse">👈</span>Click Here</p>
+              </div>
+            </div>
+          </Link>
+        </div>
         <h1 className="relative pl-3 stories text-lg font-bold">STORIES FOR YOU</h1>
-        {data?.data?.items.map((blog, index) => index <= blogNumber && (
+        {/* {data?.data?.items.map((blog, index) => index <= blogNumber && (
           <Link to={blog.url} key={blog.id} target="_blank">
             <div ref={data?.data?.items?.length - 1 && lastBlogRef} className="group flex items-center gap-2 md:gap-3">
               <div className="flex-1">
@@ -41,8 +88,39 @@ const BlogPage = () => {
               </div>
             </div>
           </Link>
-
-        ))}
+        ))} */}
+        <Splide className="relative" options={{
+          type: "loop",
+          perPage: 3,
+          perMove: 2,
+          autoplay: true,
+          interval: 4000,
+          speed: 2000,
+          gap: "20px",
+          paginationDirection: 'ttb',
+          arrows: false,
+          width: "full",
+          breakpoints: {
+            768: {
+              perPage: 1,
+              perMove: 1,
+            },
+          }
+        }}>
+          {data?.data?.items.map((blog) => (
+            <SplideSlide key={blog.id} className="relative blog-post group">
+              <Link to={blog.url} target="_blank">
+                <LazyLoadImage effect="blur" src={blog.image} alt={`Blog Image for ${blog.title}`} className="relative z-[20] w-full aspect-square object-cover rounded-md" />
+                <div className="absolute text-black z-10 bottom-2 p-3">
+                  <p className="text-xs">{(new Date(blog.date_published)).toTimeString()}</p>
+                  <h1 className="text-md font-bold group-hover:text-BLUE duration-200">{blog.title}</h1>
+                  <p className="font-semibold text-xs line-clamp-2 md:line-clamp-3">{blog.content_text}</p>
+                </div>
+                <div className=""></div>
+              </Link>
+            </SplideSlide>
+          ))}
+        </Splide>
       </section>
     </>
   )

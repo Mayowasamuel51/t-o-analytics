@@ -4,6 +4,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import COURSES from "../coursesAPI/api"
 import { useStateContext } from "../context/ContextProvider"
 import { motion } from "framer-motion";
+import { LandingSpike } from "./BgDesigns";
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
