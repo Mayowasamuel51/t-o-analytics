@@ -53,11 +53,11 @@ const BlogPage = () => {
     <>
       {!data?.data?.items.length && <NoBlog />}
       <section className="relative flex flex-col gap-3 md:gap-5 px-5 md:px-32 py-20 md:py-28">
-      <h1 className="font-bold text-gray-900 dark:text-gray-200 sm:text-xl lg:text-3xl">{timeOfDay}!!</h1>
+      <h1 className="font-bold text-black dark:text-gray-200  sm:text-xl lg:text-3xl">{timeOfDay}!!</h1>
         <div className="flex items-center gap-2 md:gap-6">
           <Link to="https://splunk.com/en_us/blog" target="_blank">
             <div className="flex gap-2 items-center group">
-              <img src={Splunk} alt="" className="w-10 lg:w-36 rounded-2xl" />
+              <img src={Splunk} alt="" className="w-10 lg:w-32 rounded-2xl" />
               <div>
                 <h1 className="text-xs md:text-sm group-hover:text-BLUE duration-200 font-black text-gray-900 dark:text-gray-200 sm:text-xl lg:text-2xl">For splunk News</h1>
                 <p className="font-semibold text-xs md:text-sm"><span className="group-hover:animate-pulse">👈</span>Click Here</p>
@@ -74,7 +74,7 @@ const BlogPage = () => {
             </div>
           </Link>
         </div>
-        <h1 className="relative pl-3 stories text-sm md:text-lg font-bold">News</h1>
+        <h1 className="relative pl-3 stories text-sm md:text-lg font-bold">Blog Pages</h1>
         <Splide className="flex flex-col text-center" options={{
           pagination: false,
           arrows: false,
