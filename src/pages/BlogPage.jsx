@@ -58,24 +58,24 @@ const BlogPage = () => {
         <div className="flex items-center gap-2 md:gap-6">
           <Link to="https://splunk.com/en_us/blog" target="_blank">
             <div className="flex gap-2 items-center group">
-              <img src={Splunk} alt="" className="w-20 lg:w-36 rounded-2xl" />
+              <img src={Splunk} alt="" className="w-10 lg:w-36 rounded-2xl" />
               <div>
                 <h1 className="text-sm group-hover:text-BLUE duration-200 font-bold text-gray-900 dark:text-gray-200 sm:text-xl lg:text-2xl">For splunk News</h1>
-                <p className="font-semibold text-sm"><span className="group-hover:animate-pulse">👈</span>Click Here</p>
+                <p className="font-semibold text-xs md:text-sm"><span className="group-hover:animate-pulse">👈</span>Click Here</p>
               </div>
             </div>
           </Link>
           <Link to="https://twitter.com/splunk?ref_src=twsrc%5Etfw%7Ctwcamp%5Eembeddedtimeline%7Ctwterm%5Escreen-name%3Asplunk%7Ctwcon%5Es1_c1" target="_blank">
             <div className="flex gap-2 items-center group">
-              <img src={Twitter} alt="" className="w-20 md:w-40 rounded-2xl" />
+              <img src={Twitter} alt="" className="w-10 md:w-40 rounded-2xl" />
               <div>
                 <h1 className="text-sm group-hover:text-BLUE duration-200 font-bold text-gray-900 dark:text-gray-200 sm:text-xl lg:text-2xl">Splunk on Twitter</h1>
-                <p className="font-semibold text-sm"><span className="group-hover:animate-pulse">👈</span>Click Here</p>
+                <p className="font-semibold text-xs md:text-sm"><span className="group-hover:animate-pulse">👈</span>Click Here</p>
               </div>
             </div>
           </Link>
         </div>
-        <h1 className="relative pl-3 stories text-lg font-bold">STORIES FOR YOU</h1>
+        <h1 className="relative pl-3 stories text-sm md:text-lg font-bold">STORIES FOR YOU</h1>
         {/* {data?.data?.items.map((blog, index) => index <= blogNumber && (
           <Link to={blog.url} key={blog.id} target="_blank">
             <div ref={data?.data?.items?.length - 1 && lastBlogRef} className="group flex items-center gap-2 md:gap-3">
@@ -100,9 +100,12 @@ const BlogPage = () => {
           gap: "20px",
           paginationDirection: 'ttb',
           arrows: false,
-          width: "full",
           breakpoints: {
             768: {
+              interval: 3000,
+              speed: 1000,
+              autoplay: true,
+              pagination: false,
               perPage: 1,
               perMove: 1,
             },

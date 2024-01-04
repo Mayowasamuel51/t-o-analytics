@@ -15,7 +15,7 @@ import SearchCourseInput from './SearchCourseInput';
 const headerVariant = {
     visible: { y: 0},
     hidden: { y: "-100%",
-        transition:{ type: "linear", duration: .25, ease:"easeInOut"}
+        transition:{ type: "linear", duration: .25}
     }
 }
 
