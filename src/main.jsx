@@ -9,6 +9,7 @@ import { CartItemProvider } from "./context/CartItemContext.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CookiesProvider } from "react-cookie";
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -31,6 +32,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               }}
             >   
               <App />
+              <SpeedInsights/>
               <Analytics />
             </CookiesProvider>
           </QueryClientProvider>
