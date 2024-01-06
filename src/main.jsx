@@ -8,6 +8,7 @@ import { ContextProvider } from "./context/ContextProvider.jsx";
 import { CartItemProvider } from "./context/CartItemContext.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CookiesProvider } from "react-cookie";
+import { Analytics } from '@vercel/analytics/react';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -28,8 +29,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 domain: "https://www.paypal.com/",
                 httpOnly: true,
               }}
-            >
+            >   
               <App />
+              <Analytics />
             </CookiesProvider>
           </QueryClientProvider>
         </ContextProvider>
