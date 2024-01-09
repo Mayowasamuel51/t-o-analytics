@@ -239,8 +239,24 @@ const COURSE = () => {
               </motion.ul>
           </>
           :
+          FullScreen ? 
           <div className="relative learn grid grid-cols-1 md:grid-cols-2 py-5">
-            <motion.ul variants={learnUl} animate={isInView ? "visible" : "hidden"} className="md:text-base text-sm">
+            <motion.ul className="md:text-base text-sm">
+              {singleCourse.whatToLearn.slice(0, 6).map((whatToLearn, index)=> (
+                <motion.li variants={li} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
+                </motion.li>
+              ))}
+            </motion.ul>
+            <motion.ul className="md:text-base text-sm">
+            {singleCourse.whatToLearn.slice(6).map((whatToLearn, index)=> (
+              <motion.li variants={li} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
+              </motion.li>
+            ))}
+            </motion.ul>
+          </div> 
+          :
+          <div className="relative learn py-5">
+            <motion.ul variants={learnUl} animate={isInView  ? "visible" : "hidden"} className="md:text-base text-sm">
               {singleCourse.whatToLearn.slice(0, 6).map((whatToLearn, index)=> (
                 <motion.li variants={li} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
                 </motion.li>
@@ -254,7 +270,6 @@ const COURSE = () => {
             </motion.ul>
           </div>
           }
-          
         </motion.div>
         {location.pathname === "/courses/educational%20consulting" ? 
         <div className="py-5">

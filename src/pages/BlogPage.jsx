@@ -78,7 +78,7 @@ const BlogPage = () => {
         <Splide className="flex flex-col text-center" options={{
           pagination: false,
           arrows: false,
-          height: "50px",
+          height: "28px",
           gap: "20px",
           direction : 'ttb',
           paginationDirection: 'ttb',

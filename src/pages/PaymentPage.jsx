@@ -139,7 +139,7 @@ const PaymentPage = () => {
   if (!token) return <Navigate to="/" />;
   return (
     <section className="min-h-screen payment-page">
-      <div className="p-5 md:p-10">
+      <div className="p-2 md:p-10">
         <form action="" target="paypal"></form>
 
         <button>
@@ -329,7 +329,7 @@ const PaymentPage = () => {
           ))}
         </div>
       </div>
-      <div className="p-5 md:p-10">
+      <div className="p-2 md:p-10">
         <h1 className="font-bold md:text-xl">Summary</h1>
         <div className="flex items-center justify-between my-5">
           <p className="font-bold md:text-md">Original Price</p>
