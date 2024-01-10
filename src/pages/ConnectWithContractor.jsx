@@ -151,7 +151,10 @@ const ConnectWithContractor = () => {
             </div>
             <section>
                 <div className="px-2 text-center md:px-10">
-                    <p className="font-bold md:p-10 p-2 text-3xl">Our Partners</p>
+                    <div className="text-center">
+                        <p className="font-bold my-4 p-2 text-3xl">Our Partners</p>
+                        <p className="font-semibold text-base">Would you like to be connected with any of the following partners? Kindly fill in your details.</p>
+                    </div>
                     <div className="flex flex-wrap flex-col md:flex-row items-center justify-center gap-2 my-5">
                         <div className="w-44 aspect-square">
                             <img src={contractor1} alt=""/>

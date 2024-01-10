@@ -186,7 +186,7 @@ const COURSE = () => {
               <p className="my-2 font-semibold text-sm md:text-lg">$250 . 1hour 30minutes</p>
             </div> 
             : 
-            <ul className="text-[18px] md:text-[1.4rem] leading-10">
+            <ul className="text-[15px] md:text-[1.2rem] leading-10">
               <li>BEGINNER FRIENDLY</li>
               <li>LIFETIME ACCESS</li>
               <li>EXERCISES</li>
@@ -239,8 +239,24 @@ const COURSE = () => {
               </motion.ul>
           </>
           :
+          FullScreen ? 
           <div className="relative learn grid grid-cols-1 md:grid-cols-2 py-5">
-            <motion.ul variants={learnUl} animate={isInView ? "visible" : "hidden"} className="md:text-base text-sm">
+            <motion.ul className="md:text-base text-sm">
+              {singleCourse.whatToLearn.slice(0, 6).map((whatToLearn, index)=> (
+                <motion.li variants={li} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
+                </motion.li>
+              ))}
+            </motion.ul>
+            <motion.ul className="md:text-base text-sm">
+            {singleCourse.whatToLearn.slice(6).map((whatToLearn, index)=> (
+              <motion.li variants={li} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
+              </motion.li>
+            ))}
+            </motion.ul>
+          </div> 
+          :
+          <div className="relative learn py-5">
+            <motion.ul variants={learnUl} animate={isInView  ? "visible" : "hidden"} className="md:text-base text-sm">
               {singleCourse.whatToLearn.slice(0, 6).map((whatToLearn, index)=> (
                 <motion.li variants={li} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
                 </motion.li>
@@ -254,7 +270,6 @@ const COURSE = () => {
             </motion.ul>
           </div>
           }
-          
         </motion.div>
         {location.pathname === "/courses/educational%20consulting" ? 
         <div className="py-5">
