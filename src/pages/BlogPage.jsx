@@ -18,7 +18,7 @@ const BlogPage = () => {
   const lastBlogRef = useRef(null)
   // const [blogNumber, setBlogNumber] = useState(4)
   const { data, isLoading, error } = FetchBlogs()
-  const {data: blog} = useQuery({
+  const {data: blog, isLoading: loadingBlog, error: blogError} = useQuery({
     queryKey: ["someOtherBlogs"],
     queryFn: ()=> axios.get("https://to-backendapi-v1.vercel.app/api/news")
   })
@@ -45,8 +45,8 @@ const BlogPage = () => {
     timeOfDay = 'Good Evening'
   }
 
-  if (isLoading) return <Loader />
-  if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
+  if (isLoading || loadingBlog) return <Loader />
+  if (error || blogError) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
 
 
   return (
