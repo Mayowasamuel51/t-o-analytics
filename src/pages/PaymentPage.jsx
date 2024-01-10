@@ -33,85 +33,85 @@ const PaymentPage = () => {
   let totalFinalPayment;
   let courseName;
   let orderDetail = [];
-  // const checkoutfunction = () => {
-  //   // when users trys to pay only one course it works
-  //   if (cartItem.length === 1) {
-  //     const singleCourse = cartItem[0];
-  //     totalFinalPayment = singleCourse.price;
-  //     courseName = singleCourse.courseName;
-  //     orderDetail.push({
-  //       courseName,
-  //       totalFinalPayment,
-  //       completelyPaid: false,
-  //       isPending: true,
-  //     });
-  //     console.log("only one course " + courseName + totalFinalPayment);
-  //     alert(
-  //       `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
-  //     );
-  //     const data = {
-  //       studentName: studentName,
-  //       courseName: courseName,
-  //       price: totalFinalPayment,
-  //     };
-  //     axios
-  //       .post(`${api}order`, data)
-  //       .then((res) => {
-  //         if (res.status === 200 || res.status === 201) {
-  //           alert("working welll");
-  //         }
-  //       })
-  //       .catch((err) => console.log(err.message));
-  //   } else if (cartItem.length > 1) {
-  //     totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
-  //     const allCourses = cartItem.map((course) => course.courseName);
-  //     if (cartItem.length <= 3) {
-  //       courseName = cartItem
-  //         .map((course) => course.courseName || course.name)
-  //         .join(", ");
-  //     } else {
-  //       const firstCourses = cartItem
-  //         .slice(0, cartItem.length - 1)
-  //         .map((course) => course.courseName || course.name)
-  //         .join(", ");
-  //       const lastCourse =
-  //         cartItem[cartItem.length - 1].courseName ||
-  //         cartItem[cartItem.length - 1].name;
-  //       courseName = `${firstCourses} and ${lastCourse}`;
-  //     }
-  //     alert(
-  //       `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
-  //     );
-  //     const data = {
-  //       studentName: studentName,
-  //       courseName: courseName,
-  //       price: totalFinalPayment,
-  //     };
-  //     const cart = [
-  //       {
-  //         studentName: studentName,
-  //         courseName: courseName,
-  //         price: totalFinalPayment,
-  //       },
-  //     ];
-  //     axios
-  //       .post(`${api}order`, data)
-  //       .then((res) => {
-  //         if (res.status === 200 || res.status === 201) {
-  //           alert("working welll");
-  //         }
-  //       })
-  //       .catch((err) => console.log(err.message));
-  //     console.log("more than one course" + cartItem);
-  //   }
+  const checkoutfunction = () => {
+    // when users trys to pay only one course it works
+    if (cartItem.length === 1) {
+      const singleCourse = cartItem[0];
+      totalFinalPayment = singleCourse.price;
+      courseName = singleCourse.courseName;
+      orderDetail.push({
+        courseName,
+        totalFinalPayment,
+        completelyPaid: false,
+        isPending: true,
+      });
+      console.log("only one course " + courseName + totalFinalPayment);
+      alert(
+        `${studentName} is trying to buy ${cartItem.length} ${courseName} courses with a total of $${totalFinalPayment}.`
+      );
+      const data = {
+        studentName: studentName,
+        courseName: courseName,
+        price: totalFinalPayment,
+      };
+      axios
+        .post(`${api}order`, data)
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            alert("working welll");
+          }
+        })
+        .catch((err) => console.log(err.message));
+    } else if (cartItem.length > 1) {
+      totalFinalPayment = cartItem.reduce((acc, cur) => acc + cur.price, 0);
+      const allCourses = cartItem.map((course) => course.courseName);
+      if (cartItem.length <= 3) {
+        courseName = cartItem
+          .map((course) => course.courseName || course.name)
+          .join(", ");
+      } else {
+        const firstCourses = cartItem
+          .slice(0, cartItem.length - 1)
+          .map((course) => course.courseName || course.name)
+          .join(", ");
+        const lastCourse =
+          cartItem[cartItem.length - 1].courseName ||
+          cartItem[cartItem.length - 1].name;
+        courseName = `${firstCourses} and ${lastCourse}`;
+      }
+      alert(
+        `${studentName} is trying to buy ${courseName} courses with a total of $${totalFinalPayment}.`
+      );
+      const data = {
+        studentName: studentName,
+        courseName: courseName,
+        price: totalFinalPayment,
+      };
+      const cart = [
+        {
+          studentName: studentName,
+          courseName: courseName,
+          price: totalFinalPayment,
+        },
+      ];
+      axios
+        .post(`${api}order`, data)
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            alert("working welll");
+          }
+        })
+        .catch((err) => console.log(err.message));
+      console.log("more than one course" + cartItem);
+    }
 
-  //   // when users trys to pay many course at once it still works
-  //   // const totalcart = cartItem.reduce((acc, value) => {
-  //   //   return acc + value.price
-  //   // }, 0)
+    // when users trys to pay many course at once it still works
+    // const totalcart = cartItem.reduce((acc, value) => {
+    //   return acc + value.price
+    // }, 0)
 
-  //   // console.log(totalcart)
-  // };
+    // console.log(totalcart)
+  };
 
   const initialOptions = {
     "client-id": import.meta.env.VITE_clientId,
@@ -350,7 +350,7 @@ const PaymentPage = () => {
         </div>
         <div>
           <button
-            // onClick={checkoutfunction}
+            onClick={checkoutfunction}
             className="duration-300 bg-BLUE hover:bg-white border-2 border-BLUE hover:text-BLUE w-full text-white font-bold py-3 rounded-xl"
           >
             COMPLETE CHECKOUT
