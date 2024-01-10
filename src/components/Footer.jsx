@@ -10,7 +10,7 @@ const Footer = ({black}) => {
     const { token } = useStateContext();
   return (
     <footer className={`${black}`}>
-        <div className="p-2 md:px-10 py-10 md:py-8 flex items-center flex-col gap-10 md:flex-row md:justify-between">
+        <div className="p-2 md:px-10 py-10 md:py-8 flex items-center lg:items-start flex-col gap-10 md:flex-row md:justify-between">
             <div className="group text-center md:leading-8 leading-6">
                 <h1 className="md:text-xl text-BLUE font-bold flex justify-center gap-2 items-center"> <MdCall size={30} className='group-hover:animate-bounce' />CALL</h1>
                 <a href="tel:443-768-8416">

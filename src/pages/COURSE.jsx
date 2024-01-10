@@ -186,7 +186,7 @@ const COURSE = () => {
               <p className="my-2 font-semibold text-sm md:text-lg">$250 . 1hour 30minutes</p>
             </div> 
             : 
-            <ul className="text-[18px] md:text-[1.4rem] leading-10">
+            <ul className="text-[15px] md:text-[1.2rem] leading-10">
               <li>BEGINNER FRIENDLY</li>
               <li>LIFETIME ACCESS</li>
               <li>EXERCISES</li>
