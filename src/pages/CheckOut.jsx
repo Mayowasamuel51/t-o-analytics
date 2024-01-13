@@ -71,7 +71,7 @@ const CheckOut = () => {
                 <div className="flex-1">
                   <p className="text-sm md:text-base font-black">{item.courseName || item.name}</p>
                   <p className="text-xs">{item.intro}</p>
-                  <p className="text-sm font-medium line-clamp-1">{item.description}</p>
+                  <p className="text-xs font-medium line-clamp-1">{item.description}</p>
                 </div>
                 <div>
                   <button onClick={()=> removeCourse(item.id)} className="font-bold text-xs text-BLUE">REMOVE</button>

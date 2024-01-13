@@ -141,7 +141,6 @@ const PaymentPage = () => {
     <section className="min-h-screen payment-page">
       <div className="p-2 md:p-10">
         <form action="" target="paypal"></form>
-
         <button>
           {/* <link href="https://py.pl/4uHV0Hd3Ctx">Buynow</link> */}
         </button>
@@ -297,7 +296,7 @@ const PaymentPage = () => {
         {cookies.name && <h1>Hello {cookies.name}!</h1>}
         <Message content={message} />
 
-        <h1 className="font-bold md:text-lg my-6">Order Details</h1>
+        <h1 className="font-black md:text-lg my-3">Order Details</h1>
         <div className="md:col-span-2">
           {cartItem.map((item) => (
             <div key={item.id} className="py-4 px-2">
@@ -316,7 +315,7 @@ const PaymentPage = () => {
                 <div className="flex-1">
                   <p className="font-black">{item.courseName || item.name}</p>
                   <p className="text-xs">{item.intro}</p>
-                  <p className="text-sm font-medium line-clamp-1">
+                  <p className="text-xs font-medium line-clamp-1">
                     {item.description}
                   </p>
                 </div>
