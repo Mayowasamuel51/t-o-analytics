@@ -36,9 +36,9 @@ function AuthLayout() {
     return (
         <>
             <NavBar />
-            <div className="mt-28">
+            <div className="mt-32">
+                <Outlet />
             </div>
-            <Outlet />
             <Messages />
             {
                 location.pathname === "/dashboard" ||

@@ -40,7 +40,7 @@ const myCourses = () => {
     fetchCourse();
   }, []);
   return (
-    <div className="min-h-screen flex justify-center items-center text-center">
+    <div className="p-2 flex flex-wrap justify-center items-center text-center">
       <h1 className="font-bold text-xl md:text-4xl">
         {data.length ===  1 ?  data
           .filter((findcourse) => {
@@ -57,6 +57,7 @@ const myCourses = () => {
                     index < 6 && (
                       // <Link key={index} to={`/courses/${course.courseName.toLowerCase()}`} className="">
                       <div
+                        key={index}
                         className={`rounded-xl`}
                         data-aos-once="true"
                         data-aos-duration="5000"
@@ -89,7 +90,7 @@ const myCourses = () => {
                 )}
               </div>
             );
-          }) :  <h1>YOU HAVE NOT PURCHASED ANY COURSE YET</h1>}
+          }) : <h1 className="min-h-screen">YOU HAVE NOT PURCHASED ANY COURSE YET</h1>}
         
       </h1>
     </div>

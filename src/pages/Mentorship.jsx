@@ -43,7 +43,7 @@ const Mentorship = () => {
             <div className="p-4 md:p-6 rounded-xl bg-BLUE text-white">
                 <h1 className="text-xl md:text-4xl font-bold">What you stand to benefit</h1>
                 <div className="benefit py-3">
-                    <ul className="text-sm md:text-base">
+                    <ul className="text-xs md:text-base">
                         <li>Exclusive access to knowledge and experience</li>
                         <li>Career growth oppurtunities</li>
                         <li>Lifelong connections</li>
