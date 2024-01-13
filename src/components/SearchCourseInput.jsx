@@ -38,10 +38,16 @@ const SearchCourseInput = () => {
         }
         return (course.courseName.toLowerCase()).includes(search.toLowerCase());
     })
+    const searchCourse = (e)=> {
+        e.preventDefault()
+        console.log("working")
+    }
     return (
         <div className='relative search-box'>
             <FaSearch className='absolute' />
-            <input onChange={handleSearch} type="text" name="search" id="search" className='flex-[3] border-[1px] md:border-2 border-black w-full h-10 rounded-sm md:rounded-xl placeholder:font-semibold' placeholder='Search for anything' />
+            <form onSubmit={searchCourse} action="">
+                <input onChange={handleSearch} type="text" name="search" id="search" className='flex-[3] border-[1px] md:border-2 border-black w-full h-10 rounded-sm md:rounded-xl placeholder:font-semibold' placeholder='Search for anything' />
+            </form>
             <motion.ul variants={searchVariant} animate={search ? "animate" : "initial"} className={`w-fit flex flex-col gap-3 md:gap-4 font-black p-3 rounded-md text-sm md:text-lg absolute left-0 right-0 bg-white ${searchedData.length > 0 && "shadow-lg"}`}>
                 <AnimatePresence >
                     {(searchedData && searchedData.length > 0) && searchedData.map((course)=> (
