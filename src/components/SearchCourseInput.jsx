@@ -40,7 +40,10 @@ const SearchCourseInput = () => {
     })
     const searchCourse = (e)=> {
         e.preventDefault()
-        console.log("working")
+        if (searchedData.length === 1) {
+            navigate(`/courses/${searchedData[0].courseName.toLowerCase()}`)
+            setSearch("")
+        }
     }
     return (
         <div className='relative search-box'>
