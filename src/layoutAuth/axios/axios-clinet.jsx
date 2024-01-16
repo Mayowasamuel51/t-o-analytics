@@ -4,6 +4,7 @@ const axiosclinet = axios.create({
     baseURL: "http://localhost:8000/"
     // baseURL:"https://codarnetwork.online/"
 });
+
 axiosclinet.defaults.headers.post["Content-Type"] = "application/json";
 axiosclinet.defaults.headers.post["Accept"] = "application/json";
 axiosclinet.defaults.withCredentials = true; // generate
