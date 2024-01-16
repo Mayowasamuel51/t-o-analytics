@@ -227,7 +227,9 @@ const HomePage = () => {
                     interval: 4000,
                     speed: 2000,
                     arrows: false,
-                    pagination: true
+                    pagination: true,
+                    drag : 'free',
+                    snap : true,
                 }}>
                     <SplideSlide>
                         <div className="md:w-[80%] mx-auto">
