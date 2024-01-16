@@ -56,32 +56,30 @@ const CheckOut = () => {
     
   return (
     <div className="min-h-screen md:px-10 px-2 pt-24 pb-20">
-      <h1 className="text-xl md:text-4xl font-black my-4">SHOPPING CART</h1>
+      <h1 className="text-xl md:text-4xl font-black">SHOPPING CART</h1>
       <div>
-        <p className="font-semibold text-md flex items-end gap-1"><p className="font-black text-xl">{cartItem.length}</p> {cartItem.length > 1 ? "COURSES" : "COURSE"} in cart </p>
+        <p className="font-semibold text-md flex items-end gap-1 my-3"><p className="font-black text-xl">{cartItem.length}</p> {cartItem.length > 1 ? "COURSES" : "COURSE"} in cart </p>
       </div>
       <section className="grid md:grid-cols-3 grid-cols-1 gap-10">
         <div className="cart-items md:col-span-2">
           {cartItem.length > 0 ? cartItem.map((item)=> (
             <div key={item.id} className="py-4 px-2">
-              <div className="flex items-start gap-2 md:gap-10">
+              <div className="flex items-center gap-2 md:gap-4">
                 <div>
                   {item.image ? <img src={item.image} className="w-12 aspect-square object-cover rounded-md" alt="" /> : (<div className="w-12 aspect-square bg-BLUE rounded-md"></div>)}
                 </div>
-                <div className="flex-1">
+                <div className="md:flex-[5]">
                   <p className="text-sm md:text-base font-black">{item.courseName || item.name}</p>
                   <p className="text-xs">{item.intro}</p>
                   <p className="text-xs font-medium line-clamp-1">{item.description}</p>
                 </div>
-                <div>
+                <div className="flex gap-2 md:gap-4 md:flex-1">
                   <button onClick={()=> removeCourse(item.id)} className="font-bold text-xs text-BLUE">REMOVE</button>
-                </div>
-                <div>
                   <p className="font-black">${item.price}</p>
                 </div>
               </div>
             </div>
-          )) : <h1 className="col-span-3 flex justify-center items-center font-bold text-xl">NO ITEM IN YOUR CART</h1>}
+          )) : <h1 className="col-span-3 flex justify-center items-center font-bold text-base md:text-xl">NO ITEM IN YOUR CART</h1>}
         </div>
         <div className="mb-3">
           <div className="my-8">

@@ -242,7 +242,7 @@ div.stock-and-options::before {
 }
 
 div.cart-items>div {
-  border-top: 2px solid gray;
+  border-top: 2px solid black;
 }
 
 /* DASHBOARD LINK */
