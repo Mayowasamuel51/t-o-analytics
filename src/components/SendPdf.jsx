@@ -1,107 +1,39 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
-import { Toaster, toast } from "sonner";
-import { useEffect, useState } from "react";
-import FetchTotalSplunkUser from "../hooks/FetchTotalSplunkUser";
-import FetchTotalEdcationalUser from "../hooks/FetchTotalEdcationalUser";
 
-const api_splunk = import.meta.env.VITE_BACKEND_LIVE_SPLUNK;
-const api_educational = import.meta.env.VITE_BACKEND_LIVE_EDUCATIONAL;
-const api_education = import.meta.env.VITE_EDUCATIONAL_GET_TOTAL;
+import { useState } from "react";
+
 const SendPdf = () => {
-  const navigate = useNavigate();
-  const { data } = FetchTotalSplunkUser();
-     const [files, setFiles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [file, setFile] = useState(null);
 
-  useEffect(() => {
-    fetch("http://localhost:8000/api/files") // 🔹 Your backend API
-      .then((res) => res.json())
-      .then((data) => {
-        setFiles(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching files:", err);
-        setLoading(false);
-      });
-  }, []);
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
 
-  if (loading) {
-    return <p className="p-6">Loading files...</p>;
-  }
-
-  // const handleUpload = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-
-  //   const res = await fetch("http://localhost:5000/api/upload", {
-  //     method: "POST",
-  //     body: formData,
-  //   });
-  //   const data = await res.json();
-  //   alert("Uploaded: " + data.url);
-  // };
-  
-
+    const res = await fetch("https://to-backendapi-v1.vercel.app/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await res.json();
+    // alert("Uploaded: " + data.fullUrl || data.fileUrl);
+  };
 
   return (
-      <div className="p-6">
-      <h2 className="text-xl font-bold mb-4">Available Files</h2>
-
-      {files.length === 0 ? (
-        <p>No files uploaded yet.</p>
-      ) : (
-        <ul className="space-y-4">
-          {files.map((file) => (
-            <li key={file._id} className="border p-4 rounded-lg shadow">
-              <h3 className="font-semibold">{file.title}</h3>
-
-              {/* View PDF directly */}
-              {file.fileType === "pdf" && (
-                <iframe
-                  src={`http://localhost:8000 ${file.fileUrl}`}
-                  width="100%"
-                  height="400"
-                  title={file.title}
-                ></iframe>
-              )}
-
-              {/* View PPT via Google Docs Viewer */}
-              {(file.fileType === "pptx" ) && (
-                <iframe
-                  src={`https://docs.google.com/viewer?url=http://localhost:8000${file.fileUrl}&embedded=true`}
-                  width="100%"
-                  height="400"
-                  title={file.title}
-                ></iframe>
-              )}
-
-              {/* Download Link */}
-              <a
-                href={`http://localhost:8000${file.fileUrl}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline block mt-2"
-              >
-                Download
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-
-    // <form onSubmit={handleUpload}>
-    //   <input type="file" accept=".pdf,.ppt,.pptx" onChange={(e) => setFile(e.target.files[0])} />
-    //   <button type="submit">Upload</button>
-    // </form>
+    <>
+      <form onSubmit={handleUpload} className="mt-10">
+        <h1 className="text-center font-bold">UPLOAD POWERPOINT</h1>
+        <div className="mt-28 p-11">
+          <input
+            type="file"
+            accept=".pdf,.ppt,.pptx"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+          <button type="submit" className="ml-4 px-4 py-2 bg-blue-500 text-white rounded">
+            Upload
+          </button>
+        </div>
+      </form>
+    </>
   );
-
 };
 
 export default SendPdf;

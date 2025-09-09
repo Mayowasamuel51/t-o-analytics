@@ -47,6 +47,7 @@ import Loader from "./components/Loader";
 import Links from "./components/Links";
 import { AnimatePresence } from "framer-motion";
 import SendPdf from "./components/SendPdf";
+import ClassM from "./components/ClassM";
 
 const router = createBrowserRouter([
   {
@@ -150,6 +151,10 @@ const router = createBrowserRouter([
       {
         path: "checkout",
         element: <CheckOut />
+      },
+       {
+        path: "classmaterials",
+        element: <ClassM />
       },
       {
         path: "myCourses",
