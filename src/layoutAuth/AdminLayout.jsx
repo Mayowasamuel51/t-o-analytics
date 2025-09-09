@@ -62,8 +62,13 @@ const AdminLayout = () => {
                             <NavLink className={({isActive})=> isActive ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="contractors"><MdOutlineAnalytics size={20} />Contractors</NavLink>
                         </motion.li>
                         <motion.li variants={liVariant}>
-                            <NavLink className={({isActive})=> isActive ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="send-links"><FaLink size={20} /> Send Links</NavLink>
+                            <NavLink className={({isActive})=> isActive ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="send-links"><FaLink size={20} /> Send Online Links</NavLink>
                         </motion.li>
+
+                           <motion.li variants={liVariant}>
+                            <NavLink className={({isActive})=> isActive ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="send-pdf"><FaLink size={20} /> Send PDF Links</NavLink>
+                        </motion.li>
+
                         <motion.li className="items-end" variants={liVariant}>
                             <NavLink className={({isActive})=> isActive ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="send-messages"><FaMessage size={20} /> Messages</NavLink>
                         </motion.li>

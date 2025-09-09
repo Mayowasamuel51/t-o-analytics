@@ -100,6 +100,38 @@ const AboutPage = () => {
             </motion.section>
             <motion.section ref={clientRef} initial={{scale: 0}} transition={{duration: 0.5}} style={{scale: isInView ? 1 : 0,transition: "400ms"}} className={`relative z-10 bg-BLUE py-2 md:py-8`}>
                 <div className="text-white rounded-lg border-[1px] border-PURPLE mx-2 md:mx-10 grid grid-cols-1 lg:grid-cols-2">
+  <div className="flex justify-center items-center">
+    <div className="p-4">
+      <img src={client} className="w-[450px] md:border-[1px] border-PURPLE rounded-2xl" alt="" />
+      <div className="text-center">
+        <p className="font-medium my-2 md:text-2xl">Tomide Olulana</p>
+        <p className="text-lg md:text-xl my-2">CEO</p>
+      </div>
+    </div>
+  </div>
+  <div className="about-me border-PURPLE text-sm md:text-base font-extralight md:font-medium px-4 md:px-6 py-4 md:py-8">
+    <p className="my-2 md:my-6">
+      Tomide Olulana is a passion-driven Nigerian-American business magnate, cybersecurity architect, big data developer, real estate investor, financial strategist, and educator based in the United States. With years of experience in stock and options trading, real estate investing, and mentorship, Tomide is committed to helping individuals build wealth, acquire valuable skills, and unlock their full potential.
+    </p>
+    <p className="my-2 md:my-6">
+      He earned his Master of Science in Applied Economics from the University of Maryland, College Park and began his career as a Financial Analyst and Asset Manager in the transportation industry. Today, he serves as a Cybersecurity Architect and Big Data Developer, specializing in Splunk engineering, advanced data analytics, and enterprise security solutions. In this role, he leads and mentors a talented team of developers, building secure, scalable, and data-driven systems.
+    </p>
+    <p className="my-2 md:my-6">
+      Beyond his professional career, Tomide is a successful entrepreneur and the Founder & CEO of several thriving ventures: 
+      <br />• T.O. Analytics Bootcamp — A premier training platform that equips individuals with Splunk, Linux, AWS, and cybersecurity skills. 
+      <br />• ACE Stocks Trading — A fast-growing stock trading community that teaches practical strategies for trading and investing. 
+      <br />• T.O. Productions LLC — A multimedia production company specializing in videography, photography, and creative storytelling.
+    </p>
+    <p className="my-2 md:my-6">
+      In addition to his work in tech and finance, Tomide is a committed real estate investor with a growing portfolio across the United States. He leverages his financial expertise to identify high-value opportunities, build equity, and create long-term wealth through strategic property investments.
+    </p>
+    <p className="my-2 md:my-6">
+      Tomide’s vision is fueled by his belief that with faith, hard work, and discipline, any dream can become a reality. Whether he is mentoring aspiring traders, training future cybersecurity leaders, growing his real estate portfolio, or building innovative data solutions, his passion for empowerment and excellence continues to inspire professionals and entrepreneurs across industries.
+    </p>
+  </div>
+</div>
+
+                {/* <div className="text-white rounded-lg border-[1px] border-PURPLE mx-2 md:mx-10 grid grid-cols-1 lg:grid-cols-2">
                     <div className="flex justify-center items-center">
                         <div className="p-4">
                             <img src={client} className="w-[450px] md:border-[1px] border-PURPLE rounded-2xl" alt="" />
@@ -115,7 +147,7 @@ const AboutPage = () => {
                         <p className="my-2 md:my-6">I am the founder of ACE Stocks Trading, a stock trading community that teaches and mentors people on how to trade and invest in the stock market, I am also the founder and CEO of TO Productions LLC, a multimedia production company, Co-founder of Dive Data LLC, a company that trains people how to use SPLUNK data monitoring tool from user to an Admin level, LINUX and AWS. </p>
                         <p className="my-2 md:my-6">My stock trading community has made millions in the stock market using my simple strategy and I strongly believes that with the help of God, any dream can come alive if you are willing to put in the work.</p>
                     </div>
-                </div>
+                </div> */}
             </motion.section>
         </>
     )

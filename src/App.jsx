@@ -46,6 +46,7 @@ import PaymentPage from "./pages/PaymentPage";
 import Loader from "./components/Loader";
 import Links from "./components/Links";
 import { AnimatePresence } from "framer-motion";
+import SendPdf from "./components/SendPdf";
 
 const router = createBrowserRouter([
   {
@@ -108,7 +109,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/admininfo",
-    element: <AdminLoginForm />
+  element: <AdminLoginForm />
   },
   {
     path: "/createAccount",
@@ -218,6 +219,10 @@ const router = createBrowserRouter([
       {
         path: "send-links",
         element: <SendLinks />
+      },
+       {
+        path: "send-pdf",
+        element: <SendPdf />
       },
       {
         path: "send-messages",
