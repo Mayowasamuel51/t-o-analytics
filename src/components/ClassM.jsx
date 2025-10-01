@@ -5,7 +5,7 @@ const ClassM = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://to-backendapi-v1.vercel.app/api/all/assignment") // ✅ endpoint to get all assignments
+    fetch("https://to-backendapi-v1.vercel.app/api/assignment") // ✅ endpoint to get all assignments
       .then((res) => res.json())
       .then((data) => {
         setAssignments(data.data || []); // adjust based on API response structure
@@ -38,9 +38,9 @@ const ClassM = () => {
                 <h3 className="font-semibold text-lg mb-2">
                   {assignment.name || "TO INSTRUCTOR"}
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
+                <h1 className="text-gray-700 dark:text-gray-300 font-extrabold">
                   {assignment.message || assignment.description}
-                </p>
+                </h1>
 
                 {/* If assignment has image */}
                 {assignment.imageurl && (
@@ -52,8 +52,8 @@ const ClassM = () => {
                 )}
 
                 <p className="text-sm text-gray-500 mt-2">
-  {new Date(assignment.date).toLocaleString()}
-</p>
+                  {new Date(assignment.date).toLocaleString()}
+                </p>
               </li>
             ))}
           </ul>
