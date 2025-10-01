@@ -20,6 +20,7 @@ function HomeLayout() {
                     location.pathname === "/blog" ||
                     location.pathname === "/career" ||
                     location.pathname === "/courses"||
+                    location.pathname ==="/sessions"||
                     location.pathname === "/contact" ||
                     location.pathname === "/checkout" ||
                     (COURSES.map((course, index) => location.pathname  === `${paths[index]}`) && location.pathname !== "/about")

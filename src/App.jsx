@@ -2,17 +2,17 @@ import React from "react";
 import { CartItemProvider } from "./context/CartItemContext";
 import ErrorPage from "./components/errorPage";
 import AllCourses from "./components/AllCourses";
-const LazyHomePage = React.lazy(()=> import("./pages/HomePage"))
-const LazyCourses = React.lazy(()=> import("./pages/Courses"))
-const LazyAbout = React.lazy(()=> import("./pages/AboutPage"))
-const LazyCareer = React.lazy(()=> import("./pages/CareerPage"))
-const LazyCOURSE = React.lazy(()=> import("./pages/COURSE"))
-const LazyBlogPage = React.lazy(()=> import("./pages/BlogPage"))
+const LazyHomePage = React.lazy(() => import("./pages/HomePage"));
+const LazyCourses = React.lazy(() => import("./pages/Courses"));
+const LazyAbout = React.lazy(() => import("./pages/AboutPage"));
+const LazyCareer = React.lazy(() => import("./pages/CareerPage"));
+const LazyCOURSE = React.lazy(() => import("./pages/COURSE"));
+const LazyBlogPage = React.lazy(() => import("./pages/BlogPage"));
 import ContactPage from "./pages/ContactPage";
 import ConnectWithContractor from "./pages/ConnectWithContractor";
 import MyCourses from "./pages/MyCourses";
 import Mentorship from "./pages/Mentorship";
-const LazyMentorship = React.lazy(()=> import("./pages/Mentorship"))
+const LazyMentorship = React.lazy(() => import("./pages/Mentorship"));
 import LiveCourses from "./pages/LiveCourses";
 import CreateAccountForm from "./pages/CreateAccountForm";
 import OTP_Verification from "./pages/OTP_Verification";
@@ -22,17 +22,14 @@ import ConfirmNewPassword from "./pages/ConfirmNewPassword";
 import LoginForm from "./pages/LoginForm";
 import AdminLoginForm from "./pages/AdminLoginForm";
 import CheckOut from "./pages/CheckOut";
-import SendLinks from "./components/SendLinks"
-import SendMessages from "./components/SendMessages"
+import SendLinks from "./components/SendLinks";
+import SendMessages from "./components/SendMessages";
 // import { Route, Switch, useLocation } from "react-router-dom";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HomeLayout from "./layoutAuth/HomeLayout";
 import AdminLayout from "./layoutAuth/AdminLayout";
-const LazyAuthLayout = React.lazy(()=> import("./layoutAuth/AuthLayout"))
+const LazyAuthLayout = React.lazy(() => import("./layoutAuth/AuthLayout"));
 import Dashboard from "./dashboard/components/Dashboard";
 import AdminDashboard from "./components/AdminDashboard";
 import AdminViewCourses from "./components/AdminViewCourses";
@@ -48,6 +45,7 @@ import Links from "./components/Links";
 import { AnimatePresence } from "framer-motion";
 import SendPdf from "./components/SendPdf";
 import ClassM from "./components/ClassM";
+import Session from "./components/Session";
 
 const router = createBrowserRouter([
   {
@@ -57,12 +55,20 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <React.Suspense fallback={<Loader />}><LazyHomePage /></React.Suspense>,
+        element: (
+          <React.Suspense fallback={<Loader />}>
+            <LazyHomePage />
+          </React.Suspense>
+        ),
       },
-    
+
       {
         path: "/courses",
-        element: <React.Suspense fallback={<Loader />}><LazyCourses /></React.Suspense>,
+        element: (
+          <React.Suspense fallback={<Loader />}>
+            <LazyCourses />
+          </React.Suspense>
+        ),
         children: [
           {
             index: true,
@@ -70,118 +76,151 @@ const router = createBrowserRouter([
           },
           {
             path: ":course",
-            element:  <React.Suspense fallback={<Loader />}><LazyCOURSE /></React.Suspense>,
+            element: (
+              <React.Suspense fallback={<Loader />}>
+                <LazyCOURSE />
+              </React.Suspense>
+            ),
           },
-        ]
+        ],
       },
       {
         path: "/about",
-        element: <React.Suspense fallback={<Loader />}><LazyAbout /></React.Suspense>,
+        element: (
+          <React.Suspense fallback={<Loader />}>
+            <LazyAbout />
+          </React.Suspense>
+        ),
       },
       {
+        path:'/sessions',
+        element:<Session/>
+      },
+
+      {
         path: "/career",
-        element: <React.Suspense fallback={<Loader />}><LazyCareer /></React.Suspense>,
+        element: (
+          <React.Suspense fallback={<Loader />}>
+            <LazyCareer />
+          </React.Suspense>
+        ),
       },
       {
         path: "/blog",
-        element: <React.Suspense fallback={<Loader />}><LazyBlogPage /></React.Suspense>,
+        element: (
+          <React.Suspense fallback={<Loader />}>
+            <LazyBlogPage />
+          </React.Suspense>
+        ),
       },
+
       {
         path: "/contact",
-        element: <ContactPage />
+        element: <ContactPage />,
       },
       {
         path: "/checkout",
-        element: <CheckOut />
+        element: <CheckOut />,
       },
       {
         path: "/mentorship",
-        element: <React.Suspense fallback={<Loader />}><LazyMentorship /></React.Suspense>,
+        element: (
+          <React.Suspense fallback={<Loader />}>
+            <LazyMentorship />
+          </React.Suspense>
+        ),
       },
       {
         path: "/liveCourses",
-        element: <LiveCourses />
+        element: <LiveCourses />,
       },
       {
         path: "/myProfile",
-        element: <MyProfile />
+        element: <MyProfile />,
       },
-    ]
+    ],
   },
   {
     path: "/admininfo",
-  element: <AdminLoginForm />
+    element: <AdminLoginForm />,
   },
+ 
   {
     path: "/createAccount",
-    element: <CreateAccountForm />
+    element: <CreateAccountForm />,
   },
   {
     path: "/login",
-    element: <LoginForm />
+    element: <LoginForm />,
   },
   {
     path: "/forgotPassword",
-    element: <ForgotPassword />
+    element: <ForgotPassword />,
   },
   {
     path: "/OTP",
-    element: <OTP_Verification />
+    element: <OTP_Verification />,
   },
   {
     path: "/createNewPassword",
-    element: <CreateNewPassword />
+    element: <CreateNewPassword />,
   },
   {
     path: "/confirmNewPassword",
-    element: <ConfirmNewPassword />
+    element: <ConfirmNewPassword />,
   },
   {
     path: "/partner",
     element: <ConnectWithContractor />,
   },
+
   {
     path: "/dashboard",
-    element: <React.Suspense fallback={<Loader />}><LazyAuthLayout /></React.Suspense>,
+    element: (
+      <React.Suspense fallback={<Loader />}>
+        <LazyAuthLayout />
+      </React.Suspense>
+    ),
     children: [
       {
         index: true,
-        element: <MyCourses />
+        element: <MyCourses />,
       },
       {
         path: "checkout",
-        element: <CheckOut />
-      },
-       {
-        path: "classmaterials",
-        element: <ClassM />
+        element: <CheckOut />,
       },
       {
+        path: "classmaterials",
+        element: <ClassM />,
+      },
+
+      {
         path: "myCourses",
-        element: <MyCourses />
+        element: <MyCourses />,
       },
       {
         path: "mentorship",
-        element: <Mentorship />
+        element: <Mentorship />,
       },
       {
         path: "comment",
-        element: <StudentCommentPage />
+        element: <StudentCommentPage />,
       },
       {
         path: "links",
-        element: <Links/>
+        element: <Links />,
         // <h1 className="min-h-screen flex justify-center items-center font-bold text-3xl">LINKS PAGE</h1>
       },
       {
         path: "makePayment",
-        element: <PaymentPage />
+        element: <PaymentPage />,
       },
       {
         path: "/dashboard/post",
-        element: <Dashboard />
+        element: <Dashboard />,
       },
-    ]
+    ],
   },
   {
     path: "/ADMIN-DASHBOARD",
@@ -189,7 +228,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <AdminDashboard />
+        element: <AdminDashboard />,
       },
       {
         path: "viewcourses",
@@ -197,48 +236,51 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <h1 className="text-center font-bold md:text-4xl">ALL COURSES</h1>
+            element: (
+              <h1 className="text-center font-bold md:text-4xl">ALL COURSES</h1>
+            ),
           },
           {
             path: "published",
-            element: <h1 className="text-center font-bold md:text-4xl">PUBLISHED</h1>
+            element: (
+              <h1 className="text-center font-bold md:text-4xl">PUBLISHED</h1>
+            ),
           },
           {
             path: "draft",
-            element: <h1 className="text-center font-bold md:text-4xl">DRAFT</h1>
+            element: (
+              <h1 className="text-center font-bold md:text-4xl">DRAFT</h1>
+            ),
           },
-        ]
+        ],
       },
-    {
+      {
         path: "allStudents",
-        element: <AllStudents />
+        element: <AllStudents />,
       },
       {
         path: "contacts",
-        element: <Contacts />
+        element: <Contacts />,
       },
       {
         path: "contractors",
-        element: <Contractors />
+        element: <Contractors />,
       },
       {
         path: "send-links",
-        element: <SendLinks />
+        element: <SendLinks />,
       },
-       {
+      {
         path: "send-pdf",
-        element: <SendPdf />
+        element: <SendPdf />,
       },
       {
         path: "send-messages",
-        element: <SendMessages />
+        element: <SendMessages />,
       },
-
-    ]
-  }
-    
+    ],
+  },
 ]);
-
 
 function App() {
   return (
