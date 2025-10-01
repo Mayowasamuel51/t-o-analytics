@@ -11,7 +11,7 @@ const SendPdf = () => {
     }
     setLoading(true);
     try {
-      const res = await fetch("https://to-backendapi-v1.vercel.app/api/upload", {
+      const res = await fetch("https://to-backendapi-v1.vercel.app/api/assignment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ assignment: text }),
