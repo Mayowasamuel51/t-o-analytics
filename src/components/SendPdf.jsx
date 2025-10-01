@@ -9,13 +9,12 @@ const SendPdf = () => {
     if (!text.trim()) {
       return alert("Please enter some content before uploading.");
     }
-
     setLoading(true);
     try {
       const res = await fetch("https://to-backendapi-v1.vercel.app/api/upload", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ description: text }),
+        body: JSON.stringify({ assignment: text }),
       });
 
       const data = await res.json();

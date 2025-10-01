@@ -66,7 +66,7 @@ const AdminLayout = () => {
                         </motion.li>
 
                            <motion.li variants={liVariant}>
-                            <NavLink className={({isActive})=> isActive ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="send-pdf"><FaLink size={20} /> Send PDF Links</NavLink>
+                            <NavLink className={({isActive})=> isActive ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="send-pdf"><FaLink size={20} /> Send Assingment</NavLink>
                         </motion.li>
 
                         <motion.li className="items-end" variants={liVariant}>
