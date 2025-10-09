@@ -236,36 +236,84 @@ const HomePage = () => {
                     drag : 'free',
                     snap : true,
                 }}>
+
+                        <SplideSlide>
+                        <div className="md:w-[80%] mx-auto">
+                            <p className="font-normal md:font-semibold my-2 text-sm py-2 md:text-xl text-center md:p-6">The mentorship helped me break into Splunk Admin role with confidence..</p>
+                            <div className="flex items-center justify-center gap-1 md:gap-3">
+                                {/* <img src={student3} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt="" /> */}
+                                <p className="font-bold text-sm md:text-2xl">Splunk Admin</p>
+                            </div>
+                        </div>
+                    </SplideSlide>
+
                     <SplideSlide>
                         <div className="md:w-[80%] mx-auto">
-                            <p className="font-normal md:font-semibold my-2 text-sm py-2 md:text-xl text-center md:p-6">Choosing this boot camp was a game-changer for me. The specialized cybersecurity curriculum, including in-depth training on Linux, gave me the skills and knowledge to excel in the field. The experienced instructors and practical projects made learning enjoyable</p>
+                            <p className="font-normal md:font-semibold my-2 text-sm py-2 md:text-xl text-center md:p-6">From zero IT experience to job-ready in 5 weeks. The labs and 1:1 sessions were game-changers.</p>
                             <div className="flex items-center justify-center gap-1 md:gap-3">
-                                <img src={student1} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt="" />
-                                <p className="font-bold text-sm md:text-2xl">Mayowa Odukoya</p>
+                                {/* <img src={student1} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt="" /> */}
+                                <p className="font-bold text-sm md:text-2xl">Cybersecurity Analyst</p>
                             </div>
                         </div>
                     </SplideSlide>
                     <SplideSlide>
                         <div className="md:w-[80%] mx-auto">
-                            <p className="font-normal md:font-semibold my-2 text-sm py-2 md:text-xl text-center md:p-6">I can&apos;t say enough good things about this boot camp! The cybersecurity track, with a focus on Linux, was exactly what I needed to kickstart my career. The hands-on labs and real-world simulations prepared me for the challenges of the industry</p>
+                            <p className="font-normal md:font-semibold my-2 text-sm py-2 md:text-xl text-center md:p-6">Landed a SOC Analyst role in just 7 weeks — coming from customer service!</p>
                             <div className="flex items-center justify-center gap-1 md:gap-3">
-                                <img src={student2} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt="" />
-                                <p className="font-bold text-sm md:text-2xl">Aishat Oyeleke</p>
+                                {/* <img src={student2} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt="" /> */}
+                                <p className="font-bold text-sm md:text-2xl">SOC Analyst</p>
                             </div>
                         </div>
                     </SplideSlide>
                     <SplideSlide>
                         <div className="md:w-[80%] mx-auto">
-                            <p className="font-normal md:font-semibold my-2 text-sm py-2 md:text-xl text-center md:p-6">I&apos;m so grateful for the opportunity to be a part of this boot camp. All thanks to the financial literacy classes, I can now make purposeful final decisions and know all the right channels to invest my money and assets.</p>
+                            <p className="font-normal md:font-semibold my-2 text-sm py-2 md:text-xl text-center md:p-6">The mentorship helped me break into Splunk Admin role with confidence..</p>
                             <div className="flex items-center justify-center gap-1 md:gap-3">
-                                <img src={student3} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt="" />
-                                <p className="font-bold text-sm md:text-2xl">Timilehin Babade</p>
+                                {/* <img src={student3} className="w-[40px] md:w-[70px] aspect-square rounded-full" alt="" /> */}
+                                <p className="font-bold text-sm md:text-2xl">Splunk Admin</p>
                             </div>
                         </div>
                     </SplideSlide>
                 </Splide>
                 {/* <FaQuoteRight className='mx-auto' size={30} /> */}
             </section>
+               <section className="p-4 md:p-10 bg-gray-100">
+        <h2 className="text-center text-2xl md:text-4xl font-bold mb-8">
+          Frequently Asked Questions
+        </h2>
+        <div className="max-w-3xl mx-auto space-y-6 text-gray-700 text-sm md:text-base">
+          <div>
+            <h4 className="font-semibold">
+              How long until I’m job-ready?
+            </h4>
+            <p>Most mentees become job-ready within 8–12 weeks depending on prior experience.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold">
+              What if I miss a session?
+            </h4>
+            <p>You can reschedule or receive a bonus asynchronous review that week.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold">
+              Do you help with Splunk certifications?
+            </h4>
+            <p>Yes! We provide certification guidance and practice labs.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold">
+              I’m new to IT — am I eligible?
+            </h4>
+            <p>Absolutely. The mentorship is beginner-friendly and personalized to your pace.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold">
+              Do you offer refunds?
+            </h4>
+            <p>Yes, we offer deferral or partial refund options if mentorship is canceled early.</p>
+          </div>
+        </div>
+      </section>
         </motion.div>
     )
 }
