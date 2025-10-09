@@ -33,7 +33,7 @@ const Mentorship = () => {
       {/* Hero Section */}
       <section className="bg-BLUE text-white text-center py-24 px-4 md:px-10">
         <h1 className="font-bold text-3xl md:text-5xl mb-4">
-          Become Job-Ready in Cybersecurity & Splunk in 5 Weeks
+       Break into Cybersecurity/Splunk in 8–12 Weeks with 1-on-1 Mentorship
         </h1>
         <p className="max-w-2xl mx-auto text-sm md:text-lg">
           Hands-on 1-on-1 mentorship, labs, resume + LinkedIn prep, and interview

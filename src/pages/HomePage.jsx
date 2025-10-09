@@ -102,7 +102,12 @@ const HomePage = () => {
             <section className="landing-page px-6 md:px-10 py-60 md:py-32 bg-white min-h-screen">
                 <motion.div  className="grid md:grid-cols-2 items-center gap-10">
                     <motion.div variants={landingContainer} initial="hidden" animate="visible">
-                        <motion.h1 variants={h1} className="my-4 md:my-7 font-semibold md:font-bold text-4xl md:text-5xl LANDING-TEXT">Tech Education for Tomorrow’s Innovators</motion.h1>
+                        <motion.h1 
+  variants={h1} 
+  className="my-4 md:my-7 font-semibold md:font-bold text-4xl md:text-5xl LANDING-TEXT"
+>
+  Break into Cybersecurity / Splunk in 8–12 Weeks with 1-on-1 Mentorship
+</motion.h1>
                         <motion.p variants={p} className="font-medium md:font-bold text-2xl md:text-xl my-4">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</motion.p>
                         <motion.div variants={buttonContainer} initial="hidden" animate="visible" className="flex gap-2 md:gap-3">
                             <motion.div variants={button}>
