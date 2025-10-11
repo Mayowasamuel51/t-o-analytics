@@ -67,8 +67,8 @@ const Links = () => {
         <table className="min-h-screen md:min-h-min rounded-md md:rounded-none md:mb-40 w-full table-fixed border-collapse md:border-separate md:border-2 border-black md:border-spacing-1">
           <thead>
             <tr className="text-left">
-              <th className="border-2 border-black p-2 font-black text-xs md:text-2xl">SPLUNK</th>
-              <th className="border-2 border-black p-2 font-black text-xs md:text-2xl">EDUCATIONAL CONSULTING</th>
+              <th className="border-2 border-black p-2 font-black text-xs md:text-2xl">SPLUNK CLASS LINK</th>
+              {/* <th className="border-2 border-black p-2 font-black text-xs md:text-2xl">EDUCATIONAL CONSULTING</th> */}
             </tr>
           </thead>
           <tbody className="bg-white">
@@ -80,13 +80,13 @@ const Links = () => {
                   </td>
                 );
               })}
-               {consulting?.data?.response?.map((x) => {
+               {/* {consulting?.data?.response?.map((x) => {
                 return (
                   <td data-cell="EDUCATIONAL CONSULTING" key={x._id} className="border-2 border-black p-2">
                     <Link to={x.link} className="underline text-blue-500 line-clamp-1">{x.link}</Link>
                   </td>
                 );
-              })}
+              })} */}
             </tr>
           </tbody>
         </table>} 
