@@ -4,7 +4,7 @@ import { FaPlayCircle } from "react-icons/fa";
 const Materials = () => {
   // 🎥 Splunk class video
   const videoUrl =
-    "https://www.vidline.com/share/V054HB626Y/ba04bbed5eca7d113c1a56b4e49ab806";
+    "https://player.vimeo.com/video/1126909883?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479";
 
   // Thumbnail image (you can replace this with your own)
   const thumbnail =
