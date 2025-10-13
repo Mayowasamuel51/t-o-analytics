@@ -3,28 +3,28 @@ import { useState } from "react";
 const Materials = () => {
   // 🎥 Splunk class video (already working)
   const videoUrl =
-    "https://www.vidline.com/share/V0R6HEGM11/ec1c438ad2ee9f2224c924105ce316a7";
+    "https://www.vidline.com/share/V054HB626Y/56aedaffba9fc4e85cf766da1ae95b96";
 
   // 📚 List of PowerPoints / PDFs
   const docs = [
     {
       id: 1,
-      title: "Splunk Class 1 - Introduction",
+      title: "Splunk Class October 11 Note",
       type: "slides",
-      url: "https://docs.google.com/presentation/d/1bZPsvamsOz2OxrFNir3gld2vJtBzLoPh/embed?start=false&loop=false&delayms=3000",
+      url: "https://drive.google.com/file/d/1swg7fD7Q6DEO_E8PQZTIiPCrNtikWlSK/preview",
     },
     {
       id: 2,
-      title: "Splunk Class 2 - Data Onboarding",
+      title: "Splunk Class 1 SPLUNK INTRO",
       type: "slides",
-      url: "https://docs.google.com/presentation/d/1CAm-Vtm-GGi6fI-S97Vf2JA1gZgwFrIi/embed?start=false&loop=false&delayms=3000",
+      url: "https://drive.google.com/file/d/1bf5cRkcEC3yDJ5MnzpRKDpRLhRhdUH90/preview",
     },
-    {
-      id: 3,
-      title: "Splunk Reference Material (PDF)",
-      type: "pdf",
-      url: "https://drive.google.com/file/d/1ThR1ndrem7iKlfDMEYTBwSOYHQsjU5TB/preview",
-    },
+    // {
+    //   id: 3,
+    //   title: "Splunk Reference Material (PDF)",
+    //   type: "pdf",
+    //   url: "https://drive.google.com/file/d/1ThR1ndrem7iKlfDMEYTBwSOYHQsjU5TB/preview",
+    // },
   ];
 
   // Track the selected document
