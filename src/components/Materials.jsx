@@ -1,14 +1,10 @@
 import { useState } from "react";
-import { FaPlayCircle } from "react-icons/fa";
 
 const Materials = () => {
   // 🎥 Splunk class video
+//   https://vimeo.com/user248650254/review/1127004938/c7b8ae9a6d
   const videoUrl =
-    "https://player.vimeo.com/video/1126909883?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479";
-
-  // Thumbnail image (you can replace this with your own)
-  const thumbnail =
-    "https://img.freepik.com/free-vector/online-video-concept-illustration_114360-4685.jpg?t=st=1728854400~exp=1729459200~hmac=8b54d6f30b83fbc622b0e446ac5e94f89452a3ef11f9a3dd25c22fa8918c659b&w=1380";
+    "https://player.vimeo.com/video/1127004938?badge=0&autopause=0&player_id=0&app_id=58479";
 
   // 📚 List of PowerPoints / PDFs
   const docs = [
@@ -26,9 +22,7 @@ const Materials = () => {
     },
   ];
 
-  // Track the selected document
   const [selectedDoc, setSelectedDoc] = useState(docs[0]);
-  const [playVideo, setPlayVideo] = useState(false);
 
   return (
     <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
@@ -41,30 +35,14 @@ const Materials = () => {
         <h2 className="text-lg font-semibold mb-3">🎬 Class Video</h2>
 
         <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-          {!playVideo ? (
-            <div
-              className="relative w-full h-full cursor-pointer group"
-              onClick={() => setPlayVideo(true)}
-            >
-              <img
-                src={thumbnail}
-                alt="Video Thumbnail"
-                className="w-full h-full object-cover rounded-xl"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center transition-opacity group-hover:bg-opacity-60">
-                <FaPlayCircle className="text-white text-6xl opacity-90 group-hover:scale-110 transition-transform" />
-              </div>
-            </div>
-          ) : (
-            <iframe
-              src={`${videoUrl}?autoplay=1`}
-              title="Splunk Class Video"
-              className="w-full h-full"
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            ></iframe>
-          )}
+          <iframe
+            src={videoUrl}
+            title="Splunk Class Video"
+            className="w-full h-full"
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
 
