@@ -46,6 +46,7 @@ import { AnimatePresence } from "framer-motion";
 import SendPdf from "./components/SendPdf";
 import ClassM from "./components/ClassM";
 import Session from "./components/Session";
+import Materials from "./components/Materials";
 
 const router = createBrowserRouter([
   {
@@ -211,6 +212,10 @@ const router = createBrowserRouter([
         path: "links",
         element: <Links />,
         // <h1 className="min-h-screen flex justify-center items-center font-bold text-3xl">LINKS PAGE</h1>
+      },
+      {
+        path:"materials",
+        element:<Materials/>
       },
       {
         path: "makePayment",
