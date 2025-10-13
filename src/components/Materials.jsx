@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { FaPlayCircle } from "react-icons/fa";
 
 const Materials = () => {
-  // 🎥 Splunk class video (already working)
+  // 🎥 Splunk class video
   const videoUrl =
-    "https://www.vidline.com/share/V054HB626Y/56aedaffba9fc4e85cf766da1ae95b96";
+    "https://www.vidline.com/share/V054HB626Y/ba04bbed5eca7d113c1a56b4e49ab806";
+
+  // Thumbnail image (you can replace this with your own)
+  const thumbnail =
+    "https://img.freepik.com/free-vector/online-video-concept-illustration_114360-4685.jpg?t=st=1728854400~exp=1729459200~hmac=8b54d6f30b83fbc622b0e446ac5e94f89452a3ef11f9a3dd25c22fa8918c659b&w=1380";
 
   // 📚 List of PowerPoints / PDFs
   const docs = [
@@ -15,37 +20,51 @@ const Materials = () => {
     },
     {
       id: 2,
-      title: "Splunk Class 1 SPLUNK INTRO",
+      title: "Splunk Class 1 - SPLUNK INTRO",
       type: "slides",
       url: "https://drive.google.com/file/d/1bf5cRkcEC3yDJ5MnzpRKDpRLhRhdUH90/preview",
     },
-    // {
-    //   id: 3,
-    //   title: "Splunk Reference Material (PDF)",
-    //   type: "pdf",
-    //   url: "https://drive.google.com/file/d/1ThR1ndrem7iKlfDMEYTBwSOYHQsjU5TB/preview",
-    // },
   ];
 
   // Track the selected document
   const [selectedDoc, setSelectedDoc] = useState(docs[0]);
+  const [playVideo, setPlayVideo] = useState(false);
 
   return (
     <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
-      <h1 className="text-2xl font-bold text-gray-800">📚 Splunk Learning Materials</h1>
+      <h1 className="text-2xl font-bold text-gray-800">
+        📚 Splunk Learning Materials
+      </h1>
 
       {/* === CLASS VIDEO === */}
       <div className="bg-white shadow-md rounded-2xl p-4">
         <h2 className="text-lg font-semibold mb-3">🎬 Class Video</h2>
+
         <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-          <iframe
-            src={videoUrl}
-            title="Splunk Class Video"
-            className="w-full h-full"
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-          ></iframe>
+          {!playVideo ? (
+            <div
+              className="relative w-full h-full cursor-pointer group"
+              onClick={() => setPlayVideo(true)}
+            >
+              <img
+                src={thumbnail}
+                alt="Video Thumbnail"
+                className="w-full h-full object-cover rounded-xl"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center transition-opacity group-hover:bg-opacity-60">
+                <FaPlayCircle className="text-white text-6xl opacity-90 group-hover:scale-110 transition-transform" />
+              </div>
+            </div>
+          ) : (
+            <iframe
+              src={`${videoUrl}?autoplay=1`}
+              title="Splunk Class Video"
+              className="w-full h-full"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            ></iframe>
+          )}
         </div>
       </div>
 
@@ -81,7 +100,7 @@ const Materials = () => {
           ></iframe>
         </div>
 
-        {/* Optional: show share link for reference */}
+        {/* Optional: show share link */}
         <div className="mt-3 text-sm text-gray-600">
           <span className="font-semibold">Share link:</span>{" "}
           <a
