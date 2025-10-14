@@ -87,35 +87,56 @@ const Materials = () => {
       </div>
 
       {/* === DOCUMENT SECTION === */}
-      <div className="bg-white shadow-md rounded-2xl p-6">
-        <h2 className="text-xl font-semibold mb-3">📊 PowerPoint / PDF Viewer</h2>
+   {/* === SLIDES / DOCUMENTS === */}
+<div className="bg-white shadow-md rounded-2xl p-4">
+  <h2 className="text-lg font-semibold mb-4">📊 PowerPoint / PDF Materials</h2>
 
-        <div className="flex flex-wrap gap-3 mb-4">
-          {docs.map((doc) => (
-            <button
-              key={doc.id}
-              onClick={() => setSelectedDoc(doc)}
-              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                selectedDoc.id === doc.id
-                  ? "bg-blue-600 text-white shadow"
-                  : "bg-gray-100 hover:bg-gray-200"
-              }`}
-            >
-              {doc.title}
-            </button>
-          ))}
-        </div>
-
-        <div className="w-full h-[600px] rounded-xl overflow-hidden border">
+  {/* Grid of document cards */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {docs.map((doc) => (
+      <div
+        key={doc.id}
+        onClick={() => setSelectedDoc(doc)}
+        className={`cursor-pointer rounded-2xl border bg-white transition-all overflow-hidden hover:scale-[1.03] hover:shadow-lg ${
+          selectedDoc.id === doc.id ? "border-blue-500 shadow-md" : "border-gray-200"
+        }`}
+      >
+        {/* Document preview using iframe */}
+        <div className="aspect-[4/3] bg-gray-100">
           <iframe
-            src={selectedDoc.url}
-            title={selectedDoc.title}
-            className="w-full h-full"
+            src={doc.url}
+            title={doc.title}
+            className="w-full h-full pointer-events-none rounded-t-2xl"
             frameBorder="0"
             allowFullScreen
           ></iframe>
         </div>
+
+        {/* Document title */}
+        <div className="p-4 text-center text-sm font-semibold text-gray-800 truncate">
+          {doc.title}
+        </div>
       </div>
+    ))}
+  </div>
+
+  {/* === Selected document viewer === */}
+  <div className="mt-10">
+    <h3 className="text-md font-semibold mb-3 text-gray-700">
+      📖 Viewing: {selectedDoc.title}
+    </h3>
+    <div className="w-full h-[600px] rounded-xl overflow-hidden border">
+      <iframe
+        src={selectedDoc.url}
+        title={selectedDoc.title}
+        className="w-full h-full"
+        frameBorder="0"
+        allowFullScreen
+      ></iframe>
+    </div>
+  </div>
+</div>
+
     </div>
   );
 };
