@@ -48,29 +48,42 @@ const MyCourses = () => {
 
   // 🎓 Show default course
   return (
-    <div className="p-6 flex flex-wrap justify-center gap-6">
-      {courseData.map((course, index) => (
-        <div
-          key={index}
-          className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform bg-white w-[300px]"
-          data-aos="fade-up"
-          data-aos-duration="5000"
-        >
-          <img
-            src={course.image}
-            alt={course.courseName}
-            className="w-full h-[200px] object-cover"
-          />
-          <div className="p-4 bg-blue-600 text-white">
-            <p className="font-bold text-lg md:text-2xl mb-2">
-              {course.courseName}
-            </p>
-            <p className="text-sm md:text-base">{course.intro}</p>
+    <div className="p-6 space-y-6">
+      {/* 🧾 Description Section */}
+      <div className="text-center space-y-3">
+        <h1 className="text-3xl font-bold text-gray-800">🎓 Paid Courses</h1>
+        <p className="text-gray-600 max-w-2xl mx-auto">
+          Welcome to your paid courses area! Here you’ll find exclusive content
+          available only to enrolled students. Access videos, PowerPoint slides,
+          and learning resources related to your purchased course(s).
+        </p>
+      </div>
+
+      {/* 💻 Course Display */}
+      <div className="flex flex-wrap justify-center gap-6">
+        {courseData.map((course, index) => (
+          <div
+            key={index}
+            className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform bg-white w-[300px]"
+            data-aos="fade-up"
+          >
+            <img
+              src={course.image}
+              alt={course.courseName}
+              className="w-full h-[200px] object-cover"
+            />
+            <div className="p-4 bg-blue-600 text-white">
+              <p className="font-bold text-lg md:text-2xl mb-2">
+                {course.courseName}
+              </p>
+              <p className="text-sm md:text-base">{course.intro}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
+
 
 export default MyCourses;
