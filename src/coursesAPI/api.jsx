@@ -11,7 +11,7 @@ export default [
     {
         id: 1,
         image: splunk,
-        courseName: "splunk",
+        courseName: "Splunk",
         intro: "The Complete Splunk Bootcamp",
         description: "A comprehensive course on Splunk. Learn, analyze and optimize with our splunk course",
         whatToLearn: [
