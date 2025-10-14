@@ -27,7 +27,7 @@ const Materials = () => {
       id: 2,
     
         title: "To-analytics Splunk Class 1 Note",
-        "url":"https://docs.google.com/presentation/d/1VYiqPwen5Dc1tV2x8_ohR55n6toGBm1G/preview"
+        url:"https://docs.google.com/presentation/d/1VYiqPwen5Dc1tV2x8_ohR55n6toGBm1G/preview"
       // url: "https://drive.google.com/file/d/1swg7fD7Q6DEO_E8PQZTIiPCrNtikWlSK/preview",
     },
   ];
