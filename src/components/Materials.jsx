@@ -5,7 +5,7 @@ const Materials = () => {
   const videos = [
     {
       id: 1,
-      title: "Orientation",
+      title: "To-analytics Orientation",
       url: "https://player.vimeo.com/video/1126909883?badge=0&autopause=0&player_id=0&app_id=58479",
     },
     {
