@@ -19,7 +19,7 @@ const Materials = () => {
   const docs = [
     {
       id: 1,
-        title: "To-analytics Splunk Class 1 INTRO",
+        title: "To-analytics Splunk Class 1 Intro",
       url: "https://drive.google.com/file/d/1bf5cRkcEC3yDJ5MnzpRKDpRLhRhdUH90/preview",
     
     },
