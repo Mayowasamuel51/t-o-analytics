@@ -106,7 +106,7 @@ const HomePage = () => {
   variants={h1} 
   className="my-4 md:my-7 font-semibold md:font-bold text-4xl md:text-5xl LANDING-TEXT"
 >
-  Break into Cybersecurity / Splunk in 8–12 Weeks with 1-on-1 Mentorship
+  Break into Cybersecurity / Splunk in 14 Weeks with 1-on-1 Mentorship
 </motion.h1>
                         <motion.p variants={p} className="font-medium md:font-bold text-2xl md:text-xl my-4">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</motion.p>
                         <motion.div variants={buttonContainer} initial="hidden" animate="visible" className="flex gap-2 md:gap-3">
