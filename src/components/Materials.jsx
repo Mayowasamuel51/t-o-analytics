@@ -56,7 +56,7 @@ const Materials = () => {
         </div> */}
 
         {/* Flex-style video list (like Udemy) */}
-     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
   {videos.map((video) => (
     <div
       key={video.id}
@@ -65,24 +65,24 @@ const Materials = () => {
         selectedVideo.id === video.id ? "border-blue-500 shadow-md" : "border-gray-200"
       }`}
     >
-      {/* Video thumbnail preview */}
+      {/* Thumbnail preview (muted) */}
       <div className="aspect-video bg-black">
         <iframe
-          src={`${video.url}&muted=1`}
+          src={`${video.url}&muted=1&autoplay=0`}
           title={video.title}
-          className="w-full h-full pointer-events-none rounded-t-2xl"
+          className="w-full h-full rounded-t-2xl"
           frameBorder="0"
           allow="autoplay; fullscreen"
         ></iframe>
       </div>
 
-      {/* Video title bar */}
       <div className="p-4 bg-gray-50 text-sm font-semibold text-gray-800 text-center">
         {video.title}
       </div>
     </div>
   ))}
 </div>
+
 
       </div>
 
