@@ -88,6 +88,7 @@ const Materials = () => {
 
       {/* === DOCUMENT SECTION === */}
    {/* === SLIDES / DOCUMENTS === */}
+{/* === SLIDES / DOCUMENTS === */}
 <div className="bg-white shadow-md rounded-2xl p-4">
   <h2 className="text-lg font-semibold mb-4">📊 PowerPoint / PDF Materials</h2>
 
@@ -98,18 +99,12 @@ const Materials = () => {
         key={doc.id}
         onClick={() => setSelectedDoc(doc)}
         className={`cursor-pointer rounded-2xl border bg-white transition-all overflow-hidden hover:scale-[1.03] hover:shadow-lg ${
-          selectedDoc.id === doc.id ? "border-blue-500 shadow-md" : "border-gray-200"
+          selectedDoc?.id === doc.id ? "border-blue-500 shadow-md" : "border-gray-200"
         }`}
       >
-        {/* Document preview using iframe */}
-        <div className="aspect-[4/3] bg-gray-100">
-          <iframe
-            src={doc.url}
-            title={doc.title}
-            className="w-full h-full pointer-events-none rounded-t-2xl"
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
+        {/* Simple placeholder preview */}
+        <div className="flex items-center justify-center aspect-[4/3] bg-gray-100 text-gray-500 text-sm font-medium">
+          📄 {doc.title}
         </div>
 
         {/* Document title */}
@@ -120,22 +115,25 @@ const Materials = () => {
     ))}
   </div>
 
-  {/* === Selected document viewer === */}
-  <div className="mt-10">
-    <h3 className="text-md font-semibold mb-3 text-gray-700">
-      📖 Viewing: {selectedDoc.title}
-    </h3>
-    <div className="w-full h-[600px] rounded-xl overflow-hidden border">
-      <iframe
-        src={selectedDoc.url}
-        title={selectedDoc.title}
-        className="w-full h-full"
-        frameBorder="0"
-        allowFullScreen
-      ></iframe>
+  {/* === Show viewer only when a doc is clicked === */}
+  {selectedDoc && (
+    <div className="mt-10">
+      <h3 className="text-md font-semibold mb-3 text-gray-700">
+        📖 Viewing: {selectedDoc.title}
+      </h3>
+      <div className="w-full h-[600px] rounded-xl overflow-hidden border">
+        <iframe
+          src={selectedDoc.url}
+          title={selectedDoc.title}
+          className="w-full h-full"
+          frameBorder="0"
+          allowFullScreen
+        ></iframe>
+      </div>
     </div>
-  </div>
+  )}
 </div>
+
 
     </div>
   );
