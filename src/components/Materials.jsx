@@ -10,7 +10,7 @@ const Materials = () => {
     },
     {
       id: 2,
-      title: "Splunk Class October 11th",
+      title: "To-analytics Splunk Class 1",
       url: "https://player.vimeo.com/video/1127004938?badge=0&autopause=0&player_id=0&app_id=58479",
     }
   ];
