@@ -89,7 +89,7 @@ const Materials = () => {
       {/* === DOCUMENT SECTION === */}
    {/* === SLIDES / DOCUMENTS === */}
 <div className="bg-white shadow-md rounded-2xl p-4">
-  <h2 className="text-lg font-semibold mb-4">📊 PowerPoint / PDF Materials</h2>
+  <h2 className="text-lg font-semibold mb-4">📊  Slides </h2>
 
   {/* Grid of document cards */}
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
