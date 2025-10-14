@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 const Materials = () => {
@@ -7,19 +6,13 @@ const Materials = () => {
     {
       id: 1,
       title: "Orientation",
-      url: "https://player.vimeo.com/video/1126909883?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-    //   url: "",
+      url: "https://player.vimeo.com/video/1126909883?badge=0&autopause=0&player_id=0&app_id=58479",
     },
     {
       id: 2,
       title: "Splunk Class October 11th",
       url: "https://player.vimeo.com/video/1127004938?badge=0&autopause=0&player_id=0&app_id=58479",
     }
-    // {
-    //   id: 3,
-    //   title: "Splunk Class 2 - Dashboards & Reports",
-    //   url: "https://player.vimeo.com/video/1127030000?badge=0&autopause=0&player_id=0&app_id=58479", // example link
-    // },
   ];
 
   // 📚 PowerPoints / PDFs
@@ -36,7 +29,6 @@ const Materials = () => {
     },
   ];
 
-  // Track selections
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
   const [selectedDoc, setSelectedDoc] = useState(docs[0]);
 
@@ -46,31 +38,12 @@ const Materials = () => {
         📚 Splunk Learning Materials
       </h1>
 
-      {/* === CLASS VIDEO SECTION === */}
-      <div className="bg-white shadow-md rounded-2xl p-4">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-          <h2 className="text-lg font-semibold mb-2 md:mb-0">🎬 Class Videos</h2>
+      {/* === VIDEO SECTION === */}
+      <div className="bg-white shadow-md rounded-2xl p-6">
+        <h2 className="text-xl font-semibold mb-4">🎬 Class Videos</h2>
 
-          {/* Video dropdown selector */}
-          <select
-            value={selectedVideo.id}
-            onChange={(e) =>
-              setSelectedVideo(
-                videos.find((v) => v.id === Number(e.target.value))
-              )
-            }
-            className="border border-gray-300 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500"
-          >
-            {videos.map((video) => (
-              <option key={video.id} value={video.id}>
-                {video.title}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Embedded selected video */}
-        <div className="relative w-full aspect-video rounded-xl overflow-hidden">
+        {/* Main video player */}
+        {/* <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6">
           <iframe
             src={selectedVideo.url}
             title={selectedVideo.title}
@@ -80,20 +53,49 @@ const Materials = () => {
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           ></iframe>
-        </div>
+        </div> */}
+
+        {/* Flex-style video list (like Udemy) */}
+     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+  {videos.map((video) => (
+    <div
+      key={video.id}
+      onClick={() => setSelectedVideo(video)}
+      className={`cursor-pointer rounded-2xl border transition-all hover:scale-[1.03] hover:shadow-lg overflow-hidden bg-white ${
+        selectedVideo.id === video.id ? "border-blue-500 shadow-md" : "border-gray-200"
+      }`}
+    >
+      {/* Video thumbnail preview */}
+      <div className="aspect-video bg-black">
+        <iframe
+          src={`${video.url}&muted=1`}
+          title={video.title}
+          className="w-full h-full pointer-events-none rounded-t-2xl"
+          frameBorder="0"
+          allow="autoplay; fullscreen"
+        ></iframe>
       </div>
 
-      {/* === SLIDES / DOCUMENTS === */}
-      <div className="bg-white shadow-md rounded-2xl p-4">
-        <h2 className="text-lg font-semibold mb-3">📊 PowerPoint / PDF Viewer</h2>
+      {/* Video title bar */}
+      <div className="p-4 bg-gray-50 text-sm font-semibold text-gray-800 text-center">
+        {video.title}
+      </div>
+    </div>
+  ))}
+</div>
 
-        {/* Buttons for switching between materials */}
+      </div>
+
+      {/* === DOCUMENT SECTION === */}
+      <div className="bg-white shadow-md rounded-2xl p-6">
+        <h2 className="text-xl font-semibold mb-3">📊 PowerPoint / PDF Viewer</h2>
+
         <div className="flex flex-wrap gap-3 mb-4">
           {docs.map((doc) => (
             <button
               key={doc.id}
               onClick={() => setSelectedDoc(doc)}
-              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                 selectedDoc.id === doc.id
                   ? "bg-blue-600 text-white shadow"
                   : "bg-gray-100 hover:bg-gray-200"
@@ -104,7 +106,6 @@ const Materials = () => {
           ))}
         </div>
 
-        {/* Embedded document (PowerPoint or PDF) */}
         <div className="w-full h-[600px] rounded-xl overflow-hidden border">
           <iframe
             src={selectedDoc.url}
@@ -113,19 +114,6 @@ const Materials = () => {
             frameBorder="0"
             allowFullScreen
           ></iframe>
-        </div>
-
-        {/* Optional: share link */}
-        <div className="mt-3 text-sm text-gray-600">
-          <span className="font-semibold">Share link:</span>{" "}
-          <a
-            href={selectedDoc.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 underline break-words"
-          >
-            {selectedDoc.url}
-          </a>
         </div>
       </div>
     </div>
