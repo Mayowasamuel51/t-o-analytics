@@ -193,22 +193,22 @@ export default [
         
         price: 1000
     },
-    {
-        id: 4,
-        image: drone,
-        courseName: "Drone Tech",
-        intro: "Complete Drone Technology Mastery",
-        description: "Learn drone tech at the forefront with our complete course.",
-        whatToLearn: [
-            "Introductions to drones & their components",
-            "Safety & regulations",
-            "Flight principles & maneuvers",
-            "Drone data collection & analysis",
-            "MaIntenance & troubleshooting",
-            "Programming & automation",
-        ],
-        price: 100
-    },
+    // {
+    //     id: 4,
+    //     image: drone,
+    //     courseName: "Drone Tech",
+    //     intro: "Complete Drone Technology Mastery",
+    //     description: "Learn drone tech at the forefront with our complete course.",
+    //     whatToLearn: [
+    //         "Introductions to drones & their components",
+    //         "Safety & regulations",
+    //         "Flight principles & maneuvers",
+    //         "Drone data collection & analysis",
+    //         "MaIntenance & troubleshooting",
+    //         "Programming & automation",
+    //     ],
+    //     price: 100
+    // },
     {
         id: 5,
         image: data,
@@ -223,41 +223,41 @@ export default [
         ],
         price: 100
     },
-    {
-        id: 6,
-        image: videography,
-        courseName: "Videography",
-        intro: "Complete Mastery of Videography",
-        description: "Learn the perfect way of planning, capturing and editing  clear and beautiful videos",
-        whatToLearn: [
-            "Camera basics & settings",
-            "Composition & framing techniques",
-            "Lighting techniques for video",
-            "Color grading & correction<",
-            "Cinematic techniques & visual effects",
-            "Storytelling through visuals",
-            "Shot types  & camera movements",
-            "Video editing & post production",
-        ],
-        price: 100
-    },
-    {
-        id: 7,
-        image: photography,
-        courseName: "Photography",
-        intro: "The Perfect Approach to  Capturing",
-        description: "Everything you need to know on how to capture and create images",
-        whatToLearn: [
-            "Camera basics & settings",
-            "Exposure & understanding light",
-            "Composition & framing techniques",
-            "Studio  lighting & portrait setups",
-            "Landscape & nature photography",
-            "Video editing & post production",
-            "Understanding different lenses & their effects",
-        ],
-        price: 100,
-    },
+    // {
+    //     id: 6,
+    //     image: videography,
+    //     courseName: "Videography",
+    //     intro: "Complete Mastery of Videography",
+    //     description: "Learn the perfect way of planning, capturing and editing  clear and beautiful videos",
+    //     whatToLearn: [
+    //         "Camera basics & settings",
+    //         "Composition & framing techniques",
+    //         "Lighting techniques for video",
+    //         "Color grading & correction<",
+    //         "Cinematic techniques & visual effects",
+    //         "Storytelling through visuals",
+    //         "Shot types  & camera movements",
+    //         "Video editing & post production",
+    //     ],
+    //     price: 100
+    // },
+    // {
+    //     id: 7,
+    //     image: photography,
+    //     courseName: "Photography",
+    //     intro: "The Perfect Approach to  Capturing",
+    //     description: "Everything you need to know on how to capture and create images",
+    //     whatToLearn: [
+    //         "Camera basics & settings",
+    //         "Exposure & understanding light",
+    //         "Composition & framing techniques",
+    //         "Studio  lighting & portrait setups",
+    //         "Landscape & nature photography",
+    //         "Video editing & post production",
+    //         "Understanding different lenses & their effects",
+    //     ],
+    //     price: 100,
+    // },
     {
         id: 8,
         image: mentorship,
