@@ -19,12 +19,12 @@ const Materials = () => {
   const docs = [
     {
       id: 1,
-      title: "Splunk Class October 11 Note",
+      title: "To-analytics Splunk Class 1 Note",
       url: "https://drive.google.com/file/d/1swg7fD7Q6DEO_E8PQZTIiPCrNtikWlSK/preview",
     },
     {
       id: 2,
-      title: "Splunk Class 1 - SPLUNK INTRO",
+      title: "To-analytics Splunk Class 1 INTRO",
       url: "https://drive.google.com/file/d/1bf5cRkcEC3yDJ5MnzpRKDpRLhRhdUH90/preview",
     },
   ];
