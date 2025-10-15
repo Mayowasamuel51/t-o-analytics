@@ -47,6 +47,7 @@ import SendPdf from "./components/SendPdf";
 import ClassM from "./components/ClassM";
 import Session from "./components/Session";
 import Materials from "./components/Materials";
+import ResetPassword from "./pages/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -157,6 +158,10 @@ const router = createBrowserRouter([
   {
     path: "/forgotPassword",
     element: <ForgotPassword />,
+  },
+   {
+    path: "//reset-password/:token",
+    element: <ResetPassword />,
   },
   {
     path: "/OTP",

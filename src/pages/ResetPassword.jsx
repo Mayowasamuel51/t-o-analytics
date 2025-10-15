@@ -10,7 +10,7 @@ export default function ResetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:8000/api/auth/reset-password/${token}`, { password });
+      const res = await axios.post(`https://to-backendapi-v1.vercel.app/api/reset-password/${token}`, { password });
       setMsg(res.data.message);
     } catch (err) {
       setMsg(err.response?.data?.message || "Error occurred");
