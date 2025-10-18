@@ -48,6 +48,7 @@ import ClassM from "./components/ClassM";
 import Session from "./components/Session";
 import Materials from "./components/Materials";
 import ResetPassword from "./pages/ResetPassword";
+import SplunkQuiz from "./components/Quiz";
 
 const router = createBrowserRouter([
   {
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
       {
         path: "/liveCourses",
         element: <LiveCourses />,
+      },
+       {
+        path: "/quiz",
+        element: <SplunkQuiz />,
       },
       {
         path: "/myProfile",

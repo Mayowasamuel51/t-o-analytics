@@ -180,6 +180,8 @@ const NavBar = () => {
                                 {FullScreen ? 
                                 <ul className='font-semibold p-3 leading-[30px]'>
                                     <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/myProfile">My Profile</NavLink></motion.li>
+                                      <motion.li transition={{ stiffness:250}} >
+                                        <NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/quiz">Splunk Quiz</NavLink></motion.li>
                                     <li onClick={signout} className="hover:bg-transparent hover:text-BLUE duration-300 text-red-500 rounded-md md:rounded-xl font-semibold cursor-pointer">
                                         Sign Out
                                     </li>
