@@ -257,7 +257,7 @@ const SplunkQuiz = () => {
     //     totalQuestions: questions.length,
     //   }),
     // });
-    await fetch("http://localhost:8000/api/save", {
+    await fetch("https://to-backendapi-v1.vercel.app/api/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -16,7 +16,7 @@ const QuizResults = () => {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/api/quiz/my-scores/${userEmail}`);
+        const res = await fetch(`https://to-backendapi-v1.vercel.app/api/quiz/my-scores/${userEmail}`);
         const data = await res.json();
 
         // filter results by user email
