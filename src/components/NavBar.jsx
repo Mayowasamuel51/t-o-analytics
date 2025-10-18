@@ -148,7 +148,7 @@ const NavBar = () => {
                 </nav>}
                 <div className="flex items-center gap-3">
                     {!token &&
-                    <Link to="/createAccount" className='md:block hidden'>
+                    <Link to="/login" className='md:block hidden'>
                         <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-1 py-1 md:px-4 md:py-3 rounded-md md:rounded-3xl font-semibold">
                             Login 
                         </button>
