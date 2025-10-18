@@ -55,7 +55,7 @@ const Links = () => {
   })
 
 
-  if (error === 404 ) return <p className='min-h-screen text-center text-red-500 md:text-3xl font-black'>You have not paid for any Live Course</p>
+  if (error === 404 ) return <p className='min-h-screen text-center text-red-500 md:text-3xl font-black'>NO CLASS ZOOM LINK AS BEEN SENT</p>
   if (splunk?.status === 500 || consulting?.status === 500) return <ServerErrorPage />
   if (splunkError || consultingError) return <p className='min-h-screen text-center text-red-500 md:text-3xl font-black'>Refresh The Page</p>
 
