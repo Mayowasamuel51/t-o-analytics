@@ -26,7 +26,7 @@ function HomeLayout() {
                     (COURSES.map((course, index) => location.pathname  === `${paths[index]}`) && location.pathname !== "/about")
                     ? <Footer black="bg-black text-white" /> : <Footer />
                 }
-                <Messages />
+                {/* <Messages /> */}
             </div>
         </>
     )
