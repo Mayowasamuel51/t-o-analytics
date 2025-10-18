@@ -13,9 +13,9 @@ const MyCourses = () => {
   } catch {
     user = { email: rawUser };
   }
-
+// fpasamuelmayowa51@gmail.com
   const userEmail = user?.email || "";
-  const allowedEmails = ["tomideolulana@gmail.com", "toanalyticsllc@gmail.com" , "kevwe_oberiko@yahoo.com","denisgsam@gmail.com","oluwaferanmi.olulana@gmail.com","fpamayowasamuel51@gmail.com","oluwatiroyeamoye@gmail.com","Trbanjo@gmail.com","emanfrimpong@gmail.com","dipeoluolatunji@gmail.com","Lybertyudochuu@gmail.com"]; // 👈 allowed email(s)
+  const allowedEmails = ["tomideolulana@gmail.com", "toanalyticsllc@gmail.com" , "kevwe_oberiko@yahoo.com","denisgsam@gmail.com","oluwaferanmi.olulana@gmail.com","fpasamuelmayowa51@gmail.com","oluwatiroyeamoye@gmail.com","Trbanjo@gmail.com","emanfrimpong@gmail.com","dipeoluolatunji@gmail.com","Lybertyudochuu@gmail.com"]; // 👈 allowed email(s)
 
   useEffect(() => {
     if (allowedEmails.includes(userEmail)) {
