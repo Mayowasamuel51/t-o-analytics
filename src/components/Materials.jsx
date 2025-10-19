@@ -60,7 +60,7 @@ const Materials = () => {
         {userEmail ? (
           <p className="mt-3 text-sm text-gray-500">Your email: {userEmail}</p>
         ) : (
-          <p className="mt-3 text-sm text-gray-500">Please log in first.</p>
+          <p className="mt-3 text-sm text-gray-500">.</p>
         )}
       </div>
     );
