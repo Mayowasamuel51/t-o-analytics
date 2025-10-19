@@ -3,10 +3,18 @@ import { useState, useEffect } from "react";
 const Materials = () => {
   // ✅ List of allowed emails
   const allowedEmails = [
-    "admin@example.com",
-    "vera@to-analytics.com",
-    "samuel@to-analytics.com",
-    "student@to-analytics.com",
+    "yinkalola51@gmail.com",
+    "tomideolulana@gmail.com",
+    "toanalyticsllc@gmail.com",
+    "kevwe_oberiko@yahoo.com",
+    "denisgsam@gmail.com",
+    "oluwaferanmi.olulana@gmail.com",
+    "fpasamuelmayowa51@gmail.com",
+    "oluwatiroyeamoye@gmail.com",
+    "Trbanjo@gmail.com",
+    "emanfrimpong@gmail.com",
+    "dipeoluolatunji@gmail.com",
+    "Lybertyudochuu@gmail.com",
   ];
 
   // Get user email from localStorage (or however your auth stores it)
