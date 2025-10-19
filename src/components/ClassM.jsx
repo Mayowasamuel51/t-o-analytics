@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Quiz from "./Quiz";
 
 const ClassM = () => {
+   const api = import.meta.env.VITE_HOME_OO;
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedQuiz, setSelectedQuiz] = useState("");
@@ -23,7 +24,7 @@ const ClassM = () => {
   const loadQuiz = async (quizName) => {
     setSelectedQuiz(quizName);
     try {
-      const res = await fetch(`http://localhost:8000/api/quiz/${quizName}`);
+      const res = await fetch(`${api}/api/quiz/${quizName}`);
       const data = await res.json();
       setQuizData(data);
     } catch (err) {
