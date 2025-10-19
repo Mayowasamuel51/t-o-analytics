@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Quiz from "./Quiz"; // ✅ your existing quiz component
+import Quiz from "./Quiz";
 
 const ClassM = () => {
   const [assignments, setAssignments] = useState([]);
@@ -23,7 +23,7 @@ const ClassM = () => {
   const loadQuiz = async (quizName) => {
     setSelectedQuiz(quizName);
     try {
-      const res = await fetch(`http://localhost:8000/api/quizzes/${quizName}`);
+      const res = await fetch(`http://localhost:8000/api/quiz/${quizName}`);
       const data = await res.json();
       setQuizData(data);
     } catch (err) {
@@ -31,50 +31,88 @@ const ClassM = () => {
     }
   };
 
-  if (loading) return <p className="p-6 text-center">Loading assignments...</p>;
+  if (loading)
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-50">
+        <div className="text-lg font-medium text-gray-700 animate-pulse">
+          Loading assignments...
+        </div>
+      </div>
+    );
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 py-6">
-      <h2 className="text-xl font-bold mb-4">📚 Class Assignments</h2>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-10 px-4">
+      <div className="max-w-5xl mx-auto">
+        {/* Page Title */}
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+          📚 Class Assignments & Quizzes
+        </h2>
 
-      {/* 🔽 Dropdown */}
-      <div className="mb-6">
-        <label className="block mb-2 font-semibold text-gray-700">
-          Select a Quiz:
-        </label>
-        <select
-          value={selectedQuiz}
-          onChange={(e) => loadQuiz(e.target.value)}
-          className="p-2 border rounded w-full"
-        >
-          <option value="">-- Choose a Quiz --</option>
-          <option value="splunk1">Splunk 1 Quiz</option>
-          <option value="splunk2">Splunk 2 Quiz</option>
-          <option value="splunk3">Splunk 3 Quiz</option>
-        </select>
+        {/* Quiz Selector */}
+        <div className="bg-white shadow-md rounded-2xl p-6 mb-8">
+          <label className="block text-lg font-semibold text-gray-700 mb-3">
+            Select a Quiz:
+          </label>
+          <select
+            value={selectedQuiz}
+            onChange={(e) => loadQuiz(e.target.value)}
+            className="p-3 w-full border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+          >
+            <option value="">-- Choose a Quiz --</option>
+            <option value="Splunk 1 Quiz">Splunk Quiz 1</option>
+            <option value="Splunk 2 Quiz">Splunk Quiz 2</option>
+            <option value="splunk3">Splunk Quiz 3</option>
+          </select>
+        </div>
+
+        {/* Quiz Section */}
+        {quizData && (
+          <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 transition-all duration-300 hover:shadow-xl">
+            <Quiz data={quizData} />
+          </div>
+        )}
+
+        {/* Assignments Section */}
+        <div className="mt-10">
+          <h3 className="text-2xl font-bold text-gray-800 mb-6">
+            📝 Recent Assignments
+          </h3>
+
+          <ul className="space-y-6">
+            {assignments.map((assignment) => (
+              <li
+                key={assignment._id}
+                className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 p-6"
+              >
+                <h4 className="font-semibold text-xl text-gray-800 mb-2">
+                  {assignment.name || "TO INSTRUCTOR"}
+                </h4>
+                <p className="text-gray-700 font-medium mb-3">
+                  {assignment.message || assignment.description}
+                </p>
+
+                {assignment.imageurl && (
+                  <img
+                    src={assignment.imageurl}
+                    alt="Assignment"
+                    className="mt-3 w-full max-h-80 object-cover rounded-lg shadow-sm"
+                  />
+                )}
+
+                <p className="text-sm text-gray-500 mt-4">
+                  📅 {new Date(assignment.date).toLocaleString()}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-
-      {/* 🧩 Show selected quiz */}
-      {quizData && <Quiz data={quizData} />}
-      
-      {/* 📝 Assignments list */}
-      <ul className="space-y-4 mt-8">
-        {assignments.map((assignment) => (
-          <li key={assignment._id} className="border p-4 rounded-lg shadow bg-white">
-            <h3 className="font-semibold text-lg mb-2">{assignment.name || "TO INSTRUCTOR"}</h3>
-            <p className="text-gray-700 font-extrabold">{assignment.message || assignment.description}</p>
-            {assignment.imageurl && (
-              <img src={assignment.imageurl} alt="Assignment" className="mt-3 w-full max-h-80 object-cover rounded-md" />
-            )}
-            <p className="text-sm text-gray-500 mt-2">{new Date(assignment.date).toLocaleString()}</p>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
 
 export default ClassM;
+
 
 
 // export default ClassM;
