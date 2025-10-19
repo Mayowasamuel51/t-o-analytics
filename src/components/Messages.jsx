@@ -23,8 +23,11 @@ const Messages = () => {
   const [message, setMessage] = useState(false)
   const { data } = FetchMessage()
   return (
-    <div className="fixed flex flex-col gap-5 top-[30%] left-5 bg-whte w-[20px] z-30">
-      <div className="relative alert-msg">
+    <>
+    
+
+    {/* <div className="fixed flex flex-col gap-5 top-[30%] left-5 bg-whte w-[20px] z-30"> */}
+      {/* <div className="relative alert-msg">
         <FaMessage size={30} className={`${message && "invisible opacity-0"} cursor-pointer`} onClick={()=> setMessage(true)} color="#2d2065" />
         <FaMessage size={30} className={`${message && "invisible opacity-0"} absolute inset-0 animate-ping cursor-pointer`} onClick={()=> setMessage(true)} color="#2d2065" />
       </div>
@@ -33,8 +36,9 @@ const Messages = () => {
         <p className="flex items-center justify-between gap-9 text-sm md:text-base">From @admin<FaXmark className="cursor-pointer" size={20} onClick={()=> setMessage(false)} /></p>
         <p className="my-2 border-l-4 border-BLUE pl-2 text-xs md:text-base">{msg.message}</p>
         <p className="text-xs md:text-base">Date: {(new Date(msg.date)).toDateString()}</p>
-      </motion.div>))}
-    </div>
+      </motion.div>))} */}
+    {/* </div> */}
+        </>
   )
 }
 
