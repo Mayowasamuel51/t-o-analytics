@@ -221,7 +221,7 @@ export default [
             "SQL",
             "Programming & automation",
         ],
-        price: 100
+        price: 500
     },
     // {
     //     id: 6,
