@@ -1,7 +1,8 @@
+
 import React, { useEffect, useState } from "react";
 
 const QuizResults = () => {
-   const api =  import.meta.env.VITE_HOME_OO;
+  const api = import.meta.env.VITE_HOME_OO;
   const storedUser = localStorage.getItem("user");
   let userEmail = "";
 
@@ -18,9 +19,7 @@ const QuizResults = () => {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const res = await fetch(
-          `${api}/api/quiz/my-scores/${userEmail}`
-        );
+        const res = await fetch(`${api}/api/quiz/my-scores/${userEmail}`);
         const data = await res.json();
         console.log(data);
 
@@ -72,7 +71,7 @@ const QuizResults = () => {
             <th className="p-2 border-b border-gray-700">#</th>
             <th className="p-2 border-b border-gray-700">Date</th>
             <th className="p-2 border-b border-gray-700">Score</th>
-            <th className="p-2 border-b border-gray-700">Total</th>
+            <th className="p-2 border-b border-gray-700">Total Questions</th>
             <th className="p-2 border-b border-gray-700">Percentage</th>
           </tr>
         </thead>
@@ -80,10 +79,16 @@ const QuizResults = () => {
           {results.map((r, index) => {
             const total = Number(r.totalQuestions) || 0;
             const score = Number(r.score) || 0;
-            const percent = total > 0 ? ((score / total) * 100).toFixed(1) : "0.0";
+            const percentNum = total > 0 ? (score / total) * 100 : 0;
+            const percent = percentNum.toFixed(1);
             const date = r.dateTaken
               ? new Date(r.dateTaken).toLocaleString()
               : "N/A";
+
+            // ✅ Dynamic color thresholds
+            let colorClass = "text-red-400";
+            if (percentNum >= 70) colorClass = "text-green-400";
+            else if (percentNum >= 50) colorClass = "text-yellow-400";
 
             return (
               <tr key={index} className="hover:bg-gray-800 transition-colors">
@@ -92,9 +97,7 @@ const QuizResults = () => {
                 <td className="p-2 border-b border-gray-700">{score}</td>
                 <td className="p-2 border-b border-gray-700">{total}</td>
                 <td
-                  className={`p-2 border-b border-gray-700 font-bold ${
-                    percent >= 70 ? "text-green-400" : "text-red-400"
-                  }`}
+                  className={`p-2 border-b border-gray-700 font-bold ${colorClass}`}
                 >
                   {percent}%
                 </td>
@@ -108,6 +111,7 @@ const QuizResults = () => {
 };
 
 export default QuizResults;
+
 
 
 

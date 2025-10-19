@@ -1,7 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Materials = () => {
-  // 🎥 List of Splunk videos
+  // ✅ List of allowed emails
+  const allowedEmails = [
+    "admin@example.com",
+    "vera@to-analytics.com",
+    "samuel@to-analytics.com",
+    "student@to-analytics.com",
+  ];
+
+  // Get user email from localStorage (or however your auth stores it)
+  const [userEmail, setUserEmail] = useState("");
+  const [isAllowed, setIsAllowed] = useState(false);
+
+  useEffect(() => {
+    // Example: get from localStorage or your auth state
+    const email = localStorage.getItem("userEmail");
+    setUserEmail(email);
+    setIsAllowed(allowedEmails.includes(email));
+  }, []);
+
   const videos = [
     {
       id: 1,
@@ -12,29 +30,43 @@ const Materials = () => {
       id: 2,
       title: "To-analytics Splunk Class 1",
       url: "https://player.vimeo.com/video/1127004938?badge=0&autopause=0&player_id=0&app_id=58479",
-    }
+    },
   ];
 
-  // 📚 PowerPoints / PDFs
   const docs = [
     {
       id: 1,
-        title: "To-analytics Splunk Class 1 Intro",
+      title: "To-analytics Splunk Class 1 Intro",
       url: "https://drive.google.com/file/d/1bf5cRkcEC3yDJ5MnzpRKDpRLhRhdUH90/preview",
-    
     },
     {
       id: 2,
-    
-        title: "To-analytics Splunk Class 1 Note",
-        url:"https://drive.google.com/file/d/1VYiqPwen5Dc1tV2x8_ohR55n6toGBm1G/preview"
-      // url: "https://drive.google.com/file/d/1swg7fD7Q6DEO_E8PQZTIiPCrNtikWlSK/preview",
+      title: "To-analytics Splunk Class 1 Note",
+      url: "https://drive.google.com/file/d/1VYiqPwen5Dc1tV2x8_ohR55n6toGBm1G/preview",
     },
   ];
 
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
   const [selectedDoc, setSelectedDoc] = useState(docs[0]);
 
+  // 🚫 Restrict access
+  if (!isAllowed) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+        <h1 className="text-3xl font-bold text-red-600 mb-4">Access Denied 🚫</h1>
+        <p className="text-gray-700">
+          This page is restricted to authorized To-Analytics members only.
+        </p>
+        {userEmail ? (
+          <p className="mt-3 text-sm text-gray-500">Your email: {userEmail}</p>
+        ) : (
+          <p className="mt-3 text-sm text-gray-500">Please log in first.</p>
+        )}
+      </div>
+    );
+  }
+
+  // ✅ If allowed, show materials
   return (
     <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
       <h1 className="text-2xl font-bold text-gray-800">
@@ -45,101 +77,80 @@ const Materials = () => {
       <div className="bg-white shadow-md rounded-2xl p-6">
         <h2 className="text-xl font-semibold mb-4">🎬 Class Videos</h2>
 
-        {/* Main video player */}
-        {/* <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-6">
-          <iframe
-            src={selectedVideo.url}
-            title={selectedVideo.title}
-            className="w-full h-full"
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        </div> */}
-
-        {/* Flex-style video list (like Udemy) */}
-   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
-  {videos.map((video) => (
-    <div
-      key={video.id}
-      onClick={() => setSelectedVideo(video)}
-      className={`cursor-pointer rounded-2xl border transition-all hover:scale-[1.03] hover:shadow-lg overflow-hidden bg-white ${
-        selectedVideo.id === video.id ? "border-blue-500 shadow-md" : "border-gray-200"
-      }`}
-    >
-      {/* Thumbnail preview (muted) */}
-      <div className="aspect-video bg-black">
-        <iframe
-          src={`${video.url}&muted=1&autoplay=0`}
-          title={video.title}
-          className="w-full h-full rounded-t-2xl"
-          frameBorder="0"
-          allow="autoplay; fullscreen"
-        ></iframe>
-      </div>
-
-      <div className="p-4 bg-gray-50 text-sm font-semibold text-gray-800 text-center">
-        {video.title}
-      </div>
-    </div>
-  ))}
-</div>
-
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+          {videos.map((video) => (
+            <div
+              key={video.id}
+              onClick={() => setSelectedVideo(video)}
+              className={`cursor-pointer rounded-2xl border transition-all hover:scale-[1.03] hover:shadow-lg overflow-hidden bg-white ${
+                selectedVideo.id === video.id
+                  ? "border-blue-500 shadow-md"
+                  : "border-gray-200"
+              }`}
+            >
+              <div className="aspect-video bg-black">
+                <iframe
+                  src={`${video.url}&muted=1&autoplay=0`}
+                  title={video.title}
+                  className="w-full h-full rounded-t-2xl"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen"
+                ></iframe>
+              </div>
+              <div className="p-4 bg-gray-50 text-sm font-semibold text-gray-800 text-center">
+                {video.title}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* === DOCUMENT SECTION === */}
-   {/* === SLIDES / DOCUMENTS === */}
-<div className="bg-white shadow-md rounded-2xl p-4">
-  <h2 className="text-lg font-semibold mb-4">📊  Slides </h2>
+      <div className="bg-white shadow-md rounded-2xl p-4">
+        <h2 className="text-lg font-semibold mb-4">📊 Slides</h2>
 
-  {/* Grid of document cards */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    {docs.map((doc) => (
-      <div
-        key={doc.id}
-        onClick={() => setSelectedDoc(doc)}
-        className={`cursor-pointer rounded-2xl border bg-white transition-all overflow-hidden hover:scale-[1.03] hover:shadow-lg ${
-          selectedDoc.id === doc.id ? "border-blue-500 shadow-md" : "border-gray-200"
-        }`}
-      >
-        {/* Document preview using iframe */}
-        <div className="aspect-[4/3] bg-gray-100">
-          <iframe
-            src={doc.url}
-            title={doc.title}
-            className="w-full h-full pointer-events-none rounded-t-2xl"
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {docs.map((doc) => (
+            <div
+              key={doc.id}
+              onClick={() => setSelectedDoc(doc)}
+              className={`cursor-pointer rounded-2xl border bg-white transition-all overflow-hidden hover:scale-[1.03] hover:shadow-lg ${
+                selectedDoc.id === doc.id
+                  ? "border-blue-500 shadow-md"
+                  : "border-gray-200"
+              }`}
+            >
+              <div className="aspect-[4/3] bg-gray-100">
+                <iframe
+                  src={doc.url}
+                  title={doc.title}
+                  className="w-full h-full pointer-events-none rounded-t-2xl"
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="p-4 text-center text-sm font-semibold text-gray-800 truncate">
+                {doc.title}
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Document title */}
-        <div className="p-4 text-center text-sm font-semibold text-gray-800 truncate">
-          {doc.title}
+        <div className="mt-10">
+          <h3 className="text-md font-semibold mb-3 text-gray-700">
+            📖 Viewing: {selectedDoc.title}
+          </h3>
+          <div className="w-full h-[600px] rounded-xl overflow-hidden border">
+            <iframe
+              src={selectedDoc.url}
+              title={selectedDoc.title}
+              className="w-full h-full"
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
       </div>
-    ))}
-  </div>
-
-  {/* === Selected document viewer === */}
-  <div className="mt-10">
-    <h3 className="text-md font-semibold mb-3 text-gray-700">
-      📖 Viewing: {selectedDoc.title}
-    </h3>
-    <div className="w-full h-[600px] rounded-xl overflow-hidden border">
-      <iframe
-        src={selectedDoc.url}
-        title={selectedDoc.title}
-        className="w-full h-full"
-        frameBorder="0"
-        allowFullScreen
-      ></iframe>
-    </div>
-  </div>
-</div>
-
     </div>
   );
 };
