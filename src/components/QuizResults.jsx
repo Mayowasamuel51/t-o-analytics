@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 const QuizResults = () => {
-  const rawUser = localStorage.getItem("user");
-  let user = null;
+   const api =  import.meta.env.VITE_HOME_OO;
+  const storedUser = localStorage.getItem("user");
+  let userEmail = "";
+
   try {
-    user = JSON.parse(rawUser);
+    const parsed = JSON.parse(storedUser);
+    userEmail = parsed?.email || parsed?.username || "";
   } catch {
-    user = { email: rawUser };
+    userEmail = storedUser || "";
   }
-  const userEmail = user?.email || "";
 
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,8 +18,17 @@ const QuizResults = () => {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const res = await fetch(`https://to-backendapi-v1.vercel.app/api/quiz/my-scores/${userEmail}`);
+        const res = await fetch(
+          `${api}/api/quiz/my-scores/${userEmail}`
+        );
         const data = await res.json();
+        console.log(data);
+
+        if (!Array.isArray(data)) {
+          console.warn("Expected an array but got:", data);
+          setResults([]);
+          return;
+        }
 
         // filter results by user email
         const userResults = data.filter(
@@ -67,15 +78,19 @@ const QuizResults = () => {
         </thead>
         <tbody>
           {results.map((r, index) => {
-            const percent = ((r.score / r.totalQuestions) * 100).toFixed(1);
-            const date = new Date(r.dateTaken).toLocaleString(); // ✅ fixed here
+            const total = Number(r.totalQuestions) || 0;
+            const score = Number(r.score) || 0;
+            const percent = total > 0 ? ((score / total) * 100).toFixed(1) : "0.0";
+            const date = r.dateTaken
+              ? new Date(r.dateTaken).toLocaleString()
+              : "N/A";
 
             return (
               <tr key={index} className="hover:bg-gray-800 transition-colors">
                 <td className="p-2 border-b border-gray-700">{index + 1}</td>
                 <td className="p-2 border-b border-gray-700">{date}</td>
-                <td className="p-2 border-b border-gray-700">{r.score}</td>
-                <td className="p-2 border-b border-gray-700">{r.totalQuestions}</td>
+                <td className="p-2 border-b border-gray-700">{score}</td>
+                <td className="p-2 border-b border-gray-700">{total}</td>
                 <td
                   className={`p-2 border-b border-gray-700 font-bold ${
                     percent >= 70 ? "text-green-400" : "text-red-400"
@@ -93,3 +108,61 @@ const QuizResults = () => {
 };
 
 export default QuizResults;
+
+
+
+
+// const rawUser = localStorage.getItem("user");
+  // let user = null;
+  // try {
+  //   user = JSON.parse(rawUser);
+  // } catch {
+  //   user = { email: rawUser };
+  // }
+  // const userEmail = user?.email || "";
+
+
+
+  //   const handleSubmit = async () => {
+//     let correctCount = 0;
+//     const missed = [];
+
+//     questions.forEach((q, index) => {
+//       const userAnswer = answers[index];
+//       const correctAnswers = Array.isArray(q.correct) ? q.correct : [q.correct];
+
+//       if (correctAnswers.includes(userAnswer)) {
+//         correctCount++;
+//       } else {
+//         missed.push({
+//           question: q.question,
+//           selected: userAnswer || "No answer",
+//           correct: correctAnswers.join(", "),
+//         });
+//       }
+//     });
+
+//     const totalQuestions = questions.length;
+//     const calculatedScore = Math.round((correctCount / totalQuestions) * 100);
+
+//     setScore(calculatedScore);
+//     setMissedQuestions(missed);
+//     setSubmitted(true);
+
+//     // ✅ Save result to backend
+//     try {
+//       await fetch("http://localhost:8000/api/quiz/save", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({
+//           username: userEmail,
+//           testName: data.title || "Unknown Quiz",
+//           score: calculatedScore,
+//           totalQuestions,
+//           missedQuestions: missed,
+//         }),
+//       });
+//     } catch (err) {
+//       console.error("Error saving quiz result:", err);
+//     }
+//   };
