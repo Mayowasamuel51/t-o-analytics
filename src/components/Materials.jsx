@@ -1,32 +1,32 @@
 import { useState, useEffect } from "react";
 
 const Materials = () => {
-  // ✅ List of allowed emails
   const allowedEmails = [
     "tomideolulana@gmail.com",
     "yinkalola51@gmail.com",
-    "tomideolulana@gmail.com",
     "toanalyticsllc@gmail.com",
     "kevwe_oberiko@yahoo.com",
     "denisgsam@gmail.com",
     "oluwaferanmi.olulana@gmail.com",
     "fpasamuelmayowa51@gmail.com",
     "oluwatiroyeamoye@gmail.com",
-    "Trbanjo@gmail.com",
+    "trbanjo@gmail.com",
     "emanfrimpong@gmail.com",
     "dipeoluolatunji@gmail.com",
-    "Lybertyudochuu@gmail.com",
+    "lybertyudochuu@gmail.com",
   ];
 
-  // Get user email from localStorage (or however your auth stores it)
   const [userEmail, setUserEmail] = useState("");
   const [isAllowed, setIsAllowed] = useState(false);
 
   useEffect(() => {
-    // Example: get from localStorage or your auth state
     const email = localStorage.getItem("userEmail");
     setUserEmail(email);
-    setIsAllowed(allowedEmails.includes(email));
+    if (email) {
+      const normalized = email.toLowerCase();
+      const allowed = allowedEmails.map((e) => e.toLowerCase());
+      setIsAllowed(allowed.includes(normalized));
+    }
   }, []);
 
   const videos = [
@@ -58,7 +58,6 @@ const Materials = () => {
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
   const [selectedDoc, setSelectedDoc] = useState(docs[0]);
 
-  // 🚫 Restrict access
   if (!isAllowed) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
@@ -69,13 +68,14 @@ const Materials = () => {
         {userEmail ? (
           <p className="mt-3 text-sm text-gray-500">Your email: {userEmail}</p>
         ) : (
-          <p className="mt-3 text-sm text-gray-500">.</p>
+          <p className="mt-3 text-sm text-gray-500">
+            Please log in to view this page.
+          </p>
         )}
       </div>
     );
   }
 
-  // ✅ If allowed, show materials
   return (
     <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
       <h1 className="text-2xl font-bold text-gray-800">
