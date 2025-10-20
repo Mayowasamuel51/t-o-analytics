@@ -21,7 +21,7 @@ const Materials = () => {
   const [isAllowed, setIsAllowed] = useState(false);
 
   useEffect(() => {
-    const email = localStorage.getItem("userEmail");
+    const email = localStorage.getItem("user");
     setUserEmail(email);
     if (email) {
       const normalized = email.toLowerCase();
