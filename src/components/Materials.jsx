@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 const Materials = () => {
   // ✅ List of allowed emails
   const allowedEmails = [
+    "tomideolulana@gmail.com",
     "yinkalola51@gmail.com",
     "tomideolulana@gmail.com",
     "toanalyticsllc@gmail.com",
