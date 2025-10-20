@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const Materials = () => {
   const allowedEmails = [
-    "toanalyticsllc@gmail.com",
+    
     "tomideolulana@gmail.com",
     "yinkalola51@gmail.com",
     "toanalyticsllc@gmail.com",
