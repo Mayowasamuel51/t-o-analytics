@@ -13,9 +13,21 @@ const MyCourses = () => {
   } catch {
     user = { email: rawUser };
   }
-// fpasamuelmayowa51@gmail.com
+  // fpasamuelmayowa51@gmail.com
   const userEmail = user?.email || "";
-  const allowedEmails = ["tomideolulana@gmail.com", "toanalyticsllc@gmail.com" , "kevwe_oberiko@yahoo.com","denisgsam@gmail.com","oluwaferanmi.olulana@gmail.com","fpasamuelmayowa51@gmail.com","oluwatiroyeamoye@gmail.com","Trbanjo@gmail.com","emanfrimpong@gmail.com","dipeoluolatunji@gmail.com","Lybertyudochuu@gmail.com"]; // 👈 allowed email(s)
+  const allowedEmails = [
+    "tomideolulana@gmail.com",
+    "toanalyticsllc@gmail.com",
+    "kevwe_oberiko@yahoo.com",
+    "denisgsam@gmail.com",
+    "oluwaferanmi.olulana@gmail.com",
+    "fpasamuelmayowa51@gmail.com",
+    "oluwatiroyeamoye@gmail.com",
+    "Trbanjo@gmail.com",
+    "emanfrimpong@gmail.com",
+    "dipeoluolatunji@gmail.com",
+    "Lybertyudochuu@gmail.com",
+  ]; // 👈 allowed email(s)
 
   useEffect(() => {
     if (allowedEmails.includes(userEmail)) {
@@ -35,12 +47,11 @@ const MyCourses = () => {
   if (!authorized) {
     return (
       <div className="min-h-screen flex flex-col justify-center items-center text-center p-6">
-        <h1 className="text-2xl font-bold text-red-600">
-          Access Denied 🚫
-        </h1>
+        <h1 className="text-2xl font-bold text-red-600">Access Denied 🚫</h1>
         <p className="mt-4 text-gray-700">
-          This account (<span className="font-semibold">{userEmail || "Unknown"}</span>) 
-          does not have access to this course.
+          This account (
+          <span className="font-semibold">{userEmail || "Unknown"}</span>) does
+          not have access to this course.
         </p>
       </div>
     );
@@ -50,40 +61,55 @@ const MyCourses = () => {
   return (
     <div className="p-6 space-y-6">
       {/* 🧾 Description Section */}
-      <div className=" space-y-3">
-        <h1 className="text-3xl font-bold text-gray-800">🎓 Paid Courses</h1>
+      {/* <div className=" space-y-3">
+        <h1 className="text-3xl font-bold text-gray-800  ">🎓 Paid Courses</h1>
         <p className="text-gray-600 ">
           Welcome to your paid courses area! Here you’ll find exclusive content
           available only to enrolled students. Access videos, PowerPoint slides,
           and learning resources related to your purchased course(s).
         </p>
-      </div>
+      </div> */}
 
       {/* 💻 Course Display */}
-      <div className="flex flex-wrap gap-6">
-        {courseData.map((course, index) => (
-          <div
-            key={index}
-            className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform bg-white w-[300px]"
-            data-aos="fade-up"
-          >
-            <img
-              src={course.image}
-              alt={course.courseName}
-              className="w-full h-[200px] object-cover"
-            />
-            <div className="p-4 bg-blue-600 text-white">
-              <p className="font-bold text-lg md:text-2xl mb-2">
-                {course.courseName}
-              </p>
-              <p className="text-sm md:text-base">{course.intro}</p>
-            </div>
-          </div>
-        ))}
+    <div className="space-y-8">
+  {/* Top Section */}
+  <div className="space-y-3 max-w-2xl">
+    <h1 className="text-3xl font-bold text-gray-800">
+      🎓 Paid Courses
+    </h1>
+    <p className="text-gray-600 leading-relaxed">
+      Welcome to your paid courses area! Here you’ll find exclusive content
+      available only to enrolled students. Access videos, PowerPoint slides,
+      and learning resources related to your purchased course(s).
+    </p>
+  </div>
+
+  {/* Course Cards Section */}
+  <div className="flex flex-wrap gap-6">
+    {courseData.map((course, index) => (
+      <div
+        key={index}
+        className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform bg-white w-[300px]"
+        data-aos="fade-up"
+      >
+        <img
+          src={course.image}
+          alt={course.courseName}
+          className="w-full h-[200px] object-cover"
+        />
+        <div className="p-4 bg-blue-600 text-white">
+          <p className="font-bold text-lg md:text-2xl mb-2">
+            {course.courseName}
+          </p>
+          <p className="text-sm md:text-base">{course.intro}</p>
+        </div>
       </div>
+    ))}
+  </div>
+</div>
+
     </div>
   );
 };
-
 
 export default MyCourses;
