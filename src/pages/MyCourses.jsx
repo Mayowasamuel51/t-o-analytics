@@ -50,9 +50,9 @@ const MyCourses = () => {
   return (
     <div className="p-6 space-y-6">
       {/* 🧾 Description Section */}
-      <div className="text-center space-y-3">
+      <div className=" space-y-3">
         <h1 className="text-3xl font-bold text-gray-800">🎓 Paid Courses</h1>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-gray-600 ">
           Welcome to your paid courses area! Here you’ll find exclusive content
           available only to enrolled students. Access videos, PowerPoint slides,
           and learning resources related to your purchased course(s).
@@ -60,7 +60,7 @@ const MyCourses = () => {
       </div>
 
       {/* 💻 Course Display */}
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="flex flex-wrap gap-6">
         {courseData.map((course, index) => (
           <div
             key={index}
