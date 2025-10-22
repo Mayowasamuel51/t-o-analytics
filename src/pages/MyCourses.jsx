@@ -71,43 +71,41 @@ const MyCourses = () => {
       </div> */}
 
       {/* 💻 Course Display */}
-    <div className="space-y-8">
-  {/* Top Section */}
-  <div className="space-y-3 max-w-2xl">
-    <h1 className="text-3xl font-bold text-gray-800">
-      🎓 Paid Courses
-    </h1>
-    <p className="text-gray-600 leading-relaxed">
-      Welcome to your paid courses area! Here you’ll find exclusive content
-      available only to enrolled students. Access videos, PowerPoint slides,
-      and learning resources related to your purchased course(s).
-    </p>
-  </div>
-
-  {/* Course Cards Section */}
-  <div className="flex flex-wrap gap-6">
-    {courseData.map((course, index) => (
-      <div
-        key={index}
-        className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform bg-white w-[300px]"
-        data-aos="fade-up"
-      >
-        <img
-          src={course.image}
-          alt={course.courseName}
-          className="w-full h-[200px] object-cover"
-        />
-        <div className="p-4 bg-blue-600 text-white">
-          <p className="font-bold text-lg md:text-2xl mb-2">
-            {course.courseName}
+      <div className="space-y-8">
+        {/* Top Section */}
+        <div className="space-y-3 max-w-2xl">
+          <h1 className="text-3xl font-bold text-gray-800">🎓 Paid Courses</h1>
+          <p className="text-gray-600 leading-relaxed">
+            Welcome to your paid courses area! Here you’ll find exclusive
+            content available only to enrolled students. Access videos,
+            PowerPoint slides, and learning resources related to your purchased
+            course(s).
           </p>
-          <p className="text-sm md:text-base">{course.intro}</p>
+        </div>
+
+        {/* Course Cards Section */}
+        <div className="flex flex-wrap gap-6">
+          {courseData.map((course, index) => (
+            <div
+              key={index}
+              className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform bg-white w-[300px]"
+              data-aos="fade-up"
+            >
+              <img
+                src={course.image}
+                alt={course.courseName}
+                className="w-full h-[200px] object-cover"
+              />
+              <div className="p-4 bg-blue-600 text-white">
+                <p className="font-bold text-lg md:text-2xl mb-2">
+                  {course.courseName}
+                </p>
+                <p className="text-sm md:text-base">{course.intro}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    ))}
-  </div>
-</div>
-
     </div>
   );
 };
