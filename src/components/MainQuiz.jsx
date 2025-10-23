@@ -70,14 +70,7 @@ const MainQuiz = () => {
   };
 
   // 🕐 Loading state
-  if (loading)
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-50">
-        <div className="text-lg font-medium text-gray-700 animate-pulse">
-          Loading assignments...
-        </div>
-      </div>
-    );
+ 
 
   // 🚫 If user not allowed, block access
   if (!isAllowed) {

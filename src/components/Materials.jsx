@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const Materials = () => {
   const allowedEmails = [
@@ -84,13 +84,17 @@ const Materials = () => {
       <h1 className="text-2xl font-bold text-gray-800">
         📚 Splunk Learning Materials
       </h1>
+{/* materials */}
+ 
 
       <NavLink
         to="/dashboard/takequiz"
-        className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+        className="inline-block bg-PURPLE hover:bg-BLUE text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
       >
         Take Splunk Quiz
       </NavLink>
+      {/* <Outlet></Outlet> */}
+
       {/* === VIDEO SECTION === */}
       <div className="bg-white shadow-md rounded-2xl p-6">
         <h2 className="text-xl font-semibold mb-4">🎬 Class Videos</h2>
