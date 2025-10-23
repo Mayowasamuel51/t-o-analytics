@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Quiz from "./Quiz";
+import { NavLink } from "react-router-dom";
 
 const ClassM = () => {
    const api = import.meta.env.VITE_HOME_OO;
@@ -45,9 +46,10 @@ const ClassM = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-10 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Page Title */}
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          📚 Class Assignments & Quizzes
-        </h2>
+       <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+  📚 Class Assignments & Quizzes
+</h2>
+
 
         {/* Quiz Selector */}
         <div className="bg-white shadow-md rounded-2xl p-6 mb-8">

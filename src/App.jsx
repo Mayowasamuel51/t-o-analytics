@@ -97,8 +97,8 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:'/sessions',
-        element:<Session/>
+        path: "/sessions",
+        element: <Session />,
       },
 
       {
@@ -142,7 +142,7 @@ const router = createBrowserRouter([
         path: "/result",
         element: <QuizResults />,
       },
-       {
+      {
         path: "/quiz",
         element: <SplunkQuiz />,
       },
@@ -156,7 +156,7 @@ const router = createBrowserRouter([
     path: "/admininfo",
     element: <AdminLoginForm />,
   },
- 
+
   {
     path: "/createAccount",
     element: <CreateAccountForm />,
@@ -169,7 +169,7 @@ const router = createBrowserRouter([
     path: "/forgotPassword",
     element: <ForgotPassword />,
   },
-   {
+  {
     path: "//reset-password/:token",
     element: <ResetPassword />,
   },
@@ -207,6 +207,10 @@ const router = createBrowserRouter([
         element: <CheckOut />,
       },
       {
+        path: "quiz",
+        element: <SplunkQuiz />,
+      },
+      {
         path: "classmaterials",
         element: <ClassM />,
       },
@@ -229,8 +233,8 @@ const router = createBrowserRouter([
         // <h1 className="min-h-screen flex justify-center items-center font-bold text-3xl">LINKS PAGE</h1>
       },
       {
-        path:"materials",
-        element:<Materials/>
+        path: "materials",
+        element: <Materials />,
       },
       {
         path: "makePayment",
