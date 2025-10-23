@@ -107,11 +107,11 @@ const ClassM = () => {
       <div className="max-w-5xl mx-auto">
         {/* Page Title */}
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          📚 Class Assignments & Quizzes
+          📚 Class Assignments
         </h2>
 
         {/* Quiz Selector */}
-        <div className="bg-white shadow-md rounded-2xl p-6 mb-8">
+        {/* <div className="bg-white shadow-md rounded-2xl p-6 mb-8">
           <label className="block text-lg font-semibold text-gray-700 mb-3">
             Select a Quiz:
           </label>
@@ -125,14 +125,14 @@ const ClassM = () => {
             <option value="Splunk 2 Quiz">Splunk Quiz 2</option>
             <option value="splunk3">Splunk Quiz 3</option>
           </select>
-        </div>
+        </div> */}
 
         {/* Quiz Section */}
-        {quizData && (
+        {/* {quizData && (
           <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 transition-all duration-300 hover:shadow-xl">
             <Quiz data={quizData} />
           </div>
-        )}
+        )} */}
 
         {/* Assignments Section */}
         <div className="mt-10">

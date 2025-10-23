@@ -86,7 +86,7 @@ const Materials = () => {
       </h1>
 
       <NavLink
-        to="/dashboard/quiz"
+        to="/dashboard/takequiz"
         className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
       >
         Take Splunk Quiz

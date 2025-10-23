@@ -211,6 +211,10 @@ const router = createBrowserRouter([
         element: <SplunkQuiz />,
       },
       {
+        path: "takequiz",
+        element: <SplunkQuiz />,
+      },
+      {
         path: "classmaterials",
         element: <ClassM />,
       },
