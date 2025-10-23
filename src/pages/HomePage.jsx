@@ -286,7 +286,7 @@ const HomePage = () => {
             <h4 className="font-semibold">
               How long until I’m job-ready?
             </h4>
-            <p>Most mentees become job-ready within 8–12 weeks depending on prior experience.</p>
+            <p>Most mentees become job-ready within 14 weeks depending on prior experience.</p>
           </div>
           <div>
             <h4 className="font-semibold">
