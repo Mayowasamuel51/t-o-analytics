@@ -99,7 +99,7 @@ const MainQuiz = () => {
     <>
       <div>
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          📚 Class Assignments & Quizzes
+          📚 Splunk Quiz
         </h2>
 
         {/* Quiz Selector */}
@@ -113,8 +113,8 @@ const MainQuiz = () => {
             className="p-3 w-full border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
           >
             <option value="">-- Choose a Quiz --</option>
-            <option value="T.O Analytics Splunk  Quiz 1">T.O Analytics Splunk  Quiz 1</option>
-            <option value="T.O Analytics Splunk  Quiz 2">T.O Analytics Splunk  Quiz 2</option>
+            <option value="T.O Analytics Splunk Quiz 1">T.O Analytics Splunk  Quiz 1</option>
+            <option value="T.O Analytics Splunk Quiz 2">T.O Analytics Splunk  Quiz 2</option>
             {/* <option value="splunk3">Splunk Quiz 3</option> */}
           </select>
         </div>
