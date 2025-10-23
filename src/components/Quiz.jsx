@@ -9,7 +9,7 @@ const Quiz = ({ data }) => {
   const [submitted, setSubmitted] = useState(false);
   const [missedQuestions, setMissedQuestions] = useState([]);
   const [showReview, setShowReview] = useState(false);
-  const [notAllowed, setNotAllowed] = useState(false);
+const [notAllowed, setNotAllowed] = useState(false);
 
   // ✅ Get and parse user from localStorage
   const rawUser = localStorage.getItem("user");

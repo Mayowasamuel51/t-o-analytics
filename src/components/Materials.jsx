@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 
 const Materials = () => {
   const allowedEmails = [
-    
     "tomideolulana@gmail.com",
     "yinkalola51@gmail.com",
     "toanalyticsllc@gmail.com",
@@ -63,7 +62,9 @@ const Materials = () => {
   if (!isAllowed) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-        <h1 className="text-3xl font-bold text-red-600 mb-4">Access Denied 🚫</h1>
+        <h1 className="text-3xl font-bold text-red-600 mb-4">
+          Access Denied 🚫
+        </h1>
         <p className="text-gray-700">
           This page is restricted to authorized To-Analytics members only.
         </p>
@@ -84,13 +85,12 @@ const Materials = () => {
         📚 Splunk Learning Materials
       </h1>
 
-
-<NavLink
-  to="/dashboard/quiz"
-  className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
->
-  Take Splunk Quiz
-</NavLink>
+      <NavLink
+        to="/dashboard/quiz"
+        className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+      >
+        Take Splunk Quiz
+      </NavLink>
       {/* === VIDEO SECTION === */}
       <div className="bg-white shadow-md rounded-2xl p-6">
         <h2 className="text-xl font-semibold mb-4">🎬 Class Videos</h2>
