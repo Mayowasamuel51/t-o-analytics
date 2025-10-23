@@ -8,7 +8,7 @@
 // import axios from "axios";
 // import { loadStripe } from "@stripe/stripe-js";
 // // ⚡ Stripe public key (replace with yours)
-// const stripePromise = loadStripe("rk_test_51SK7M1HRdtWhOhXvA9x1pgrkraFL4w4a68cB9h0mvng0MX7l0VTl0i7fYnxpiahKhQyIhf2E1zgEdiLNwRhvoqfV00wCn68ps2");
+// 
 // const CheckOut = () => {
 //   const { cartItem, setCartItem } = useContext(CartItemContext);
 //   const { token, user } = useStateContext(); // assuming you have user info

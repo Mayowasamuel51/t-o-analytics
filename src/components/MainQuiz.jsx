@@ -113,9 +113,9 @@ const MainQuiz = () => {
             className="p-3 w-full border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
           >
             <option value="">-- Choose a Quiz --</option>
-            <option value="Splunk 1 Quiz">Splunk Quiz 1</option>
-            <option value="Splunk 2 Quiz">Splunk Quiz 2</option>
-            <option value="splunk3">Splunk Quiz 3</option>
+            <option value="T.O Analytics Splunk  Quiz 1">T.O Analytics Splunk  Quiz 1</option>
+            <option value="T.O Analytics Splunk  Quiz 2">T.O Analytics Splunk  Quiz 2</option>
+            {/* <option value="splunk3">Splunk Quiz 3</option> */}
           </select>
         </div>
 
