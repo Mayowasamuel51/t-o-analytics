@@ -7,6 +7,7 @@ const ClassM = () => {
   const api = import.meta.env.VITE_HOME_OO;
 
   const allowedEmails = [
+    "adenusitimi@gmail.com",
     "tomideolulana@gmail.com",
     "yinkalola51@gmail.com",
     "toanalyticsllc@gmail.com",

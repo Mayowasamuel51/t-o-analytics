@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Materials = () => {
   const allowedEmails = [
-    "Adenusi.timi@gmail.com",
+    "adenusitimi@gmail.com",
     "tomideolulana@gmail.com",
     "yinkalola51@gmail.com",
     "toanalyticsllc@gmail.com",
