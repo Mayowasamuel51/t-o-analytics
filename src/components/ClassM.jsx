@@ -1,11 +1,8 @@
-
 import { useEffect, useState } from "react";
 import Quiz from "./Quiz";
 import { NavLink } from "react-router-dom";
-
 const ClassM = () => {
   const api = import.meta.env.VITE_HOME_OO;
-
   const allowedEmails = [
     "adenusitimi@gmail.com",
     "tomideolulana@gmail.com",
