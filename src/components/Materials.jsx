@@ -4,6 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const Materials = () => {
   const allowedEmails = [
     "adenusitimi@gmail.com",
+     "oluwaferanmiolulana@gmail.com",
     "Oluwaferanmi.olulana@gmail.com",
     "tomideolulana@gmail.com",
     "yinkalola51@gmail.com",
