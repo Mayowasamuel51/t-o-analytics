@@ -18,6 +18,7 @@ const MyCourses = () => {
   const userEmail = user?.email || "";
   const allowedEmails = [
     "tomideolulana@gmail.com",
+    "Oluwaferanmi.olulana@gmail.com",
     "toanalyticsllc@gmail.com",
     "kevwe_oberiko@yahoo.com",
     "denisgsam@gmail.com",
