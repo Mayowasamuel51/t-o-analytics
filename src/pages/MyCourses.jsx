@@ -25,6 +25,7 @@ const MyCourses = () => {
     "oluwaferanmi.olulana@gmail.com",
     "fpasamuelmayowa51@gmail.com",
      "oluwaferanmiolulana@gmail.com",
+     "randommayowa@gmail.com",
     "oluwatiroyeamoye@gmail.com",
     "adenusitimi@gmail.com",
     "Trbanjo@gmail.com",
