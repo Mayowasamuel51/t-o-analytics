@@ -53,7 +53,7 @@ const AdminLayout = () => {
                             <NavLink className={({isActive})=> isActive ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="viewcourses"><MdOutlineViewList size={20}/>Courses</NavLink>
                         </motion.li>
                         <motion.li variants={liVariant}>
-                            <NavLink className={({isActive})=> isActive ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="allStudents"><FaUsers size={20} /> Students</NavLink>
+                            <NavLink className={({isActive})=> isActive ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="studentresults"><FaUsers size={20} /> Students Result</NavLink>
                         </motion.li>
                         <motion.li variants={liVariant}>
                             <NavLink className={({isActive})=> isActive ? "bg-white text-BLUE rounded-md flex gap-2 items-center md:px-3 px-1" : "text-white flex gap-2 items-center md:px-3 px-1"} to="contacts"><FaUserGroup size={20} /> Contacts</NavLink>

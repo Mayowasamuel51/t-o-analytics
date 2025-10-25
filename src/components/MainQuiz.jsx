@@ -20,7 +20,8 @@ const MainQuiz = () => {
     "trbanjo@gmail.com",
     "emanfrimpong@gmail.com",
     "oluwaferanmiolulana@gmail.com",
-    "dipeoluolatunji@gmail.com",
+    "randommayowa@gmail.com",
+  "dipeoluolatunji@gmail.com",
     "lybertyudochuu@gmail.com",
   ];
 

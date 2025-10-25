@@ -36,6 +36,7 @@ const [notAllowed, setNotAllowed] = useState(false);
     "Trbanjo@gmail.com",
     "emanfrimpong@gmail.com",
     "dipeoluolatunji@gmail.com",
+      "randommayowa@gmail.com",
     "Lybertyudochuu@gmail.com",
   ];
 

@@ -51,6 +51,7 @@ import ResetPassword from "./pages/ResetPassword";
 import SplunkQuiz from "./components/Quiz";
 import QuizResults from "./components/QuizResults";
 import MainQuiz from "./components/MainQuiz";
+import SeeQuiz from "./components/SeeQuiz";
 
 const router = createBrowserRouter([
   {
@@ -237,12 +238,6 @@ const router = createBrowserRouter([
       {
         path: "materials",
         element: <Materials />,
-        //  children: [
-          // {
-            // path: "takequiz",
-            // element: <MainQuiz />,
-          // },
-        // ],
       },
       {
         path: "takequiz",
@@ -297,6 +292,10 @@ const router = createBrowserRouter([
       {
         path: "contacts",
         element: <Contacts />,
+      },
+       {
+        path: "studentresults",
+        element: <SeeQuiz />,
       },
       {
         path: "contractors",
