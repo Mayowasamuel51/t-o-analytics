@@ -7,6 +7,7 @@ const Materials = () => {
      "oluwaferanmiolulana@gmail.com",
     "Oluwaferanmi.olulana@gmail.com",
     "tomideolulana@gmail.com",
+    "randommayowa@gmail.com",
     "yinkalola51@gmail.com",
     "toanalyticsllc@gmail.com",
     "kevwe_oberiko@yahoo.com",
