@@ -33,7 +33,7 @@ const Quiz = ({ data }) => {
     "emanfrimpong@gmail.com",
     "dipeoluolatunji@gmail.com",
     "randommayowa@gmail.com",
-    "Lybertyudochuu@gmail.com",
+    "lybertyudochuu@gmail.com",
   ];
 
   // 🛑 Block unauthorized users
