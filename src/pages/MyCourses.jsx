@@ -17,8 +17,9 @@ const MyCourses = () => {
   // fpasamuelmayowa51@gmail.com
   const userEmail = user?.email || "";
   const allowedEmails = [
+    "oluwaferanmiolulana@gmail.com",
     "tomideolulana@gmail.com",
-    "oluwaferanmi.olulana@gmail.com",
+    // "oluwaferanmi.olulana@gmail.com",
     "toanalyticsllc@gmail.com",
     "lybertyudochuu@gmail.com",
     "kevwe_oberiko@yahoo.com",
