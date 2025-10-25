@@ -34,7 +34,6 @@ const MyCourses = () => {
     "dipeoluolatunji@gmail.com",
     "lybertyudochuu@gmail.com",
     "yinkalola51@gmail.com",
-    
   ]; 
 
   useEffect(() => {
