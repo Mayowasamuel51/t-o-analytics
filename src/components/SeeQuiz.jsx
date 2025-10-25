@@ -61,7 +61,7 @@ const SeeQuiz = () => {
   if (!results.length)
     return (
       <div className="text-center text-white p-6 bg-gray-900 rounded-lg">
-        <h2 className="text-xl font-bold mb-2">No Quiz Results Found 😅</h2>
+        <h2 className="text-xl font-bold mb-2">No Quiz Results Found </h2>
         <p>No quiz data yet.</p>
       </div>
     );
