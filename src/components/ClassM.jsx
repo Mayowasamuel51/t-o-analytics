@@ -7,6 +7,7 @@ const ClassM = () => {
     "adenusitimi@gmail.com",
     "Oluwaferanmi.olulana@gmail.com",
     "tomideolulana@gmail.com",
+    "Lybertyudochuu@gmail.com",
     "yinkalola51@gmail.com",
      "oluwaferanmiolulana@gmail.com",
        "randommayowa@gmail.com",

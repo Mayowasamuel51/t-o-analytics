@@ -22,6 +22,7 @@ const Quiz = ({ data }) => {
   const allowedEmails = [
     "yinkalola51@gmail.com",
     "tomideolulana@gmail.com",
+    "Lybertyudochuu@gmail.com",
     "toanalyticsllc@gmail.com",
     "kevwe_oberiko@yahoo.com",
     "denisgsam@gmail.com",
