@@ -24,15 +24,16 @@ const MyCourses = () => {
     "denisgsam@gmail.com",
     "oluwaferanmi.olulana@gmail.com",
     "fpasamuelmayowa51@gmail.com",
-     "oluwaferanmiolulana@gmail.com",
-     "randommayowa@gmail.com",
+    "oluwaferanmiolulana@gmail.com",
+    "randommayowa@gmail.com",
     "oluwatiroyeamoye@gmail.com",
     "adenusitimi@gmail.com",
     "Trbanjo@gmail.com",
     "emanfrimpong@gmail.com",
     "dipeoluolatunji@gmail.com",
     "Lybertyudochuu@gmail.com",
-  ]; // 👈 allowed email(s)
+    "yinkalola51@gmail.com",
+  ]; 
 
   useEffect(() => {
     if (allowedEmails.includes(userEmail)) {

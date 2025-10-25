@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-
 const Quiz = ({ data }) => {
-  const api =  import.meta.env.VITE_HOME_OO;
+  const api = import.meta.env.VITE_HOME_OO;
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(null);
@@ -9,20 +8,16 @@ const Quiz = ({ data }) => {
   const [submitted, setSubmitted] = useState(false);
   const [missedQuestions, setMissedQuestions] = useState([]);
   const [showReview, setShowReview] = useState(false);
-const [notAllowed, setNotAllowed] = useState(false);
-
+  const [notAllowed, setNotAllowed] = useState(false);
   // ✅ Get and parse user from localStorage
   const rawUser = localStorage.getItem("user");
   let user = null;
-
   try {
     user = JSON.parse(rawUser);
   } catch {
     user = { email: rawUser }; // fallback if stored as plain string
   }
-
   const userEmail = user?.email || "";
-
   // ✅ Allowed test-takers
   const allowedEmails = [
     "yinkalola51@gmail.com",
@@ -36,7 +31,7 @@ const [notAllowed, setNotAllowed] = useState(false);
     "Trbanjo@gmail.com",
     "emanfrimpong@gmail.com",
     "dipeoluolatunji@gmail.com",
-      "randommayowa@gmail.com",
+    "randommayowa@gmail.com",
     "Lybertyudochuu@gmail.com",
   ];
 
@@ -46,9 +41,7 @@ const [notAllowed, setNotAllowed] = useState(false);
       setNotAllowed(true);
     }
   }, [userEmail]);
-
   const questions = data?.questions || [];
-
   // 🕒 Countdown Timer
   useEffect(() => {
     if (submitted || notAllowed) return;
@@ -66,65 +59,115 @@ const [notAllowed, setNotAllowed] = useState(false);
       [questionIndex]: option,
     }));
   };
-
   // ✅ Submit logic with missed questions
+  // const handleSubmit = async () => {
+  //   let correctCount = 0;
+  //   const missed = [];
+  //   questions.forEach((q, index) => {
+  //     const userAnswer = answers[index];
+  //     const correctAnswers = Array.isArray(q.correct) ? q.correct : [q.correct];
+  //     if (correctAnswers.includes(userAnswer)) {
+  //       correctCount++;
+  //     } else {
+  //       missed.push({
+  //         question: q.question,
+  //         selected: userAnswer || "No answer",
+  //         correct: correctAnswers.join(", "),
+  //       });
+  //     }
+  //   });
+  //   const totalQuestions = questions.length;
+  //   const calculatedScore = Math.round((correctCount / totalQuestions) * 100);
+  //   setScore(calculatedScore);
+  //   setMissedQuestions(missed);
+  //   setSubmitted(true);
+  //   // ✅ Save result to backend
+  //   try {
+  //     const resultData = {
+  //       username: userEmail,
+  //       testName: data.title || "Unknown Quiz",
+  //       score: calculatedScore,
+  //       totalQuestions,
+  //       missedQuestions: missed,
+  //     };
+  //     console.log("Submitting result:", resultData);
+  //     const res = await fetch(`${api}/api/quiz/save`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(resultData),
+  //     });
+
+  //     if (!res.ok) {
+  //       const errorText = await res.text();
+  //       console.error("Save error:", errorText);
+  //       alert("❌ Failed to save result. Check console for details.");
+  //       return;
+  //     }
+  //     alert("✅ Quiz result saved successfully!");
+  //   } catch (err) {
+  //     console.error("Error saving quiz result:", err);
+  //     alert("⚠️ An error occurred while saving your result.");
+  //   }
+  // };
   const handleSubmit = async () => {
-    let correctCount = 0;
-    const missed = [];
+  let correctCount = 0;
+  const missed = [];
 
-    questions.forEach((q, index) => {
-      const userAnswer = answers[index];
-      const correctAnswers = Array.isArray(q.correct) ? q.correct : [q.correct];
+  questions.forEach((q, index) => {
+    const userAnswer = answers[index];
+    const correctAnswers = Array.isArray(q.correct) ? q.correct : [q.correct];
 
-      if (correctAnswers.includes(userAnswer)) {
-        correctCount++;
-      } else {
-        missed.push({
-          question: q.question,
-          selected: userAnswer || "No answer",
-          correct: correctAnswers.join(", "),
-        });
-      }
+    if (correctAnswers.includes(userAnswer)) {
+      correctCount++;
+    } else {
+      missed.push({
+        question: q.question,
+        selected: userAnswer || "No answer",
+        correct: correctAnswers.join(", "),
+      });
+    }
+  });
+
+  const totalQuestions = questions.length;
+  // ✅ Now score = number of correct answers
+  const calculatedScore = correctCount; 
+
+  setScore(calculatedScore);
+  setMissedQuestions(missed);
+  setSubmitted(true);
+
+  // ✅ Save result to backend
+  try {
+    const resultData = {
+      username: userEmail,
+      testName: data.title || "Unknown Quiz",
+      score: calculatedScore,
+      totalQuestions,
+      missedQuestions: missed,
+    };
+
+    console.log("Submitting result:", resultData);
+
+    const res = await fetch(`${api}/api/quiz/save`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(resultData),
     });
 
-    const totalQuestions = questions.length;
-    const calculatedScore = Math.round((correctCount / totalQuestions) * 100);
-
-    setScore(calculatedScore);
-    setMissedQuestions(missed);
-    setSubmitted(true);
-
-    // ✅ Save result to backend
-    try {
-      const resultData = {
-        username: userEmail,
-        testName: data.title || "Unknown Quiz",
-        score: calculatedScore,
-        totalQuestions,
-        missedQuestions: missed,
-      };
-
-      console.log("Submitting result:", resultData);
-
-      const res = await fetch(`${api}/api/quiz/save`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(resultData),
-      });
-
-      if (!res.ok) {
-        const errorText = await res.text();
-        console.error("Save error:", errorText);
-        alert("❌ Failed to save result. Check console for details.");
-        return;
-      }
-
-      alert("✅ Quiz result saved successfully!");
-    } catch (err) {
-      console.error("Error saving quiz result:", err);
-      alert("⚠️ An error occurred while saving your result.");
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error("Save error:", errorText);
+      alert("❌ Failed to save result. Check console for details.");
+      return;
     }
-  };
+
+    alert("✅ Quiz result saved successfully!");
+  } catch (err) {
+    console.error("Error saving quiz result:", err);
+    alert("⚠️ An error occurred while saving your result.");
+  }
+};
+
 
   const nextQuestion = () => {
     if (currentQuestion < questions.length - 1)
@@ -136,7 +179,9 @@ const [notAllowed, setNotAllowed] = useState(false);
   };
 
   const formatTime = (seconds) => {
-    const m = Math.floor(seconds / 60).toString().padStart(2, "0");
+    const m = Math.floor(seconds / 60)
+      .toString()
+      .padStart(2, "0");
     const s = (seconds % 60).toString().padStart(2, "0");
     return `${m}:${s}`;
   };
@@ -180,17 +225,10 @@ const [notAllowed, setNotAllowed] = useState(false);
 
         {showReview && (
           <div className="text-left max-w-3xl mx-auto">
-            <h3 className="text-xl font-bold mb-3">
-              Missed Questions Review
-            </h3>
+            <h3 className="text-xl font-bold mb-3">Missed Questions Review</h3>
             {missedQuestions.map((item, idx) => (
-              <div
-                key={idx}
-                className="border p-3 mb-3 rounded-lg bg-gray-50"
-              >
-                <p className="font-semibold text-red-500">
-                  ❌ {item.question}
-                </p>
+              <div key={idx} className="border p-3 mb-3 rounded-lg bg-gray-50">
+                <p className="font-semibold text-red-500">❌ {item.question}</p>
                 <p>
                   Your Answer:{" "}
                   <span className="text-red-600">{item.selected}</span>
@@ -291,9 +329,6 @@ const [notAllowed, setNotAllowed] = useState(false);
 };
 
 export default Quiz;
-
-
-
 
 // import { useEffect, useState } from "react";
 
@@ -520,7 +555,6 @@ export default Quiz;
 // };
 
 // export default Quiz;
-
 
 // import { useEffect, useState } from "react";
 
