@@ -76,6 +76,24 @@ const NavBar = () => {
         else {
         }
     })
+    const allowedEmails = [
+  "Oluwaferanmi.olulana@gmail.com",
+    "adenusitimi@gmail.com",
+    "Adenusi.timi@gmail.com",
+    "tomideolulana@gmail.com",
+    "yinkalola51@gmail.com",
+    "toanalyticsllc@gmail.com",
+    "kevwe_oberiko@yahoo.com",
+    "denisgsam@gmail.com",
+    "oluwaferanmi.olulana@gmail.com",
+    "fpasamuelmayowa51@gmail.com",
+    "oluwatiroyeamoye@gmail.com",
+    "trbanjo@gmail.com",
+    "emanfrimpong@gmail.com",
+    "oluwaferanmiolulana@gmail.com",
+    "dipeoluolatunji@gmail.com",
+    "lybertyudochuu@gmail.com",
+];
     return (
         <>
             <motion.header variants={headerVariant} animate={(hidden && !FullScreen) ? "hidden" : "visible"} className={`z-[9999] fixed right-0 left-0 top-0 bg-white ${!token && "md:bg-opacity-50"} px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
@@ -105,7 +123,18 @@ const NavBar = () => {
                         <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="mentorship">Mentorship</NavLink></motion.li>
                         {/* <motion.li whileHover={{scale: 1.1}} transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-BLUE font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/links">Links</NavLink></motion.li> */}
 
-                         <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/classmaterials">Assignments </NavLink></motion.li> 
+                         {/* <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/classmaterials">Assignments </NavLink></motion.li>  */}
+
+{allowedEmails.includes(email) && (
+  <motion.li transition={{ stiffness:250}}>
+    <NavLink
+      className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"}
+      to="/dashboard/classmaterials"
+    >
+      Assignments
+    </NavLink>
+  </motion.li>
+)}
 
 
                          {/* <motion.li transition={{ stiffness:250}} ><NavLink className={({isActive})=> isActive ? "text-black font-black" : "scale-100 hover:text-BLUE"} to="/dashboard/materials">Materials</NavLink></motion.li>  */}
