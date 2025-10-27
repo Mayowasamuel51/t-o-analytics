@@ -8,7 +8,6 @@ const MainQuiz = () => {
   const allowedEmails = [
     // "oluwaferanmi.olulana@gmail.com",
     "oluwaferanmiolulana@gmail.com",
-
     "adenusitimi@gmail.com",
     "Adenusi.timi@gmail.com",
     "tomideolulana@gmail.com",

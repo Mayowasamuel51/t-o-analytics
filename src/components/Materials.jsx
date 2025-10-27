@@ -58,6 +58,12 @@ const Materials = () => {
       title: "To-analytics Splunk Class 1 Note",
       url: "https://drive.google.com/file/d/1VYiqPwen5Dc1tV2x8_ohR55n6toGBm1G/preview",
     },
+
+    {
+      id:3, 
+      title:"To-analytics Splunk Class 2",
+      url:"https://drive.google.com/file/d/1V3zqvISvQLDZlQKUryIna4xnmAzcNRSC/preview"
+    }
   ];
 
   const [selectedVideo, setSelectedVideo] = useState(videos[0]);
