@@ -90,7 +90,12 @@ const sampleCourses = [
       {
         id: "class3",
         title: "Class 2 — Deep Dive",
-        videos: [],
+        videos: [  {
+            id: "v2",
+            title: "To-analytics Splunk Class 1",
+            url: "https://player.vimeo.com/video/1131114931" 
+          },
+        ],
         docs: [
           {
             id: "d3",
