@@ -33,13 +33,41 @@ const sampleCourses = [
     classes: [
       {
         id: "class1",
-        title: "Class 1 — Intro (2 Videos)",
+        title: "Orientation — Intro (1 Videos)",
         videos: [
           {
             id: "v1",
             title: "To-analytics Orientation",
             url: "https://player.vimeo.com/video/1126909883",
           },
+          // {
+          //   id: "v2",
+          //   title: "To-analytics Splunk Class 1",
+          //   url: "https://player.vimeo.com/video/1127004938",
+          // },
+        ],
+        docs: [
+          {
+            id: "d1",
+            title: "To-analytics Splunk Class 1 Intro",
+            url: "https://drive.google.com/file/d/1bf5cRkcEC3yDJ5MnzpRKDpRLhRhdUH90/preview",
+          },
+          {
+            id: "d2",
+            title: "To-analytics Splunk Class 1 Note",
+            url: "https://drive.google.com/file/d/1VYiqPwen5Dc1tV2x8_ohR55n6toGBm1G/preview",
+          },
+        ],
+      },
+      {
+        id: "class2",
+        title: "Class 1 — Intro (1 Videos)",
+        videos: [
+          // {
+          //   id: "v1",
+          //   title: "To-analytics Orientation",
+          //   url: "https://player.vimeo.com/video/1126909883",
+          // },
           {
             id: "v2",
             title: "To-analytics Splunk Class 1",
@@ -60,7 +88,7 @@ const sampleCourses = [
         ],
       },
       {
-        id: "class2",
+        id: "class3",
         title: "Class 2 — Deep Dive",
         videos: [],
         docs: [
@@ -347,7 +375,7 @@ export default function CoursePortal() {
             </div>
           </div>
 
-          <div className="mt-4">
+          <div className="mt-4 ">
             {/* Video cards (for multi-video classes like Class 1) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {selectedClass.videos.map((v) => (
