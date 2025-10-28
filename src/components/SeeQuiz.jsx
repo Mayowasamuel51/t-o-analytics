@@ -110,7 +110,7 @@ const SeeQuiz = () => {
                     percent >= 50 ? "text-green-400" : "text-red-400"
                   }`}
                 >
-                  {percent}%
+                  {percent}
                 </td>
                 <td className="p-2 text-gray-400">{date}</td>
               </tr>

@@ -99,7 +99,7 @@ const QuizResults = () => {
                 <td
                   className={`p-2 border-b border-gray-700 font-bold ${colorClass}`}
                 >
-                  {percent}%
+                  {percent}
                 </td>
               </tr>
             );
