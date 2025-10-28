@@ -7,6 +7,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Player from "@vimeo/player";
 import { NavLink } from "react-router-dom";
+import DashboardDropdown from "./Dropdown";
 
 const allowedEmails = [
   "adenusitimi@gmail.com",
@@ -305,11 +306,7 @@ export default function CoursePortal() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
-       <NavLink
-       to="/dashboard/takequiz"
-         className="inline-block mb-4 bg-PURPLE hover:bg-BLUE text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-       >
-         Take Splunk Quiz       </NavLink>
+     <DashboardDropdown/>
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
         {/* Sidebar */}
         <aside className="col-span-12 md:col-span-3 bg-white rounded-2xl p-4 shadow-sm">
