@@ -51,7 +51,7 @@ const sampleCourses = [
           {
             id: "d1",
             title: "To-analytics Orientation",
-            url: "https://drive.google.com/file/d/1sf-kifLwlcAvM9qLcJTde9qWX3OCvd78/preview",
+            url: "https://drive.google.com/file/d/1VzC-nTY7XhLagAeLIFdN1e6_MQMUkXiv/preview",
           },
           // {
           //   id: "d2",
@@ -62,7 +62,7 @@ const sampleCourses = [
       },
       {
         id: "class2",
-        title: "Class 1 — Splunk SEIM  (1 Videos)",
+        title: "Class 1 — Splunk SEIM (1 Videos)",
         videos: [
           // {
           //   id: "v1",
