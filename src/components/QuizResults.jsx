@@ -53,7 +53,7 @@ const QuizResults = () => {
 
   if (!results.length)
     return (
-      <div className="text-center text-white p-6 bg-gray-900 rounded-lg">
+      <div className="text-center p-6 mt-20 min-h-screen md:pt-32">
         <h2 className="text-xl font-bold mb-2">No Quiz Attempts Found 😅</h2>
         <p>Take your first Splunk test to see your results here.</p>
       </div>

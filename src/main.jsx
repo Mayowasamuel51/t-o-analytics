@@ -29,8 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 sameSite: "none",
                 domain: "https://www.paypal.com/",
                 httpOnly: true,
-              }}
-            >   
+              }}>   
               <App />
               <SpeedInsights/>
               <Analytics />

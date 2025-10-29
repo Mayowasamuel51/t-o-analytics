@@ -14,7 +14,7 @@ import COURSES from "../coursesAPI/api"
 import { FaQuoteLeft } from "react-icons/fa";
 import { Helmet } from 'react-helmet';
 import { backInOut, motion } from "framer-motion"
-import { LandingSpike ,RectangleLeft, RectangleRight } from '../components/BgDesigns';
+import { LandingSpike, RectangleLeft, RectangleRight } from '../components/BgDesigns';
 
 const home = {
     hidden: {
@@ -27,7 +27,7 @@ const home = {
         }
     },
     exit: {
-        x:"-100vw"
+        x: "-100vw"
     }
 }
 
@@ -100,14 +100,14 @@ const HomePage = () => {
                 <meta property="og:description" content={"To-Analytics is an educational platform that offers affordable courses across a wide array of fields, including Splunk, Linux, Data Science, Stock & Options, Videography, Drone Technology, Educational Consulting, Photography, and more. Our courses are designed to foster career advancement and help you achieve your professional goals."} />
             </Helmet>
             <section className="landing-page px-6 md:px-10 py-60 md:py-32 bg-white min-h-screen">
-                <motion.div  className="grid md:grid-cols-2 items-center gap-10">
+                <motion.div className="grid md:grid-cols-2 items-center gap-10">
                     <motion.div variants={landingContainer} initial="hidden" animate="visible">
-                        <motion.h1 
-  variants={h1} 
-  className="my-4 md:my-7 font-semibold md:font-bold text-4xl md:text-5xl LANDING-TEXT"
->
-  Break into Cybersecurity / Splunk in 14 Weeks with 1-on-1 Mentorship
-</motion.h1>
+                        <motion.h1
+                            variants={h1}
+                            className="my-4 md:my-7 font-semibold md:font-bold text-4xl md:text-5xl LANDING-TEXT"
+                        >
+                            Break into Cybersecurity / Splunk in 14 Weeks with 1-on-1 Mentorship
+                        </motion.h1>
                         <motion.p variants={p} className="font-medium md:font-bold text-2xl md:text-xl my-4">Step into the exciting realm of technology  through our cutting-edge courses and solutions.</motion.p>
                         <motion.div variants={buttonContainer} initial="hidden" animate="visible" className="flex gap-2 md:gap-3">
                             <motion.div variants={button}>
@@ -123,13 +123,13 @@ const HomePage = () => {
                         </motion.div>
                     </motion.div>
                     <div className="relative hidden md:block">
-                        <motion.div initial={{opacity:0, rotate: "180deg"}} animate={{opacity:1, rotate:"0deg"}} transition={{ease:backInOut, duration: 1,delay: 1.5}} className="bg-BLUE landingDIV"></motion.div>
-                        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} className="absolute top-0 left-0 right-0">
+                        <motion.div initial={{ opacity: 0, rotate: "180deg" }} animate={{ opacity: 1, rotate: "0deg" }} transition={{ ease: backInOut, duration: 1, delay: 1.5 }} className="bg-BLUE landingDIV"></motion.div>
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute top-0 left-0 right-0">
                             <img src={LandingIMG} className="w-full" alt="" />
                         </motion.div>
                     </div>
                 </motion.div>
-                <motion.div initial={{scale: 0, opacity:0, rotate: "180deg"}} animate={{scale: 1, opacity:0.3, rotate:"0deg"}} transition={{ease:backInOut, duration: 1,delay: 1.5}} className='mobile-landingDIV md:hidden block absolute top-40 left-0 translate-y-[-50%] bg-BLUE landingDIV backdrop-blur-2xl'></motion.div>
+                <motion.div initial={{ scale: 0, opacity: 0, rotate: "180deg" }} animate={{ scale: 1, opacity: 0.3, rotate: "0deg" }} transition={{ ease: backInOut, duration: 1, delay: 1.5 }} className='mobile-landingDIV md:hidden block absolute top-40 left-0 translate-y-[-50%] bg-BLUE landingDIV backdrop-blur-2xl'></motion.div>
                 {FullScreen && <LandingSpike />}
             </section>
 
@@ -137,7 +137,7 @@ const HomePage = () => {
                 <h1 data-aos-once="true" data-aos-duration="6000" data-aos="fade-up" className="text-center font-black text-2xl md:text-4xl my-4">Why Trust T.O Analytics?</h1>
                 <div className="md:px-10 p-4 overflow-x-hidden">
                     <div className="md:text-left md:pb-10 md:py-2 grid grid-cols-1 md:grid-cols-2 items-center md:gap-20">
-                        <div  data-aos-once="true" data-aos-duration="6000" data-aos="fade-right" className='relative'>
+                        <div data-aos-once="true" data-aos-duration="6000" data-aos="fade-right" className='relative'>
                             <p className="uppercase font-black text-BLUE my-2">Learn from industry’s best</p>
                             <h1 className="font-bold text-2xl md:text-2xl my-2">Experienced Instructors</h1>
                             <p className="font-medium text-base">Our instructors are seasoned professionals with extensive experience in diverse areas of the tech industry. They leverage their deep expertise and real-world project insights to deliver practical, actionable guidance in the classroom.</p>
@@ -233,11 +233,11 @@ const HomePage = () => {
                     speed: 2000,
                     arrows: false,
                     pagination: true,
-                    drag : 'free',
-                    snap : true,
+                    drag: 'free',
+                    snap: true,
                 }}>
 
-                        <SplideSlide>
+                    <SplideSlide>
                         <div className="md:w-[80%] mx-auto">
                             <p className="font-normal md:font-semibold my-2 text-sm py-2 md:text-xl text-center md:p-6">The mentorship helped me break into Splunk Admin role with confidence..</p>
                             <div className="flex items-center justify-center gap-1 md:gap-3">
@@ -277,43 +277,43 @@ const HomePage = () => {
                 </Splide>
                 {/* <FaQuoteRight className='mx-auto' size={30} /> */}
             </section>
-               <section className="p-4 md:p-10 bg-gray-100">
-        <h2 className="text-center text-2xl md:text-4xl font-bold mb-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="max-w-3xl mx-auto space-y-6 text-gray-700 text-sm md:text-base">
-          <div>
-            <h4 className="font-semibold">
-              How long until I’m job-ready?
-            </h4>
-            <p>Most mentees become job-ready within 14 weeks depending on prior experience.</p>
-          </div>
-          <div>
-            <h4 className="font-semibold">
-              What if I miss a session?
-            </h4>
-            <p>You can reschedule or receive a bonus asynchronous review that week.</p>
-          </div>
-          <div>
-            <h4 className="font-semibold">
-              Do you help with Splunk certifications?
-            </h4>
-            <p>Yes! We provide certification guidance and practice labs.</p>
-          </div>
-          <div>
-            <h4 className="font-semibold">
-              I’m new to IT — am I eligible?
-            </h4>
-            <p>Absolutely. The mentorship is beginner-friendly and personalized to your pace.</p>
-          </div>
-          <div>
-            <h4 className="font-semibold">
-              Do you offer refunds?
-            </h4>
-            <p>Yes, we offer deferral or partial refund options if mentorship is canceled early.</p>
-          </div>
-        </div>
-      </section>
+            <section className="p-4 md:p-10 bg-gray-100">
+                <h2 className="text-center text-2xl md:text-4xl font-bold mb-8">
+                    Frequently Asked Questions
+                </h2>
+                <div className="max-w-3xl mx-auto space-y-6 text-gray-700 text-sm md:text-base">
+                    <div>
+                        <h4 className="font-semibold">
+                            How long until I’m job-ready?
+                        </h4>
+                        <p>Most mentees become job-ready within 14 weeks depending on prior experience.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold">
+                            What if I miss a session?
+                        </h4>
+                        <p>You can reschedule or receive a bonus asynchronous review that week.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold">
+                            Do you help with Splunk certifications?
+                        </h4>
+                        <p>Yes! We provide certification guidance and practice labs.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold">
+                            I’m new to IT — am I eligible?
+                        </h4>
+                        <p>Absolutely. The mentorship is beginner-friendly and personalized to your pace.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold">
+                            Do you offer refunds?
+                        </h4>
+                        <p>Yes, we offer deferral or partial refund options if mentorship is canceled early.</p>
+                    </div>
+                </div>
+            </section>
         </motion.div>
     )
 }
