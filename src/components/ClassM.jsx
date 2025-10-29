@@ -87,7 +87,9 @@ const ClassM = () => {
   if (!isAllowed) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-        <h1 className="text-3xl font-bold text-red-600 mb-3">Access Denied 🚫</h1>
+        <h1 className="text-3xl font-bold text-red-600 mb-3">
+          Access Denied 🚫
+        </h1>
         <p className="text-gray-700 text-lg">
           Only authorized To-Analytics members can view this page.
         </p>
@@ -143,53 +145,52 @@ const ClassM = () => {
             📝 Recent Assignments
           </h3>
 
-    <ul className="space-y-8">
-  {assignments.map((assignment) => (
-    <li
-      key={assignment._id}
-      className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 md:p-8"
-    >
-      {/* HEADER */}
-      <div className="mb-4 border-b border-gray-100 pb-3">
-        <h4 className="font-bold text-2xl text-gray-800 mb-1">
-          {assignment.name || "TO INSTRUCTOR"}
-        </h4>
-        <p className="text-sm text-gray-500">
-          📅 {new Date(assignment.date).toLocaleString()}
-        </p>
-      </div>
+          <ul className="space-y-8">
+            {assignments.map((assignment) => (
+              <li
+                key={assignment._id}
+                className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 md:p-8"
+              >
+                {/* HEADER */}
+                <div className="mb-4 border-b border-gray-100 pb-3">
+                  <h4 className="font-bold text-2xl text-gray-800 mb-1">
+                    {assignment.name || "TO INSTRUCTOR"}
+                  </h4>
+                  <p className="text-sm text-gray-500">
+                    📅 {new Date(assignment.date).toLocaleString()}
+                  </p>
+                </div>
 
-      {/* DESCRIPTION / MAIN BODY */}
-      <div className="prose prose-gray max-w-none">
-        <p className="text-gray-700 text-[15px] leading-relaxed whitespace-pre-line">
-          {assignment.message || assignment.description}
-        </p>
-      </div>
+                {/* DESCRIPTION / MAIN BODY */}
+                <div className="prose prose-gray max-w-none">
+                  <p className="text-gray-700 text-[15px] leading-relaxed whitespace-pre-line">
+                    {assignment.message || assignment.description}
+                  </p>
+                </div>
 
-      {/* IMAGE PREVIEW (if any) */}
-      {assignment.imageurl && (
-        <div className="mt-5">
-          <img
-            src={assignment.imageurl}
-            alt="Assignment"
-            className="w-full max-h-96 object-cover rounded-xl shadow-md"
-          />
-        </div>
-      )}
+                {/* IMAGE PREVIEW (if any) */}
+                {assignment.imageurl && (
+                  <div className="mt-5">
+                    <img
+                      src={assignment.imageurl}
+                      alt="Assignment"
+                      className="w-full max-h-96 object-cover rounded-xl shadow-md"
+                    />
+                  </div>
+                )}
 
-      {/* FOOTER */}
-      <div className="mt-6 flex justify-between items-center border-t border-gray-100 pt-4 text-sm text-gray-600">
-        <p className="font-medium">
-          🧾 Status: <span className="text-BLUE">Active</span>
-        </p>
-        <button className="bg-BLUE text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors duration-300">
-          View Details
-        </button>
-      </div>
-    </li>
-  ))}
-</ul>
-
+                {/* FOOTER */}
+                <div className="mt-6 flex justify-between items-center border-t border-gray-100 pt-4 text-sm text-gray-600">
+                  <p className="font-medium">
+                    🧾 Status: <span className="text-BLUE">Active</span>
+                  </p>
+                  <button className="bg-BLUE text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors duration-300">
+                    View Details
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
@@ -197,7 +198,6 @@ const ClassM = () => {
 };
 
 export default ClassM;
-
 
 // import { useEffect, useState } from "react";
 // import Quiz from "./Quiz";

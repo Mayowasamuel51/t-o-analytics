@@ -96,6 +96,13 @@ const sampleCourses = [
             title: "To-analytics Splunk Class 1",
             url: "https://player.vimeo.com/video/1131114931" 
           },
+            {
+            id: "v2",
+            title: "To-analytics Splunk Class 2 Note",
+            url: " https://drive.google.com/file/d/1sf-kifLwlcAvM9qLcJTde9qWX3OCvd78/preview",
+          },
+         
+
         ],
         docs: [
           {
