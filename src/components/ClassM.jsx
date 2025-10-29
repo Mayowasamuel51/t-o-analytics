@@ -141,7 +141,7 @@ const ClassM = () => {
 
         {/* Assignments Section */}
         <div className="mt-14 px-6 sm:px-10 lg:px-20">
-          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-10">
+          <h3 className="text-2xl sm:text-1xl font-bold text-gray-800 mb-10">
             📝 Recent Assignments
           </h3>
 
