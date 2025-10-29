@@ -62,7 +62,7 @@ const sampleCourses = [
       },
       {
         id: "class2",
-        title: "Class 1 — Intro (1 Videos)",
+        title: "Class 1 — Splunk SEIM  (1 Videos)",
         videos: [
           // {
           //   id: "v1",
@@ -90,7 +90,7 @@ const sampleCourses = [
       },
       {
         id: "class3",
-        title: "Class 2 — Deep Dive",
+        title: "Class 2 —  Splunk Basics",
         videos: [  {
             id: "v2",
             title: "To-analytics Splunk Class 1",
