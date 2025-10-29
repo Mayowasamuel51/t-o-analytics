@@ -140,56 +140,55 @@ const ClassM = () => {
         )} */}
 
         {/* Assignments Section */}
-   <div className="mt-14 px-6 sm:px-10 lg:px-20">
-  <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-10">
-    📝 Recent Assignments
-  </h3>
+        <div className="mt-14 px-6 sm:px-10 lg:px-20">
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-10">
+            📝 Recent Assignments
+          </h3>
 
-  <ul className="space-y-10">
-    {assignments.map((assignment) => (
-      <li
-        key={assignment._id}
-        className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-8 sm:p-10"
-      >
-        {/* HEADER */}
-        <div className="mb-5 border-b border-gray-100 pb-4">
-          <h4 className="font-bold text-2xl text-gray-800 mb-1">
-            {assignment.name || "TO INSTRUCTOR"}
-          </h4>
-          <p className="text-sm text-gray-500">
-            📅 {new Date(assignment.date).toLocaleString()}
-          </p>
+          <ul className="space-y-10">
+            {assignments.map((assignment) => (
+              <li
+                key={assignment._id}
+                className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-8 sm:p-10"
+              >
+                {/* HEADER */}
+                <div className="mb-5 border-b border-gray-100 pb-4">
+                  <h4 className="font-bold text-2xl text-gray-800 mb-1">
+                    {assignment.name || "TO INSTRUCTOR"}
+                  </h4>
+                  <p className="text-sm text-gray-500">
+                    📅 {new Date(assignment.date).toLocaleString()}
+                  </p>
+                </div>
+
+                {/* DESCRIPTION / MAIN BODY */}
+                <div className="prose prose-gray max-w-none">
+                  <p className="text-gray-700 text-[15px] leading-relaxed whitespace-pre-line">
+                    {assignment.message || assignment.description}
+                  </p>
+                </div>
+
+                {/* IMAGE PREVIEW (if any) */}
+                {assignment.imageurl && (
+                  <div className="mt-6">
+                    <img
+                      src={assignment.imageurl}
+                      alt="Assignment"
+                      className="w-full max-h-96 object-cover rounded-xl shadow-md"
+                    />
+                  </div>
+                )}
+
+                {/* FOOTER */}
+                {/* <div className="mt-8 flex justify-between items-center border-t border-gray-100 pt-4 text-sm text-gray-600">
+                  <p className="font-medium">
+                    🧾 Status: <span className="text-BLUE">Active</span>
+                  </p>
+                </div> */}
+              </li>
+            ))}
+          </ul>
         </div>
-
-        {/* DESCRIPTION / MAIN BODY */}
-        <div className="prose prose-gray max-w-none">
-          <p className="text-gray-700 text-[15px] leading-relaxed whitespace-pre-line">
-            {assignment.message || assignment.description}
-          </p>
-        </div>
-
-        {/* IMAGE PREVIEW (if any) */}
-        {assignment.imageurl && (
-          <div className="mt-6">
-            <img
-              src={assignment.imageurl}
-              alt="Assignment"
-              className="w-full max-h-96 object-cover rounded-xl shadow-md"
-            />
-          </div>
-        )}
-
-        {/* FOOTER */}
-        <div className="mt-8 flex justify-between items-center border-t border-gray-100 pt-4 text-sm text-gray-600">
-          <p className="font-medium">
-            🧾 Status: <span className="text-BLUE">Active</span>
-          </p>
-        </div>
-      </li>
-    ))}
-  </ul>
-</div>
-
       </div>
     </div>
   );
