@@ -64,11 +64,6 @@ const sampleCourses = [
         id: "class2",
         title: "Class 1 — Splunk SEIM (1 Videos)",
         videos: [
-          // {
-          //   id: "v1",
-          //   title: "To-analytics Orientation",
-          //   url: "https://player.vimeo.com/video/1126909883",
-          // },
           {
             id: "v2",
             title: "To-analytics Splunk Class 1",
@@ -93,15 +88,9 @@ const sampleCourses = [
         title: "Class 2 —  Splunk Basics",
         videos: [  {
             id: "v2",
-            title: "To-analytics Splunk Class 1",
+            title: "To-analytics Splunk Class 2",
             url: "https://player.vimeo.com/video/1131114931" 
           },
-            {
-            id: "v2",
-            title: "To-analytics Splunk Class 2 Note",
-            url: " https://drive.google.com/file/d/1sf-kifLwlcAvM9qLcJTde9qWX3OCvd78/preview",
-          },
-         
 
         ],
         docs: [
@@ -110,6 +99,12 @@ const sampleCourses = [
             title: "To-analytics Splunk Class 2",
             url: "https://drive.google.com/file/d/1V3zqvISvQLDZlQKUryIna4xnmAzcNRSC/preview",
           },
+          {
+            id: "d4",
+            title: "To-analytics Splunk  Class 2 Note ",
+            url: "https://drive.google.com/file/d/1sf-kifLwlcAvM9qLcJTde9qWX3OCvd78/preview",
+          },
+
         ],
       },
       { id: "class3", title: "Class 3 — (Coming soon)", videos: [], docs: [] },
