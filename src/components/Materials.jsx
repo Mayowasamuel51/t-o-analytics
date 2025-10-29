@@ -50,14 +50,14 @@ const sampleCourses = [
         docs: [
           {
             id: "d1",
-            title: "To-analytics Splunk Class 1 Intro",
-            url: "https://drive.google.com/file/d/1bf5cRkcEC3yDJ5MnzpRKDpRLhRhdUH90/preview",
+            title: "To-analytics Orientation",
+            url: "https://drive.google.com/file/d/1sf-kifLwlcAvM9qLcJTde9qWX3OCvd78/preview",
           },
-          {
-            id: "d2",
-            title: "To-analytics Splunk Class 1 Note",
-            url: "https://drive.google.com/file/d/1VYiqPwen5Dc1tV2x8_ohR55n6toGBm1G/preview",
-          },
+          // {
+          //   id: "d2",
+          //   title: "To-analytics Splunk Class 1 Note",
+          //   url: "https://drive.google.com/file/d/1VYiqPwen5Dc1tV2x8_ohR55n6toGBm1G/preview",
+          // },
         ],
       },
       {

@@ -4,10 +4,8 @@ import { IoMdMail } from "react-icons/io";
 import { FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
 import { useStateContext } from "../context/ContextProvider";
 import { NavLink } from "react-router-dom";
-
 const Footer = ({ black }) => {
   const { token } = useStateContext();
-
   return (
     <footer className={`${black} border-t border-gray-300 dark:border-gray-700`}>
       <div className="max-w-7xl mx-auto w-full px-6 md:px-10 lg:px-20 py-12">
