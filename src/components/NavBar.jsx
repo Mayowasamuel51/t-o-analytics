@@ -3,7 +3,7 @@ import LOGO from "../assets/images/logo2.png";
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import CartItemContext from '../context/CartItemContext';
 import { useStateContext } from "../context/ContextProvider";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 import { FaChevronDown } from "react-icons/fa";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
@@ -11,8 +11,8 @@ import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
 import FetchAllStudents from '../hooks/FetchAllStudents';
 import SearchCourseInput from './SearchCourseInput';
+import PropTypes from "prop-types";
 
-// Constants
 const SCROLL_THRESHOLD = 20;
 const HIDE_THRESHOLD = 150;
 
@@ -24,7 +24,6 @@ const headerVariant = {
     }
 };
 
-// Sub-components
 const UserAvatar = ({ initial, animate = false }) => (
     <div className={`${animate ? 'animate-bounce' : ''} flex justify-center items-center w-8 md:text-lg aspect-square text-white font-black bg-BLUE rounded-full`}>
         {initial}
@@ -264,7 +263,6 @@ const NavBar = () => {
     const [hidden, setHidden] = useState(false);
     const [subMenu, setSubMenu] = useState(false);
     const [fixed, setFixed] = useState("");
-    const location = useLocation();
     const { cartItem } = useContext(CartItemContext);
     const { token, setToken, FullScreen } = useStateContext();
     const [localuser, setUser] = useState("");
@@ -299,7 +297,6 @@ const NavBar = () => {
         };
     }, [data, localuser]);
 
-    // Handle scroll for fixed header
     useEffect(() => {
         const handleScroll = () => {
             setFixed(window.scrollY > SCROLL_THRESHOLD ? "fixed" : "");
@@ -309,7 +306,6 @@ const NavBar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Get user from localStorage
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
@@ -317,7 +313,6 @@ const NavBar = () => {
         }
     }, []);
 
-    // Handle scroll hide/show
     useMotionValueEvent(scrollY, "change", (latest) => {
         const previous = scrollY.getPrevious();
         setHidden(latest > previous && latest > HIDE_THRESHOLD);
@@ -330,9 +325,7 @@ const NavBar = () => {
         <motion.header 
             variants={headerVariant}
             animate={(hidden && !FullScreen) ? "hidden" : "visible"}
-            className={`z-[9999] fixed right-0 left-0 top-0 bg-white ${!token && "md:bg-opacity-50"} px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}
-        >
-            {/* Logo */}
+            className={`z-[9999] fixed right-0 left-0 top-0 bg-white ${!token && "md:bg-opacity-50"} px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
             <div>
                 <Link to="/">
                     <motion.img 
@@ -346,10 +339,8 @@ const NavBar = () => {
                 </Link>
             </div>
 
-            {/* Search Input (Authenticated users only) */}
             {token && <SearchCourseInput />}
 
-            {/* Navigation */}
             {token ? (
                 currentUser && (
                     <AuthenticatedNav 
@@ -404,6 +395,42 @@ const NavBar = () => {
             </div>
         </motion.header>
     );
+};
+
+
+
+UserAvatar.propTypes = {
+    initial: PropTypes.string.isRequired,
+    animate: PropTypes.bool,
+};
+
+CartIcon.propTypes = {
+    itemCount: PropTypes.number,
+};
+
+UserDropdown.propTypes = {
+    initial: PropTypes.string.isRequired,
+    fullname: PropTypes.string,
+    email: PropTypes.string,
+    signout: PropTypes.func,
+    FullScreen: PropTypes.bool
+};
+
+GuestNav.propTypes = {
+    show: PropTypes.string,
+    fixed: PropTypes.string,
+    subMenu: PropTypes.bool,
+    displaySubMenu: PropTypes.func,
+    FullScreen: PropTypes.bool
+};
+
+AuthenticatedNav.propTypes = {
+    show: PropTypes.string,
+    fixed: PropTypes.string,
+    initial: PropTypes.string.isRequired,
+    fullname: PropTypes.string,
+    email: PropTypes.string,
+    signout: PropTypes.func,
 };
 
 export default NavBar;

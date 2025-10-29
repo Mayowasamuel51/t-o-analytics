@@ -256,15 +256,15 @@ const COURSE = () => {
           </div> 
           :
           <div className="relative learn py-5">
-            <motion.ul variants={learnUl} animate={isInView  ? "visible" : "hidden"} className="md:text-base text-sm">
+            <motion.ul className="md:text-base text-sm">
               {singleCourse.whatToLearn.slice(0, 6).map((whatToLearn, index)=> (
-                <motion.li variants={li} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
+                <motion.li className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
                 </motion.li>
               ))}
             </motion.ul>
-            <motion.ul variants={learnUl} animate={isInView ? "visible" : "hidden"} className="md:text-base text-sm">
+            <motion.ul className="md:text-base text-sm">
             {singleCourse.whatToLearn.slice(6).map((whatToLearn, index)=> (
-              <motion.li variants={li} className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
+              <motion.li className="relative flex gap-20 cursor-pointer" key={index}>{whatToLearn}
               </motion.li>
             ))}
             </motion.ul>
@@ -282,7 +282,7 @@ const COURSE = () => {
           <h1 className="font-bold text-2xl md:text-4xl md:my-5 my-3">
             No prior knowledge needed!
           </h1>
-          <p className="md:text-base text-xs font-medium ">
+          <p className="p-4 md:text-base text-xs font-medium leading-7">
             You don&apos;t require prior knowledge of {singleCourse.courseName} to enroll in this course. We&apos;ll cover everything you need to know right from the basics, guiding you step by step.
           </p>
         </div>}
