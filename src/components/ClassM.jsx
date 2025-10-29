@@ -86,7 +86,7 @@ const ClassM = () => {
   // 🚫 If user not allowed, block access
   if (!isAllowed) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <div className="flex flex-col items-center justify-center h-screen">
         <h1 className="text-3xl font-bold text-red-600 mb-3">
           Access Denied 🚫
         </h1>
@@ -108,7 +108,7 @@ const ClassM = () => {
 
   // ✅ Allowed content
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-10 px-4">
+    <div className="min-h-screen bg-gradient-to-b py-10 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Page Title */}
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
@@ -140,19 +140,19 @@ const ClassM = () => {
         )} */}
 
         {/* Assignments Section */}
-        <div className="mt-10">
-          <h3 className="text-2xl font-bold text-gray-800 mb-6">
+        <div className="mt-14 px-6 sm:px-10 lg:px-20">
+          <h3 className="text-2xl sm:text-1xl font-bold text-gray-800 mb-10">
             📝 Recent Assignments
           </h3>
 
-          <ul className="space-y-8">
+          <ul className="space-y-10">
             {assignments.map((assignment) => (
               <li
                 key={assignment._id}
-                className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 md:p-8"
+                className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-8 sm:p-10"
               >
                 {/* HEADER */}
-                <div className="mb-4 border-b border-gray-100 pb-3">
+                <div className="mb-5 border-b border-gray-100 pb-4">
                   <h4 className="font-bold text-2xl text-gray-800 mb-1">
                     {assignment.name || "TO INSTRUCTOR"}
                   </h4>
@@ -170,7 +170,7 @@ const ClassM = () => {
 
                 {/* IMAGE PREVIEW (if any) */}
                 {assignment.imageurl && (
-                  <div className="mt-5">
+                  <div className="mt-6">
                     <img
                       src={assignment.imageurl}
                       alt="Assignment"
@@ -180,14 +180,11 @@ const ClassM = () => {
                 )}
 
                 {/* FOOTER */}
-                <div className="mt-6 flex justify-between items-center border-t border-gray-100 pt-4 text-sm text-gray-600">
+                {/* <div className="mt-8 flex justify-between items-center border-t border-gray-100 pt-4 text-sm text-gray-600">
                   <p className="font-medium">
                     🧾 Status: <span className="text-BLUE">Active</span>
                   </p>
-                  <button className="bg-BLUE text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors duration-300">
-                    View Details
-                  </button>
-                </div>
+                </div> */}
               </li>
             ))}
           </ul>
