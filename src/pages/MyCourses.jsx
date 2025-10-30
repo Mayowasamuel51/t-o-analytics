@@ -62,7 +62,7 @@ const MyCourses = () => {
   // 🎓 Authorized View
   return (
     <div className="p-6 space-y-6">
-      <div className="space-y-3 max-w-2xl">
+      <div className="space-y-3 max-w-2xl mx-auto text-center">
         <h1 className="text-3xl font-bold text-gray-800">🎓 Paid Courses</h1>
         <p className="text-gray-600 leading-relaxed">
           Welcome to your paid courses area! Here you’ll find exclusive content
