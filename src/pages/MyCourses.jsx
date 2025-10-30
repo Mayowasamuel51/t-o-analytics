@@ -1,10 +1,12 @@
+
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import COURSES from "../coursesAPI/api";
+import stock from "../assets/images/stock.png";
+import splunk from "../assets/images/splunk.png";
 
 const MyCourses = () => {
   const [authorized, setAuthorized] = useState(false);
-  const [courseData, setCourseData] = useState([]);
 
   // ✅ Handle user storage
   const rawUser = localStorage.getItem("user");
@@ -38,18 +40,8 @@ const MyCourses = () => {
   useEffect(() => {
     if (allowedEmails.includes(userEmail)) {
       setAuthorized(true);
-
-      // ✅ Pick Splunk and Stock & Options
-      const selectedCourses = COURSES.filter(
-        (course) =>
-          course.courseName === "Splunk" ||
-          course.courseName === "Stock & Options"
-      );
-
-      setCourseData(selectedCourses);
     } else {
       setAuthorized(false);
-      setCourseData([]);
     }
   }, [userEmail]);
 
@@ -67,7 +59,7 @@ const MyCourses = () => {
     );
   }
 
-  // 🎓 Authorized view — show two courses
+  // 🎓 Authorized View
   return (
     <div className="p-6 space-y-6">
       <div className="space-y-3 max-w-2xl">
@@ -79,30 +71,48 @@ const MyCourses = () => {
         </p>
       </div>
 
-      {/* ✅ Flex layout for two courses */}
+      {/* ✅ Two hard-coded NavLinks */}
       <div className="flex flex-wrap gap-6 justify-center">
-        {courseData.map((course, index) => (
-          <NavLink
-            to={`/dashboard/materials/${encodeURIComponent(
-              course.courseName
-            ).toLowerCase()}`}
-            key={index}
-            className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform bg-white w-[300px]"
-            data-aos="fade-up"
-          >
-            <img
-              src={course.image}
-              alt={course.courseName}
-              className="w-full h-[200px] object-cover"
-            />
-            <div className="p-4 bg-blue-600 text-white">
-              <p className="font-bold text-lg md:text-2xl mb-2">
-                {course.courseName}
-              </p>
-              <p className="text-sm md:text-base">{course.intro}</p>
-            </div>
-          </NavLink>
-        ))}
+
+        {/* Splunk Course */}
+        <NavLink
+          to="/dashboard/materials"
+          className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform bg-white w-[300px]"
+        >
+          <img
+            src={splunk}
+            alt="Splunk"
+            className="w-full h-[200px] object-cover"
+          />
+          <div className="p-4 bg-blue-600 text-white">
+            <p className="font-bold text-lg md:text-2xl mb-2">Splunk</p>
+            <p className="text-sm md:text-base">
+              Learn how to search, analyze, and visualize machine data using
+              Splunk SPL and dashboards.
+            </p>
+          </div>
+        </NavLink>
+
+        {/* Stock & Options Course */}
+        <NavLink
+          to="/dashboard/materials"
+          className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform bg-white w-[300px]"
+        >
+          <img
+            src={stock}
+            alt="Stock & Options"
+            className="w-full h-[200px] object-cover"
+          />
+          <div className="p-4 bg-green-600 text-white">
+            <p className="font-bold text-lg md:text-2xl mb-2">
+              Stock & Options
+            </p>
+            <p className="text-sm md:text-base">
+              Master trading strategies, risk management, and options analysis
+              in financial markets.
+            </p>
+          </div>
+        </NavLink>
       </div>
     </div>
   );
