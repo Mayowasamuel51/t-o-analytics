@@ -93,7 +93,9 @@ const MainQuiz = () => {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-gray-50 to-red-50 text-center px-6">
         <FiLock className="text-red-500 text-6xl mb-4 animate-bounce" />
-        <h1 className="text-3xl font-bold text-red-600 mb-2">Access Denied 🚫</h1>
+        <h1 className="text-3xl font-bold text-red-600 mb-2">
+          Access Denied 🚫
+        </h1>
         <p className="text-gray-700 text-lg mb-4">
           Only authorized To-Analytics members can view this page.
         </p>
@@ -136,16 +138,20 @@ const MainQuiz = () => {
         >
           <option value="">-- Choose a Quiz --</option>
           <option value="T.O Analytics Splunk Class 1 Quiz">
-          T.O Analytics Splunk Class 1 Quiz
+            T.O Analytics Splunk Class 1 Quiz
           </option>
           <option value="T.O Analytics Splunk Class 2 Quiz">
-          T.O Analytics Splunk Class 2 Quiz
+            T.O Analytics Splunk Class 2 Quiz
           </option>
- <option value="T.O Analytics Power User Exam Quiz">
-T.O Analytics Power User Exam Quiz
+          <option value="T.O Analytics Power User Exam Quiz">
+            T.O Analytics Power User Exam Quiz
           </option>
 
-         
+            <option value="T.O Analytics Splunk Admin Exam Quiz">
+          T.O Analytics Splunk Admin Exam Quiz
+          </option>
+
+          
         </select>
       </div>
 
@@ -160,6 +166,28 @@ T.O Analytics Power User Exam Quiz
 };
 
 export default MainQuiz;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -242,7 +270,6 @@ export default MainQuiz;
 //   };
 
 //   // 🕐 Loading state
- 
 
 //   // 🚫 If user not allowed, block access
 //   if (!isAllowed) {
