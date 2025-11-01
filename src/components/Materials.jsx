@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 import DashboardDropdown from "./Dropdown";
 
 const allowedEmails = [
+  "samuelsamuelmayowa@gmail.com",
   "adenusitimi@gmail.com",
   "oluwaferanmiolulana@gmail.com",
   "oluwaferanmi.olulana@gmail.com",
