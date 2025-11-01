@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 const ClassM = () => {
   const api = import.meta.env.VITE_HOME_OO;
   const allowedEmails = [
+    "samuelsamuelmayowa@gmail.com",
     "adenusitimi@gmail.com",
     "oluwaferanmiolulana@gmail.com",
     "oluwaferanmi.olulana@gmail.com",
