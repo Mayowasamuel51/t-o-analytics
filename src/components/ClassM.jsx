@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import Quiz from "./Quiz";
 import { NavLink } from "react-router-dom";
+import Quiz from "./Quiz";
+
 const ClassM = () => {
   const api = import.meta.env.VITE_HOME_OO;
   const allowedEmails = [
@@ -27,12 +28,9 @@ const ClassM = () => {
 
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedQuiz, setSelectedQuiz] = useState("");
-  const [quizData, setQuizData] = useState(null);
   const [userEmail, setUserEmail] = useState("");
   const [isAllowed, setIsAllowed] = useState(false);
 
-  // ✅ Load user email from localStorage and verify access
   useEffect(() => {
     const email = localStorage.getItem("user");
     setUserEmail(email);
@@ -44,7 +42,6 @@ const ClassM = () => {
     }
   }, []);
 
-  // ✅ Fetch assignments only if user is allowed
   useEffect(() => {
     if (isAllowed) {
       fetch("https://to-backendapi-v1.vercel.app/api/all/assignment")
@@ -62,19 +59,7 @@ const ClassM = () => {
     }
   }, [isAllowed]);
 
-  // ✅ Load a specific quiz
-  const loadQuiz = async (quizName) => {
-    setSelectedQuiz(quizName);
-    try {
-      const res = await fetch(`${api}/api/quiz/${quizName}`);
-      const data = await res.json();
-      setQuizData(data);
-    } catch (err) {
-      console.error("Error loading quiz:", err);
-    }
-  };
-
-  // 🕐 Loading state
+  // 🕐 Loading
   if (loading)
     return (
       <div className="flex items-center justify-center h-screen bg-gray-50">
@@ -84,10 +69,10 @@ const ClassM = () => {
       </div>
     );
 
-  // 🚫 If user not allowed, block access
-  if (!isAllowed) {
+  // 🚫 Not Allowed
+  if (!isAllowed)
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-screen bg-gray-50 text-center">
         <h1 className="text-3xl font-bold text-red-600 mb-3">
           Access Denied 🚫
         </h1>
@@ -105,91 +90,130 @@ const ClassM = () => {
         )}
       </div>
     );
-  }
 
-  // ✅ Allowed content
+  // ✅ Split assignments into recent and past
+  const recentAssignments = assignments.slice(0, 3);
+  const pastAssignments = assignments.slice(3);
+
+  // ✅ Allowed
   return (
-    <div className="min-h-screen bg-gradient-to-b py-10 px-4">
-      <div className="max-w-5xl mx-auto">
-        {/* Page Title */}
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          📚 Class Assignments
-        </h2>
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* HEADER */}
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-bold text-gray-800">
+            📚 Class Assignments
+          </h2>
+          <p className="text-gray-600 mt-2">
+            View your latest and previous assignments from To-Analytics
+            instructors.
+          </p>
+        </div>
 
-        {/* Quiz Selector */}
-        {/* <div className="bg-white shadow-md rounded-2xl p-6 mb-8">
-          <label className="block text-lg font-semibold text-gray-700 mb-3">
-            Select a Quiz:
-          </label>
-          <select
-            value={selectedQuiz}
-            onChange={(e) => loadQuiz(e.target.value)}
-            className="p-3 w-full border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+        {/* NAV LINKS */}
+        <div className="flex justify-center space-x-6 mb-10">
+          <NavLink
+            to="/dashboard"
+            className="text-blue-600 hover:text-blue-800 font-medium transition"
           >
-            <option value="">-- Choose a Quiz --</option>
-            <option value="Splunk 1 Quiz">Splunk Quiz 1</option>
-            <option value="Splunk 2 Quiz">Splunk Quiz 2</option>
-            <option value="splunk3">Splunk Quiz 3</option>
-          </select>
-        </div> */}
+            Dashboard
+          </NavLink>
+          <NavLink
+            to="/class"
+            className="text-blue-600 hover:text-blue-800 font-medium transition"
+          >
+            Classes
+          </NavLink>
+          <NavLink
+            to="/assignments"
+            className="text-blue-600 hover:text-blue-800 font-medium transition"
+          >
+            Assignments
+          </NavLink>
+        </div>
 
-        {/* Quiz Section */}
-        {/* {quizData && (
-          <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 transition-all duration-300 hover:shadow-xl">
-            <Quiz data={quizData} />
-          </div>
-        )} */}
-
-        {/* Assignments Section */}
-        <div className="mt-14 px-6 sm:px-10 lg:px-20">
-          <h3 className="text-2xl sm:text-1xl font-bold text-gray-800 mb-10">
+        {/* RECENT ASSIGNMENTS */}
+        <section className="mb-16">
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2">
             📝 Recent Assignments
+            <span className="text-sm font-normal text-gray-500">
+              (latest 3)
+            </span>
           </h3>
 
-          <ul className="space-y-10">
-            {assignments.map((assignment) => (
-              <li
-                key={assignment._id}
-                className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-8 sm:p-10"
-              >
-                {/* HEADER */}
-                <div className="mb-5 border-b border-gray-100 pb-4">
-                  <h4 className="font-bold text-2xl text-gray-800 mb-1">
-                    {assignment.name || "TO INSTRUCTOR"}
-                  </h4>
-                  <p className="text-sm text-gray-500">
-                    📅 {new Date(assignment.date).toLocaleString()}
-                  </p>
-                </div>
-
-                {/* DESCRIPTION / MAIN BODY */}
-                <div className="prose prose-gray max-w-none">
-                  <p className="text-gray-700 text-[15px] leading-relaxed whitespace-pre-line">
-                    {assignment.message || assignment.description}
-                  </p>
-                </div>
-
-                {/* IMAGE PREVIEW (if any) */}
-                {assignment.imageurl && (
-                  <div className="mt-6">
+          {recentAssignments.length === 0 ? (
+            <p className="text-gray-500 italic">No recent assignments found.</p>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {recentAssignments.map((assignment) => (
+                <div
+                  key={assignment._id}
+                  className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+                >
+                  {assignment.imageurl && (
                     <img
                       src={assignment.imageurl}
                       alt="Assignment"
-                      className="w-full max-h-96 object-cover rounded-xl shadow-md"
+                      className="w-full h-40 object-cover"
                     />
+                  )}
+                  <div className="p-6">
+                    <h4 className="font-semibold text-xl text-gray-800 mb-2">
+                      {assignment.name || "TO Instructor"}
+                    </h4>
+                    <p className="text-sm text-gray-500 mb-4">
+                      📅 {new Date(assignment.date).toLocaleString()}
+                    </p>
+                    <p className="text-gray-700 text-sm leading-relaxed">
+                      {assignment.message || assignment.description}
+                    </p>
                   </div>
-                )}
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
 
-                {/* FOOTER */}
-                {/* <div className="mt-8 flex justify-between items-center border-t border-gray-100 pt-4 text-sm text-gray-600">
-                  <p className="font-medium">
-                    🧾 Status: <span className="text-BLUE">Active</span>
+        {/* PAST ASSIGNMENTS */}
+        <section>
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2">
+            📘 Past Assignments
+          </h3>
+
+          {pastAssignments.length === 0 ? (
+            <p className="text-gray-500 italic">No past assignments found.</p>
+          ) : (
+            <ul className="space-y-8">
+              {pastAssignments.map((assignment) => (
+                <li
+                  key={assignment._id}
+                  className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-gray-100 pb-3 mb-3">
+                    <h4 className="font-semibold text-xl text-gray-800">
+                      {assignment.name || "TO Instructor"}
+                    </h4>
+                    <p className="text-sm text-gray-500">
+                      📅 {new Date(assignment.date).toLocaleString()}
+                    </p>
+                  </div>
+                  <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">
+                    {assignment.message || assignment.description}
                   </p>
-                </div> */}
-              </li>
-            ))}
-          </ul>
-        </div>
+                  {assignment.imageurl && (
+                    <div className="mt-4">
+                      <img
+                        src={assignment.imageurl}
+                        alt="Assignment"
+                        className="w-full rounded-lg object-cover shadow-sm"
+                      />
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
       </div>
     </div>
   );
