@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import Quiz from "./Quiz";
 
 const ClassM = () => {
-  const api = import.meta.env.VITE_HOME_OO;
   const allowedEmails = [
     "samuelsamuelmayowa@gmail.com",
     "adenusitimi@gmail.com",
@@ -12,18 +10,15 @@ const ClassM = () => {
     "tomideolulana@gmail.com",
     "lybertyudochuu@gmail.com",
     "yinkalola51@gmail.com",
-    "oluwaferanmiolulana@gmail.com",
     "randommayowa@gmail.com",
     "toanalyticsllc@gmail.com",
     "kevwe_oberiko@yahoo.com",
     "denisgsam@gmail.com",
-    "oluwaferanmi.olulana@gmail.com",
     "fpasamuelmayowa51@gmail.com",
     "oluwatiroyeamoye@gmail.com",
     "trbanjo@gmail.com",
     "emanfrimpong@gmail.com",
     "dipeoluolatunji@gmail.com",
-    "lybertyudochuu@gmail.com",
   ];
 
   const [assignments, setAssignments] = useState([]);
@@ -47,7 +42,14 @@ const ClassM = () => {
       fetch("https://to-backendapi-v1.vercel.app/api/all/assignment")
         .then((res) => res.json())
         .then((data) => {
-          setAssignments(data.data || []);
+          if (data?.data) {
+            const sorted = [...data.data].sort(
+              (a, b) =>
+                new Date(b.createdAt || b.date) -
+                new Date(a.createdAt || a.date)
+            );
+            setAssignments(sorted);
+          }
           setLoading(false);
         })
         .catch((err) => {
@@ -59,7 +61,6 @@ const ClassM = () => {
     }
   }, [isAllowed]);
 
-  // 🕐 Loading
   if (loading)
     return (
       <div className="flex items-center justify-center h-screen bg-gray-50">
@@ -69,7 +70,6 @@ const ClassM = () => {
       </div>
     );
 
-  // 🚫 Not Allowed
   if (!isAllowed)
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-50 text-center">
@@ -91,117 +91,135 @@ const ClassM = () => {
       </div>
     );
 
-  // ✅ Split assignments into recent and past
-  const recentAssignments = assignments.slice(0, 3);
-  const pastAssignments = assignments.slice(3);
+  // Sort and Split
+  const sortedAssignments = [...assignments].sort(
+    (a, b) => new Date(b.createdAt || b.date) - new Date(a.createdAt || a.date)
+  );
+  const recentAssignments = sortedAssignments.slice(0, 2);
+  const pastAssignments = sortedAssignments.slice(2);
 
-  // ✅ Allowed
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-16 px-6">
+      <div className="max-w-6xl mx-auto space-y-20">
         {/* HEADER */}
-        <div className="text-center mb-10">
-          <h2 className="text-4xl font-bold text-gray-800">
+        <div className="text-center space-y-3">
+          <h2 className="text-4xl font-extrabold text-gray-800">
             📚 Class Assignments
           </h2>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 text-lg">
             View your latest and previous assignments from To-Analytics
             instructors.
           </p>
         </div>
 
-        {/* NAV LINKS */}
-        <div className="flex justify-center space-x-6 mb-10">
+        {/* NAVIGATION */}
+        <div className="flex justify-center flex-wrap gap-6 text-base font-medium">
           <NavLink
             to="/dashboard"
-            className="text-blue-600 hover:text-blue-800 font-medium transition"
+            className={({ isActive }) =>
+              `transition ${
+                isActive
+                  ? "text-blue-900 border-b-2 border-blue-800 pb-1"
+                  : "text-blue-600 hover:text-blue-800"
+              }`
+            }
           >
             Dashboard
           </NavLink>
           <NavLink
             to="/class"
-            className="text-blue-600 hover:text-blue-800 font-medium transition"
+            className={({ isActive }) =>
+              `transition ${
+                isActive
+                  ? "text-blue-900 border-b-2 border-blue-800 pb-1"
+                  : "text-blue-600 hover:text-blue-800"
+              }`
+            }
           >
             Classes
           </NavLink>
           <NavLink
             to="/assignments"
-            className="text-blue-600 hover:text-blue-800 font-medium transition"
+            className={({ isActive }) =>
+              `transition ${
+                isActive
+                  ? "text-blue-900 border-b-2 border-blue-800 pb-1"
+                  : "text-blue-600 hover:text-blue-800"
+              }`
+            }
           >
             Assignments
           </NavLink>
         </div>
 
-        {/* RECENT ASSIGNMENTS */}
-        <section className="mb-16">
-          <h3 className="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2">
-            📝 Recent Assignments
-            <span className="text-sm font-normal text-gray-500">
-              (latest 3)
-            </span>
-          </h3>
-
-          {recentAssignments.length === 0 ? (
-            <p className="text-gray-500 italic">No recent assignments found.</p>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {recentAssignments.map((assignment) => (
-                <div
-                  key={assignment._id}
-                  className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
-                >
-                  {assignment.imageurl && (
-                    <img
-                      src={assignment.imageurl}
-                      alt="Assignment"
-                      className="w-full h-40 object-cover"
-                    />
-                  )}
-                  <div className="p-6">
-                    <h4 className="font-semibold text-xl text-gray-800 mb-2">
-                      {assignment.name || "TO Instructor"}
-                    </h4>
-                    <p className="text-sm text-gray-500 mb-4">
-                      📅 {new Date(assignment.date).toLocaleString()}
-                    </p>
-                    <p className="text-gray-700 text-sm leading-relaxed">
-                      {assignment.message || assignment.description}
-                    </p>
+        {/* 📝 RECENT ASSIGNMENTS */}
+        <section className="space-y-10">
+          <div>
+            <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2 mb-8">
+              📝 Recent Assignments
+              <span className="text-sm font-normal text-gray-500">(latest 2)</span>
+            </h3>
+            {recentAssignments.length === 0 ? (
+              <p className="text-gray-500 italic">No recent assignments found.</p>
+            ) : (
+              <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-10">
+                {recentAssignments.map((assignment) => (
+                  <div
+                    key={assignment._id}
+                    className="bg-white border border-gray-200 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                  >
+                    {assignment.imageurl && (
+                      <img
+                        src={assignment.imageurl}
+                        alt="Assignment"
+                        className="w-full h-56 object-cover"
+                      />
+                    )}
+                    <div className="p-8 space-y-5">
+                      <h4 className="font-semibold text-2xl text-gray-800">
+                        {assignment.name || "TO Instructor"}
+                      </h4>
+                      <p className="text-sm text-gray-500">
+                        📅 {new Date(assignment.date).toLocaleString()}
+                      </p>
+                      <p className="text-gray-700 text-base leading-relaxed whitespace-pre-line">
+                        {assignment.message || assignment.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
+          </div>
         </section>
 
-        {/* PAST ASSIGNMENTS */}
-        <section>
-          <h3 className="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2">
+        {/* 📘 PAST ASSIGNMENTS */}
+        <section className="space-y-10">
+          <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
             📘 Past Assignments
           </h3>
-
           {pastAssignments.length === 0 ? (
             <p className="text-gray-500 italic">No past assignments found.</p>
           ) : (
-            <ul className="space-y-8">
+            <div className="space-y-10">
               {pastAssignments.map((assignment) => (
-                <li
+                <div
                   key={assignment._id}
-                  className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6"
+                  className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-10 space-y-6"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-gray-100 pb-3 mb-3">
-                    <h4 className="font-semibold text-xl text-gray-800">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-gray-100 pb-3">
+                    <h4 className="font-semibold text-2xl text-gray-800">
                       {assignment.name || "TO Instructor"}
                     </h4>
                     <p className="text-sm text-gray-500">
                       📅 {new Date(assignment.date).toLocaleString()}
                     </p>
                   </div>
-                  <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">
+                  <p className="text-gray-700 text-base leading-relaxed whitespace-pre-line">
                     {assignment.message || assignment.description}
                   </p>
                   {assignment.imageurl && (
-                    <div className="mt-4">
+                    <div className="pt-3">
                       <img
                         src={assignment.imageurl}
                         alt="Assignment"
@@ -209,9 +227,9 @@ const ClassM = () => {
                       />
                     </div>
                   )}
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           )}
         </section>
       </div>
@@ -220,6 +238,7 @@ const ClassM = () => {
 };
 
 export default ClassM;
+
 
 // import { useEffect, useState } from "react";
 // import Quiz from "./Quiz";
