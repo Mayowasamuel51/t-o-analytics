@@ -121,10 +121,17 @@ const sampleCourses = [
           {
             id: "d3",
             title: "To-analytics Splunk Class 3",
-            url: "https://drive.google.com/file/d/1gyB2HZHHJ-LbX9r8EFVPfY-IOrWQtkwk/preview",
+            // url: "https://drive.google.com/file/d/1gyB2HZHHJ-LbX9r8EFVPfY-IOrWQtkwk/preview",
+            url: "https://docs.google.com/presentation/d/1Qc7nnnYfuIt-q2OXOvvxi8nJOp7PTh6I/preview"
+          },
+            {
+            id: "d4",
+            title: "To-analytics Splunk Class 3 Note ",
+            url: " https://drive.google.com/file/d/1YVWoCLqrk4JhcML-mloJ53RDZlq7v7Pc/preview",
           },
         ],
       },
+
       { id: "class4", title: "Class 4 — (Coming soon)", videos: [], docs: [] },
     ], 
   },
