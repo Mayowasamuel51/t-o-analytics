@@ -87,12 +87,12 @@ const sampleCourses = [
       {
         id: "class3",
         title: "Class 2 —  Splunk Basics",
-        videos: [  {
+        videos: [
+          {
             id: "v2",
             title: "To-analytics Splunk Class 2",
-            url: "https://player.vimeo.com/video/1131114931" 
+            url: "https://player.vimeo.com/video/1131114931",
           },
-
         ],
         docs: [
           {
@@ -105,10 +105,20 @@ const sampleCourses = [
             title: "To-analytics Splunk  Class 2 Note ",
             url: "https://drive.google.com/file/d/1sf-kifLwlcAvM9qLcJTde9qWX3OCvd78/preview",
           },
-
         ],
       },
-      { id: "class3", title: "Class 3 — (Coming soon)", videos: [], docs: [] },
+      {
+        id: "class3",
+        title: "Class 3 — Splunk SPL",
+        videos: [],
+        docs: [
+          {
+            id: "d3",
+            title: "To-analytics Splunk Class 3",
+            url: "https://drive.google.com/file/d/1gyB2HZHHJ-LbX9r8EFVPfY-IOrWQtkwk/preview",
+          },
+        ],
+      },
       { id: "class4", title: "Class 4 — (Coming soon)", videos: [], docs: [] },
     ],
   },
@@ -140,10 +150,16 @@ export default function CoursePortal() {
   useEffect(() => {
     const e = localStorage.getItem("user") || "";
     setUserEmail(e);
-    setIsAllowed(allowedEmails.map((a) => a.toLowerCase()).includes((e || "").toLowerCase()));
+    setIsAllowed(
+      allowedEmails
+        .map((a) => a.toLowerCase())
+        .includes((e || "").toLowerCase())
+    );
     if (e) {
       try {
-        const saved = JSON.parse(localStorage.getItem(storageProgressKey(e)) || "{}");
+        const saved = JSON.parse(
+          localStorage.getItem(storageProgressKey(e)) || "{}"
+        );
         setProgressState(saved || {});
       } catch (err) {
         setProgressState({});
@@ -167,8 +183,12 @@ export default function CoursePortal() {
             return;
           }
           try {
-            const videoUrl = v.url.includes("vimeo.com") ? v.url.replace("player.", "") : v.url;
-            const oembed = `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(videoUrl)}`;
+            const videoUrl = v.url.includes("vimeo.com")
+              ? v.url.replace("player.", "")
+              : v.url;
+            const oembed = `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(
+              videoUrl
+            )}`;
             const res = await fetch(oembed);
             if (!res.ok) throw new Error("no oembed");
             const data = await res.json();
@@ -219,10 +239,14 @@ export default function CoursePortal() {
 
     // restore last-time for this class/video if present
     try {
-      const saved = JSON.parse(localStorage.getItem(storageProgressKey(userEmail)) || "{}");
+      const saved = JSON.parse(
+        localStorage.getItem(storageProgressKey(userEmail)) || "{}"
+      );
       const cls = saved[selectedClass.id] || {};
       if (cls.videoId === selectedVideo.id && cls.time > 0) {
-        player.ready().then(() => player.setCurrentTime(cls.time).catch(() => {}));
+        player
+          .ready()
+          .then(() => player.setCurrentTime(cls.time).catch(() => {}));
       }
     } catch (e) {}
 
@@ -257,7 +281,9 @@ export default function CoursePortal() {
     setSelectedVideo(null);
     setShowClassDetails(true);
     try {
-      const saved = JSON.parse(localStorage.getItem(storageProgressKey(userEmail)) || "{}");
+      const saved = JSON.parse(
+        localStorage.getItem(storageProgressKey(userEmail)) || "{}"
+      );
       const cls = saved[selectedClass.id] || {};
       if (cls.videoId) {
         const found = selectedClass.videos.find((v) => v.id === cls.videoId);
@@ -296,12 +322,18 @@ export default function CoursePortal() {
   if (!isAllowed) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-        <h1 className="text-3xl font-bold text-red-600 mb-4">Access Denied 🚫</h1>
-        <p className="text-gray-700">This page is restricted to authorized To-Analytics members only.</p>
+        <h1 className="text-3xl font-bold text-red-600 mb-4">
+          Access Denied 🚫
+        </h1>
+        <p className="text-gray-700">
+          This page is restricted to authorized To-Analytics members only.
+        </p>
         {userEmail ? (
           <p className="mt-3 text-sm text-gray-500">Your email: {userEmail}</p>
         ) : (
-          <p className="mt-3 text-sm text-gray-500">Please log in to view this page.</p>
+          <p className="mt-3 text-sm text-gray-500">
+            Please log in to view this page.
+          </p>
         )}
       </div>
     );
@@ -309,7 +341,7 @@ export default function CoursePortal() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
-     <DashboardDropdown/>
+      <DashboardDropdown />
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
         {/* Sidebar */}
         <aside className="col-span-12 md:col-span-3 bg-white rounded-2xl p-4 shadow-sm">
@@ -324,7 +356,11 @@ export default function CoursePortal() {
                     setSelectedClass(c.classes[0]);
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
-                  className={`w-full text-left px-3 py-2 rounded-xl transition-all hover:bg-gray-100 ${c.id === selectedCourse.id ? "bg-gray-100 font-semibold" : ""}`}
+                  className={`w-full text-left px-3 py-2 rounded-xl transition-all hover:bg-gray-100 ${
+                    c.id === selectedCourse.id
+                      ? "bg-gray-100 font-semibold"
+                      : ""
+                  }`}
                 >
                   {c.title}
                 </button>
@@ -338,10 +374,15 @@ export default function CoursePortal() {
                           setSelectedClass(cl);
                           setShowClassDetails(true);
                         }}
-                        className={`flex items-center justify-between w-full text-left text-sm px-2 py-1 rounded-lg transition-all hover:bg-gray-100 ${cl.id === selectedClass.id ? "bg-blue-50 font-medium" : ""}`}
+                        className={`flex items-center justify-between w-full text-left text-sm px-2 py-1 rounded-lg transition-all hover:bg-gray-100 ${
+                          cl.id === selectedClass.id
+                            ? "bg-blue-50 font-medium"
+                            : ""
+                        }`}
                       >
                         <span>
-                          {isClassCompleted(cl.id) ? "✅" : "⭕"} <span className="ml-2">{cl.title}</span>
+                          {isClassCompleted(cl.id) ? "✅" : "⭕"}{" "}
+                          <span className="ml-2">{cl.title}</span>
                         </span>
                       </button>
                     ))}
@@ -364,10 +405,10 @@ export default function CoursePortal() {
               >
                 Clear
               </button>
-
-             
             </div>
-            <div className="mt-2 text-xs text-gray-500">Progress saved per email in your browser.</div>
+            <div className="mt-2 text-xs text-gray-500">
+              Progress saved per email in your browser.
+            </div>
           </div>
         </aside>
 
@@ -376,7 +417,11 @@ export default function CoursePortal() {
           <div className="flex items-start justify-between">
             <div>
               <h1 className="text-xl font-bold">{selectedClass.title}</h1>
-              <p className="text-sm text-gray-500">{selectedClass.videos.length > 1 ? `Contains ${selectedClass.videos.length} videos` : "Video playlist"}</p>
+              <p className="text-sm text-gray-500">
+                {selectedClass.videos.length > 1
+                  ? `Contains ${selectedClass.videos.length} videos`
+                  : "Video playlist"}
+              </p>
             </div>
           </div>
 
@@ -384,22 +429,40 @@ export default function CoursePortal() {
             {/* Video cards (for multi-video classes like Class 1) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {selectedClass.videos.map((v) => (
-                <div key={v.id} className={`p-3 rounded-xl border ${selectedVideo && selectedVideo.id === v.id ? "border-blue-400 shadow" : "border-gray-200"}`}>
+                <div
+                  key={v.id}
+                  className={`p-3 rounded-xl border ${
+                    selectedVideo && selectedVideo.id === v.id
+                      ? "border-blue-400 shadow"
+                      : "border-gray-200"
+                  }`}
+                >
                   <div className="w-full h-40 bg-gray-200 overflow-hidden rounded">
                     {thumbnails[v.id] ? (
-                      <img src={thumbnails[v.id]} alt={v.title} className="w-full h-full object-cover" />
+                      <img
+                        src={thumbnails[v.id]}
+                        alt={v.title}
+                        className="w-full h-full object-cover"
+                      />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">{loadingThumbs ? "..." : "No thumb"}</div>
+                      <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">
+                        {loadingThumbs ? "..." : "No thumb"}
+                      </div>
                     )}
                   </div>
 
                   <div className="mt-2 flex items-center justify-between">
                     <div>
                       <div className="font-medium">{v.title}</div>
-                      <div className="text-xs text-gray-500">Vimeo • {v.id}</div>
+                      <div className="text-xs text-gray-500">
+                        Vimeo • {v.id}
+                      </div>
                     </div>
                     <div>
-                      <button onClick={() => setSelectedVideo(v)} className="px-3 py-1 rounded bg-blue-600 text-white text-sm">
+                      <button
+                        onClick={() => setSelectedVideo(v)}
+                        className="px-3 py-1 rounded bg-blue-600 text-white text-sm"
+                      >
                         Play
                       </button>
                     </div>
@@ -410,12 +473,22 @@ export default function CoursePortal() {
 
             {/* Player area */}
             <div className="mt-6">
-              <div className="rounded-xl overflow-hidden border h-[420px] bg-black" ref={playerRef} />
+              <div
+                className="rounded-xl overflow-hidden border h-[420px] bg-black"
+                ref={playerRef}
+              />
 
               <div className="mt-3 flex items-center justify-between">
-                <div className="text-sm text-gray-600">{selectedVideo ? selectedVideo.title : "No video selected"}</div>
+                <div className="text-sm text-gray-600">
+                  {selectedVideo ? selectedVideo.title : "No video selected"}
+                </div>
                 <div className="flex items-center gap-3">
-                  {isMutedHint && <div className="text-red-500 text-xs">Audio may be blocked — play and allow sound on your browser.</div>}
+                  {isMutedHint && (
+                    <div className="text-red-500 text-xs">
+                      Audio may be blocked — play and allow sound on your
+                      browser.
+                    </div>
+                  )}
 
                   <button
                     onClick={() => {
@@ -443,13 +516,20 @@ export default function CoursePortal() {
             {selectedClass.docs.length > 0 ? (
               selectedClass.docs.map((doc) => (
                 <div key={doc.id} className="mb-2">
-                  <a href={doc.url} target="_blank" rel="noreferrer" className="text-sm underline">
+                  <a
+                    href={doc.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm underline"
+                  >
                     {doc.title}
                   </a>
                 </div>
               ))
             ) : (
-              <div className="text-sm text-gray-500">No slides yet for this class.</div>
+              <div className="text-sm text-gray-500">
+                No slides yet for this class.
+              </div>
             )}
           </div>
 
@@ -461,8 +541,13 @@ export default function CoursePortal() {
               className="w-full mt-2 p-2 rounded border min-h-[160px]"
               value={(() => {
                 try {
-                  const saved = JSON.parse(localStorage.getItem(storageProgressKey(userEmail)) || "{}");
-                  return (saved[selectedClass.id] && saved[selectedClass.id].note) || "";
+                  const saved = JSON.parse(
+                    localStorage.getItem(storageProgressKey(userEmail)) || "{}"
+                  );
+                  return (
+                    (saved[selectedClass.id] && saved[selectedClass.id].note) ||
+                    ""
+                  );
                 } catch (e) {
                   return "";
                 }
@@ -471,7 +556,10 @@ export default function CoursePortal() {
                 try {
                   const key = storageProgressKey(userEmail);
                   const prev = JSON.parse(localStorage.getItem(key) || "{}");
-                  prev[selectedClass.id] = { ...(prev[selectedClass.id] || {}), note: e.target.value };
+                  prev[selectedClass.id] = {
+                    ...(prev[selectedClass.id] || {}),
+                    note: e.target.value,
+                  };
                   localStorage.setItem(key, JSON.stringify(prev));
                   setProgressState(prev);
                 } catch (err) {}
@@ -483,8 +571,6 @@ export default function CoursePortal() {
     </div>
   );
 }
-
-
 
 // import { useState, useEffect } from "react";
 // import { NavLink, Outlet } from "react-router-dom";
@@ -548,7 +634,7 @@ export default function CoursePortal() {
 //     },
 
 //     {
-//       id:3, 
+//       id:3,
 //       title:"To-analytics Splunk Class 2",
 //       url:"https://drive.google.com/file/d/1V3zqvISvQLDZlQKUryIna4xnmAzcNRSC/preview"
 //     }
@@ -583,7 +669,6 @@ export default function CoursePortal() {
 //         📚 Splunk Learning Materials
 //       </h1>
 // {/* materials */}
- 
 
 //       <NavLink
 //         to="/dashboard/takequiz"
