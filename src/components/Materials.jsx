@@ -110,7 +110,13 @@ const sampleCourses = [
       {
         id: "class3",
         title: "Class 3 — Splunk SPL",
-        videos: [],
+        videos: [ 
+          {
+            id: "v2",
+            title: "To-analytics Splunk Class 3",
+            url: "https://player.vimeo.com/video/1133357923",
+          },
+        ],
         docs: [
           {
             id: "d3",
@@ -120,7 +126,7 @@ const sampleCourses = [
         ],
       },
       { id: "class4", title: "Class 4 — (Coming soon)", videos: [], docs: [] },
-    ],
+    ], 
   },
 ];
 
