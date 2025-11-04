@@ -124,7 +124,7 @@ const ClassM = () => {
               }`
             }
           >
-            Dashboard
+            {/* Dashboard */}
           </NavLink>
           <NavLink
             to="/class"
@@ -136,7 +136,7 @@ const ClassM = () => {
               }`
             }
           >
-            Classes
+            {/* Classes */}
           </NavLink>
           <NavLink
             to="/assignments"
@@ -148,7 +148,7 @@ const ClassM = () => {
               }`
             }
           >
-            Assignments
+            {/* Assignments */}
           </NavLink>
         </div>
 
