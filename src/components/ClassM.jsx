@@ -47,7 +47,7 @@ const ClassM = () => {
   // ✅ Fetch assignments only if user is allowed
   useEffect(() => {
     if (isAllowed) {
-      fetch("https://to-backendapi-v1.vercel.app/api/assignment")
+      fetch("https://to-backendapi-v1.vercel.app/api/all/assignment")
         .then((res) => res.json())
         .then((data) => {
           setAssignments(data.data || []);
