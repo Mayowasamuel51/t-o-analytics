@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 const QuizResults = () => {
@@ -69,6 +68,7 @@ const QuizResults = () => {
           <tr className="bg-gray-800 text-left">
             <th className="p-2 border-b border-gray-700">#</th>
             <th className="p-2 border-b border-gray-700">Score</th>
+            <th className="p-2 border-b border-gray-700">Test Name</th>
             <th className="p-2 border-b border-gray-700">Total Questions</th>
             <th className="p-2 border-b border-gray-700">Total</th>
             <th className="p-2 border-b border-gray-700">Date Taken</th>
@@ -76,6 +76,7 @@ const QuizResults = () => {
         </thead>
         <tbody>
           {results.map((r, index) => {
+            const testName = r.testName || "Untitled Test";
             const total = Number(r.totalQuestions) || 0;
             const score = Number(r.score) || 0;
             const date = r.dateTaken
@@ -86,6 +87,7 @@ const QuizResults = () => {
               <tr key={index} className="hover:bg-gray-800 transition-colors">
                 <td className="p-2 border-b border-gray-700">{index + 1}</td>
                 <td className="p-2 border-b border-gray-700">{score}</td>
+                <td className="p-2 border-b border-gray-700">{testName}</td>
                 <td className="p-2 border-b border-gray-700">{total}</td>
                 <td className="p-2 border-b border-gray-700">
                   {score} / {total}
@@ -101,6 +103,7 @@ const QuizResults = () => {
 };
 
 export default QuizResults;
+
 
 // import { useEffect, useState } from "react";
 
