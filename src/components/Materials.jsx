@@ -8,6 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Player from "@vimeo/player";
 import { NavLink } from "react-router-dom";
 import DashboardDropdown from "./Dropdown";
+import NewFeaturePopup from "./Newapp";
 const API_BASE = import.meta.env.VITE_HOME_OO || "http://localhost:8000";
 const allowedEmails = [
   "samuelsamuelmayowa@gmail.com",
@@ -413,6 +414,7 @@ export default function CoursePortal() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
+      <NewFeaturePopup/>
       <DashboardDropdown />
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
         {/* Sidebar */}
