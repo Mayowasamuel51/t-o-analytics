@@ -109,7 +109,7 @@ const sampleCourses = [
         ],
       },
       {
-        id: "class3",
+        id: "class4",
         title: "Class 3 — Splunk SPL",
         videos: [
           {
