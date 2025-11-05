@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Player from "@vimeo/player";
 import { NavLink } from "react-router-dom";
 import DashboardDropdown from "./Dropdown";
-
+const API_BASE = import.meta.env.VITE_HOME_OO || "http://localhost:8000";
 const allowedEmails = [
   "samuelsamuelmayowa@gmail.com",
   "adenusitimi@gmail.com",
@@ -110,7 +110,7 @@ const sampleCourses = [
       {
         id: "class3",
         title: "Class 3 — Splunk SPL",
-        videos: [ 
+        videos: [
           {
             id: "v2",
             title: "To-analytics Splunk Class 3",
@@ -122,9 +122,9 @@ const sampleCourses = [
             id: "d3",
             title: "To-analytics Splunk Class 3",
             // url: "https://drive.google.com/file/d/1gyB2HZHHJ-LbX9r8EFVPfY-IOrWQtkwk/preview",
-            url: "https://docs.google.com/presentation/d/1Qc7nnnYfuIt-q2OXOvvxi8nJOp7PTh6I/preview"
+            url: "https://docs.google.com/presentation/d/1Qc7nnnYfuIt-q2OXOvvxi8nJOp7PTh6I/preview",
           },
-            {
+          {
             id: "d4",
             title: "To-analytics Splunk Class 3 Note ",
             url: " https://drive.google.com/file/d/1YVWoCLqrk4JhcML-mloJ53RDZlq7v7Pc/preview",
@@ -133,7 +133,7 @@ const sampleCourses = [
       },
 
       { id: "class4", title: "Class 4 — (Coming soon)", videos: [], docs: [] },
-    ], 
+    ],
   },
 ];
 
@@ -160,24 +160,83 @@ export default function CoursePortal() {
   const [progressState, setProgressState] = useState({}); // mirror of saved progress per-email
 
   // init: user + permission + progress state
+  // useEffect(() => {
+  //   const e = localStorage.getItem("user") || "";
+  //   setUserEmail(e);
+  //   setIsAllowed(
+  //     allowedEmails
+  //       .map((a) => a.toLowerCase())
+  //       .includes((e || "").toLowerCase())
+  //   );
+  //   if (e) {
+  //     try {
+  //       const saved = JSON.parse(
+  //         localStorage.getItem(storageProgressKey(e)) || "{}"
+  //       );
+  //       setProgressState(saved || {});
+  //     } catch (err) {
+  //       setProgressState({});
+  //     }
+  //   }
+  //   // set default selected class/video
+  //   setSelectedCourse(courses[0]);
+  //   setSelectedClass(courses[0].classes[0]);
+  // }, [courses]);
+
   useEffect(() => {
     const e = localStorage.getItem("user") || "";
     setUserEmail(e);
+
+    // Check permission
     setIsAllowed(
       allowedEmails
         .map((a) => a.toLowerCase())
         .includes((e || "").toLowerCase())
     );
-    if (e) {
+
+    // Load progress (from backend instead of localStorage)
+    async function fetchProgress() {
+      if (!e) return;
+
       try {
-        const saved = JSON.parse(
-          localStorage.getItem(storageProgressKey(e)) || "{}"
+        // 1️⃣ Try to load from backend
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE}/api/progress/${e}`
         );
-        setProgressState(saved || {});
+        if (!res.ok) throw new Error("Failed to fetch backend data");
+
+        const data = await res.json();
+
+        // Convert backend array to object map
+        const mapped = {};
+        data.forEach((p) => {
+          mapped[p.classId] = {
+            note: p.note || "",
+            time: p.time || 0,
+            duration: p.duration || 0,
+            completed: p.completed || false,
+          };
+        });
+        setProgressState(mapped);
+
+        // 2️⃣ Optionally sync into localStorage (for offline use)
+        localStorage.setItem(storageProgressKey(e), JSON.stringify(mapped));
       } catch (err) {
-        setProgressState({});
+        console.warn("Backend fetch failed, using local fallback:", err);
+        // Fallback to localStorage
+        try {
+          const saved = JSON.parse(
+            localStorage.getItem(storageProgressKey(e)) || "{}"
+          );
+          setProgressState(saved || {});
+        } catch {
+          setProgressState({});
+        }
       }
     }
+
+    fetchProgress();
+
     // set default selected class/video
     setSelectedCourse(courses[0]);
     setSelectedClass(courses[0].classes[0]);
@@ -549,7 +608,7 @@ export default function CoursePortal() {
           <div className="mt-4">
             <h4 className="text-sm font-medium">Quick Notes</h4>
             <p className="text-xs text-gray-500">Notes saved per email.</p>
-            <textarea
+            {/* <textarea
               placeholder="Write notes..."
               className="w-full mt-2 p-2 rounded border min-h-[160px]"
               value={(() => {
@@ -576,6 +635,54 @@ export default function CoursePortal() {
                   localStorage.setItem(key, JSON.stringify(prev));
                   setProgressState(prev);
                 } catch (err) {}
+              }}
+            /> */}
+            <textarea
+              placeholder="Write notes..."
+              className="w-full mt-2 p-2 rounded border min-h-[160px]"
+              value={(() => {
+                try {
+                  const saved = JSON.parse(
+                    localStorage.getItem(storageProgressKey(userEmail)) || "{}"
+                  );
+                  return (
+                    (saved[selectedClass.id] && saved[selectedClass.id].note) ||
+                    ""
+                  );
+                } catch (e) {
+                  return "";
+                }
+              })()}
+              onChange={async (e) => {
+                const note = e.target.value;
+                try {
+                  // Update local storage
+                  const key = storageProgressKey(userEmail);
+                  const prev = JSON.parse(localStorage.getItem(key) || "{}");
+                  prev[selectedClass.id] = {
+                    ...(prev[selectedClass.id] || {}),
+                    note,
+                  };
+                  localStorage.setItem(key, JSON.stringify(prev));
+                  setProgressState(prev);
+
+                  // 🔥 Save note to backend too
+                  await fetch(
+                    `${import.meta.env.VITE_API_BASE}/api/progress/save`,
+                    {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        email: userEmail,
+                        courseId: selectedCourse.id,
+                        classId: selectedClass.id,
+                        note,
+                      }),
+                    }
+                  );
+                } catch (err) {
+                  console.error("Failed to save note:", err);
+                }
               }}
             />
           </div>
