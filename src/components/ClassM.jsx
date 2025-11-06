@@ -9,23 +9,25 @@ const ClassM = () => {
     const data = {
       title: "Splunk Assignment",
       description:
-        " Read all the documents below carefully and complete the required tasks.",
-      dueDate: "2025-11-10",
+        "Read all the documents below carefully and complete the required tasks.",
       docs: [
         {
           id: 1,
           title: "Assignment Instructions",
           url: "https://drive.google.com/file/d/1bf5cRkcEC3yDJ5MnzpRKDpRLhRhdUH90/preview",
+          dueDate: "2025-11-08",
         },
         {
           id: 2,
           title: "Sample Log Files",
           url: "https://drive.google.com/file/d/1swg7fD7Q6DEO_E8PQZTIiPCrNtikWlSK/preview",
+          dueDate: "2025-11-09",
         },
         {
           id: 3,
           title: "Submission Template",
           url: "https://drive.google.com/file/d/1zExampleTemplate123/preview",
+          dueDate: "2025-11-10",
         },
       ],
     };
@@ -45,11 +47,6 @@ const ClassM = () => {
           {assignment.title}
         </h2>
         <p className="text-gray-700 mb-3">{assignment.description}</p>
-
-        <p className="text-sm text-gray-500 mb-6">
-          <span className="font-semibold">Due Date:</span>{" "}
-          {assignment.dueDate}
-        </p>
 
         {/* === MULTIPLE PDF BUTTONS === */}
         <div className="flex flex-wrap gap-3 mb-4">
@@ -81,23 +78,37 @@ const ClassM = () => {
           )}
         </div>
 
-        <div className="mt-3 text-sm text-gray-600">
-          <span className="font-semibold">Open in new tab:</span>{" "}
-          <a
-            href={selectedDoc?.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 underline break-words"
-          >
-            {selectedDoc?.url}
-          </a>
-        </div>
+        {/* === DETAILS BELOW VIEWER === */}
+        {selectedDoc && (
+          <div className="mt-3 text-sm text-gray-600 space-y-1">
+            <p>
+              <span className="font-semibold">Document:</span>{" "}
+              {selectedDoc.title}
+            </p>
+            <p>
+              <span className="font-semibold">Due Date:</span>{" "}
+              {selectedDoc.dueDate}
+            </p>
+            <p>
+              <span className="font-semibold">Open in new tab:</span>{" "}
+              <a
+                href={selectedDoc.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline break-words"
+              >
+                {selectedDoc.url}
+              </a>
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
 export default ClassM;
+
 
 
 
