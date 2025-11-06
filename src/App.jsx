@@ -52,6 +52,7 @@ import SplunkQuiz from "./components/Quiz";
 import QuizResults from "./components/QuizResults";
 import MainQuiz from "./components/MainQuiz";
 import SeeQuiz from "./components/SeeQuiz";
+import Cancel from "./pages/Cancel";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,11 @@ const router = createBrowserRouter([
             <LazyHomePage />
           </React.Suspense>
         ),
+      },
+      {
+         path: "/cancel",
+        element: <Cancel/>,
+
       },
 
       {
