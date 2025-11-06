@@ -10,6 +10,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 
 const CheckOut = () => {
+   const api = import.meta.env.VITE_HOME_OO || "http://localhost:8000/api/";
   // const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
   const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
   const { cartItem, setCartItem } = useContext(CartItemContext);
@@ -20,7 +21,7 @@ const CheckOut = () => {
 const handleStripeCheckout = async () => {
   try {
     const response = await axios.post(
-      "http://localhost:8000/api/payment/create-checkout-session",
+      `${api}payment/create-checkout-session`,
       {
         items: cartItem.map((item) => ({
           name: item.courseName || item.name,
