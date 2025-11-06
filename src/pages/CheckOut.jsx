@@ -34,7 +34,9 @@ const handleStripeCheckout = async () => {
     // ✅ Stripe now returns the redirect URL
     window.location.href = response.data.url;
   } catch (error) {
-    console.error("Error creating checkout session:", error);
+    console.error("Error creating checkout session:", error, error.message
+      
+    );
     toast.error("Payment initialization failed. Please try again.");
   }
 };
