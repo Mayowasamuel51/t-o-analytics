@@ -133,7 +133,7 @@ const sampleCourses = [
         ],
       },
 
-      { id: "class4", title: "Class 4 — (Coming soon)", videos: [], docs: [] },
+      { id: "class5", title: "Class 4 — (Coming soon)", videos: [], docs: [] },
     ],
   },
 ];
