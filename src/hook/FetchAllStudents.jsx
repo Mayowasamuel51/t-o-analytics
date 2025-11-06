@@ -6,7 +6,7 @@ import {
 const FetchAllStudents = () => {
   return useQuery({
     queryKey: ["students"],
-    queryFn: ()=> axios.get("https://to-backendapi-v1.vercel.app/api/show")
+    queryFn: ()=> axios.get("https://to-backendapi-v1.onrender.com/api/show")
   })
   
 }

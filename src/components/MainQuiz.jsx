@@ -50,7 +50,7 @@ const MainQuiz = () => {
   // ✅ Fetch assignments only if user is allowed
   useEffect(() => {
     if (isAllowed) {
-      fetch("https://to-backendapi-v1.vercel.app/api/assignment")
+      fetch("https://to-backendapi-v1.onrender.com/api/assignment")
         .then((res) => res.json())
         .then((data) => {
           setAssignments(data.data || []);
