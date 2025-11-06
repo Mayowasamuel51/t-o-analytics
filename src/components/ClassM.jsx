@@ -9,7 +9,7 @@ const ClassM = () => {
     const data = {
       title: "Splunk Assignment",
       description:
-        "Analyze provided log files using Splunk. Read all the documents below carefully and complete the required tasks.",
+        " Read all the documents below carefully and complete the required tasks.",
       dueDate: "2025-11-10",
       docs: [
         {
