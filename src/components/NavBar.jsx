@@ -1,16 +1,13 @@
 import { useState, useEffect, useContext, useMemo } from "react";
 import LOGO from "../assets/images/logo2.png";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import CartItemContext from "../context/CartItemContext";
 import { useStateContext } from "../context/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
-import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
-import { FaChevronDown } from "react-icons/fa";
+import { FaBarsStaggered, FaXmark, FaChevronDown } from "react-icons/fa6";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
 import FetchAllStudents from "../hooks/FetchAllStudents";
-import SearchCourseInput from "./SearchCourseInput";
 import PropTypes from "prop-types";
 
 const SCROLL_THRESHOLD = 20;
@@ -24,274 +21,33 @@ const headerVariant = {
   },
 };
 
-// ===== User Avatar =====
-const UserAvatar = ({ initial, animate = false }) => (
-  <div
-    className={`${
-      animate ? "animate-bounce" : ""
-    } flex justify-center items-center w-8 md:text-lg aspect-square text-white font-black bg-BLUE rounded-full`}
-  >
+const UserAvatar = ({ initial }) => (
+  <div className="flex justify-center items-center w-8 h-8 text-white font-black bg-BLUE rounded-full">
     {initial}
   </div>
 );
 
-// ===== Cart Icon =====
 const CartIcon = ({ itemCount }) => (
   <div className="relative cursor-pointer group">
     <MdOutlineAddShoppingCart size={30} />
     <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10">
       {itemCount || "0"}
     </p>
-    {itemCount > 0 && (
-      <div className="top-[-6px] right-[-6px] animate-ping duration-200 ease-in-out absolute w-5 aspect-square rounded-full bg-BLUE z-[1]"></div>
-    )}
   </div>
 );
 
-// ===== Authenticated User Nav =====
-const AuthenticatedNav = ({ show, fullname, email, initial, signout }) => (
-  <nav
-    className={`transition-all ${
-      show === "show" ? "block" : "hidden"
-    } md:block py-4 md:py-0 text-center`}
-  >
-    <div className="pl-2 block md:hidden text-left mb-4">
-      <Link to="/myProfile">
-        <div className="flex items-center gap-3">
-          <UserAvatar initial={initial} animate />
-          <div>
-            <p className="font-semibold text-md">{fullname}</p>
-            <p className="font-semibold text-xs text-slate-400">{email}</p>
-          </div>
-        </div>
-      </Link>
-    </div>
-
-    <ul className="flex flex-col md:flex-row items-center gap-3 md:gap-6 font-normal text-sm">
-      <motion.li whileHover={{ scale: 1.1 }}>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-          }
-          to="/dashboard"
-        >
-          My Courses
-        </NavLink>
-      </motion.li>
-      <motion.li whileHover={{ scale: 1.1 }}>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-          }
-          to="/courses"
-        >
-          All Courses
-        </NavLink>
-      </motion.li>
-      <motion.li whileHover={{ scale: 1.1 }}>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-          }
-          to="/dashboard/comment"
-        >
-          Comment
-        </NavLink>
-      </motion.li>
-      <motion.li whileHover={{ scale: 1.1 }}>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-          }
-          to="/mentorship"
-        >
-          Mentorship
-        </NavLink>
-      </motion.li>
-
-      <button
-        onClick={signout}
-        className="w-full md:hidden block my-3 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-2 py-1 md:px-3 md:py-2 rounded-md font-semibold"
-      >
-        Sign Out
-      </button>
-    </ul>
-  </nav>
-);
-
-// ===== Guest Nav =====
-const GuestNav = ({ show, subMenu, displaySubMenu }) => (
-  <nav
-    className={`transition-all ${
-      show === "show" ? "block" : "hidden"
-    } md:block py-4 md:py-0 text-center`}
-  >
-    <ul className="px-4 flex flex-col md:flex-row items-center gap-4 md:gap-6 font-semibold">
-      <motion.li whileHover={{ scale: 1.1 }}>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-          }
-          to="/courses"
-        >
-          Courses
-        </NavLink>
-      </motion.li>
-      <motion.li whileHover={{ scale: 1.1 }}>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-          }
-          to="/about"
-        >
-          About
-        </NavLink>
-      </motion.li>
-
-      <motion.li
-        onClick={displaySubMenu}
-        whileHover={{ scale: 1.1 }}
-        className="group relative cursor-pointer"
-      >
-        <p className="flex gap-1 items-center justify-center">
-          Company
-          <FaChevronDown
-            className={`duration-200 ${subMenu ? "rotate-180" : ""}`}
-          />
-        </p>
-        {subMenu && (
-          <ul className="bg-white p-4 rounded-md mt-2 flex flex-col gap-3 shadow-md absolute">
-            <li>
-              <NavLink
-                to="/career"
-                className={({ isActive }) =>
-                  isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-                }
-              >
-                Career
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/partner"
-                className={({ isActive }) =>
-                  isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-                }
-              >
-                Partners
-              </NavLink>
-            </li>
-          </ul>
-        )}
-      </motion.li>
-
-      <motion.li whileHover={{ scale: 1.1 }}>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-          }
-          to="/blog"
-        >
-          Blog
-        </NavLink>
-      </motion.li>
-      <motion.li whileHover={{ scale: 1.1 }}>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-          }
-          to="/contact"
-        >
-          Contact
-        </NavLink>
-      </motion.li>
-      <Link to="/login" className="md:hidden block w-full">
-        <button className="w-full border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-4 py-2 rounded-md font-semibold">
-          Login
-        </button>
-      </Link>
-    </ul>
-  </nav>
-);
-
-// ===== User Dropdown (Desktop) =====
-const UserDropdown = ({ initial, fullname, email, signout }) => (
-  <div className="hidden md:block relative group">
-    <UserAvatar initial={initial} />
-    <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 duration-300 absolute rounded-lg w-[250px] right-0 top-12 bg-white shadow-lg z-[1000]">
-      <div className="p-3 flex items-center gap-3 border-b border-gray-200">
-        <UserAvatar initial={initial} animate />
-        <div>
-          <p className="font-semibold text-md">{fullname}</p>
-          <p className="font-semibold text-xs text-slate-400">{email}</p>
-        </div>
-      </div>
-
-      <ul className="font-semibold p-3 leading-[30px]">
-        <li>
-          <NavLink
-            to="/myProfile"
-            className={({ isActive }) =>
-              isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-            }
-          >
-            My Profile
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-            }
-          >
-            My Courses
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/courses"
-            className={({ isActive }) =>
-              isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-            }
-          >
-            All Courses
-          </NavLink>
-        </li>
-        <li
-          onClick={signout}
-          className="text-red-500 hover:text-BLUE cursor-pointer"
-        >
-          Sign Out
-        </li>
-      </ul>
-    </div>
-  </div>
-);
-
-// ===== Main NavBar Component =====
 const NavBar = () => {
   const { data } = FetchAllStudents();
-  const [show, setShow] = useState("");
-  const [subMenu, setSubMenu] = useState(false);
-  const { cartItem } = useContext(CartItemContext);
   const { token, setToken, FullScreen } = useStateContext();
   const [localuser, setUser] = useState("");
-  const auth = getAuth(app);
+  const [show, setShow] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
-
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        window.localStorage.removeItem("ACCESS_TOKEN");
-        window.localStorage.removeItem("user");
-        setToken(null);
-      })
-      .catch((err) => console.error("Sign out error:", err.message));
-  };
+  const auth = getAuth(app);
 
   const currentUser = useMemo(() => {
     if (!data?.data?.response || !localuser) return null;
+
     const user = data.data.response.find((u) => u.email === localuser);
     if (!user) return null;
 
@@ -300,110 +56,186 @@ const NavBar = () => {
       email: user.email,
       initial: user.name
         .split(" ")
-        .map((word) => word.charAt(0).toUpperCase())
+        .map((w) => w.charAt(0).toUpperCase())
         .join(""),
     };
   }, [data, localuser]);
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        localStorage.removeItem("ACCESS_TOKEN");
+        localStorage.removeItem("user");
+        setToken(null);
+      })
+      .catch((err) => console.error(err.message));
+  };
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) setUser(loggedInUser);
   }, []);
 
-  const toggleMenu = () => setShow((prev) => (prev === "show" ? "" : "show"));
-  const toggleSubMenu = () => setSubMenu((prev) => !prev);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    setHidden(latest > previous && latest > HIDE_THRESHOLD);
+  });
+
+  const toggleMenu = () => setShow(!show);
 
   return (
     <motion.header
       variants={headerVariant}
-      animate="visible"
-      className="z-[9999] fixed right-0 left-0 top-0 bg-white px-3 py-2 md:px-10 flex items-center justify-between shadow-sm"
+      animate={hidden && !FullScreen ? "hidden" : "visible"}
+      className="z-[9999] fixed right-0 left-0 top-0 bg-white shadow-sm px-3 py-3 md:px-10 flex items-center justify-between"
     >
-      <div>
-        <Link to="/">
-          <motion.img
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 260, duration: 2 }}
-            src={LOGO}
-            className="md:w-[200px] w-[130px]"
-            alt="Logo"
-          />
-        </Link>
-      </div>
+      {/* LOGO */}
+      <Link to="/">
+        <motion.img
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 260, duration: 2 }}
+          src={LOGO}
+          className="md:w-[180px] w-[130px]"
+          alt="Logo"
+        />
+      </Link>
 
-      {token && <SearchCourseInput />}
+      {/* NAVIGATION LINKS */}
+      <nav
+        className={`${
+          show ? "left-0" : "-left-full"
+        } md:left-0 fixed md:static top-[60px] md:top-0 bg-white md:bg-transparent w-full md:w-auto flex flex-col md:flex-row items-center gap-5 md:gap-8 font-semibold p-5 md:p-0 transition-all duration-300`}
+      >
+        {token && currentUser ? (
+          <>
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive ? "text-BLUE font-black" : "hover:text-BLUE"
+              }
+            >
+              My Courses
+            </NavLink>
+            <NavLink
+              to="/courses"
+              className={({ isActive }) =>
+                isActive ? "text-BLUE font-black" : "hover:text-BLUE"
+              }
+            >
+              All Courses
+            </NavLink>
+            <NavLink
+              to="/dashboard/comment"
+              className={({ isActive }) =>
+                isActive ? "text-BLUE font-black" : "hover:text-BLUE"
+              }
+            >
+              Comment
+            </NavLink>
+            <NavLink
+              to="/mentorship"
+              className={({ isActive }) =>
+                isActive ? "text-BLUE font-black" : "hover:text-BLUE"
+              }
+            >
+              Mentorship
+            </NavLink>
+            <NavLink
+              to="/dashboard/links"
+              className={({ isActive }) =>
+                isActive ? "text-BLUE font-black" : "hover:text-BLUE"
+              }
+            >
+              Class Materials
+            </NavLink>
 
-      {token ? (
-        currentUser && (
-          <AuthenticatedNav
-            {...currentUser}
-            show={show}
-            signout={handleSignOut}
-          />
-        )
-      ) : (
-        <GuestNav show={show} subMenu={subMenu} displaySubMenu={toggleSubMenu} />
-      )}
+            <button
+              onClick={handleSignOut}
+              className="md:hidden mt-4 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-2 rounded-md font-semibold"
+            >
+              Sign Out
+            </button>
+          </>
+        ) : (
+          <>
+            <NavLink
+              to="/courses"
+              className={({ isActive }) =>
+                isActive ? "text-BLUE font-black" : "hover:text-BLUE"
+              }
+            >
+              Courses
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive ? "text-BLUE font-black" : "hover:text-BLUE"
+              }
+            >
+              About
+            </NavLink>
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                isActive ? "text-BLUE font-black" : "hover:text-BLUE"
+              }
+            >
+              Blog
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? "text-BLUE font-black" : "hover:text-BLUE"
+              }
+            >
+              Contact
+            </NavLink>
 
-      <div className="flex items-center gap-3">
-        {!token && (
+            <Link to="/login" className="md:hidden">
+              <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-2 rounded-md font-semibold">
+                Login
+              </button>
+            </Link>
+          </>
+        )}
+      </nav>
+
+      {/* RIGHT SIDE */}
+      <div className="flex items-center gap-4">
+        {!token ? (
           <Link to="/login" className="hidden md:block">
-            <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-4 py-2 rounded-3xl font-semibold">
+            <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-4 py-2 rounded-md font-semibold">
               Login
             </button>
           </Link>
+        ) : (
+          currentUser && (
+            <div className="hidden md:flex items-center gap-3">
+              <UserAvatar initial={currentUser.initial} />
+              <div>
+                <p className="font-semibold">{currentUser.fullname}</p>
+                <p className="text-sm text-slate-400">{currentUser.email}</p>
+              </div>
+            </div>
+          )
         )}
 
-        <Link to="/checkout">
-          <CartIcon itemCount={cartItem?.length} />
-        </Link>
-
-        <div className="md:hidden">
-          {show === "show" ? (
-            <FaXmark size={22} onClick={toggleMenu} />
-          ) : (
-            <FaBarsStaggered size={22} onClick={toggleMenu} />
-          )}
+        {/* Hamburger menu */}
+        <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
+          {show ? <FaXmark size={22} /> : <FaBarsStaggered size={22} />}
         </div>
-
-        {token && currentUser && (
-          <UserDropdown {...currentUser} signout={handleSignOut} />
-        )}
       </div>
     </motion.header>
   );
 };
 
-// ===== PropTypes =====
 UserAvatar.propTypes = {
   initial: PropTypes.string.isRequired,
-  animate: PropTypes.bool,
 };
 
 CartIcon.propTypes = {
   itemCount: PropTypes.number,
-};
-
-UserDropdown.propTypes = {
-  initial: PropTypes.string.isRequired,
-  fullname: PropTypes.string,
-  email: PropTypes.string,
-  signout: PropTypes.func,
-};
-
-GuestNav.propTypes = {
-  show: PropTypes.string,
-  subMenu: PropTypes.bool,
-  displaySubMenu: PropTypes.func,
-};
-
-AuthenticatedNav.propTypes = {
-  show: PropTypes.string,
-  initial: PropTypes.string.isRequired,
-  fullname: PropTypes.string,
-  email: PropTypes.string,
-  signout: PropTypes.func,
 };
 
 export default NavBar;
