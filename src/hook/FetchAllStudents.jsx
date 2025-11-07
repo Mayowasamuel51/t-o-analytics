@@ -10,5 +10,5 @@ const FetchAllStudents = () => {
   })
   
 }
-
+console.log( import.meta.env.VITE_BACKEND_API)
 export default FetchAllStudents

@@ -5,6 +5,7 @@ import FetchAllStudents from "../hooks/FetchAllStudents";
 
 const AdminDashboard = () => {
     const {data} = FetchAllStudents()
+    console.log(data)
     return (
         <>
             <div className="">
