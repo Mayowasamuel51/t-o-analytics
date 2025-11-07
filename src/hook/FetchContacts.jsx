@@ -7,7 +7,7 @@ import {
 const FetchContacts = () => {
   return useQuery({
     queryKey: ["contact"],
-    queryFn: ()=> axios.get("https://to-backendapi-v1.vercel.app/api/contact")
+    queryFn: ()=> axios.get("https://to-backendapi-v1.onrender.com/api/contact")
   })
 }
 

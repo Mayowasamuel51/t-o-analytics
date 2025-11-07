@@ -6,7 +6,7 @@ import {
 const FetchComments = () => {
   return useQuery({
     queryKey: ["contact"],
-    queryFn: ()=> axios.get("https://to-backendapi-v1.vercel.app/api/comment")
+    queryFn: ()=> axios.get("https://to-backendapi-v1.onrender.com/api/comment")
   })
 }
 
