@@ -6,7 +6,7 @@ import {
 const FetchMessage = () => {
     return useQuery({
         queryKey: ["messages"],
-        queryFn: ()=> axios.get("https://to-backendapi-v1.vercel.app/api/messages")
+        queryFn: ()=> axios.get("https://to-backendapi-v1.onrender.com/api/messages")
     })
 }
 
