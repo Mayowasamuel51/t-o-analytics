@@ -53,6 +53,7 @@ import QuizResults from "./components/QuizResults";
 import MainQuiz from "./components/MainQuiz";
 import SeeQuiz from "./components/SeeQuiz";
 import Cancel from "./pages/Cancel";
+import StudentDashboard from "./components/CheckC";
 
 const router = createBrowserRouter([
   {
@@ -248,6 +249,10 @@ const router = createBrowserRouter([
       {
         path: "takequiz",
         element: <MainQuiz />,
+      },
+       {
+        path: "check",
+        element: <StudentDashboard />,
       },
       {
         path: "makePayment",

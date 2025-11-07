@@ -41,6 +41,14 @@ const DashboardDropdown = () => {
             Assignment
           </NavLink>
 
+              <NavLink
+            to="/dashboard/check"
+            className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
+            onClick={() => setOpen(false)}
+          >
+          Calendar 
+          </NavLink>
+
           {/* 🔗 Syllabus PDF Link */}
           <a
             href="https://drive.google.com/file/d/1GpYjrvq2KSl3CBbTfYbv0Fu9Kn7Djrgz/preview"

@@ -416,6 +416,7 @@ export default function CoursePortal() {
     <div className="min-h-screen bg-gray-50 p-4">
       <NewFeaturePopup/>
       <DashboardDropdown />
+      
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
         {/* Sidebar */}
         <aside className="col-span-12 md:col-span-3 bg-white rounded-2xl p-4 shadow-sm">
