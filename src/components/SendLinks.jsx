@@ -12,7 +12,7 @@ const api_splunk = import.meta.env.VITE_BACKEND_LIVE_SPLUNK;
 const api_educational = import.meta.env.VITE_BACKEND_LIVE_EDUCATIONAL;
 const api_education = import.meta.env.VITE_EDUCATIONAL_GET_TOTAL 
 const SendLinks = () => {
-  const navigate = useNavigate()
+const navigate = useNavigate()
   const {data} = FetchTotalSplunkUser()
   const [maindataeductional , setMainDataEducational] = useState([])
   const geteductional = async ()=>{
