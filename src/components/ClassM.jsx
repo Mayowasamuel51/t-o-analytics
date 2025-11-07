@@ -11,24 +11,24 @@ const ClassM = () => {
       description:
         "Read all the documents below carefully and complete the required tasks.",
       docs: [
-        {
-          id: 1,
-          title: "Assignment Instructions",
-          url: "https://drive.google.com/file/d/1bf5cRkcEC3yDJ5MnzpRKDpRLhRhdUH90/preview",
-          dueDate: "2025-11-08",
-        },
-        {
-          id: 2,
-          title: "Sample Log Files",
-          url: "https://drive.google.com/file/d/1swg7fD7Q6DEO_E8PQZTIiPCrNtikWlSK/preview",
-          dueDate: "2025-11-09",
-        },
-        {
-          id: 3,
-          title: "Submission Template",
-          url: "https://drive.google.com/file/d/1zExampleTemplate123/preview",
-          dueDate: "2025-11-10",
-        },
+        // {
+        //   id: 1,
+        //   title: "Assignment Instructions",
+        //   url: "https://drive.google.com/file/d/1bf5cRkcEC3yDJ5MnzpRKDpRLhRhdUH90/preview",
+        //   dueDate: "2025-11-08",
+        // },
+        // {
+        //   id: 2,
+        //   title: "Sample Log Files",
+        //   url: "https://drive.google.com/file/d/1swg7fD7Q6DEO_E8PQZTIiPCrNtikWlSK/preview",
+        //   dueDate: "2025-11-09",
+        // },
+        // {
+        //   id: 3,
+        //   title: "Submission Template",
+        //   url: "https://drive.google.com/file/d/1zExampleTemplate123/preview",
+        //   dueDate: "2025-11-10",
+        // },
           {
           id: 4,
           title: "Splunk class 3 Assignment",
