@@ -6,11 +6,11 @@ const NewFeaturePopup = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const hasSeen = localStorage.getItem("seenNewNotesFeature");
+    const hasSeen = localStorage.getItem("seenNewCFeature");
     if (!hasSeen) {
       // Show popup for first-time visitors
       setShow(true);
-      localStorage.setItem("seenNewNotesFeature", "true");
+      localStorage.setItem("seenNewCFeature", "true");
     }
   }, []);
 
