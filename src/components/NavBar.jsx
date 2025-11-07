@@ -1,272 +1,16 @@
-// import { useState, useEffect, useContext, useMemo } from "react";
-// import LOGO from "../assets/images/logo2.png";
-// import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-// import { useStateContext } from "../context/ContextProvider";
-// import { Link, NavLink } from "react-router-dom";
-// import { FaBarsStaggered, FaXmark, FaChevronDown } from "react-icons/fa6";
-// import { MdOutlineAddShoppingCart } from "react-icons/md";
-// import { getAuth, signOut } from "firebase/auth";
-// import { app } from "../../firebase.config";
-// import FetchAllStudents from "../hooks/FetchAllStudents";
-// import PropTypes from "prop-types";
-
-// const SCROLL_THRESHOLD = 20;
-// const HIDE_THRESHOLD = 150;
-
-// const headerVariant = {
-//   visible: { y: 0 },
-//   hidden: {
-//     y: "-100%",
-//     transition: { type: "linear", duration: 0.25 },
-//   },
-// };
-
-// const UserAvatar = ({ initial }) => (
-//   <div className="flex justify-center items-center w-8 h-8 text-white font-black bg-BLUE rounded-full">
-//     {initial}
-//   </div>
-// );
-
-// const CartIcon = ({ itemCount }) => (
-//   <div className="relative cursor-pointer group">
-//     <MdOutlineAddShoppingCart size={30} />
-//     <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10">
-//       {itemCount || "0"}
-//     </p>
-//   </div>
-// );
-
-// const NavBar = () => {
-//   const { data } = FetchAllStudents();
-//   const { token, setToken, FullScreen } = useStateContext();
-//   const [localuser, setUser] = useState("");
-//   const [show, setShow] = useState(false);
-//   const [hidden, setHidden] = useState(false);
-//   const { scrollY } = useScroll();
-//   const auth = getAuth(app);
-
-//   const currentUser = useMemo(() => {
-//     if (!data?.data?.response || !localuser) return null;
-
-//     const user = data.data.response.find((u) => u.email === localuser);
-//     if (!user) return null;
-
-//     return {
-//       fullname: user.name,
-//       email: user.email,
-//       initial: user.name
-//         .split(" ")
-//         .map((w) => w.charAt(0).toUpperCase())
-//         .join(""),
-//     };
-//   }, [data, localuser]);
-
-//   const handleSignOut = () => {
-//     signOut(auth)
-//       .then(() => {
-//         localStorage.removeItem("ACCESS_TOKEN");
-//         localStorage.removeItem("user");
-//         setToken(null);
-//       })
-//       .catch((err) => console.error(err.message));
-//   };
-
-//   useEffect(() => {
-//     const loggedInUser = localStorage.getItem("user");
-//     if (loggedInUser) setUser(loggedInUser);
-//   }, []);
-
-//   useMotionValueEvent(scrollY, "change", (latest) => {
-//     const previous = scrollY.getPrevious();
-//     setHidden(latest > previous && latest > HIDE_THRESHOLD);
-//   });
-
-//   const toggleMenu = () => setShow(!show);
-
-//   return (
-//     <motion.header
-//       variants={headerVariant}
-//       animate={hidden && !FullScreen ? "hidden" : "visible"}
-//       className="z-[9999] fixed right-0 left-0 top-0 bg-white shadow-sm px-3 py-3 md:px-10 flex items-center justify-between"
-//     >
-//       {/* LOGO */}
-//       <Link to="/">
-//         <motion.img
-//           initial={{ x: -100, opacity: 0 }}
-//           animate={{ x: 0, opacity: 1 }}
-//           transition={{ type: "spring", stiffness: 260, duration: 2 }}
-//           src={LOGO}
-//           className="md:w-[180px] w-[130px]"
-//           alt="Logo"
-//         />
-//       </Link>
-
-//       {/* NAVIGATION LINKS */}
-//       <nav
-//         className={`${
-//           show ? "left-0" : "-left-full"
-//         } md:left-0 fixed md:static top-[60px] md:top-0 bg-white md:bg-transparent w-full md:w-auto flex flex-col md:flex-row items-center gap-5 md:gap-8 font-semibold p-5 md:p-0 transition-all duration-300`}
-//       >
-//         {token && currentUser ? (
-//           <>
-//             <NavLink
-//               to="/dashboard"
-//               className={({ isActive }) =>
-//                 isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-//               }
-//             >
-//               My Courses
-//             </NavLink>
-//             <NavLink
-//               to="/courses"
-//               className={({ isActive }) =>
-//                 isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-//               }
-//             >
-//               All Courses
-//             </NavLink>
-//             <NavLink
-//               to="/dashboard/comment"
-//               className={({ isActive }) =>
-//                 isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-//               }
-//             >
-//               Comment
-//             </NavLink>
-//             <NavLink
-//               to="/mentorship"
-//               className={({ isActive }) =>
-//                 isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-//               }
-//             >
-//               Mentorship
-//             </NavLink>
-//             <NavLink
-//               to="/dashboard/links"
-//               className={({ isActive }) =>
-//                 isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-//               }
-//             >
-//               Class Materials
-//             </NavLink>
-
-//             <button
-//               onClick={handleSignOut}
-//               className="md:hidden mt-4 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-2 rounded-md font-semibold"
-//             >
-//               Sign Out
-//             </button>
-//           </>
-//         ) : (
-//           <>
-//             <NavLink
-//               to="/courses"
-//               className={({ isActive }) =>
-//                 isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-//               }
-//             >
-//               Courses
-//             </NavLink>
-//             <NavLink
-//               to="/about"
-//               className={({ isActive }) =>
-//                 isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-//               }
-//             >
-//               About
-//             </NavLink>
-//             <NavLink
-//               to="/blog"
-//               className={({ isActive }) =>
-//                 isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-//               }
-//             >
-//               Blog
-//             </NavLink>
-//             <NavLink
-//               to="/contact"
-//               className={({ isActive }) =>
-//                 isActive ? "text-BLUE font-black" : "hover:text-BLUE"
-//               }
-//             >
-//               Contact
-//             </NavLink>
-
-//             <Link to="/login" className="md:hidden">
-//               <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-2 rounded-md font-semibold">
-//                 Login
-//               </button>
-//             </Link>
-//           </>
-//         )}
-//       </nav>
-
-//       {/* RIGHT SIDE */}
-//       <div className="flex items-center gap-4">
-//         {!token ? (
-//           <Link to="/login" className="hidden md:block">
-//             <button className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-4 py-2 rounded-md font-semibold">
-//               Login
-//             </button>
-//           </Link>
-//         ) : (
-//           currentUser && (
-//             <div className="hidden md:flex items-center gap-3">
-//               <UserAvatar initial={currentUser.initial} />
-//               <div>
-//                 <p className="font-semibold">{currentUser.fullname}</p>
-//                 <p className="text-sm text-slate-400">{currentUser.email}</p>
-//               </div>
-//             </div>
-//           )
-//         )}
-
-//         {/* Hamburger menu */}
-//         <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
-//           {show ? <FaXmark size={22} /> : <FaBarsStaggered size={22} />}
-//         </div>
-//       </div>
-//     </motion.header>
-//   );
-// };
-
-// UserAvatar.propTypes = {
-//   initial: PropTypes.string.isRequired,
-// };
-
-// CartIcon.propTypes = {
-//   itemCount: PropTypes.number,
-// };
-
-// export default NavBar;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import { useState, useEffect, useContext, useMemo } from 'react';
+import { useState, useEffect, useContext, useMemo } from "react";
 import LOGO from "../assets/images/logo2.png";
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
-import CartItemContext from '../context/CartItemContext';
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import CartItemContext from "../context/CartItemContext";
 import { useStateContext } from "../context/ContextProvider";
 import { Link, NavLink } from "react-router-dom";
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
 import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
-import FetchAllStudents from '../hooks/FetchAllStudents';
-import SearchCourseInput from './SearchCourseInput';
+import FetchAllStudents from "../hooks/FetchAllStudents";
+import SearchCourseInput from "./SearchCourseInput";
 import PropTypes from "prop-types";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
-import { FaChevronDown } from "react-icons/fa";
 
 const SCROLL_THRESHOLD = 20;
 const HIDE_THRESHOLD = 150;
@@ -275,11 +19,10 @@ const headerVariant = {
   visible: { y: 0 },
   hidden: {
     y: "-100%",
-    transition: { type: "linear", duration: 0.25 }
-  }
+    transition: { type: "linear", duration: 0.25 },
+  },
 };
 
-// ✅ simple reusable subcomponents
 const UserAvatar = ({ initial }) => (
   <div className="flex justify-center items-center w-8 md:text-lg aspect-square text-white font-black bg-BLUE rounded-full">
     {initial}
@@ -287,7 +30,7 @@ const UserAvatar = ({ initial }) => (
 );
 
 const CartIcon = ({ itemCount }) => (
-  <div className='relative cursor-pointer group'>
+  <div className="relative cursor-pointer group">
     <MdOutlineAddShoppingCart size={30} />
     <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10">
       {itemCount || "0"}
@@ -297,39 +40,46 @@ const CartIcon = ({ itemCount }) => (
 
 const NavBar = () => {
   const { data } = FetchAllStudents();
-  const [show, setShow] = useState("");
+  const [showMenu, setShowMenu] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [subMenu, setSubMenu] = useState(false);
-  const [fixed, setFixed] = useState("");
+  const [fixed, setFixed] = useState(false);
+
   const { cartItem } = useContext(CartItemContext);
-  const { token, setToken, FullScreen } = useStateContext();
-  const [localuser, setUser] = useState(null);
+  const { token, setToken, user, setUser, FullScreen } = useStateContext();
+
   const auth = getAuth(app);
   const { scrollY } = useScroll();
 
-  // ✅ get user from localStorage (reliable fix)
+  // ✅ Keep context synced with localStorage
   useEffect(() => {
     const savedToken = localStorage.getItem("ACCESS_TOKEN");
     const savedUser = localStorage.getItem("user");
-    if (savedToken) setToken(savedToken);
-    if (savedUser) setUser(savedUser);
-  }, [setToken]);
 
-  // ✅ sign out
+    if (savedToken && !token) setToken(savedToken);
+    if (savedUser && !user?.email) {
+      try {
+        setUser(JSON.parse(savedUser));
+      } catch {
+        setUser({ email: savedUser });
+      }
+    }
+  }, [token, user, setToken, setUser]);
+
+  // ✅ Logout handler
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         localStorage.removeItem("ACCESS_TOKEN");
         localStorage.removeItem("user");
         setToken(null);
-        setUser(null);
+        setUser({});
       })
       .catch((err) => console.error("Sign out error:", err.message));
   };
 
-  // ✅ detect scroll
+  // ✅ Scroll behavior
   useEffect(() => {
-    const handleScroll = () => setFixed(window.scrollY > SCROLL_THRESHOLD ? "fixed" : "");
+    const handleScroll = () => setFixed(window.scrollY > SCROLL_THRESHOLD);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -339,83 +89,108 @@ const NavBar = () => {
     setHidden(latest > previous && latest > HIDE_THRESHOLD);
   });
 
-  // ✅ derive current user data
+  // ✅ Find current user
   const currentUser = useMemo(() => {
-    if (!data?.data?.response || !localuser) return null;
-    const user = data.data.response.find((u) => u.email === localuser);
-    if (!user) return null;
+    if (!data?.data?.response || !user?.email) return null;
+    const found = data.data.response.find((u) => u.email === user.email);
+    if (!found) return null;
     return {
-      fullname: user.name,
-      email: user.email,
-      initial: user.name
+      fullname: found.name,
+      email: found.email,
+      initial: found.name
         .split(" ")
         .map((w) => w[0].toUpperCase())
         .join(""),
     };
-  }, [data, localuser]);
+  }, [data, user]);
 
-  const toggleMenu = () => setShow(prev => prev === "show" ? "" : "show");
-  const toggleSubMenu = () => setSubMenu(prev => !prev);
+  const toggleMenu = () => setShowMenu((prev) => !prev);
 
   return (
     <motion.header
       variants={headerVariant}
-      animate={(hidden && !FullScreen) ? "hidden" : "visible"}
-      className={`z-[9999] fixed right-0 left-0 top-0 bg-white ${!token && "md:bg-opacity-50"} px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
-      
+      animate={hidden && !FullScreen ? "hidden" : "visible"}
+      className={`z-[9999] ${
+        fixed ? "fixed" : "relative"
+      } top-0 right-0 left-0 bg-white px-2 py-2 md:px-10 flex items-center justify-between`}
+    >
       {/* ✅ Logo */}
-      <div>
-        <Link to="/">
-          <motion.img
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 260, duration: 2 }}
-            src={LOGO}
-            className="md:w-[200px] w-[130px]"
-            alt="Logo"
-          />
-        </Link>
-      </div>
+      <Link to="/">
+        <motion.img
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 260, duration: 2 }}
+          src={LOGO}
+          className="md:w-[200px] w-[130px]"
+          alt="Logo"
+        />
+      </Link>
 
-      {/* ✅ Search bar visible only when logged in */}
+      {/* ✅ Search bar when logged in */}
       {token && <SearchCourseInput />}
 
-      {/* ✅ Authenticated vs Guest Nav */}
-      {token && currentUser ? (
-        <nav className="flex items-center gap-4">
-          <NavLink to="/dashboard" className="hover:text-BLUE">Dashboard</NavLink>
-          <NavLink to="/courses" className="hover:text-BLUE">Courses</NavLink>
-          <NavLink to="/mentorship" className="hover:text-BLUE">Mentorship</NavLink>
-          <button
-            onClick={handleSignOut}
-            className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg">
-            Logout
-          </button>
-        </nav>
-      ) : (
-        <nav className="flex items-center gap-4">
-          <NavLink to="/courses" className="hover:text-BLUE">Courses</NavLink>
-          <NavLink to="/about" className="hover:text-BLUE">About</NavLink>
-          <NavLink to="/career" className="hover:text-BLUE">Career</NavLink>
-          <Link to="/login" className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold">
+      {/* ✅ Nav Links (shown for both logged in & guests) */}
+      <nav
+        className={`md:flex items-center gap-4 ${
+          showMenu ? "block" : "hidden"
+        } md:block`}
+      >
+        <NavLink to="/courses" className="hover:text-BLUE">
+          Courses
+        </NavLink>
+        <NavLink to="/about" className="hover:text-BLUE">
+          About
+        </NavLink>
+        <NavLink to="/career" className="hover:text-BLUE">
+          Career
+        </NavLink>
+
+        {/* ✅ Additional links if logged in */}
+        {token && (
+          <>
+            <NavLink to="/dashboard" className="hover:text-BLUE">
+              Dashboard
+            </NavLink>
+            <NavLink to="/mentorship" className="hover:text-BLUE">
+              Mentorship
+            </NavLink>
+            <button
+              onClick={handleSignOut}
+              className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg"
+            >
+              Logout
+            </button>
+          </>
+        )}
+
+        {/* ✅ Login for guests */}
+        {!token && (
+          <Link
+            to="/login"
+            className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold"
+          >
             Login
           </Link>
-        </nav>
-      )}
+        )}
+      </nav>
 
-      {/* ✅ Right section: Cart + Avatar + Menu toggle */}
+      {/* ✅ Right side (Cart + Avatar + Menu) */}
       <div className="flex items-center gap-6">
         <Link to="/checkout">
           <CartIcon itemCount={cartItem?.length} />
         </Link>
+
         {token && currentUser && (
           <div className="flex items-center gap-2">
             <UserAvatar initial={currentUser.initial} />
-            <p className="hidden md:block text-sm font-semibold">{currentUser.fullname}</p>
+            <p className="hidden md:block text-sm font-semibold">
+              {currentUser.fullname}
+            </p>
           </div>
         )}
-        <div className="flex-1 block md:hidden hamburger">
-          {show === "show" ? (
+
+        <div className="block md:hidden">
+          {showMenu ? (
             <FaXmark size={20} onClick={toggleMenu} />
           ) : (
             <FaBarsStaggered size={20} onClick={toggleMenu} />
@@ -426,11 +201,190 @@ const NavBar = () => {
   );
 };
 
-// PropTypes (optional cleanup)
 UserAvatar.propTypes = { initial: PropTypes.string };
 CartIcon.propTypes = { itemCount: PropTypes.number };
 
 export default NavBar;
+
+
+// import { useState, useEffect, useContext, useMemo } from 'react';
+// import LOGO from "../assets/images/logo2.png";
+// import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
+// import CartItemContext from '../context/CartItemContext';
+// import { useStateContext } from "../context/ContextProvider";
+// import { Link, NavLink } from "react-router-dom";
+// import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
+// import { getAuth, signOut } from "firebase/auth";
+// import { app } from "../../firebase.config";
+// import FetchAllStudents from '../hooks/FetchAllStudents';
+// import SearchCourseInput from './SearchCourseInput';
+// import PropTypes from "prop-types";
+// import { MdOutlineAddShoppingCart } from "react-icons/md";
+// import { FaChevronDown } from "react-icons/fa";
+
+// const SCROLL_THRESHOLD = 20;
+// const HIDE_THRESHOLD = 150;
+
+// const headerVariant = {
+//   visible: { y: 0 },
+//   hidden: {
+//     y: "-100%",
+//     transition: { type: "linear", duration: 0.25 }
+//   }
+// };
+
+// // ✅ simple reusable subcomponents
+// const UserAvatar = ({ initial }) => (
+//   <div className="flex justify-center items-center w-8 md:text-lg aspect-square text-white font-black bg-BLUE rounded-full">
+//     {initial}
+//   </div>
+// );
+
+// const CartIcon = ({ itemCount }) => (
+//   <div className='relative cursor-pointer group'>
+//     <MdOutlineAddShoppingCart size={30} />
+//     <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10">
+//       {itemCount || "0"}
+//     </p>
+//   </div>
+// );
+
+// const NavBar = () => {
+//   const { data } = FetchAllStudents();
+//   const [show, setShow] = useState("");
+//   const [hidden, setHidden] = useState(false);
+//   const [subMenu, setSubMenu] = useState(false);
+//   const [fixed, setFixed] = useState("");
+//   const { cartItem } = useContext(CartItemContext);
+//   const { token, setToken, FullScreen } = useStateContext();
+//   const [localuser, setUser] = useState(null);
+//   const auth = getAuth(app);
+//   const { scrollY } = useScroll();
+
+//   // ✅ get user from localStorage (reliable fix)
+//   useEffect(() => {
+//     const savedToken = localStorage.getItem("ACCESS_TOKEN");
+//     const savedUser = localStorage.getItem("user");
+//     if (savedToken) setToken(savedToken);
+//     if (savedUser) setUser(savedUser);
+//   }, [setToken]);
+
+//   // ✅ sign out
+//   const handleSignOut = () => {
+//     signOut(auth)
+//       .then(() => {
+//         localStorage.removeItem("ACCESS_TOKEN");
+//         localStorage.removeItem("user");
+//         setToken(null);
+//         setUser(null);
+//       })
+//       .catch((err) => console.error("Sign out error:", err.message));
+//   };
+
+//   // ✅ detect scroll
+//   useEffect(() => {
+//     const handleScroll = () => setFixed(window.scrollY > SCROLL_THRESHOLD ? "fixed" : "");
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   useMotionValueEvent(scrollY, "change", (latest) => {
+//     const previous = scrollY.getPrevious();
+//     setHidden(latest > previous && latest > HIDE_THRESHOLD);
+//   });
+
+//   // ✅ derive current user data
+//   const currentUser = useMemo(() => {
+//     if (!data?.data?.response || !localuser) return null;
+//     const user = data.data.response.find((u) => u.email === localuser);
+//     if (!user) return null;
+//     return {
+//       fullname: user.name,
+//       email: user.email,
+//       initial: user.name
+//         .split(" ")
+//         .map((w) => w[0].toUpperCase())
+//         .join(""),
+//     };
+//   }, [data, localuser]);
+
+//   const toggleMenu = () => setShow(prev => prev === "show" ? "" : "show");
+//   const toggleSubMenu = () => setSubMenu(prev => !prev);
+
+//   return (
+//     <motion.header
+//       variants={headerVariant}
+//       animate={(hidden && !FullScreen) ? "hidden" : "visible"}
+//       className={`z-[9999] fixed right-0 left-0 top-0 bg-white ${!token && "md:bg-opacity-50"} px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
+      
+//       {/* ✅ Logo */}
+//       <div>
+//         <Link to="/">
+//           <motion.img
+//             initial={{ x: -100, opacity: 0 }}
+//             animate={{ x: 0, opacity: 1 }}
+//             transition={{ type: "spring", stiffness: 260, duration: 2 }}
+//             src={LOGO}
+//             className="md:w-[200px] w-[130px]"
+//             alt="Logo"
+//           />
+//         </Link>
+//       </div>
+
+//       {/* ✅ Search bar visible only when logged in */}
+//       {token && <SearchCourseInput />}
+
+//       {/* ✅ Authenticated vs Guest Nav */}
+//       {token && currentUser ? (
+//         <nav className="flex items-center gap-4">
+//           <NavLink to="/dashboard" className="hover:text-BLUE">Dashboard</NavLink>
+//           <NavLink to="/courses" className="hover:text-BLUE">Courses</NavLink>
+//           <NavLink to="/mentorship" className="hover:text-BLUE">Mentorship</NavLink>
+//           <button
+//             onClick={handleSignOut}
+//             className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg">
+//             Logout
+//           </button>
+//         </nav>
+//       ) : (
+//         <nav className="flex items-center gap-4">
+//           <NavLink to="/courses" className="hover:text-BLUE">Courses</NavLink>
+//           <NavLink to="/about" className="hover:text-BLUE">About</NavLink>
+//           <NavLink to="/career" className="hover:text-BLUE">Career</NavLink>
+//           <Link to="/login" className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold">
+//             Login
+//           </Link>
+//         </nav>
+//       )}
+
+//       {/* ✅ Right section: Cart + Avatar + Menu toggle */}
+//       <div className="flex items-center gap-6">
+//         <Link to="/checkout">
+//           <CartIcon itemCount={cartItem?.length} />
+//         </Link>
+//         {token && currentUser && (
+//           <div className="flex items-center gap-2">
+//             <UserAvatar initial={currentUser.initial} />
+//             <p className="hidden md:block text-sm font-semibold">{currentUser.fullname}</p>
+//           </div>
+//         )}
+//         <div className="flex-1 block md:hidden hamburger">
+//           {show === "show" ? (
+//             <FaXmark size={20} onClick={toggleMenu} />
+//           ) : (
+//             <FaBarsStaggered size={20} onClick={toggleMenu} />
+//           )}
+//         </div>
+//       </div>
+//     </motion.header>
+//   );
+// };
+
+// // PropTypes (optional cleanup)
+// UserAvatar.propTypes = { initial: PropTypes.string };
+// CartIcon.propTypes = { itemCount: PropTypes.number };
+
+// export default NavBar;
 
 
 
