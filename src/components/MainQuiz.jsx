@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Quiz from "./Quiz";
 import { NavLink } from "react-router-dom";
@@ -129,69 +128,86 @@ const MainQuiz = () => {
 
   // 🎯 Main Content
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-16 px-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-16 px-8">
       {/* Header */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-5xl font-extrabold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 drop-shadow-sm"
+        className="text-5xl font-extrabold text-left mb-10 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 drop-shadow-sm"
       >
         <FiBookOpen className="inline-block mb-1 mr-3 text-indigo-600" />
         Splunk Quiz Center
       </motion.h2>
 
-      {/* Quiz Selection Card */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-xl mx-auto bg-white/70 backdrop-blur-xl border border-gray-200 shadow-2xl rounded-3xl p-8 hover:shadow-blue-200 transition-all duration-500"
-      >
-        <label className="block text-lg font-semibold text-gray-800 mb-4">
-          Select a Quiz:
-        </label>
-        <select
-          value={selectedQuiz}
-          onChange={(e) => loadQuiz(e.target.value)}
-          className="p-3 w-full border border-gray-300 rounded-xl text-gray-700 font-medium focus:ring-4 focus:ring-blue-400/50 focus:border-blue-500 bg-white shadow-inner transition-all duration-300"
+      {/* Layout */}
+      <div className="grid md:grid-cols-5 gap-10 items-start">
+        {/* Left Side - Quiz Title */}
+        <motion.div
+          initial={{ x: -30, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="col-span-2 bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-gray-100"
         >
-          <option value="">-- Choose a Quiz --</option>
-          <option value="T.O Analytics Splunk Class 1 Quiz">
-            T.O Analytics Splunk Class 1 Quiz
-          </option>
-          <option value="T.O Analytics Splunk Class 2 Quiz">
-            T.O Analytics Splunk Class 2 Quiz
-          </option>
-          <option value="T.O Analytics Power User Exam Quiz">
-            T.O Analytics Power User Exam Quiz
-          </option>
-          <option value="T.O Analytics Splunk Admin Exam Quiz">
-            T.O Analytics Splunk Admin Exam Quiz
-          </option>
-        </select>
-      </motion.div>
-
-      {/* Quiz Display */}
-      <AnimatePresence>
-        {quizData && (
-          <motion.div
-            key="quiz-content"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto mt-12 bg-white/80 backdrop-blur-lg border border-gray-200 rounded-3xl shadow-2xl p-10 hover:shadow-indigo-200 transition-all duration-500"
+          <h3 className="text-xl font-semibold text-gray-700 mb-3">
+            Select Your Quiz
+          </h3>
+          <select
+            value={selectedQuiz}
+            onChange={(e) => loadQuiz(e.target.value)}
+            className="p-3 w-full border border-gray-300 rounded-xl text-gray-700 font-medium focus:ring-4 focus:ring-blue-400/40 focus:border-blue-500 bg-white shadow-inner transition-all duration-300"
           >
-            <Quiz data={quizData} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <option value="">-- Choose a Quiz --</option>
+            <option value="T.O Analytics Splunk Class 1 Quiz">
+              T.O Analytics Splunk Class 1 Quiz
+            </option>
+            <option value="T.O Analytics Splunk Class 2 Quiz">
+              T.O Analytics Splunk Class 2 Quiz
+            </option>
+            <option value="T.O Analytics Power User Exam Quiz">
+              T.O Analytics Power User Exam Quiz
+            </option>
+            <option value="T.O Analytics Splunk Admin Exam Quiz">
+              T.O Analytics Splunk Admin Exam Quiz
+            </option>
+          </select>
 
-      {/* Footer or Divider */}
+          {selectedQuiz && (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-6 bg-gradient-to-r from-indigo-100 to-blue-50 p-4 rounded-xl shadow-inner border border-blue-100"
+            >
+              <p className="text-sm text-gray-600">Currently Selected:</p>
+              <h4 className="font-semibold text-indigo-600 mt-1">
+                {selectedQuiz}
+              </h4>
+            </motion.div>
+          )}
+        </motion.div>
+
+        {/* Center - Quiz Content */}
+        <AnimatePresence>
+          {quizData && (
+            <motion.div
+              key="quiz"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.6 }}
+              className="col-span-3 bg-white/80 backdrop-blur-lg rounded-3xl border border-gray-200 shadow-2xl p-8 hover:shadow-indigo-200 transition-all duration-500"
+            >
+              <Quiz data={quizData} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Footer */}
       <div className="mt-16 text-center text-gray-400 text-sm">
         <p>
-          © {new Date().getFullYear()} <span className="font-semibold text-blue-500">T.O Analytics</span> — 
+          © {new Date().getFullYear()}{" "}
+          <span className="font-semibold text-blue-500">T.O Analytics</span> — 
           Empowering Learners with Data Mastery.
         </p>
       </div>
@@ -200,6 +216,7 @@ const MainQuiz = () => {
 };
 
 export default MainQuiz;
+
 
 // ................ was using this one below /
 // import { useEffect, useState } from "react";
