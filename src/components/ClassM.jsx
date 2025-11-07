@@ -31,7 +31,7 @@ const ClassM = () => {
         },
           {
           id: 4,
-          title: "Submission Template",
+          title: "Splunk class 3 Assignment",
           url: " https://drive.google.com/file/d/179_DKTqGoGjBrszOPRCJqGu3VFlXUbXe/preview",
           dueDate: "2025-11-10",
         },
