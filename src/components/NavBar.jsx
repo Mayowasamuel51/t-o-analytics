@@ -42,67 +42,52 @@ const NavBar = () => {
   const { data } = FetchAllStudents();
   const [showMenu, setShowMenu] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [fixed, setFixed] = useState(false);
-
   const { cartItem } = useContext(CartItemContext);
-  const { token, setToken, user, setUser, FullScreen } = useStateContext();
-
+  const { token, setToken, FullScreen } = useStateContext();
+  const [localuser, setUser] = useState(null);
   const auth = getAuth(app);
   const { scrollY } = useScroll();
 
-  // ✅ Keep context synced with localStorage
+  // ✅ load from localStorage
   useEffect(() => {
     const savedToken = localStorage.getItem("ACCESS_TOKEN");
     const savedUser = localStorage.getItem("user");
+    if (savedToken) setToken(savedToken);
+    if (savedUser) setUser(savedUser);
+  }, [setToken]);
 
-    if (savedToken && !token) setToken(savedToken);
-    if (savedUser && !user?.email) {
-      try {
-        setUser(JSON.parse(savedUser));
-      } catch {
-        setUser({ email: savedUser });
-      }
-    }
-  }, [token, user, setToken, setUser]);
-
-  // ✅ Logout handler
+  // ✅ sign out
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         localStorage.removeItem("ACCESS_TOKEN");
         localStorage.removeItem("user");
         setToken(null);
-        setUser({});
+        setUser(null);
       })
       .catch((err) => console.error("Sign out error:", err.message));
   };
 
-  // ✅ Scroll behavior
-  useEffect(() => {
-    const handleScroll = () => setFixed(window.scrollY > SCROLL_THRESHOLD);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+  // ✅ detect scroll
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
     setHidden(latest > previous && latest > HIDE_THRESHOLD);
   });
 
-  // ✅ Find current user
+  // ✅ get user details
   const currentUser = useMemo(() => {
-    if (!data?.data?.response || !user?.email) return null;
-    const found = data.data.response.find((u) => u.email === user.email);
-    if (!found) return null;
+    if (!data?.data?.response || !localuser) return null;
+    const user = data.data.response.find((u) => u.email === localuser);
+    if (!user) return null;
     return {
-      fullname: found.name,
-      email: found.email,
-      initial: found.name
+      fullname: user.name,
+      email: user.email,
+      initial: user.name
         .split(" ")
         .map((w) => w[0].toUpperCase())
         .join(""),
     };
-  }, [data, user]);
+  }, [data, localuser]);
 
   const toggleMenu = () => setShowMenu((prev) => !prev);
 
@@ -110,9 +95,7 @@ const NavBar = () => {
     <motion.header
       variants={headerVariant}
       animate={hidden && !FullScreen ? "hidden" : "visible"}
-      className={`z-[9999] ${
-        fixed ? "fixed" : "relative"
-      } top-0 right-0 left-0 bg-white px-2 py-2 md:px-10 flex items-center justify-between`}
+      className="z-[9999] fixed top-0 left-0 right-0 bg-white shadow-md px-4 md:px-10 py-2 flex items-center justify-between"
     >
       {/* ✅ Logo */}
       <Link to="/">
@@ -126,15 +109,11 @@ const NavBar = () => {
         />
       </Link>
 
-      {/* ✅ Search bar when logged in */}
-      {token && <SearchCourseInput />}
+      {/* ✅ Show search bar only if logged in */}
+      {token && <div className="hidden md:block"><SearchCourseInput /></div>}
 
-      {/* ✅ Nav Links (shown for both logged in & guests) */}
-      <nav
-        className={`md:flex items-center gap-4 ${
-          showMenu ? "block" : "hidden"
-        } md:block`}
-      >
+      {/* ✅ Desktop Nav */}
+      <nav className="hidden md:flex items-center gap-6">
         <NavLink to="/courses" className="hover:text-BLUE">
           Courses
         </NavLink>
@@ -145,14 +124,10 @@ const NavBar = () => {
           Career
         </NavLink>
 
-        {/* ✅ Additional links if logged in */}
-        {token && (
+        {token && currentUser ? (
           <>
             <NavLink to="/dashboard" className="hover:text-BLUE">
               Dashboard
-            </NavLink>
-            <NavLink to="/mentorship" className="hover:text-BLUE">
-              Mentorship
             </NavLink>
             <button
               onClick={handleSignOut}
@@ -161,10 +136,7 @@ const NavBar = () => {
               Logout
             </button>
           </>
-        )}
-
-        {/* ✅ Login for guests */}
-        {!token && (
+        ) : (
           <Link
             to="/login"
             className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold"
@@ -174,29 +146,68 @@ const NavBar = () => {
         )}
       </nav>
 
-      {/* ✅ Right side (Cart + Avatar + Menu) */}
-      <div className="flex items-center gap-6">
+      {/* ✅ Right section (Cart + Avatar + Mobile Icon) */}
+      <div className="flex items-center gap-4 md:gap-6">
         <Link to="/checkout">
           <CartIcon itemCount={cartItem?.length} />
         </Link>
-
         {token && currentUser && (
-          <div className="flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2">
             <UserAvatar initial={currentUser.initial} />
-            <p className="hidden md:block text-sm font-semibold">
-              {currentUser.fullname}
-            </p>
+            <p className="text-sm font-semibold">{currentUser.fullname}</p>
           </div>
         )}
-
+        {/* Hamburger */}
         <div className="block md:hidden">
           {showMenu ? (
-            <FaXmark size={20} onClick={toggleMenu} />
+            <FaXmark size={22} onClick={toggleMenu} />
           ) : (
-            <FaBarsStaggered size={20} onClick={toggleMenu} />
+            <FaBarsStaggered size={22} onClick={toggleMenu} />
           )}
         </div>
       </div>
+
+      {/* ✅ Mobile Dropdown Menu */}
+      {showMenu && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
+          className="absolute top-full left-0 right-0 bg-white shadow-lg border-t z-[99999] flex flex-col items-start gap-4 px-6 py-4 md:hidden"
+        >
+          <NavLink to="/courses" className="hover:text-BLUE w-full">
+            Courses
+          </NavLink>
+          <NavLink to="/about" className="hover:text-BLUE w-full">
+            About
+          </NavLink>
+          <NavLink to="/career" className="hover:text-BLUE w-full">
+            Career
+          </NavLink>
+
+          {token && currentUser ? (
+            <>
+              <NavLink to="/dashboard" className="hover:text-BLUE w-full">
+                Dashboard
+              </NavLink>
+              <button
+                onClick={handleSignOut}
+                className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg w-full text-left"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold w-full text-center"
+            >
+              Login
+            </Link>
+          )}
+        </motion.div>
+      )}
     </motion.header>
   );
 };
@@ -205,6 +216,215 @@ UserAvatar.propTypes = { initial: PropTypes.string };
 CartIcon.propTypes = { itemCount: PropTypes.number };
 
 export default NavBar;
+
+
+// import { useState, useEffect, useContext, useMemo } from "react";
+// import LOGO from "../assets/images/logo2.png";
+// import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+// import CartItemContext from "../context/CartItemContext";
+// import { useStateContext } from "../context/ContextProvider";
+// import { Link, NavLink } from "react-router-dom";
+// import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
+// import { getAuth, signOut } from "firebase/auth";
+// import { app } from "../../firebase.config";
+// import FetchAllStudents from "../hooks/FetchAllStudents";
+// import SearchCourseInput from "./SearchCourseInput";
+// import PropTypes from "prop-types";
+// import { MdOutlineAddShoppingCart } from "react-icons/md";
+
+// const SCROLL_THRESHOLD = 20;
+// const HIDE_THRESHOLD = 150;
+
+// const headerVariant = {
+//   visible: { y: 0 },
+//   hidden: {
+//     y: "-100%",
+//     transition: { type: "linear", duration: 0.25 },
+//   },
+// };
+
+// const UserAvatar = ({ initial }) => (
+//   <div className="flex justify-center items-center w-8 md:text-lg aspect-square text-white font-black bg-BLUE rounded-full">
+//     {initial}
+//   </div>
+// );
+
+// const CartIcon = ({ itemCount }) => (
+//   <div className="relative cursor-pointer group">
+//     <MdOutlineAddShoppingCart size={30} />
+//     <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10">
+//       {itemCount || "0"}
+//     </p>
+//   </div>
+// );
+
+// const NavBar = () => {
+//   const { data } = FetchAllStudents();
+//   const [showMenu, setShowMenu] = useState(false);
+//   const [hidden, setHidden] = useState(false);
+//   const [fixed, setFixed] = useState(false);
+
+//   const { cartItem } = useContext(CartItemContext);
+//   const { token, setToken, user, setUser, FullScreen } = useStateContext();
+
+//   const auth = getAuth(app);
+//   const { scrollY } = useScroll();
+
+//   // ✅ Keep context synced with localStorage
+//   useEffect(() => {
+//     const savedToken = localStorage.getItem("ACCESS_TOKEN");
+//     const savedUser = localStorage.getItem("user");
+
+//     if (savedToken && !token) setToken(savedToken);
+//     if (savedUser && !user?.email) {
+//       try {
+//         setUser(JSON.parse(savedUser));
+//       } catch {
+//         setUser({ email: savedUser });
+//       }
+//     }
+//   }, [token, user, setToken, setUser]);
+
+//   // ✅ Logout handler
+//   const handleSignOut = () => {
+//     signOut(auth)
+//       .then(() => {
+//         localStorage.removeItem("ACCESS_TOKEN");
+//         localStorage.removeItem("user");
+//         setToken(null);
+//         setUser({});
+//       })
+//       .catch((err) => console.error("Sign out error:", err.message));
+//   };
+
+//   // ✅ Scroll behavior
+//   useEffect(() => {
+//     const handleScroll = () => setFixed(window.scrollY > SCROLL_THRESHOLD);
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   useMotionValueEvent(scrollY, "change", (latest) => {
+//     const previous = scrollY.getPrevious();
+//     setHidden(latest > previous && latest > HIDE_THRESHOLD);
+//   });
+
+//   // ✅ Find current user
+//   const currentUser = useMemo(() => {
+//     if (!data?.data?.response || !user?.email) return null;
+//     const found = data.data.response.find((u) => u.email === user.email);
+//     if (!found) return null;
+//     return {
+//       fullname: found.name,
+//       email: found.email,
+//       initial: found.name
+//         .split(" ")
+//         .map((w) => w[0].toUpperCase())
+//         .join(""),
+//     };
+//   }, [data, user]);
+
+//   const toggleMenu = () => setShowMenu((prev) => !prev);
+
+//   return (
+//     <motion.header
+//       variants={headerVariant}
+//       animate={hidden && !FullScreen ? "hidden" : "visible"}
+//       className={`z-[9999] ${
+//         fixed ? "fixed" : "relative"
+//       } top-0 right-0 left-0 bg-white px-2 py-2 md:px-10 flex items-center justify-between`}
+//     >
+//       {/* ✅ Logo */}
+//       <Link to="/">
+//         <motion.img
+//           initial={{ x: -100, opacity: 0 }}
+//           animate={{ x: 0, opacity: 1 }}
+//           transition={{ type: "spring", stiffness: 260, duration: 2 }}
+//           src={LOGO}
+//           className="md:w-[200px] w-[130px]"
+//           alt="Logo"
+//         />
+//       </Link>
+
+//       {/* ✅ Search bar when logged in */}
+//       {token && <SearchCourseInput />}
+
+//       {/* ✅ Nav Links (shown for both logged in & guests) */}
+//       <nav
+//         className={`md:flex items-center gap-4 ${
+//           showMenu ? "block" : "hidden"
+//         } md:block`}
+//       >
+//         <NavLink to="/courses" className="hover:text-BLUE">
+//           Courses
+//         </NavLink>
+//         <NavLink to="/about" className="hover:text-BLUE">
+//           About
+//         </NavLink>
+//         <NavLink to="/career" className="hover:text-BLUE">
+//           Career
+//         </NavLink>
+
+//         {/* ✅ Additional links if logged in */}
+//         {token && (
+//           <>
+//             <NavLink to="/dashboard" className="hover:text-BLUE">
+//               Dashboard
+//             </NavLink>
+//             <NavLink to="/mentorship" className="hover:text-BLUE">
+//               Mentorship
+//             </NavLink>
+//             <button
+//               onClick={handleSignOut}
+//               className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg"
+//             >
+//               Logout
+//             </button>
+//           </>
+//         )}
+
+//         {/* ✅ Login for guests */}
+//         {!token && (
+//           <Link
+//             to="/login"
+//             className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold"
+//           >
+//             Login
+//           </Link>
+//         )}
+//       </nav>
+
+//       {/* ✅ Right side (Cart + Avatar + Menu) */}
+//       <div className="flex items-center gap-6">
+//         <Link to="/checkout">
+//           <CartIcon itemCount={cartItem?.length} />
+//         </Link>
+
+//         {token && currentUser && (
+//           <div className="flex items-center gap-2">
+//             <UserAvatar initial={currentUser.initial} />
+//             <p className="hidden md:block text-sm font-semibold">
+//               {currentUser.fullname}
+//             </p>
+//           </div>
+//         )}
+
+//         <div className="block md:hidden">
+//           {showMenu ? (
+//             <FaXmark size={20} onClick={toggleMenu} />
+//           ) : (
+//             <FaBarsStaggered size={20} onClick={toggleMenu} />
+//           )}
+//         </div>
+//       </div>
+//     </motion.header>
+//   );
+// };
+
+// UserAvatar.propTypes = { initial: PropTypes.string };
+// CartIcon.propTypes = { itemCount: PropTypes.number };
+
+// export default NavBar;
 
 
 // import { useState, useEffect, useContext, useMemo } from 'react';
