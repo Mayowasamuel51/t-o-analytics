@@ -49,7 +49,7 @@ const LoginForm = () => {
                     name: loggedInUser.displayName,
                     email: loggedInUser.email
                 }
-                axios.post(`${api}google`, payload, {
+                axios.post(`${api}/api/google`, payload, {
                     headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json"
@@ -93,7 +93,7 @@ const LoginForm = () => {
             email: data.email
         }
         setLoading(true)
-        axios.post(`${api}login`, payload, {
+        axios.post(`${api}/api/login`, payload, {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"

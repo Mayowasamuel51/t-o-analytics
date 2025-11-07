@@ -72,7 +72,7 @@ const CreateAccountForm = () => {
             email: data.email
         }
         setLoading(true)
-        axios.post(`${api}sighup`, payload, {
+        axios.post(`${api}/api/sighup`, payload, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
