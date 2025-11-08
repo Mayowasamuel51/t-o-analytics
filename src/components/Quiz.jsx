@@ -5,11 +5,11 @@ const Quiz = ({ data }) => {
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(null);
   const [timeLeft, setTimeLeft] = useState(() => {
-  if (data?.title === "T.O Analytics Power User Exam Quiz") {
-    return 120 * 60; // 2 hours in seconds
-  }
-  return 30 * 60; // default 30 minutes
-});
+    if (data?.title === "T.O Analytics Power User Exam Quiz") {
+      return 120 * 60; // 2 hours in seconds
+    }
+    return 30 * 60; // default 30 minutes
+  });
   // const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes
   const [submitted, setSubmitted] = useState(false);
   const [missedQuestions, setMissedQuestions] = useState([]);
@@ -43,7 +43,6 @@ const Quiz = ({ data }) => {
     "randommayowa@gmail.com",
     "lybertyudochuu@gmail.com",
     "adenusitimi@gmail.com",
-    
   ];
 
   // 🛑 Block unauthorized users
@@ -121,64 +120,63 @@ const Quiz = ({ data }) => {
   //   }
   // };
   const handleSubmit = async () => {
-  let correctCount = 0;
-  const missed = [];
+    let correctCount = 0;
+    const missed = [];
 
-  questions.forEach((q, index) => {
-    const userAnswer = answers[index];
-    const correctAnswers = Array.isArray(q.correct) ? q.correct : [q.correct];
+    questions.forEach((q, index) => {
+      const userAnswer = answers[index];
+      const correctAnswers = Array.isArray(q.correct) ? q.correct : [q.correct];
 
-    if (correctAnswers.includes(userAnswer)) {
-      correctCount++;
-    } else {
-      missed.push({
-        question: q.question,
-        selected: userAnswer || "No answer",
-        correct: correctAnswers.join(", "),
-      });
-    }
-  });
-
-  const totalQuestions = questions.length;
-  // ✅ Now score = number of correct answers
-  const calculatedScore = correctCount; 
-
-  setScore(calculatedScore);
-  setMissedQuestions(missed);
-  setSubmitted(true);
-
-  // ✅ Save result to backend
-  try {
-    const resultData = {
-      username: userEmail,
-      testName: data.title || "Unknown Quiz",
-      score: calculatedScore,
-      totalQuestions,
-      missedQuestions: missed,
-    };
-
-    console.log("Submitting result:", resultData);
-
-    const res = await fetch(`${api}/api/quiz/save`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(resultData),
+      if (correctAnswers.includes(userAnswer)) {
+        correctCount++;
+      } else {
+        missed.push({
+          question: q.question,
+          selected: userAnswer || "No answer",
+          correct: correctAnswers.join(", "),
+        });
+      }
     });
 
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error("Save error:", errorText);
-      alert("❌ Failed to save result. Check console for details.");
-      return;
+    const totalQuestions = questions.length;
+    // ✅ Now score = number of correct answers
+    const calculatedScore = correctCount;
+
+    setScore(calculatedScore);
+    setMissedQuestions(missed);
+    setSubmitted(true);
+
+    // ✅ Save result to backend
+    try {
+      const resultData = {
+        username: userEmail,
+        testName: data.title || "Unknown Quiz",
+        score: calculatedScore,
+        totalQuestions,
+        missedQuestions: missed,
+      };
+
+      console.log("Submitting result:", resultData);
+
+      const res = await fetch(`${api}/api/quiz/save`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(resultData),
+      });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error("Save error:", errorText);
+        alert("❌ Failed to save result. Check console for details.");
+        return;
+      }
+
+      alert("✅ Quiz result saved successfully!");
+    } catch (err) {
+      console.error("Error saving quiz result:", err);
+      alert("⚠️ An error occurred while saving your result.");
     }
-
-    alert("✅ Quiz result saved successfully!");
-  } catch (err) {
-    console.error("Error saving quiz result:", err);
-    alert("⚠️ An error occurred while saving your result.");
-  }
-};
-
+  };
 
   const nextQuestion = () => {
     if (currentQuestion < questions.length - 1)
@@ -262,7 +260,7 @@ const Quiz = ({ data }) => {
       {/* Timer */}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold text-gray-800">{data.title}</h2>
-        <div
+        {/* <div
           className={`text-lg font-bold px-4 py-2 rounded-lg ${
             timeLeft < 300
               ? "bg-red-100 text-red-600"
@@ -270,7 +268,18 @@ const Quiz = ({ data }) => {
           }`}
         >
           ⏳ {formatTime(timeLeft)}
-        </div>
+        </div> */}
+<div
+  className={`text-lg font-bold px-4 py-2 rounded-lg ${
+    timeLeft < 300 ? "bg-red-100 text-red-600" : "bg-blue-100 text-blue-700"
+  }`}
+>
+  ⏳ {formatTime(timeLeft)}{" "}
+  <span className="text-xs ml-2 text-gray-500">
+    ({data?.title === "T.O Analytics Power User Exam Quiz" ? "2 hrs" : "30 min"})
+  </span>
+</div>
+
       </div>
 
       {/* Question */}
