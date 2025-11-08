@@ -50,15 +50,7 @@ const DashboardDropdown = () => {
           </NavLink>
 
           {/* 🔗 Syllabus PDF Link */}
-          <a
-            href="https://drive.google.com/file/d/1GpYjrvq2KSl3CBbTfYbv0Fu9Kn7Djrgz/preview"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
-            onClick={() => setOpen(false)}
-          >
-            See Splunk Syllabus
-          </a>
+     
         </div>
       )}
     </div>
@@ -66,7 +58,15 @@ const DashboardDropdown = () => {
 };
 
 export default DashboardDropdown;
-
+     {/* <a
+            href="https://drive.google.com/file/d/1GpYjrvq2KSl3CBbTfYbv0Fu9Kn7Djrgz/preview"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
+            onClick={() => setOpen(false)}
+          >
+            See Splunk Syllabus
+          </a> */}
 // import { useState } from "react";
 // import { NavLink } from "react-router-dom";
 // import { ChevronDown } from "lucide-react";

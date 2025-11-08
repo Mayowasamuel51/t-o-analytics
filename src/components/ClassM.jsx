@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import DashboardDropdown from "./Dropdown";
 
 const ClassM = () => {
   const [assignment, setAssignment] = useState(null);
@@ -48,6 +49,8 @@ const ClassM = () => {
 
   return (
     <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
+    <DashboardDropdown/>
+
       <h1 className="text-2xl font-bold text-gray-800">📝 Assignment</h1>
 
       <div className="bg-white shadow-md rounded-2xl p-6">
