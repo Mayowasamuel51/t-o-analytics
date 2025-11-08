@@ -134,6 +134,8 @@ const sampleCourses = [
       },
 
       { id: "class5", title: "Class 4 SPL Part 2", videos: [], docs: [] },
+
+       { id: "class6", title: "Class 4 Splunk Knowledge Objects", videos: [], docs: [] },
     ],
   },
 ];
