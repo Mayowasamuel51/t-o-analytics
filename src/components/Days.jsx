@@ -33,7 +33,7 @@ const ClassCalendar = () => {
 
   return (
     <div className="p-6 max-w-3xl mx-auto bg-white rounded-2xl shadow-lg">
-        <DashboardDropdown/>
+      
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <button
