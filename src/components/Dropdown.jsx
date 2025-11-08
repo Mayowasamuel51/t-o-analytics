@@ -25,6 +25,16 @@ const DashboardDropdown = () => {
       {/* Dropdown Menu */}
       {open && (
         <div className="absolute mt-3 right-0 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 z-50 overflow-hidden">
+
+          <NavLink
+            to="/dashboard/materials"
+            className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
+            onClick={() => setOpen(false)}
+          >
+            Home
+          </NavLink>
+
+
           <NavLink
             to="/dashboard/takequiz"
             className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
