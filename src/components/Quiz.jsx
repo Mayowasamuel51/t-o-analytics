@@ -5,7 +5,7 @@ const Quiz = ({ data }) => {
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(null);
   const [timeLeft, setTimeLeft] = useState(() => {
-    if (data?.title === "T.O Analytics Power User Exam Quiz" || data?.title === "T.O Analytics Splunk Admin Exam Quiz" ) {
+    if (data?.title === "T.O Analytics Power User Exam Quiz" && data?.title === "T.O Analytics Splunk Admin Exam Quiz" ) {
       return 120 * 60; // 2 hours in seconds
     }
     return 30 * 60; // default 30 minutes
