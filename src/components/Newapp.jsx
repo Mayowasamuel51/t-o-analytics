@@ -6,11 +6,11 @@ const NewFeaturePopup = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const hasSeen = localStorage.getItem("seenNewCFeature");
+    const hasSeen = localStorage.getItem("seenNewFeature");
     if (!hasSeen) {
-      // Show popup for first-time visitors
+      // Show popup only for first-time visitors
       setShow(true);
-      localStorage.setItem("seenNewCFeature", "true");
+      localStorage.setItem("seenNewFeature", "true");
     }
   }, []);
 
@@ -33,13 +33,15 @@ const NewFeaturePopup = () => {
             <h2 className="text-2xl font-bold text-gray-800 mb-3">
               🎉 New Feature Available!
             </h2>
+
             <p className="text-gray-600 mb-6">
-              You can now easily check your{" "}
+              You can now{" "}
               <span className="font-semibold text-blue-600">
-                class schedule
+                download your exam results 
               </span>{" "}
-              inside your dashboard.
+              directly after taking a Quiz 
             </p>
+
             <button
               onClick={() => setShow(false)}
               className="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition"
@@ -54,6 +56,62 @@ const NewFeaturePopup = () => {
 };
 
 export default NewFeaturePopup;
+
+// import { useEffect, useState } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+
+// const NewFeaturePopup = () => {
+//   const [show, setShow] = useState(false);
+
+//   useEffect(() => {
+//     const hasSeen = localStorage.getItem("seenNFeature");
+//     if (!hasSeen) {
+//       // Show popup for first-time visitors
+//       setShow(true);
+//       localStorage.setItem("seenNFeature", "true");
+//     }
+//   }, []);
+
+//   return (
+//     <AnimatePresence>
+//       {show && (
+//         <motion.div
+//           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           exit={{ opacity: 0 }}
+//         >
+//           <motion.div
+//             className="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-[90%] text-center"
+//             initial={{ scale: 0.8, opacity: 0 }}
+//             animate={{ scale: 1, opacity: 1 }}
+//             exit={{ scale: 0.8, opacity: 0 }}
+//             transition={{ type: "spring", stiffness: 200, damping: 15 }}
+//           >
+//             <h2 className="text-2xl font-bold text-gray-800 mb-3">
+//               🎉 New Feature Available!
+//             </h2>
+//             <p className="text-gray-600 mb-6">
+//               You can now Download your Exam after taking it {" "}
+//               <span className="font-semibold text-blue-600">
+//                 class schedule
+//               </span>{" "}
+//               inside your dashboard.
+//             </p>
+//             <button
+//               onClick={() => setShow(false)}
+//               className="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition"
+//             >
+//               Got it!
+//             </button>
+//           </motion.div>
+//         </motion.div>
+//       )}
+//     </AnimatePresence>
+//   );
+// };
+
+// export default NewFeaturePopup;
 
 // import { useEffect, useState } from "react";
 
