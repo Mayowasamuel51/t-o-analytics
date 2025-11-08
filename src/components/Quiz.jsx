@@ -216,7 +216,7 @@ const Quiz = ({ data }) => {
           🎉 Quiz Submitted!
         </h2>
         <p className="text-lg font-semibold text-gray-800 mb-4">
-          Your Score: <span className="text-blue-600">{score}%</span>
+          Your Score: <span className="text-blue-600">{score}</span>
         </p>
 
         {missedQuestions.length > 0 && (
