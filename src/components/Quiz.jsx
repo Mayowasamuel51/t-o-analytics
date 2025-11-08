@@ -240,6 +240,56 @@ const Quiz = ({ data }) => {
         )}
 
         {showReview && (
+  <div className="text-left max-w-3xl mx-auto">
+    <h3 className="text-xl font-bold mb-3">Full Quiz Review</h3>
+    {questions.map((q, idx) => {
+      const userAnswer = answers[idx];
+      const correctAnswers = Array.isArray(q.correct) ? q.correct : [q.correct];
+      const isCorrect = correctAnswers.includes(userAnswer);
+
+      return (
+        <div
+          key={idx}
+          className={`border p-3 mb-3 rounded-lg ${
+            isCorrect ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"
+          }`}
+        >
+          {/* Question */}
+          <p
+            className={`font-semibold mb-2 ${
+              isCorrect ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {isCorrect ? "✅ Correct" : "❌ Missed"} — {q.question}
+          </p>
+
+          {/* Student’s Answer */}
+          <p>
+            Your Answer:{" "}
+            <span
+              className={`${
+                isCorrect ? "text-green-700 font-medium" : "text-red-700 font-medium"
+              }`}
+            >
+              {userAnswer || "No answer"}
+            </span>
+          </p>
+
+          {/* Correct Answer */}
+          <p>
+            Correct Answer:{" "}
+            <span className="text-blue-700 font-semibold">
+              {correctAnswers.join(", ")}
+            </span>
+          </p>
+        </div>
+      );
+    })}
+  </div>
+)}
+
+
+        {/* {showReview && (
           <div className="text-left max-w-3xl mx-auto">
             <h3 className="text-xl font-bold mb-3">Missed Questions Review</h3>
             {missedQuestions.map((item, idx) => (
@@ -256,7 +306,7 @@ const Quiz = ({ data }) => {
               </div>
             ))}
           </div>
-        )}
+        )} */}
       </div>
     );
 
