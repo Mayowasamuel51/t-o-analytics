@@ -130,7 +130,7 @@ const MainQuiz = () => {
   // 🎯 Main Content
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-16 px-8">
-      <DashboardDropdown/>
+      <DashboardDropdown/> <br/>
       {/* Header */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
