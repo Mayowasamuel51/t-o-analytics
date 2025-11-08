@@ -3,6 +3,7 @@ import Quiz from "./Quiz";
 import { NavLink } from "react-router-dom";
 import { FiBookOpen, FiLock, FiLoader } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
+import DashboardDropdown from "./Dropdown";
 
 const MainQuiz = () => {
   const api = import.meta.env.VITE_HOME_OO;
@@ -129,6 +130,7 @@ const MainQuiz = () => {
   // 🎯 Main Content
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-16 px-8">
+      <DashboardDropdown/>
       {/* Header */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
