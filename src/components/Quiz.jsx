@@ -11,7 +11,7 @@ const Quiz = ({ data }) => {
     return 30 * 60; // default 30 minutes
   });
   useEffect(() => {
-  if (data?.title === "T.O Analytics Power User Exam Quiz") {
+  if (data?.title === "T.O Analytics Power User Exam Quiz" && data?.title === "T.O Analytics Splunk Admin Exam Quiz") {
     setTimeLeft(120 * 60); // 2 hours
   } else {
     setTimeLeft(30 * 60); // 30 minutes
