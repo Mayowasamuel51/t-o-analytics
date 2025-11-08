@@ -4,7 +4,13 @@ const Quiz = ({ data }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes
+  const [timeLeft, setTimeLeft] = useState(() => {
+  if (data?.title === "T.O Analytics Power User Exam Quiz") {
+    return 120 * 60; // 2 hours in seconds
+  }
+  return 30 * 60; // default 30 minutes
+});
+  // const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes
   const [submitted, setSubmitted] = useState(false);
   const [missedQuestions, setMissedQuestions] = useState([]);
   const [showReview, setShowReview] = useState(false);
