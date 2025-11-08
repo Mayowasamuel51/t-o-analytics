@@ -10,6 +10,13 @@ const Quiz = ({ data }) => {
     }
     return 30 * 60; // default 30 minutes
   });
+  useEffect(() => {
+  if (data?.title === "T.O Analytics Power User Exam Quiz") {
+    setTimeLeft(120 * 60); // 2 hours
+  } else {
+    setTimeLeft(30 * 60); // 30 minutes
+  }
+}, [data?.title]);
   // const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes
   const [submitted, setSubmitted] = useState(false);
   const [missedQuestions, setMissedQuestions] = useState([]);
@@ -269,17 +276,22 @@ const Quiz = ({ data }) => {
         >
           ⏳ {formatTime(timeLeft)}
         </div> */}
-<div
-  className={`text-lg font-bold px-4 py-2 rounded-lg ${
-    timeLeft < 300 ? "bg-red-100 text-red-600" : "bg-blue-100 text-blue-700"
-  }`}
->
-  ⏳ {formatTime(timeLeft)}{" "}
-  <span className="text-xs ml-2 text-gray-500">
-    ({data?.title === "T.O Analytics Power User Exam Quiz" ? "2 hrs" : "30 min"})
-  </span>
-</div>
-
+        <div
+          className={`text-lg font-bold px-4 py-2 rounded-lg ${
+            timeLeft < 300
+              ? "bg-red-100 text-red-600"
+              : "bg-blue-100 text-blue-700"
+          }`}
+        >
+          ⏳ {formatTime(timeLeft)}{" "}
+          <span className="text-xs ml-2 text-gray-500">
+            (
+            {data?.title === "T.O Analytics Power User Exam Quiz"
+              ? "2 hrs"
+              : "30 min"}
+            )
+          </span>
+        </div>
       </div>
 
       {/* Question */}
