@@ -38,7 +38,7 @@ export default function StockDashboard() {
           className="text-center mb-12"
         >
           <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-            📈 Stock & Options Dashboard
+            {/* 📈 Stock & Options Dashboard */}
           </h1>
           <p className="text-gray-400 mt-3 text-sm sm:text-base">
             Track live stock market changes and visualize trends just like
