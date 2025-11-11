@@ -99,7 +99,7 @@ const MyCourses = () => {
         {/* Stock & Options Course — visible ONLY to Tomide & TO Analytics */}
         {stockAccess.includes(userEmail) && (
           <NavLink
-            to="/dashboard/stockside"
+            to="/dashboard/stockportal"
             className="rounded-xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform bg-white w-[300px]"
           >
             <img
