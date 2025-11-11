@@ -11,6 +11,7 @@ import DashboardDropdown from "./Dropdown";
 import NewFeaturePopup from "./Newapp";
 const API_BASE = import.meta.env.VITE_HOME_OO || "http://localhost:8000";
 const allowedEmails = [
+  "fadeleolutola@gmail.com",
   "jahdek76@gmail.com",
   "samuelsamuelmayowa@gmail.com",
   "adenusitimi@gmail.com",
