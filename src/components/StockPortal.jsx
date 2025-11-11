@@ -3,6 +3,7 @@ import Player from "@vimeo/player";
 import { NavLink } from "react-router-dom";
 import DashboardDropdown from "./Dropdown";
 import NewFeaturePopup from "./Newapp";
+import Dropdownstock from "./DropdownStock";
 
 const API_BASE = import.meta.env.VITE_HOME_OO || "http://localhost:8000";
 
@@ -285,8 +286,8 @@ export default function StockPortal() {
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <NewFeaturePopup />
-      <DashboardDropdown />
-
+      {/* <DashboardDropdown /> */}
+    <Dropdownstock/>
       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
         {/* Sidebar */}
         <aside className="col-span-12 md:col-span-3 bg-white rounded-2xl p-4 shadow-sm">

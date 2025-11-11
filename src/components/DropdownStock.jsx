@@ -3,7 +3,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 
-const DashboardDropdown = () => {
+const Dropdownstock = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -75,7 +75,7 @@ const DashboardDropdown = () => {
   );
 };
 
-export default DashboardDropdown;
+export default Dropdownstock;
      {/* <a
             href="https://drive.google.com/file/d/1GpYjrvq2KSl3CBbTfYbv0Fu9Kn7Djrgz/preview"
             target="_blank"
@@ -89,7 +89,7 @@ export default DashboardDropdown;
 // import { NavLink } from "react-router-dom";
 // import { ChevronDown } from "lucide-react";
 
-// const DashboardDropdown = () => {
+// const Dropdownstock = () => {
 //   const [open, setOpen] = useState(false);
 
 //   return (
@@ -132,4 +132,4 @@ export default DashboardDropdown;
 //   );
 // };
 
-// export default DashboardDropdown;
+// export default Dropdownstock;
