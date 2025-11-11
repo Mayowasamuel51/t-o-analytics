@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
@@ -25,22 +24,20 @@ const Dropdownstock = () => {
       {/* Dropdown Menu */}
       {open && (
         <div className="absolute mt-3 right-0 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 z-50 overflow-hidden">
-
           <NavLink
-            to="/dashboard/materials"
+            to="/dashboard/stockportal"
             className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
             onClick={() => setOpen(false)}
           >
             Home
           </NavLink>
 
-
           <NavLink
             to="/dashboard/stockside"
             className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
             onClick={() => setOpen(false)}
           >
-        Stock prices 
+            Stock prices
           </NavLink>
 
           {/* <NavLink
@@ -59,7 +56,7 @@ const Dropdownstock = () => {
           Calendar  */}
           {/* </NavLink> */}
 
-            {/* <NavLink 
+          {/* <NavLink 
                          className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
             onClick={() => setOpen(false)}
                         to="/result"
@@ -68,7 +65,6 @@ const Dropdownstock = () => {
                     </NavLink> */}
 
           {/* 🔗 Syllabus PDF Link */}
-     
         </div>
       )}
     </div>
@@ -76,7 +72,8 @@ const Dropdownstock = () => {
 };
 
 export default Dropdownstock;
-     {/* <a
+{
+  /* <a
             href="https://drive.google.com/file/d/1GpYjrvq2KSl3CBbTfYbv0Fu9Kn7Djrgz/preview"
             target="_blank"
             rel="noopener noreferrer"
@@ -84,7 +81,8 @@ export default Dropdownstock;
             onClick={() => setOpen(false)}
           >
             See Splunk Syllabus
-          </a> */}
+          </a> */
+}
 // import { useState } from "react";
 // import { NavLink } from "react-router-dom";
 // import { ChevronDown } from "lucide-react";
