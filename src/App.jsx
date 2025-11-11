@@ -54,6 +54,7 @@ import MainQuiz from "./components/MainQuiz";
 import SeeQuiz from "./components/SeeQuiz";
 import Cancel from "./pages/Cancel";
 import StudentDashboard from "./components/CheckC";
+import StockDashboard from "./components/StockPage";
 
 const router = createBrowserRouter([
   {
@@ -245,6 +246,10 @@ const router = createBrowserRouter([
       {
         path: "materials",
         element: <Materials />,
+      },
+       {
+        path: "stockside",
+        element: <StockDashboard />,
       },
       {
         path: "takequiz",
