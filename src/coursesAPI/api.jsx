@@ -47,8 +47,8 @@ export default [
             "System administration tasks",
             "Linux server management",
         ],
-        // price: 2000
-        price:1
+        price: 2000
+        // price:1
     },
     {
         id: 3,
