@@ -36,7 +36,7 @@ const ClassM = () => {
           url: "https://docs.google.com/presentation/d/1QH0-bN_phVwY5MGVPOcOnbAC9HmKuShL/preview",
           dueDate: "2025-11-8",
          
-        }
+        },
           {
           id: 5,
           title: "Splunk class 3 Assignment",
