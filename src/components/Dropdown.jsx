@@ -49,9 +49,10 @@ const DashboardDropdown = () => {
             onClick={() => setOpen(false)}
           >
             Assignment
-            
+
           </NavLink>
-            <NavLink to="/mentorship" className="hover:text-BLUE w-full">
+            <NavLink to="/mentorship" className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
+            onClick={() => setOpen(false)}>
             Mentorship
           </NavLink>
 
