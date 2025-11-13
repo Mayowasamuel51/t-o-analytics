@@ -284,7 +284,7 @@ const sampleCourses = [
         title: "Class 4 — SPL Part 2",
         videos: [ {
             id: "v2",
-            title: "To-analytics Splunk Class 3",
+            title: "To-analytics Splunk Class 4",
             url: "https://player.vimeo.com/video/1136469770"
           },],
         docs: [
