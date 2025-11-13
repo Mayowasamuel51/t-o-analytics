@@ -634,6 +634,20 @@ export default function CoursePortal() {
         {/* Sidebar */}
         <aside className="col-span-12 md:col-span-3 bg-white rounded-2xl p-4 shadow-sm">
           <h2 className="text-lg font-semibold mb-4">Courses</h2>
+           <div className="mt-4 pt-3 border-t">
+              <button
+                onClick={() => {
+                  setShowSyllabus(true);
+                  setSelectedVideo(null); // clear active video
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className={`w-full text-left px-3 py-2 rounded-xl text-sm transition-all hover:bg-blue-50 ${
+                  isSyllabusMode ? "bg-blue-50 font-semibold text-blue-700" : ""
+                }`}
+              >
+                📘 Full Splunk Syllabus
+              </button>
+            </div>
 
           <div className="space-y-2">
             {courses.map((c) => (
@@ -680,7 +694,7 @@ export default function CoursePortal() {
             ))}
 
             {/* ✅ Extra item in sidebar: Full Syllabus */}
-            <div className="mt-4 pt-3 border-t">
+            {/* <div className="mt-4 pt-3 border-t">
               <button
                 onClick={() => {
                   setShowSyllabus(true);
@@ -693,7 +707,7 @@ export default function CoursePortal() {
               >
                 📘 Full Splunk Syllabus
               </button>
-            </div>
+            </div> */}
           </div>
 
           <div className="mt-6 border-t pt-4 text-sm text-gray-600">
