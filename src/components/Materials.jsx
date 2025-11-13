@@ -123,7 +123,7 @@ const sampleCourses = [
         docs: [
           {
             id: "d3",
-            title: "To-analytics Splunk Class 4",
+            title: "To-analytics Splunk Class 3",
             // url: "https://drive.google.com/file/d/1gyB2HZHHJ-LbX9r8EFVPfY-IOrWQtkwk/preview",
             // url: "https://docs.google.com/presentation/d/1Qc7nnnYfuIt-q2OXOvvxi8nJOp7PTh6I/preview",
             url:"https://drive.google.com/file/d/1mSIZVzbvnkdJylb8_nlcKhCDTcIRuQKM/preview"
@@ -138,16 +138,12 @@ const sampleCourses = [
 
       { id: "class5", title: "Class 4 — SPL Part 2", videos: [], docs: [ {
             id: "d3",
-            // title: "To-analytics Splunk Class 3",
+            title: "To-analytics Splunk Class 4",
             // url: "https://drive.google.com/file/d/1gyB2HZHHJ-LbX9r8EFVPfY-IOrWQtkwk/preview",
             // url: "https://docs.google.com/presentation/d/1Qc7nnnYfuIt-q2OXOvvxi8nJOp7PTh6I/preview",
-            url:"https://drive.google.com/file/d/1XVZBJxSCe_bj-MP93nGyJPKG3qoKjrb_/preview"
+            url:"https://drive.google.com/file/d/1mSIZVzbvnkdJylb8_nlcKhCDTcIRuQKM/preview"
           },
-          {
-            id: "d4",
-            title: "To-analytics Splunk Class 3 Note ",
-            url: " https://drive.google.com/file/d/1YVWoCLqrk4JhcML-mloJ53RDZlq7v7Pc/preview",
-          },] ,},
+        ] ,},
 
        { id: "class6", title: "Class 5  — Splunk Knowledge Objects", videos: [], docs: [] },
     ],
