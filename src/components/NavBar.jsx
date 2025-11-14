@@ -117,7 +117,7 @@ const NavBar = () => {
       animate={hidden && !FullScreen ? "hidden" : "visible"}
       className="z-[9999] fixed top-0 left-0 right-0 
 bg-white dark:bg-darkCard 
-text-textLight dark:text-textDark 
+text-textLight dark:text-white 
 shadow-md px-4 md:px-10 py-2 flex items-center justify-between 
 transition-colors duration-300"
     >

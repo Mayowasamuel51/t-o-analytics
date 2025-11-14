@@ -276,7 +276,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <CartItemProvider>
-      <div className="min-h-screen bg-white text-textLight dark:bg-darkBG dark:text-textDark transition-all duration-300">
+      <div className="min-h-screen bg-white text-black dark:bg-BLUE dark:text-textWhite">
 
         <AnimatePresence>
           <RouterProvider router={router} />
