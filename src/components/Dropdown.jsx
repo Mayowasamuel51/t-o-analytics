@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
@@ -25,7 +24,6 @@ const DashboardDropdown = () => {
       {/* Dropdown Menu */}
       {open && (
         <div className="absolute mt-3 right-0 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 z-50 overflow-hidden">
-
           <NavLink
             to="/dashboard/materials"
             className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
@@ -33,7 +31,6 @@ const DashboardDropdown = () => {
           >
             Home
           </NavLink>
-
 
           <NavLink
             to="/dashboard/takequiz"
@@ -49,31 +46,33 @@ const DashboardDropdown = () => {
             onClick={() => setOpen(false)}
           >
             Assignment
-
           </NavLink>
-            <NavLink to="/mentorship" className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
-            onClick={() => setOpen(false)}>
+          
+          <NavLink
+            to="/mentorship"
+            className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
+            onClick={() => setOpen(false)}
+          >
             Mentorship
           </NavLink>
 
-              <NavLink
+          <NavLink
             to="/dashboard/check"
             className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
             onClick={() => setOpen(false)}
           >
-          Calendar 
+            Calendar
           </NavLink>
 
-            <NavLink 
-                         className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
+          <NavLink
+            className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
             onClick={() => setOpen(false)}
-                        to="/result"
-                    >
-                        My Results
-                    </NavLink>
+            to="/result"
+          >
+            My Results
+          </NavLink>
 
           {/* 🔗 Syllabus PDF Link */}
-     
         </div>
       )}
     </div>
@@ -81,7 +80,8 @@ const DashboardDropdown = () => {
 };
 
 export default DashboardDropdown;
-     {/* <a
+{
+  /* <a
             href="https://drive.google.com/file/d/1GpYjrvq2KSl3CBbTfYbv0Fu9Kn7Djrgz/preview"
             target="_blank"
             rel="noopener noreferrer"
@@ -89,7 +89,8 @@ export default DashboardDropdown;
             onClick={() => setOpen(false)}
           >
             See Splunk Syllabus
-          </a> */}
+          </a> */
+}
 // import { useState } from "react";
 // import { NavLink } from "react-router-dom";
 // import { ChevronDown } from "lucide-react";
