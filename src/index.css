@@ -33,6 +33,9 @@ div.courses > a {
   }
 }
 
+
+
+
 .animate-bounce-slow {
   animation: bounce-slow 1.4s infinite ease-in-out;
 }
