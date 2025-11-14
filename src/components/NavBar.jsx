@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect, useContext, useMemo } from "react";
 import LOGO from "../assets/images/logo2.png";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
@@ -11,9 +13,6 @@ import FetchAllStudents from "../hooks/FetchAllStudents";
 import SearchCourseInput from "./SearchCourseInput";
 import PropTypes from "prop-types";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
-
-// ⭐ NEW ICON IMPORTS
-import { BsSunFill, BsMoonFill } from "react-icons/bs";
 
 const SCROLL_THRESHOLD = 20;
 const HIDE_THRESHOLD = 150;
@@ -51,25 +50,7 @@ const NavBar = () => {
   const auth = getAuth(app);
   const { scrollY } = useScroll();
 
-  // 🔥 Theme state
-  const [theme, setTheme] = useState("light");
-
-  // 🔥 Load theme on mount
-  useEffect(() => {
-    const saved = localStorage.getItem("theme") || "light";
-    setTheme(saved);
-    document.documentElement.classList.toggle("dark", saved === "dark");
-  }, []);
-
-  // 🔥 Toggle theme
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-    localStorage.setItem("theme", newTheme);
-  };
-
-  // load token + user
+  // ✅ load from localStorage
   useEffect(() => {
     const savedToken = localStorage.getItem("ACCESS_TOKEN");
     const savedUser = localStorage.getItem("user");
@@ -77,6 +58,7 @@ const NavBar = () => {
     if (savedUser) setUser(savedUser);
   }, [setToken]);
 
+  // ✅ sign out
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -88,13 +70,13 @@ const NavBar = () => {
       .catch((err) => console.error("Sign out error:", err.message));
   };
 
-  // detect scroll
+  // ✅ detect scroll
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
     setHidden(latest > previous && latest > HIDE_THRESHOLD);
   });
 
-  // get user details
+  // ✅ get user details
   const currentUser = useMemo(() => {
     if (!data?.data?.response || !localuser) return null;
     const user = data.data.response.find((u) => u.email === localuser);
@@ -115,13 +97,9 @@ const NavBar = () => {
     <motion.header
       variants={headerVariant}
       animate={hidden && !FullScreen ? "hidden" : "visible"}
-      className="z-[9999] fixed top-0 left-0 right-0 
-bg-white dark:bg-darkCard 
-text-textLight dark:text-white 
-shadow-md px-4 md:px-10 py-2 flex items-center justify-between 
-transition-colors duration-300"
+      className="z-[9999] fixed top-0 left-0 right-0 bg-white shadow-md px-4 md:px-10 py-2 flex items-center justify-between"
     >
-      {/* Logo */}
+      {/* ✅ Logo */}
       <Link to="/">
         <motion.img
           initial={{ x: -100, opacity: 0 }}
@@ -133,47 +111,35 @@ transition-colors duration-300"
         />
       </Link>
 
-      {/* Search only when logged in */}
+      {/* ✅ Show search bar only if logged in */}
       {token && (
         <div className="hidden md:block">
           <SearchCourseInput />
         </div>
       )}
 
-      {/* Desktop Nav */}
+      {/* ✅ Desktop Nav */}
       <nav className="hidden md:flex items-center gap-6">
-        <NavLink to="/courses" className="hover:text-PURPLE">
+        <NavLink to="/courses" className="hover:text-BLUE">
           Courses
         </NavLink>
 
-        <NavLink to="/mentorship" className="hover:text-PURPLE">
+        {/* ⭐ NEW: Public + Auth Access */}
+        <NavLink to="/mentorship" className="hover:text-BLUE">
           Mentorship
         </NavLink>
 
-        <NavLink to="/about" className="hover:text-PURPLE">
+        <NavLink to="/about" className="hover:text-BLUE">
           About
         </NavLink>
 
-        <NavLink to="/career" className="hover:text-PURPLE">
+        <NavLink to="/career" className="hover:text-BLUE">
           Career
         </NavLink>
 
-        {/* ⭐ THEME TOGGLE BUTTON (DESKTOP) */}
-       <button
-  onClick={toggleTheme}
-  className="p-2 rounded-full bg-gray-200 dark:bg-darkCard border dark:border-PURPLE shadow-md"
->
-  {theme === "light" ? (
-    <BsMoonFill size={18} className="text-BLUE" />
-  ) : (
-    <BsSunFill size={18} className="text-PURPLE" />
-  )}
-</button>
-
-
         {token && currentUser ? (
           <>
-            <NavLink to="/dashboard" className="hover:text-PURPLE">
+            <NavLink to="/dashboard" className="hover:text-BLUE">
               Dashboard
             </NavLink>
 
@@ -194,7 +160,7 @@ transition-colors duration-300"
         )}
       </nav>
 
-      {/* Right side */}
+      {/* ✅ Right side */}
       <div className="flex items-center gap-4 md:gap-6">
         <Link to="/checkout">
           <CartIcon itemCount={cartItem?.length} />
@@ -217,46 +183,35 @@ transition-colors duration-300"
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* ✅ Mobile Dropdown Menu */}
       {showMenu && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          className="absolute top-full left-0 right-0 bg-white dark:bg-BLUE shadow-lg border-t z-[99999] flex flex-col items-start gap-4 px-6 py-4 md:hidden"
+          className="absolute top-full left-0 right-0 bg-white shadow-lg border-t z-[99999] flex flex-col items-start gap-4 px-6 py-4 md:hidden"
         >
-          <NavLink to="/courses" className="hover:text-PURPLE w-full">
+          <NavLink to="/courses" className="hover:text-BLUE w-full">
             Courses
           </NavLink>
 
-          <NavLink to="/mentorship" className="hover:text-PURPLE w-full">
+          {/* ⭐ NEW: Mobile Mentorship Link */}
+          <NavLink to="/mentorship" className="hover:text-BLUE w-full">
             Mentorship
           </NavLink>
 
-          <NavLink to="/about" className="hover:text-PURPLE w-full">
+          <NavLink to="/about" className="hover:text-BLUE w-full">
             About
           </NavLink>
 
-          <NavLink to="/career" className="hover:text-PURPLE w-full">
+          <NavLink to="/career" className="hover:text-BLUE w-full">
             Career
           </NavLink>
 
-          {/* ⭐ THEME TOGGLE BUTTON (MOBILE) */}
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full bg-gray-200 dark:bg-gray-800"
-          >
-            {theme === "light" ? (
-              <BsMoonFill size={20} className="text-BLUE" />
-            ) : (
-              <BsSunFill size={20} className="text-yellow-400" />
-            )}
-          </button>
-
           {token && currentUser ? (
             <>
-              <NavLink to="/dashboard" className="hover:text-PURPLE w-full">
+              <NavLink to="/dashboard" className="hover:text-BLUE w-full">
                 Dashboard
               </NavLink>
 
@@ -274,6 +229,8 @@ transition-colors duration-300"
             >
               Login
             </Link>
+
+            
           )}
         </motion.div>
       )}
@@ -286,248 +243,9 @@ CartIcon.propTypes = { itemCount: PropTypes.number };
 
 export default NavBar;
 
-// import { useState, useEffect, useContext, useMemo } from "react";
-// import LOGO from "../assets/images/logo2.png";
-// import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-// import CartItemContext from "../context/CartItemContext";
-// import { useStateContext } from "../context/ContextProvider";
-// import { Link, NavLink } from "react-router-dom";
-// import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
-// import { getAuth, signOut } from "firebase/auth";
-// import { app } from "../../firebase.config";
-// import FetchAllStudents from "../hooks/FetchAllStudents";
-// import SearchCourseInput from "./SearchCourseInput";
-// import PropTypes from "prop-types";
-// import { MdOutlineAddShoppingCart } from "react-icons/md";
 
-// const SCROLL_THRESHOLD = 20;
-// const HIDE_THRESHOLD = 150;
 
-// const headerVariant = {
-//   visible: { y: 0 },
-//   hidden: {
-//     y: "-100%",
-//     transition: { type: "linear", duration: 0.25 },
-//   },
-// };
 
-// const UserAvatar = ({ initial }) => (
-//   <div className="flex justify-center items-center w-8 md:text-lg aspect-square text-white font-black bg-BLUE rounded-full">
-//     {initial}
-//   </div>
-// );
-
-// const CartIcon = ({ itemCount }) => (
-//   <div className="relative cursor-pointer group">
-//     <MdOutlineAddShoppingCart size={30} />
-//     <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10">
-//       {itemCount || "0"}
-//     </p>
-//   </div>
-// );
-
-// const NavBar = () => {
-//   const { data } = FetchAllStudents();
-//   const [showMenu, setShowMenu] = useState(false);
-//   const [hidden, setHidden] = useState(false);
-//   const { cartItem } = useContext(CartItemContext);
-//   const { token, setToken, FullScreen } = useStateContext();
-//   const [localuser, setUser] = useState(null);
-//   const auth = getAuth(app);
-//   const { scrollY } = useScroll();
-
-//   // ✅ load from localStorage
-//   useEffect(() => {
-//     const savedToken = localStorage.getItem("ACCESS_TOKEN");
-//     const savedUser = localStorage.getItem("user");
-//     if (savedToken) setToken(savedToken);
-//     if (savedUser) setUser(savedUser);
-//   }, [setToken]);
-
-//   // ✅ sign out
-//   const handleSignOut = () => {
-//     signOut(auth)
-//       .then(() => {
-//         localStorage.removeItem("ACCESS_TOKEN");
-//         localStorage.removeItem("user");
-//         setToken(null);
-//         setUser(null);
-//       })
-//       .catch((err) => console.error("Sign out error:", err.message));
-//   };
-
-//   // ✅ detect scroll
-//   useMotionValueEvent(scrollY, "change", (latest) => {
-//     const previous = scrollY.getPrevious();
-//     setHidden(latest > previous && latest > HIDE_THRESHOLD);
-//   });
-
-//   // ✅ get user details
-//   const currentUser = useMemo(() => {
-//     if (!data?.data?.response || !localuser) return null;
-//     const user = data.data.response.find((u) => u.email === localuser);
-//     if (!user) return null;
-//     return {
-//       fullname: user.name,
-//       email: user.email,
-//       initial: user.name
-//         .split(" ")
-//         .map((w) => w[0].toUpperCase())
-//         .join(""),
-//     };
-//   }, [data, localuser]);
-
-//   const toggleMenu = () => setShowMenu((prev) => !prev);
-
-//   return (
-//     <motion.header
-//       variants={headerVariant}
-//       animate={hidden && !FullScreen ? "hidden" : "visible"}
-//       className="z-[9999] fixed top-0 left-0 right-0 bg-white shadow-md px-4 md:px-10 py-2 flex items-center justify-between"
-//     >
-//       {/* ✅ Logo */}
-//       <Link to="/">
-//         <motion.img
-//           initial={{ x: -100, opacity: 0 }}
-//           animate={{ x: 0, opacity: 1 }}
-//           transition={{ type: "spring", stiffness: 260, duration: 2 }}
-//           src={LOGO}
-//           className="md:w-[200px] w-[130px]"
-//           alt="Logo"
-//         />
-//       </Link>
-
-//       {/* ✅ Show search bar only if logged in */}
-//       {token && (
-//         <div className="hidden md:block">
-//           <SearchCourseInput />
-//         </div>
-//       )}
-
-//       {/* ✅ Desktop Nav */}
-//       <nav className="hidden md:flex items-center gap-6">
-//         <NavLink to="/courses" className="hover:text-BLUE">
-//           Courses
-//         </NavLink>
-
-//         {/* ⭐ NEW: Public + Auth Access */}
-//         <NavLink to="/mentorship" className="hover:text-BLUE">
-//           Mentorship
-//         </NavLink>
-
-//         <NavLink to="/about" className="hover:text-BLUE">
-//           About
-//         </NavLink>
-
-//         <NavLink to="/career" className="hover:text-BLUE">
-//           Career
-//         </NavLink>
-
-//         {token && currentUser ? (
-//           <>
-//             <NavLink to="/dashboard" className="hover:text-BLUE">
-//               Dashboard
-//             </NavLink>
-
-//             <button
-//               onClick={handleSignOut}
-//               className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg"
-//             >
-//               Logout
-//             </button>
-//           </>
-//         ) : (
-//           <Link
-//             to="/login"
-//             className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold"
-//           >
-//             Login
-//           </Link>
-//         )}
-//       </nav>
-
-//       {/* ✅ Right side */}
-//       <div className="flex items-center gap-4 md:gap-6">
-//         <Link to="/checkout">
-//           <CartIcon itemCount={cartItem?.length} />
-//         </Link>
-
-//         {token && currentUser && (
-//           <div className="hidden md:flex items-center gap-2">
-//             <UserAvatar initial={currentUser.initial} />
-//             <p className="text-sm font-semibold">{currentUser.fullname}</p>
-//           </div>
-//         )}
-
-//         {/* Mobile menu icon */}
-//         <div className="block md:hidden">
-//           {showMenu ? (
-//             <FaXmark size={22} onClick={toggleMenu} />
-//           ) : (
-//             <FaBarsStaggered size={22} onClick={toggleMenu} />
-//           )}
-//         </div>
-//       </div>
-
-//       {/* ✅ Mobile Dropdown Menu */}
-//       {showMenu && (
-//         <motion.div
-//           initial={{ opacity: 0, y: -20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           exit={{ opacity: 0, y: -20 }}
-//           transition={{ duration: 0.3 }}
-//           className="absolute top-full left-0 right-0 bg-white shadow-lg border-t z-[99999] flex flex-col items-start gap-4 px-6 py-4 md:hidden"
-//         >
-//           <NavLink to="/courses" className="hover:text-BLUE w-full">
-//             Courses
-//           </NavLink>
-
-//           {/* ⭐ NEW: Mobile Mentorship Link */}
-//           <NavLink to="/mentorship" className="hover:text-BLUE w-full">
-//             Mentorship
-//           </NavLink>
-
-//           <NavLink to="/about" className="hover:text-BLUE w-full">
-//             About
-//           </NavLink>
-
-//           <NavLink to="/career" className="hover:text-BLUE w-full">
-//             Career
-//           </NavLink>
-
-//           {token && currentUser ? (
-//             <>
-//               <NavLink to="/dashboard" className="hover:text-BLUE w-full">
-//                 Dashboard
-//               </NavLink>
-
-//               <button
-//                 onClick={handleSignOut}
-//                 className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg w-full text-left"
-//               >
-//                 Logout
-//               </button>
-//             </>
-//           ) : (
-//             <Link
-//               to="/login"
-//               className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold w-full text-center"
-//             >
-//               Login
-//             </Link>
-
-            
-//           )}
-//         </motion.div>
-//       )}
-//     </motion.header>
-//   );
-// };
-
-// UserAvatar.propTypes = { initial: PropTypes.string };
-// CartIcon.propTypes = { itemCount: PropTypes.number };
-
-// export default NavBar;
 
 
 // import { useState, useEffect, useContext, useMemo } from "react";
