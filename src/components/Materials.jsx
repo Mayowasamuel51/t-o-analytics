@@ -293,7 +293,8 @@ const sampleCourses = [
           {
             id: "d3",
             title: "To-analytics Splunk Class 4",
-            url: "https://drive.google.com/file/d/1mSIZVzbvnkdJylb8_nlcKhCDTcIRuQKM/preview",
+            url:"https://drive.google.com/file/d/1XVZBJxSCe_bj-MP93nGyJPKG3qoKjrb_/preview"
+            // url: "https://drive.google.com/file/d/1mSIZVzbvnkdJylb8_nlcKhCDTcIRuQKM/preview",
           },
         ],
       },
