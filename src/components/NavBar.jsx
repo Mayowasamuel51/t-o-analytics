@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect, useContext, useMemo } from "react";
 import LOGO from "../assets/images/logo2.png";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
@@ -142,7 +140,15 @@ const NavBar = () => {
             <NavLink to="/dashboard" className="hover:text-BLUE">
               Dashboard
             </NavLink>
-
+           
+              <NavLink
+               className="hover:text-BLUE"
+                to="/result"
+              >
+              
+                My Results
+              </NavLink>
+            
             <button
               onClick={handleSignOut}
               className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg"
@@ -229,8 +235,6 @@ const NavBar = () => {
             >
               Login
             </Link>
-
-            
           )}
         </motion.div>
       )}
@@ -242,11 +246,6 @@ UserAvatar.propTypes = { initial: PropTypes.string };
 CartIcon.propTypes = { itemCount: PropTypes.number };
 
 export default NavBar;
-
-
-
-
-
 
 // import { useState, useEffect, useContext, useMemo } from "react";
 // import LOGO from "../assets/images/logo2.png";
@@ -467,28 +466,6 @@ export default NavBar;
 
 // export default NavBar;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import { useState, useEffect, useContext, useMemo } from "react";
 // import LOGO from "../assets/images/logo2.png";
 // import { motion, useMotionValueEvent, useScroll } from "framer-motion";
@@ -697,7 +674,6 @@ export default NavBar;
 
 // export default NavBar;
 
-
 // import { useState, useEffect, useContext, useMemo } from 'react';
 // import LOGO from "../assets/images/logo2.png";
 // import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
@@ -807,7 +783,7 @@ export default NavBar;
 //       variants={headerVariant}
 //       animate={(hidden && !FullScreen) ? "hidden" : "visible"}
 //       className={`z-[9999] fixed right-0 left-0 top-0 bg-white ${!token && "md:bg-opacity-50"} px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
-      
+
 //       {/* ✅ Logo */}
 //       <div>
 //         <Link to="/">
@@ -877,17 +853,6 @@ export default NavBar;
 
 // export default NavBar;
 
-
-
-
-
-
-
-
-
-
-
-
 // .................... this the normal one below ............................
 // import { useState, useEffect, useContext, useMemo } from 'react';
 // import LOGO from "../assets/images/logo2.png";
@@ -950,7 +915,7 @@ export default NavBar;
 
 //         <ul className="md:hidden lg:flex flex lg:flex-row flex-col items-center gap-3 md:gap-6 font-normal text-sm">
 //             <motion.li whileHover={{ scale: 1.1 }} transition={{ stiffness: 250 }}>
-//                 <NavLink 
+//                 <NavLink
 //                     className={({ isActive }) => isActive ? "text-BLUE font-black" : "hover:text-BLUE"}
 //                     to="/dashboard"
 //                 >
@@ -958,14 +923,14 @@ export default NavBar;
 //                 </NavLink>
 //             </motion.li>
 //             <motion.li whileHover={{ scale: 1.1 }} transition={{ stiffness: 250 }}>
-//                 <NavLink 
+//                 <NavLink
 //                     className={({ isActive }) => isActive ? "text-BLUE font-black" : "hover:text-BLUE"}
 //                     to="/courses">
 //                     All Courses
 //                 </NavLink>
 //             </motion.li>
 //             <motion.li whileHover={{ scale: 1.1 }} transition={{ stiffness: 250 }}>
-//                 <NavLink 
+//                 <NavLink
 //                     className={({ isActive }) => isActive ? "text-BLUE font-black" : "hover:text-BLUE"}
 //                     to="/dashboard/comment"
 //                 >
@@ -973,7 +938,7 @@ export default NavBar;
 //                 </NavLink>
 //             </motion.li>
 //             <motion.li whileHover={{ scale: 1.1 }} transition={{ stiffness: 250 }}>
-//                 <NavLink 
+//                 <NavLink
 //                     className={({ isActive }) => isActive ? "text-BLUE font-black" : "hover:text-BLUE"}
 //                     to="/mentorship"
 //                 >
@@ -981,7 +946,7 @@ export default NavBar;
 //                 </NavLink>
 //             </motion.li>
 
-//             <button 
+//             <button
 //                 onClick={signout}
 //                 className="w-full md:hidden block my-3 hover:outline-2 hover:outline-offset-2 border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-2 py-1 md:px-3 md:py-2 rounded-md md:rounded-xl font-semibold mx-auto"
 //             >
@@ -995,28 +960,28 @@ export default NavBar;
 //     <nav className={`${fixed} ${show} md:relative md:left-0 md:right-0 duration-300 md:top-0 md:w-fit py-5 md:py-0 text-center`}>
 //         <ul className="px-4 flex flex-col md:flex-row items-center gap-4 md:gap-6 font-semibold">
 //             <motion.li whileHover={{ scale: 1.1 }} transition={{ stiffness: 250 }}>
-//                 <NavLink 
+//                 <NavLink
 //                     className={({ isActive }) => isActive ? "font-black text-BLUE scale-110" : "hover:text-BLUE"}
 //                     to="/courses">
 //                     Courses
 //                 </NavLink>
 //             </motion.li>
 //             <motion.li whileHover={{ scale: 1.1 }} transition={{ stiffness: 250 }}>
-//                 <NavLink 
+//                 <NavLink
 //                     className={({ isActive }) => isActive ? "font-black text-BLUE scale-110" : "hover:text-BLUE"}
 //                     to="/about">
 //                     About
 //                 </NavLink>
 //             </motion.li>
-            
-//             <motion.li 
+
+//             <motion.li
 //                 onClick={displaySubMenu}
 //                 whileHover={{ scale: 1.1 }}
 //                 transition={{ stiffness: 250 }}
 //                 className='group relative'
 //             >
 //                 <p className='flex gap-1 items-center justify-center cursor-pointer'>
-//                     Company 
+//                     Company
 //                     <FaChevronDown className={`duration-200 ${subMenu ? "rotate-180" : ""} ${FullScreen ? "group-hover:rotate-180" : ""}`} />
 //                 </p>
 //                 {(subMenu && !FullScreen) ? (
@@ -1037,7 +1002,7 @@ export default NavBar;
 //             </motion.li>
 
 //             <motion.li whileHover={{ scale: 1.1 }} transition={{ stiffness: 250 }}>
-//                 <NavLink 
+//                 <NavLink
 //                     className={({ isActive }) => isActive ? "font-black text-BLUE scale-110" : "hover:text-BLUE"}
 //                     to="/blog"
 //                 >
@@ -1045,7 +1010,7 @@ export default NavBar;
 //                 </NavLink>
 //             </motion.li>
 //             <motion.li whileHover={{ scale: 1.1 }} transition={{ stiffness: 250 }}>
-//                 <NavLink 
+//                 <NavLink
 //                     className={({ isActive }) => isActive ? "font-black text-BLUE scale-110" : "hover:text-BLUE"}
 //                     to="/contact"
 //                 >
@@ -1053,7 +1018,7 @@ export default NavBar;
 //                 </NavLink>
 //             </motion.li>
 //             <motion.li whileHover={{ scale: 1.1 }} transition={{ stiffness: 250 }}>
-//                 <NavLink 
+//                 <NavLink
 //                     className={({ isActive }) => isActive ? "font-black text-BLUE scale-110" : "hover:text-BLUE"}
 //                     to="/sessions"
 //                 >
@@ -1085,17 +1050,17 @@ export default NavBar;
 
 //             <ul className='font-semibold p-3 leading-[30px]'>
 //                 <motion.li transition={{ stiffness: 250 }}>
-//                     <NavLink 
+//                     <NavLink
 //                         className={({ isActive }) => isActive ? "text-black font-black" : "hover:text-BLUE"}
 //                         to="/myProfile">
 //                         My Profile
 //                     </NavLink>
 //                 </motion.li>
-                
+
 //                 {!FullScreen && (
 //                     <>
 //                         <motion.li transition={{ stiffness: 250 }}>
-//                             <NavLink 
+//                             <NavLink
 //                                 className={({ isActive }) => isActive ? "text-black font-black" : "hover:text-BLUE"}
 //                                 to="/dashboard"
 //                             >
@@ -1103,14 +1068,14 @@ export default NavBar;
 //                             </NavLink>
 //                         </motion.li>
 //                         <motion.li transition={{ stiffness: 250 }}>
-//                             <NavLink 
+//                             <NavLink
 //                                 className={({ isActive }) => isActive ? "text-black font-black" : "hover:text-BLUE"}
 //                                 to="/courses">
 //                                 All Courses
 //                             </NavLink>
 //                         </motion.li>
 //                         <motion.li transition={{ stiffness: 250 }}>
-//                             <NavLink 
+//                             <NavLink
 //                                 className={({ isActive }) => isActive ? "text-black font-black" : "hover:text-BLUE"}
 //                                 to="/mentorship"
 //                             >
@@ -1118,7 +1083,7 @@ export default NavBar;
 //                             </NavLink>
 //                         </motion.li>
 //                         <motion.li transition={{ stiffness: 250 }}>
-//                             <NavLink 
+//                             <NavLink
 //                                 className={({ isActive }) => isActive ? "text-black font-black" : "hover:text-BLUE"}
 //                                 to="/dashboard/links"
 //                             >
@@ -1129,7 +1094,7 @@ export default NavBar;
 //                 )}
 
 //                 <motion.li transition={{ stiffness: 250 }}>
-//                     <NavLink 
+//                     <NavLink
 //                         className={({ isActive }) => isActive ? "text-black font-black" : "hover:text-BLUE"}
 //                         to="/result"
 //                     >
@@ -1137,7 +1102,7 @@ export default NavBar;
 //                     </NavLink>
 //                 </motion.li>
 
-//                 <li 
+//                 <li
 //                     onClick={signout}
 //                     className="hover:bg-transparent hover:text-BLUE duration-300 text-red-500 rounded-md md:rounded-xl font-semibold cursor-pointer"
 //                 >
@@ -1174,7 +1139,7 @@ export default NavBar;
 //     // Memoize current user data
 //     const currentUser = useMemo(() => {
 //         if (!data?.data?.response || !localuser) return null;
-        
+
 //         const user = data.data.response.find((u) => u.email === localuser);
 //         if (!user) return null;
 
@@ -1213,13 +1178,13 @@ export default NavBar;
 //     const toggleSubMenu = () => setSubMenu(prev => !prev);
 
 //     return (
-//         <motion.header 
+//         <motion.header
 //             variants={headerVariant}
 //             animate={(hidden && !FullScreen) ? "hidden" : "visible"}
 //             className={`z-[9999] fixed right-0 left-0 top-0 bg-white ${!token && "md:bg-opacity-50"} px-2 py-2 md:px-10 flex items-center ${token ? "gap-10" : "justify-between"}`}>
 //             <div>
 //                 <Link to="/">
-//                     <motion.img 
+//                     <motion.img
 //                         initial={{ x: -100, opacity: 0 }}
 //                         animate={{ x: 0, opacity: 1 }}
 //                         transition={{ type: "spring", stiffness: 260, duration: 2 }}
@@ -1234,7 +1199,7 @@ export default NavBar;
 
 //             {token ? (
 //                 currentUser && (
-//                     <AuthenticatedNav 
+//                     <AuthenticatedNav
 //                         {...currentUser}
 //                         show={show}
 //                         fixed={fixed}
@@ -1243,7 +1208,7 @@ export default NavBar;
 //                     />
 //                 )
 //             ) : (
-//                 <GuestNav 
+//                 <GuestNav
 //                     show={show}
 //                     fixed={fixed}
 //                     subMenu={subMenu}
@@ -1276,7 +1241,7 @@ export default NavBar;
 //                     </div>
 
 //                     {token && currentUser && (
-//                         <UserDropdown 
+//                         <UserDropdown
 //                             {...currentUser}
 //                             signout={handleSignOut}
 //                             FullScreen={FullScreen}
@@ -1287,8 +1252,6 @@ export default NavBar;
 //         </motion.header>
 //     );
 // };
-
-
 
 // UserAvatar.propTypes = {
 //     initial: PropTypes.string.isRequired,
