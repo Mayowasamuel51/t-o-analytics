@@ -120,19 +120,21 @@ const fullSplunkSyllabus = [
     title: "Reports & Dashboards",
     desc: "Creating reports, dashboards, visualizations, inputs and filters..",
     videos: [],
-   
-    docs: [ {
+
+    docs: [
+      {
         title: "Splunk Class 5 Slides",
         url: "https://drive.google.com/file/d/1v7YRwUFvIBenhRSiS-f2evqh2ia2xuq6/preview",
-      },],
+      },
+    ],
   },
-  // {
-  //   week: 6,
-  //   title: "Reports & Dashboards",
-  //   desc: "Creating reports, dashboards, visualizations, inputs and filters.",
-  //   videos: [],
-  //   docs: [],
-  // },
+  {
+    week: 6,
+    title: "Splunk Knowledge Objects",
+    // desc: "Creating reports, dashboards, visualizations, inputs and filters.",
+    videos: [],
+    docs: [],
+  },
   {
     week: 7,
     title: "Alerts & Monitoring",
@@ -287,18 +289,18 @@ const sampleCourses = [
       {
         id: "class5",
         title: "Class 4 — SPL Part 2",
-        videos: [ {
+        videos: [
+          {
             id: "v2",
             title: "To-analytics Splunk Class 4",
-            url: "https://player.vimeo.com/video/1136469770"
-          },],
+            url: "https://player.vimeo.com/video/1136469770",
+          },
+        ],
         docs: [
-
-        
           {
             id: "d3",
             title: "To-analytics Splunk Class 4",
-            url:"https://drive.google.com/file/d/1XVZBJxSCe_bj-MP93nGyJPKG3qoKjrb_/preview"
+            url: "https://drive.google.com/file/d/1XVZBJxSCe_bj-MP93nGyJPKG3qoKjrb_/preview",
             // url: "https://drive.google.com/file/d/1mSIZVzbvnkdJylb8_nlcKhCDTcIRuQKM/preview",
           },
         ],
@@ -323,10 +325,12 @@ function SyllabusSection() {
   return (
     <div className="mt-6">
       <div className="bg-white rounded-2xl border p-4 shadow-sm">
-        <h2 className="text-lg font-bold mb-3">📘 Full Splunk Course Syllabus</h2>
+        <h2 className="text-lg font-bold mb-3">
+          📘 Full Splunk Course Syllabus
+        </h2>
         <p className="text-sm text-gray-600 mb-4">
-          This is the full 14-week roadmap for your Splunk training: videos, topics, and
-          supporting documents where available.
+          This is the full 14-week roadmap for your Splunk training: videos,
+          topics, and supporting documents where available.
         </p>
 
         <div className="space-y-4 max-h-[480px] overflow-y-auto pr-1">
@@ -342,7 +346,9 @@ function SyllabusSection() {
 
               {/* Videos for this week */}
               <div className="mt-2">
-                <div className="text-xs font-medium text-gray-800">🎬 Videos</div>
+                <div className="text-xs font-medium text-gray-800">
+                  🎬 Videos
+                </div>
                 {w.videos && w.videos.length > 0 ? (
                   w.videos.map((v, j) => (
                     <a
@@ -356,13 +362,17 @@ function SyllabusSection() {
                     </a>
                   ))
                 ) : (
-                  <div className="text-[11px] text-gray-400">No videos attached yet</div>
+                  <div className="text-[11px] text-gray-400">
+                    No videos attached yet
+                  </div>
                 )}
               </div>
 
               {/* Docs for this week */}
               <div className="mt-2">
-                <div className="text-xs font-medium text-gray-800">📄 Documents</div>
+                <div className="text-xs font-medium text-gray-800">
+                  📄 Documents
+                </div>
                 {w.docs && w.docs.length > 0 ? (
                   w.docs.map((d, j) => (
                     <a
@@ -376,7 +386,9 @@ function SyllabusSection() {
                     </a>
                   ))
                 ) : (
-                  <div className="text-[11px] text-gray-400">No documents attached yet</div>
+                  <div className="text-[11px] text-gray-400">
+                    No documents attached yet
+                  </div>
                 )}
               </div>
             </div>
@@ -415,7 +427,9 @@ export default function CoursePortal() {
 
     // Check permission
     setIsAllowed(
-      allowedEmails.map((a) => a.toLowerCase()).includes((e || "").toLowerCase())
+      allowedEmails
+        .map((a) => a.toLowerCase())
+        .includes((e || "").toLowerCase())
     );
 
     // Load progress (from backend instead of localStorage)
@@ -646,20 +660,21 @@ export default function CoursePortal() {
         {/* Sidebar */}
         <aside className="col-span-12 md:col-span-3 bg-white rounded-2xl p-4 shadow-sm">
           <h2 className="text-lg font-semibold mb-4">Courses</h2>
-        <div className="mt-4 pt-3 border-t">
-  <button
-    onClick={() => {
-      setShowSyllabus(true);
-      setSelectedVideo(null); // clear active video
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }}
-    className={`w-full text-left px-3 py-2 rounded-xl text-sm transition-all hover:bg-blue-50 ${
-      isSyllabusMode ? "bg-blue-50 font-semibold text-blue-700" : ""
-    }`}
-  >
-    <span className="inline-block animate-bounce-slow">📘</span> Full Splunk Syllabus
-  </button>
-</div>
+          <div className="mt-4 pt-3 border-t">
+            <button
+              onClick={() => {
+                setShowSyllabus(true);
+                setSelectedVideo(null); // clear active video
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className={`w-full text-left px-3 py-2 rounded-xl text-sm transition-all hover:bg-blue-50 ${
+                isSyllabusMode ? "bg-blue-50 font-semibold text-blue-700" : ""
+              }`}
+            >
+              <span className="inline-block animate-bounce-slow">📘</span> Full
+              Splunk Syllabus
+            </button>
+          </div>
 
           <div className="space-y-2">
             {courses.map((c) => (
@@ -672,7 +687,9 @@ export default function CoursePortal() {
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
                   className={`w-full text-left px-3 py-2 rounded-xl transition-all hover:bg-gray-100 ${
-                    c.id === selectedCourse.id ? "bg-gray-100 font-semibold" : ""
+                    c.id === selectedCourse.id
+                      ? "bg-gray-100 font-semibold"
+                      : ""
                   }`}
                 >
                   {c.title}
@@ -897,8 +914,7 @@ export default function CoursePortal() {
                     localStorage.getItem(storageProgressKey(userEmail)) || "{}"
                   );
                   return (
-                    (saved[selectedClass.id] &&
-                      saved[selectedClass.id].note) ||
+                    (saved[selectedClass.id] && saved[selectedClass.id].note) ||
                     ""
                   );
                 } catch (e) {
@@ -944,7 +960,7 @@ export default function CoursePortal() {
   );
 }
 
-// BELOW IS THE REAL FILE 
+// BELOW IS THE REAL FILE
 // import React, { useEffect, useRef, useState } from "react";
 // import Player from "@vimeo/player";
 // import { NavLink } from "react-router-dom";
@@ -1369,7 +1385,7 @@ export default function CoursePortal() {
 //     <div className="min-h-screen bg-gray-50 p-4">
 //       <NewFeaturePopup/>
 //       <DashboardDropdown />
-      
+
 //       <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6">
 //         {/* Sidebar */}
 //         <aside className="col-span-12 md:col-span-3 bg-white rounded-2xl p-4 shadow-sm">
@@ -1648,10 +1664,7 @@ export default function CoursePortal() {
 //   );
 // }
 
-// the file is above the real one 
-
-
-
+// the file is above the real one
 
 // import { useState, useEffect } from "react";
 // import { NavLink, Outlet } from "react-router-dom";
