@@ -310,11 +310,12 @@ const sampleCourses = [
 
       {
         id: "class6",
-        title: "Reports & Dashboards",
+        title: "Class 5 — Reports & Dashboards",
         desc: "Creating reports, dashboards, visualizations, inputs and filters..",
         videos: [],
         docs: [
           {
+              id: "d3",
             title: "Splunk Class 5 Slides",
             url: "https://drive.google.com/file/d/1v7YRwUFvIBenhRSiS-f2evqh2ia2xuq6/preview",
           },
