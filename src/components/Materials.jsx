@@ -117,18 +117,22 @@ const fullSplunkSyllabus = [
   },
   {
     week: 5,
-    title: "Splunk Knowledge Objects",
-    desc: "Creating and managing knowledge objects, field extractions, event types, tags, transactions.",
-    videos: [],
-    docs: [],
-  },
-  {
-    week: 6,
     title: "Reports & Dashboards",
-    desc: "Creating reports, dashboards, visualizations, inputs and filters.",
+    desc: "Creating reports, dashboards, visualizations, inputs and filters..",
     videos: [],
-    docs: [],
+   
+    docs: [ {
+        title: "Splunk Class 5 Slides",
+        url: "https://drive.google.com/file/d/1v7YRwUFvIBenhRSiS-f2evqh2ia2xuq6/preview",
+      },],
   },
+  // {
+  //   week: 6,
+  //   title: "Reports & Dashboards",
+  //   desc: "Creating reports, dashboards, visualizations, inputs and filters.",
+  //   videos: [],
+  //   docs: [],
+  // },
   {
     week: 7,
     title: "Alerts & Monitoring",
