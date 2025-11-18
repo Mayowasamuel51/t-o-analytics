@@ -42,6 +42,7 @@ useEffect(() => {
   const userEmail = user?.email || "";
   // ✅ Allowed test-takers
   const allowedEmails = [
+     "basseyvera018@gmail.com",
       "codeverseprogramming23@gmail.com",
     "ooolajuyigbe@gmail.com",
      "fadeleolutola@gmail.com",
