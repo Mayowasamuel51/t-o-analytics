@@ -126,7 +126,8 @@ const fullSplunkSyllabus = [
     docs: [
       {
         title: "Splunk Class 5 Slides",
-        url: "https://drive.google.com/file/d/1v7YRwUFvIBenhRSiS-f2evqh2ia2xuq6/preview",
+        url:"https://drive.google.com/file/d/1ekO5jcujdct0aofS4QBgd3P8BOPonsek/preview"
+        // url: "https://drive.google.com/file/d/1v7YRwUFvIBenhRSiS-f2evqh2ia2xuq6/preview",
       },
     ],
   },
