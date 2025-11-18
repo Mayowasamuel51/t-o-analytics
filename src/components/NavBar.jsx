@@ -23,18 +23,22 @@ const headerVariant = {
   },
 };
 
+/* ---------------- USER AVATAR ---------------- */
 const UserAvatar = ({ initial }) => (
-  <div className="flex justify-center items-center w-8 md:text-lg aspect-square text-white font-black bg-BLUE rounded-full">
+  <div className="flex justify-center items-center w-8 aspect-square text-white font-black bg-BLUE rounded-full md:text-lg">
     {initial}
   </div>
 );
 
+/* ---------------- CART BADGE ---------------- */
 const CartIcon = ({ itemCount }) => (
   <div className="relative cursor-pointer group">
-    <MdOutlineAddShoppingCart size={30} />
-    <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10">
+    <MdOutlineAddShoppingCart size={28} />
+    <span className="absolute -top-2 -right-2 bg-BLUE text-white
+      border-2 border-white px-[6px] text-xs rounded-full font-bold
+      transition-transform duration-200 group-hover:scale-125">
       {itemCount || "0"}
-    </p>
+    </span>
   </div>
 );
 
@@ -48,15 +52,16 @@ const NavBar = () => {
   const auth = getAuth(app);
   const { scrollY } = useScroll();
 
-  // ✅ load from localStorage
+  /* ---------- LOAD TOKEN & USER ---------- */
   useEffect(() => {
     const savedToken = localStorage.getItem("ACCESS_TOKEN");
     const savedUser = localStorage.getItem("user");
+
     if (savedToken) setToken(savedToken);
     if (savedUser) setUser(savedUser);
   }, [setToken]);
 
-  // ✅ sign out
+  /* ---------- SIGN OUT ---------- */
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -68,17 +73,19 @@ const NavBar = () => {
       .catch((err) => console.error("Sign out error:", err.message));
   };
 
-  // ✅ detect scroll
+  /* ---------- SCROLL HIDE ---------- */
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
     setHidden(latest > previous && latest > HIDE_THRESHOLD);
   });
 
-  // ✅ get user details
+  /* ---------- FIND USER ---------- */
   const currentUser = useMemo(() => {
     if (!data?.data?.response || !localuser) return null;
+
     const user = data.data.response.find((u) => u.email === localuser);
     if (!user) return null;
+
     return {
       fullname: user.name,
       email: user.email,
@@ -95,42 +102,40 @@ const NavBar = () => {
     <motion.header
       variants={headerVariant}
       animate={hidden && !FullScreen ? "hidden" : "visible"}
-      className="z-[9999] fixed top-0 left-0 right-0 bg-white shadow-md px-4 md:px-10 py-2 flex items-center justify-between"
+      className="fixed top-0 left-0 right-0 z-[9999]
+      bg-white shadow-md px-4 md:px-10 py-3
+      flex items-center justify-between transition-all"
     >
-      {/* ✅ Logo */}
+      {/* LOGO */}
       <Link to="/">
         <motion.img
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 260, duration: 2 }}
+          transition={{ type: "spring", stiffness: 260, duration: 1.2 }}
           src={LOGO}
-          className="md:w-[200px] w-[130px]"
+          className="w-[130px] md:w-[190px]"
           alt="Logo"
         />
       </Link>
 
-      {/* ✅ Show search bar only if logged in */}
+      {/* SEARCH — only on desktop */}
       {token && (
-        <div className="hidden md:block">
+        <div className="hidden md:block w-[250px] lg:w-[300px]">
           <SearchCourseInput />
         </div>
       )}
 
-      {/* ✅ Desktop Nav */}
-      <nav className="hidden md:flex items-center gap-6">
+      {/* DESKTOP NAV */}
+      <nav className="hidden md:flex items-center gap-8 text-[15px]">
         <NavLink to="/courses" className="hover:text-BLUE">
           Courses
         </NavLink>
-
-        {/* ⭐ NEW: Public + Auth Access */}
         <NavLink to="/mentorship" className="hover:text-BLUE">
           Mentorship
         </NavLink>
-
         <NavLink to="/about" className="hover:text-BLUE">
           About
         </NavLink>
-
         <NavLink to="/career" className="hover:text-BLUE">
           Career
         </NavLink>
@@ -140,18 +145,15 @@ const NavBar = () => {
             <NavLink to="/dashboard" className="hover:text-BLUE">
               Dashboard
             </NavLink>
-           
-              <NavLink
-               className="hover:text-BLUE"
-                to="/result"
-              >
-              
-                My Results
-              </NavLink>
-            
+
+            <NavLink to="/result" className="hover:text-BLUE">
+              My Results
+            </NavLink>
+
             <button
               onClick={handleSignOut}
-              className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg"
+              className="border border-BLUE px-4 py-1 text-sm text-white bg-BLUE 
+                hover:bg-transparent hover:text-BLUE rounded-lg"
             >
               Logout
             </button>
@@ -159,14 +161,15 @@ const NavBar = () => {
         ) : (
           <Link
             to="/login"
-            className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold"
+            className="border-2 border-BLUE bg-BLUE text-white px-4 py-1 
+              rounded-md font-semibold hover:bg-transparent hover:text-BLUE"
           >
             Login
           </Link>
         )}
       </nav>
 
-      {/* ✅ Right side */}
+      {/* RIGHT SIDE */}
       <div className="flex items-center gap-4 md:gap-6">
         <Link to="/checkout">
           <CartIcon itemCount={cartItem?.length} />
@@ -179,51 +182,49 @@ const NavBar = () => {
           </div>
         )}
 
-        {/* Mobile menu icon */}
-        <div className="block md:hidden">
-          {showMenu ? (
-            <FaXmark size={22} onClick={toggleMenu} />
-          ) : (
-            <FaBarsStaggered size={22} onClick={toggleMenu} />
-          )}
-        </div>
+        {/* Mobile Menu Button */}
+        <button className="block md:hidden" onClick={toggleMenu}>
+          {showMenu ? <FaXmark size={22} /> : <FaBarsStaggered size={22} />}
+        </button>
       </div>
 
-      {/* ✅ Mobile Dropdown Menu */}
+      {/* MOBILE MENU */}
       {showMenu && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-          className="absolute top-full left-0 right-0 bg-white shadow-lg border-t z-[99999] flex flex-col items-start gap-4 px-6 py-4 md:hidden"
+          exit={{ opacity: 0, y: -15 }}
+          transition={{ duration: 0.25 }}
+          className="absolute top-full left-0 right-0
+          bg-white shadow-lg border-t z-[99999]
+          flex flex-col gap-5 px-6 py-6 md:hidden"
         >
-          <NavLink to="/courses" className="hover:text-BLUE w-full">
+          <NavLink to="/courses" className="hover:text-BLUE">
             Courses
           </NavLink>
 
-          {/* ⭐ NEW: Mobile Mentorship Link */}
-          <NavLink to="/mentorship" className="hover:text-BLUE w-full">
+          <NavLink to="/mentorship" className="hover:text-BLUE">
             Mentorship
           </NavLink>
 
-          <NavLink to="/about" className="hover:text-BLUE w-full">
+          <NavLink to="/about" className="hover:text-BLUE">
             About
           </NavLink>
 
-          <NavLink to="/career" className="hover:text-BLUE w-full">
+          <NavLink to="/career" className="hover:text-BLUE">
             Career
           </NavLink>
 
           {token && currentUser ? (
             <>
-              <NavLink to="/dashboard" className="hover:text-BLUE w-full">
+              <NavLink to="/dashboard" className="hover:text-BLUE">
                 Dashboard
               </NavLink>
 
               <button
                 onClick={handleSignOut}
-                className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg w-full text-left"
+                className="border border-BLUE px-4 py-2 text-sm text-white 
+                  bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg"
               >
                 Logout
               </button>
@@ -231,7 +232,9 @@ const NavBar = () => {
           ) : (
             <Link
               to="/login"
-              className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold w-full text-center"
+              className="border-2 border-BLUE bg-BLUE text-white 
+                px-4 py-2 rounded-md font-semibold text-center
+                hover:bg-transparent hover:text-BLUE"
             >
               Login
             </Link>
@@ -246,6 +249,255 @@ UserAvatar.propTypes = { initial: PropTypes.string };
 CartIcon.propTypes = { itemCount: PropTypes.number };
 
 export default NavBar;
+
+// import { useState, useEffect, useContext, useMemo } from "react";
+// import LOGO from "../assets/images/logo2.png";
+// import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+// import CartItemContext from "../context/CartItemContext";
+// import { useStateContext } from "../context/ContextProvider";
+// import { Link, NavLink } from "react-router-dom";
+// import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
+// import { getAuth, signOut } from "firebase/auth";
+// import { app } from "../../firebase.config";
+// import FetchAllStudents from "../hooks/FetchAllStudents";
+// import SearchCourseInput from "./SearchCourseInput";
+// import PropTypes from "prop-types";
+// import { MdOutlineAddShoppingCart } from "react-icons/md";
+
+// const SCROLL_THRESHOLD = 20;
+// const HIDE_THRESHOLD = 150;
+
+// const headerVariant = {
+//   visible: { y: 0 },
+//   hidden: {
+//     y: "-100%",
+//     transition: { type: "linear", duration: 0.25 },
+//   },
+// };
+
+// const UserAvatar = ({ initial }) => (
+//   <div className="flex justify-center items-center w-8 md:text-lg aspect-square text-white font-black bg-BLUE rounded-full">
+//     {initial}
+//   </div>
+// );
+
+// const CartIcon = ({ itemCount }) => (
+//   <div className="relative cursor-pointer group">
+//     <MdOutlineAddShoppingCart size={30} />
+//     <p className="top-[-10px] group-hover:scale-[1.3] duration-200 ease-in-out right-[-10px] absolute text-white font-bold border-2 border-white px-2 rounded-full bg-BLUE z-10">
+//       {itemCount || "0"}
+//     </p>
+//   </div>
+// );
+
+// const NavBar = () => {
+//   const { data } = FetchAllStudents();
+//   const [showMenu, setShowMenu] = useState(false);
+//   const [hidden, setHidden] = useState(false);
+//   const { cartItem } = useContext(CartItemContext);
+//   const { token, setToken, FullScreen } = useStateContext();
+//   const [localuser, setUser] = useState(null);
+//   const auth = getAuth(app);
+//   const { scrollY } = useScroll();
+
+//   // ✅ load from localStorage
+//   useEffect(() => {
+//     const savedToken = localStorage.getItem("ACCESS_TOKEN");
+//     const savedUser = localStorage.getItem("user");
+//     if (savedToken) setToken(savedToken);
+//     if (savedUser) setUser(savedUser);
+//   }, [setToken]);
+
+//   // ✅ sign out
+//   const handleSignOut = () => {
+//     signOut(auth)
+//       .then(() => {
+//         localStorage.removeItem("ACCESS_TOKEN");
+//         localStorage.removeItem("user");
+//         setToken(null);
+//         setUser(null);
+//       })
+//       .catch((err) => console.error("Sign out error:", err.message));
+//   };
+
+//   // ✅ detect scroll
+//   useMotionValueEvent(scrollY, "change", (latest) => {
+//     const previous = scrollY.getPrevious();
+//     setHidden(latest > previous && latest > HIDE_THRESHOLD);
+//   });
+
+//   // ✅ get user details
+//   const currentUser = useMemo(() => {
+//     if (!data?.data?.response || !localuser) return null;
+//     const user = data.data.response.find((u) => u.email === localuser);
+//     if (!user) return null;
+//     return {
+//       fullname: user.name,
+//       email: user.email,
+//       initial: user.name
+//         .split(" ")
+//         .map((w) => w[0].toUpperCase())
+//         .join(""),
+//     };
+//   }, [data, localuser]);
+
+//   const toggleMenu = () => setShowMenu((prev) => !prev);
+
+//   return (
+//     <motion.header
+//       variants={headerVariant}
+//       animate={hidden && !FullScreen ? "hidden" : "visible"}
+//       className="z-[9999] fixed top-0 left-0 right-0 bg-white shadow-md px-4 md:px-10 py-2 flex items-center justify-between"
+//     >
+//       {/* ✅ Logo */}
+//       <Link to="/">
+//         <motion.img
+//           initial={{ x: -100, opacity: 0 }}
+//           animate={{ x: 0, opacity: 1 }}
+//           transition={{ type: "spring", stiffness: 260, duration: 2 }}
+//           src={LOGO}
+//           className="md:w-[200px] w-[130px]"
+//           alt="Logo"
+//         />
+//       </Link>
+
+//       {/* ✅ Show search bar only if logged in */}
+//       {token && (
+//         <div className="hidden md:block">
+//           <SearchCourseInput />
+//         </div>
+//       )}
+
+//       {/* ✅ Desktop Nav */}
+//       <nav className="hidden md:flex items-center gap-6">
+//         <NavLink to="/courses" className="hover:text-BLUE">
+//           Courses
+//         </NavLink>
+
+//         {/* ⭐ NEW: Public + Auth Access */}
+//         <NavLink to="/mentorship" className="hover:text-BLUE">
+//           Mentorship
+//         </NavLink>
+
+//         <NavLink to="/about" className="hover:text-BLUE">
+//           About
+//         </NavLink>
+
+//         <NavLink to="/career" className="hover:text-BLUE">
+//           Career
+//         </NavLink>
+
+//         {token && currentUser ? (
+//           <>
+//             <NavLink to="/dashboard" className="hover:text-BLUE">
+//               Dashboard
+//             </NavLink>
+           
+//               <NavLink
+//                className="hover:text-BLUE"
+//                 to="/result"
+//               >
+              
+//                 My Results
+//               </NavLink>
+            
+//             <button
+//               onClick={handleSignOut}
+//               className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg"
+//             >
+//               Logout
+//             </button>
+//           </>
+//         ) : (
+//           <Link
+//             to="/login"
+//             className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold"
+//           >
+//             Login
+//           </Link>
+//         )}
+//       </nav>
+
+//       {/* ✅ Right side */}
+//       <div className="flex items-center gap-4 md:gap-6">
+//         <Link to="/checkout">
+//           <CartIcon itemCount={cartItem?.length} />
+//         </Link>
+
+//         {token && currentUser && (
+//           <div className="hidden md:flex items-center gap-2">
+//             <UserAvatar initial={currentUser.initial} />
+//             <p className="text-sm font-semibold">{currentUser.fullname}</p>
+//           </div>
+//         )}
+
+//         {/* Mobile menu icon */}
+//         <div className="block md:hidden">
+//           {showMenu ? (
+//             <FaXmark size={22} onClick={toggleMenu} />
+//           ) : (
+//             <FaBarsStaggered size={22} onClick={toggleMenu} />
+//           )}
+//         </div>
+//       </div>
+
+//       {/* ✅ Mobile Dropdown Menu */}
+//       {showMenu && (
+//         <motion.div
+//           initial={{ opacity: 0, y: -20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           exit={{ opacity: 0, y: -20 }}
+//           transition={{ duration: 0.3 }}
+//           className="absolute top-full left-0 right-0 bg-white shadow-lg border-t z-[99999] flex flex-col items-start gap-4 px-6 py-4 md:hidden"
+//         >
+//           <NavLink to="/courses" className="hover:text-BLUE w-full">
+//             Courses
+//           </NavLink>
+
+//           {/* ⭐ NEW: Mobile Mentorship Link */}
+//           <NavLink to="/mentorship" className="hover:text-BLUE w-full">
+//             Mentorship
+//           </NavLink>
+
+//           <NavLink to="/about" className="hover:text-BLUE w-full">
+//             About
+//           </NavLink>
+
+//           <NavLink to="/career" className="hover:text-BLUE w-full">
+//             Career
+//           </NavLink>
+
+//           {token && currentUser ? (
+//             <>
+//               <NavLink to="/dashboard" className="hover:text-BLUE w-full">
+//                 Dashboard
+//               </NavLink>
+
+//               <button
+//                 onClick={handleSignOut}
+//                 className="border border-BLUE px-3 py-1 text-sm text-white bg-BLUE hover:bg-transparent hover:text-BLUE rounded-lg w-full text-left"
+//               >
+//                 Logout
+//               </button>
+//             </>
+//           ) : (
+//             <Link
+//               to="/login"
+//               className="border-2 border-BLUE hover:bg-transparent hover:text-BLUE duration-300 bg-BLUE text-white px-3 py-1 rounded-md font-semibold w-full text-center"
+//             >
+//               Login
+//             </Link>
+//           )}
+//         </motion.div>
+//       )}
+//     </motion.header>
+//   );
+// };
+
+// UserAvatar.propTypes = { initial: PropTypes.string };
+// CartIcon.propTypes = { itemCount: PropTypes.number };
+
+// export default NavBar;
 
 // import { useState, useEffect, useContext, useMemo } from "react";
 // import LOGO from "../assets/images/logo2.png";
