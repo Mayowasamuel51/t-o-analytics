@@ -12,7 +12,7 @@ const API_BASE = import.meta.env.VITE_HOME_OO || "http://localhost:8000";
 
 // Allowed users
 const allowedEmails = [
-   "basseyvera018@gmail.com",
+  "basseyvera018@gmail.com",
   "codeverseprogramming23@gmail.com",
   "ooolajuyigbe@gmail.com",
   "fadeleolutola@gmail.com",
@@ -307,12 +307,25 @@ const sampleCourses = [
           },
         ],
       },
+
       {
         id: "class6",
-        title: "Class 5  — Splunk Knowledge Objects",
+        title: "Reports & Dashboards",
+        desc: "Creating reports, dashboards, visualizations, inputs and filters..",
         videos: [],
-        docs: [],
+        docs: [
+          {
+            title: "Splunk Class 5 Slides",
+            url: "https://drive.google.com/file/d/1v7YRwUFvIBenhRSiS-f2evqh2ia2xuq6/preview",
+          },
+        ],
       },
+      // {
+      //   id: "class6",
+      //   title: "Class 5  — Splunk Knowledge Objects",
+      //   videos: [],
+      //   docs: [],
+      // },
     ],
   },
 ];
