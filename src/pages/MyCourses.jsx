@@ -20,6 +20,7 @@ const MyCourses = () => {
   // ✅ Main allowed emails (for the entire page)
   const allowedEmails = [
     "fadeleolutola@gmail.com",
+    "ooolajuyigbe@gmail.com",
         "jahdek76@gmail.com",
     "samuelsamuelmayowa@gmail.com",
     "oluwaferanmiolulana@gmail.com",
