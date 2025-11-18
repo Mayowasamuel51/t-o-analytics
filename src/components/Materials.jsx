@@ -812,7 +812,7 @@ export default function CoursePortal() {
                   {selectedClass.videos.map((v) => (
                     <div
                       key={v.id}
-                      className={`p-12 rounded-xl border ${
+                      className={`p-3 rounded-xl border ${
                         selectedVideo && selectedVideo.id === v.id
                           ? "border-blue-400 shadow"
                           : "border-gray-200"
