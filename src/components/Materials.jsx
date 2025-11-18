@@ -312,7 +312,14 @@ const sampleCourses = [
         id: "class6",
         title: "Class 5 — Reports & Dashboards",
         desc: "Creating reports, dashboards, visualizations, inputs and filters..",
-        videos: [],
+        videos: [
+            {
+            id: "v2",
+            title: "To-analytics Splunk Class 5",
+            url: "https://player.vimeo.com/video/1138152119",
+          },
+          
+],
         docs: [
           {
               id: "d3",
