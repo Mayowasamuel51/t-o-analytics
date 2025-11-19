@@ -33,6 +33,7 @@ const allowedEmails = [
   "emanfrimpong@gmail.com",
   "dipeoluolatunji@gmail.com",
   "lybertyudochuu@gmail.com",
+  "tunmisebabade@gmail.com",
 ];
 
 // ✅ Full Splunk Syllabus data (linked to your real videos & docs where available)

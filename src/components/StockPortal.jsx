@@ -25,6 +25,7 @@ const allowedEmails = [
   "emanfrimpong@gmail.com",
   "dipeoluolatunji@gmail.com",
   "lybertyudochuu@gmail.com",
+  "tunmisebabade@gmail.com",
 ];
 
 // ✅ Course content for STOCK & OPTIONS

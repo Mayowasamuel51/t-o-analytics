@@ -64,6 +64,7 @@ useEffect(() => {
     "randommayowa@gmail.com",
     "lybertyudochuu@gmail.com",
     "adenusitimi@gmail.com",
+    "tunmisebabade@gmail.com",
   ];
 
   // 🛑 Block unauthorized users

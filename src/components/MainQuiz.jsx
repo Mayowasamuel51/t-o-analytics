@@ -33,6 +33,7 @@ const MainQuiz = () => {
     "randommayowa@gmail.com",
     "dipeoluolatunji@gmail.com",
     "lybertyudochuu@gmail.com",
+    "tunmisebabade@gmail.com",
   ];
 
   const [assignments, setAssignments] = useState([]);
