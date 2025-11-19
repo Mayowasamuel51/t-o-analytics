@@ -20,10 +20,10 @@ const MyCourses = () => {
   // ✅ Main allowed emails (for the entire page)
   const allowedEmails = [
     "basseyvera018@gmail.com",
-      "codeverseprogramming23@gmail.com",
+    "codeverseprogramming23@gmail.com",
     "fadeleolutola@gmail.com",
     "ooolajuyigbe@gmail.com",
-        "jahdek76@gmail.com",
+    "jahdek76@gmail.com",
     "samuelsamuelmayowa@gmail.com",
     "oluwaferanmiolulana@gmail.com",
     "tomideolulana@gmail.com",
@@ -40,7 +40,7 @@ const MyCourses = () => {
     "emanfrimpong@gmail.com",
     "dipeoluolatunji@gmail.com",
     "yinkalola51@gmail.com",
-    "tunmisebabade@gmail.com",
+    "tunmisebabade@gmail.com"
   ];
 
   useEffect(() => {

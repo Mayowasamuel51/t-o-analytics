@@ -43,6 +43,7 @@ import Links from "./components/Links";
 import { AnimatePresence } from "framer-motion";
 import SendPdf from "./components/SendPdf";
 import ClassM from "./components/ClassM";
+import SplunkCommands from "./components/splunkCommands";
 import Session from "./components/Session";
 import Materials from "./components/Materials";
 import ResetPassword from "./pages/ResetPassword";
@@ -220,6 +221,7 @@ const router = createBrowserRouter([
       { index: true, element: <MyCourses /> },
       { path: "checkout", element: <CheckOut /> },
       { path: "quiz", element: <SplunkQuiz /> },
+      { path: "splunk-commands", elements: <SplunkCommands />},
       { path: "classmaterials", element: <ClassM /> },
       { path: "myCourses", element: <MyCourses /> },
       { path: "mentorship", element: <Mentorship /> },

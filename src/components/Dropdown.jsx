@@ -7,7 +7,6 @@ const DashboardDropdown = () => {
 
   return (
     <div className="relative inline-block text-left">
-      {/* Dropdown Button */}
       <button
         onClick={() => setOpen(!open)}
         className="inline-flex items-center justify-center gap-2 bg-PURPLE hover:bg-BLUE text-white font-semibold px-4 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
@@ -63,6 +62,14 @@ const DashboardDropdown = () => {
             to="/result"
           >
             My Results
+          </NavLink>
+
+          <NavLink
+            className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 transition-all duration-200"
+            onClick={() => setOpen(false)}
+            to="/splunk-commands"
+          >
+            Splunk Commands
           </NavLink>
 
           {/* 🔗 Syllabus PDF Link */}
